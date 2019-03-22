@@ -1,7 +1,6 @@
 import { Component,ViewChild } from '@angular/core';
-import { IonicPage, NavController, NavParams,Platform, Nav } from 'ionic-angular';
-import { StatusBar } from '@ionic-native/status-bar';
-import { SplashScreen } from '@ionic-native/splash-screen';
+import { IonicPage, NavController, NavParams, Nav } from 'ionic-angular';
+
 
 /**********Paginas******/
 import { LoginPage } from "../../pages/login/login";
