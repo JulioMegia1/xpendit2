@@ -1,0 +1,76 @@
+
+	{
+		
+		"maquinas" :[
+		
+		{"tipo":"combo",
+		"Modelo":"AMS",
+		"descripcion":"centa",
+		"direccion":"Parque Aeroespacial Querétaro",
+		"latitud":20.623873,
+		"longitud":-100.179543,
+		"maximo":80	
+	},
+	{
+		"tipo":"combo",
+		"Modelo":"AMS",
+		"descripcion":"IPQ BOTANA",
+		"direccion":"Industrias Plasticas de Queretaro",
+		"latitud":20.64455,
+		"longitud":-100.442739,
+		"maximo":74
+	},
+	{
+		"tipo":"refresco",
+		"Modelo":"sin especificar",
+		"descripcion":"IPQ refresco",
+		"direccion":"Industrias Plasticas de Queretaro",
+		"latitud":20.6434,
+		"longitud":-100.442741,
+		"maximo":63
+
+	},
+	{
+		"tipo":"combo",
+		"Modelo":"AMS",
+		"descripcion":"kiewit",
+		"direccion":"Avenida Salvación #712",
+		"latitud":20.6270493	,
+		"longitud":-100.3899074,
+		"maximo":22		
+	},
+	
+	{
+		"tipo":"botana",
+		"Modelo":"crane",
+		"descripcion":"laboratorio",
+		"direccion":"Ley 6 de enero #57",
+		"latitud":20.554083,
+		"longitud":-100.422486,
+		"maximo":55		
+	},
+	
+	{
+		"tipo":"botana",
+		"Modelo":"AMS",
+		"descripcion":"safran I",
+		"direccion":"Parque Aeronautico QRO",
+		"latitud":20.61639,
+		"longitud":-100.168,
+		"maximo":47		
+	},
+	
+	{
+		"tipo":"combo",
+		"Modelo":"AMS",
+		"descripcion":"safran II",
+		"direccion":"Parque Aeronautico QRO",	
+		"latitud":20.618639,
+		"longitud":-100.173669,
+		"maximo":99		
+	}
+	]
+}
+	
+	
+

@@ -1,0 +1,35 @@
+<ion-header>
+  <ion-navbar>
+      <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Máquina {{seleccion}} </ion-title>
+  </ion-navbar>
+</ion-header>
+
+
+<ion-content padding>
+    <ion-card>
+        <ion-item>
+            <ion-label>Máquinas</ion-label>
+            <ion-select [(ngModel)]="seleccion" interface="popover" [selectOptions]="customPopoverOptions" >
+             <ion-option *ngFor="let maquina of maquinasCI" value="{{maquina.descripcion}}">{{maquina.descripcion}}</ion-option>  
+            </ion-select>
+          </ion-item>
+        </ion-card>
+    <ion-label>{{seleccion}}</ion-label>
+
+
+  <tacometro></tacometro>
+
+
+  <ion-fab right bottom>
+      <button ion-fab color="primary"><ion-icon name="calculator"></ion-icon></button>
+      <ion-fab-list side="top">
+        <ion-card>
+          <br>
+          La maquina actual es: {{seleccion}}<br></ion-card>
+     
+      </ion-fab-list>
+    </ion-fab>
+</ion-content>

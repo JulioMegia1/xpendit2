@@ -1,0 +1,60 @@
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+<!-- usar para iconos -->
+
+
+
+<ion-header>
+
+  <ion-navbar>
+      <button ion-button menuToggle>
+          <ion-icon name="menu"></ion-icon>
+        </button>
+
+    <ion-title>Configuración</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+
+    <ion-grid>
+        <ion-row>
+          <ion-col>
+            <ion-card text-center>
+            <h2>Máquinas</h2>
+            <ul>
+                <li>   <a (click)="irmaquinas()"><i  class="fa fa-calculator" aria-hidden="true"></i></a></li>
+                </ul>
+              </ion-card>
+              </ion-col>
+          <ion-col>
+            <ion-card text-center>
+              <h2>Productos</h2>  
+              <ul>
+                  <li>  <a (click)="irproductos()"><i  class="fa fa-truck" aria-hidden="true"></i></a></li>
+                  </ul>
+          </ion-card>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+            <ion-col>
+              <ion-card text-center>
+                <h2>Usuarios</h2>
+                <ul>
+                    <li>  <a (click)="irusuarios()"><i  class="fa fa-user" aria-hidden="true"></i></a></li>
+                    </ul>
+                </ion-card>
+                </ion-col>
+            <ion-col>   
+              <ion-card text-center>
+                <h2>Alarmas</h2>  
+                <ul>
+                    <li>  <a (click)="iralarmas()"><i  class="fa fa-bell" aria-hidden="true"></i></a></li>
+                    </ul>
+              </ion-card>
+              </ion-col>
+          </ion-row>
+      </ion-grid>
+
+</ion-content>

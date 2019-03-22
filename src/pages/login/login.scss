@@ -1,0 +1,174 @@
+page-login {
+  
+
+    .background{ 
+        background: linear-gradient(25deg,#23733c,#0a113d,#ffffff,#000000);
+                background-size: 400% 400%;
+                animation:colorchange 5s ease-out infinite;
+    }
+    @keyframes colorchange {
+        0%{background-position: 0% 99%}
+        50%{background-position:100 % 1%}
+        100%{background-position: 10% 90%}
+    }
+
+    
+
+    .scroll-content{
+        align-content: center;
+    
+        
+        flex-direction: column;
+        justify-content: center;
+        text-align: center;
+        
+    }
+
+    ion-card.card{
+        background: rgba(255, 255,255,0.6px);
+        border-radius: 10%;
+        box-shadow: none;
+
+    }
+
+    .passwordIcon{
+        font-size:2rem !important;
+        position: relative !important;
+        top: 22px !important;
+        margin: 0 auto !important;
+     }
+   
+   
+    img 
+    {
+        margin-top: 30px;
+        width: 40%;
+        border-radius: 50%;
+    }
+
+    input[type=text], input[type=password]
+    {
+      background: rgba(255, 255,255,0.6px);
+      background-color: #ffffff;
+      border:none;
+      color: #535353;
+      padding: 15px 32px;
+      text-decoration: none;
+      font-size: 16px;
+      margin: 5px;
+      width: 55%;
+      border:2px solid #f6f6f6;
+      height: 35px;
+      text-align: center;
+      margin:0 auto;
+    }
+    
+    .item{
+        background: rgba(255, 255,255,0.6px);
+        margin-bottom: 10px;
+        border: medium none;
+    }
+
+    button
+    {
+        width:30%;
+    }
+
+    //INICIA XPEND-IT FLIP------------------------------------------------
+    @import url('https://fonts.googleapis.com/css?family=Roboto:700');
+
+
+
+    #container {
+      color:#fff;
+      //text-transform: uppercase;
+      text-align:center;
+      font-size:28px;
+      font-weight:bold;
+      //padding-top:200%;  
+      //position:fixed;
+      width:100%;
+      bottom:45%;
+      display:block;
+    }
+    
+    #flip {
+      height:50px;
+      overflow:hidden;
+    }
+    
+    #flip > div > div {
+      color:#fff;
+      padding:4px 12px;
+      height:45px;
+      margin-bottom:45px;
+      display:inline-block;
+    }
+    
+    #flip div:first-child {
+      animation: show 5s linear infinite;
+    }
+    
+    #flip div div {
+      background:#1b3861;
+    }
+    #flip div:first-child div {
+      background:#18703d;
+    }
+    #flip div:last-child div {
+      background:#999;
+    }
+    
+    @keyframes show {
+      0% {margin-top:-270px;}
+      5% {margin-top:-180px;}
+      33% {margin-top:-180px;}
+      38% {margin-top:-90px;}
+      66% {margin-top:-90px;}
+      71% {margin-top:0px;}
+      99.99% {margin-top:0px;}
+      100% {margin-top:-270px;}
+    }
+    //---------------------------------TERMINA XPEND-IT FLIP
+    button{
+      background:#18703d;
+      color:#fff;
+      border:none;
+      position:relative;
+      height:60px;
+      font-size:1.6em;
+      padding:0 2em;
+      cursor:pointer;
+      transition:800ms ease all;
+      outline:none;
+    }
+    button:hover{
+      background:#fff;
+      color:#fff;
+    }
+    button:before,button:after{
+      content:'';
+      position:absolute;
+      top:0;
+      right:0;
+      height:2px;
+      width:0;
+      background: #fff;
+      transition:400ms ease all;
+    }
+    button:after{
+      right:inherit;
+      top:inherit;
+      left:0;
+      bottom:0;
+    }
+    button:hover:before,button:hover:after{
+      width:100%;
+      transition:800ms ease all;
+    }
+    
+    
+    
+
+}
+
