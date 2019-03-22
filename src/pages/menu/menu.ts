@@ -50,7 +50,7 @@ export class MenuPage {
  
     // The index is equal to the order of our tabs inside tabs.ts
     if (page.index) {
-      params = { tabIndex: page.index };
+      params = { tabIndex: page.index }; 
     }
  
     // If tabs page is already active just change the tab index
