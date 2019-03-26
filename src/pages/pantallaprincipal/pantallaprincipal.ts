@@ -86,7 +86,7 @@ export class PantallaprincipalPage {
         showLegend: 0
       },
       caption: {
-        text: 'Venta Global Historicas($)'
+        text: 'Venta Global Historica($)'
       },
       yAxis: [
         {
@@ -163,17 +163,17 @@ export class PantallaprincipalPage {
                 label: "Venta x Hora",
                 fill: false,  
                 lineTension: 0.1,
-                backgroundColor: "rgba(75,192,192,0.4)",
-                borderColor: "rgba(75,192,192,1)",
+                backgroundColor: "rgba(24,112,61,0.4)",
+                borderColor: "rgba(24,112,61,1)",
                 borderCapStyle: 'butt',
                 borderDash: [],
                 borderDashOffset: 0.0,
                 borderJoinStyle: 'miter',
-                pointBorderColor: "rgba(75,192,192,1)",
+                pointBorderColor: "rgba(27,56,97,1)",
                 pointBackgroundColor: "#fff",
                 pointBorderWidth: 1,
                 pointHoverRadius: 5,
-                pointHoverBackgroundColor: "rgba(75,192,192,1)",
+                pointHoverBackgroundColor: "rgba(27,56,97,1)",
                 pointHoverBorderColor: "rgba(220,220,220,1)",
                 pointHoverBorderWidth: 2,
                 pointRadius: 1,
@@ -216,14 +216,14 @@ export class PantallaprincipalPage {
   this.ventaglobal = new Chart(this.Vglobal.nativeElement, {
       type: 'line',
       data: {
-          labels: ["00:00", "01:00", "02:00", "03:00", "04:00", "05:00", "06:00","07:00", "08:00", "09:00", "10:00", "11:00", "12:00", "13:00"],
+          labels: ["00:00", "01:00", "02:00", "03:00", "04:00", "05:00", "06:00","07:00", "08:00", "09:00", "10:00", "11:00", "12:00", "13:00", "14:00", "15:00", "16:00", "17:00", "18:00", "19:00","20:00", "21:00", "22:00", "23:00"],
           datasets: [
               {
                   label: "Venta Global",
                   fill: false,  
                   lineTension: 0.1,
-                  backgroundColor: "rgba(75,192,192,0.4)",
-                  borderColor: "rgba(75,192,192,1)",
+                  backgroundColor: "rgba(24,112,61,0.4)",
+                  borderColor: "rgba(24,112,61,1)",
                   borderCapStyle: 'butt',
                   borderDash: [],
                   borderDashOffset: 0.0,
@@ -237,7 +237,7 @@ export class PantallaprincipalPage {
                   pointHoverBorderWidth: 2,
                   pointRadius: 1,
                   pointHitRadius: 10,
-                  data: [65, 59, 80, 81, 56, 55, 40,65, 59, 80, 81, 56, 55, 40],
+                  data: [0, 40, 48, 81, 56, 55, 40,65, 59, 80, 81, 56, 55, 40,56, 55, 40,65, 59, 80, 81, 56, 55, 40],
                   spanGaps: false,
               }
           ]

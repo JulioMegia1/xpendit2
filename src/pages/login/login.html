@@ -1,44 +1,44 @@
-
- 
 <ion-content padding class="background">
+    <ion-card class="mobile-fab">
+    <ion-card-content>  
+    <div id=container text-align="center">
+         Bienvenido a <br>
+         Xpend-it 2.0    
+    </div>  
 
-    <ion-card-content>
-        <div id=container text-align="center">
-         Bienvenido al 
-         <div id=flip>
-           <div><div>Nuevo</div></div>
-           <div><div>Mejorado</div></div>
-           <div><div>Más rápido</div></div>
-           
-         </div>
-         Sistema de Xpend-It
-       </div>  
-   
-         <br>
-           
-         <ion-list>
-           <ion-item>
-             
-            <ion-label floating><ion-icon name="person"></ion-icon>  Usuario</ion-label>
-             <ion-input type="text"  [(ngModel)]="usuario" ></ion-input>
-             <br><br>
-           </ion-item>
-               
-           <ion-item>
-               
-             <ion-label floating><ion-icon name="unlock"></ion-icon>  Password</ion-label>
-              <ion-input [type]="passwordType" placeholder="" [(ngModel)]="password" text-align= right></ion-input>
-              <ion-icon name="eye" color="gray" item-end (click)="verpassword()"></ion-icon>
-    
-             
-             </ion-item>    
-             
-             
-                 <button  ion-button class="login" round  (click)="login()"  >LOGIN</button> 
-               
-                 
-               </ion-list>
-       </ion-card-content>
+       <ion-grid>
+          <ion-row>
+            <ion-col col-4></ion-col>
+            <ion-col col-4 style="margin-left: auto;margin-right: auto;display: block;">
+              <img src="../../assets/imgs/xpenditlogo" style="width:250px;height:auto;border-radius: 100%">
+            </ion-col>
+            <ion-col col-4></ion-col>
+          </ion-row>
+        </ion-grid>
+
+     <ion-list >
+        <ion-item>
+            <ion-label ><ion-icon name="person" ></ion-icon></ion-label><ion-input type="text"  [(ngModel)]="usuario" placeholder="Usuario"></ion-input>
+          </ion-item>
+
+          <ion-item>
+            <ion-label ><ion-icon name="unlock"></ion-icon> </ion-label> 
+            <ion-input [type]="passwordType"  placeholder="Password" [(ngModel)]="password" text-align= right ></ion-input>
+            <ion-icon name="eye" color="gray" item-end (click)="verpassword()"></ion-icon>
+          </ion-item>
+          
+          <button  ion-button class="login" round  (click)="login()"  >LOGIN</button>  
+        </ion-list>
+
+       
+     </ion-card-content>
+  </ion-card>
+  <!-- **************************WEB************************ -->
+
+
+
+  
+  
        
        
 

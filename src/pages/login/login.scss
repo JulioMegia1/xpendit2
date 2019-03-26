@@ -1,10 +1,33 @@
-page-login {
-  
+page-login  {
 
+  @media (max-width: 768px) {// Diseño parte móvil
+      ion-card.card{
+      background: rgba(255, 255,255,0.6px);
+      border-radius: 10%;
+      box-shadow: none;
+      width: 90%;
+      margin: auto;
+      margin-top: 50px;
+      display: block;
+  }
+}
+
+@media (min-width: 768px) {// Diseño parte WEB
+    ion-card.card{
+      background: rgba(255, 255,255,0.6px);
+      border-radius: 10%;
+      box-shadow: none;
+      width: 45%;
+      margin: auto;
+      margin-top: 50px;
+      display: block;
+  }
+}
+  
     .background{ 
         background: linear-gradient(25deg,#23733c,#0a113d,#ffffff,#000000);
-                background-size: 400% 400%;
-                animation:colorchange 5s ease-out infinite;
+        background-size: 400% 400%;
+        animation:colorchange 60s ease-out infinite;
     }
     @keyframes colorchange {
         0%{background-position: 0% 99%}
@@ -12,24 +35,24 @@ page-login {
         100%{background-position: 10% 90%}
     }
 
-    
-
     .scroll-content{
         align-content: center;
-    
-        
-        flex-direction: column;
+        flex-direction: column; 
         justify-content: center;
         text-align: center;
-        
     }
 
-    ion-card.card{
-        background: rgba(255, 255,255,0.6px);
-        border-radius: 10%;
-        box-shadow: none;
+    // ion-card.card{
+    //     background: rgba(255, 255,255,0.6px);
+    //     border-radius: 10%;
+    //     box-shadow: none;
+    //     width: 45%;
+    //     margin: auto;
+    //     margin-top: 50px;
+    //     display: block;
+    // }
 
-    }
+
 
     .passwordIcon{
         font-size:2rem !important;
@@ -38,47 +61,42 @@ page-login {
         margin: 0 auto !important;
      }
    
-   
     img 
     {
-        margin-top: 30px;
-        width: 40%;
-        border-radius: 50%;
+        // margin-top: 70px;
+        // border-radius: 200px,200px,200px,200px;
+         display:block;
+         margin:auto;
+        // width: 150px;
     }
 
-    input[type=text], input[type=password]
+    input[type=password],  input[type=text]
     {
       background: rgba(255, 255,255,0.6px);
-      background-color: #ffffff;
+      background-color: #fff;
       border:none;
       color: #535353;
       padding: 15px 32px;
       text-decoration: none;
       font-size: 16px;
       margin: 5px;
-      width: 55%;
+      width: 100%;
       border:2px solid #f6f6f6;
       height: 35px;
       text-align: center;
       margin:0 auto;
+      border-radius: 20px;
     }
-    
+
     .item{
         background: rgba(255, 255,255,0.6px);
         margin-bottom: 10px;
-        border: medium none;
-    }
-
-    button
-    {
-        width:30%;
+        //border: medium none;
+        border-radius: 20px;
     }
 
     //INICIA XPEND-IT FLIP------------------------------------------------
     @import url('https://fonts.googleapis.com/css?family=Roboto:700');
-
-
-
     #container {
       color:#fff;
       //text-transform: uppercase;
@@ -92,43 +110,7 @@ page-login {
       display:block;
     }
     
-    #flip {
-      height:50px;
-      overflow:hidden;
-    }
     
-    #flip > div > div {
-      color:#fff;
-      padding:4px 12px;
-      height:45px;
-      margin-bottom:45px;
-      display:inline-block;
-    }
-    
-    #flip div:first-child {
-      animation: show 5s linear infinite;
-    }
-    
-    #flip div div {
-      background:#1b3861;
-    }
-    #flip div:first-child div {
-      background:#18703d;
-    }
-    #flip div:last-child div {
-      background:#999;
-    }
-    
-    @keyframes show {
-      0% {margin-top:-270px;}
-      5% {margin-top:-180px;}
-      33% {margin-top:-180px;}
-      38% {margin-top:-90px;}
-      66% {margin-top:-90px;}
-      71% {margin-top:0px;}
-      99.99% {margin-top:0px;}
-      100% {margin-top:-270px;}
-    }
     //---------------------------------TERMINA XPEND-IT FLIP
     button{
       background:#18703d;
@@ -141,6 +123,7 @@ page-login {
       cursor:pointer;
       transition:800ms ease all;
       outline:none;
+      width:30%;
     }
     button:hover{
       background:#fff;
@@ -166,9 +149,6 @@ page-login {
       width:100%;
       transition:800ms ease all;
     }
-    
-    
-    
+  }
 
-}
-
+  
