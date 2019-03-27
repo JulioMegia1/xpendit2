@@ -10,7 +10,8 @@
 		"latitud":20.623873,
 		"longitud":-100.179543,
 		"maximo":80,
-		"iconourl":"../../assets/icon/red-dot.jpg"	
+		"iconourl":"../../assets/icon/maquinasiconos/amarilla.png",
+		"alertas":"cambio bajo en monedero"	
 	},
 	{
 		"tipo":"combo",
@@ -20,7 +21,9 @@
 		"latitud":20.64455,
 		"longitud":-100.442739,
 		"maximo":74,
-		"iconourl":"../../assets/icon/red-dot.jpg"
+		"iconourl":"../../assets/icon/maquinasiconos/azul.png",
+		"alertas":"sin conexion electrica"	
+
 	},
 	{
 		"tipo":"refresco",
@@ -30,8 +33,8 @@
 		"latitud":20.6434,
 		"longitud":-100.442741,
 		"maximo":63,
-		"iconourl":"../../assets/icon/red-dot.jpg"
-
+		"iconourl":"../../assets/icon/maquinasiconos/morado.png",
+		"alertas":"sin recibir dex"	
 	},
 	{
 		"tipo":"combo",
@@ -41,7 +44,8 @@
 		"latitud":20.6270493	,
 		"longitud":-100.3899074,
 		"maximo":22,
-		"iconourl":"../../assets/icon/red-dot.jpg"		
+		"iconourl":"../../assets/icon/maquinasiconos/naranja.png",		
+		"alertas":"no venta en mas de 4 hrs"	
 	},
 	
 	{
@@ -52,7 +56,8 @@
 		"latitud":20.554083,
 		"longitud":-100.422486,
 		"maximo":55,
-		"iconourl":"../../assets/icon/red-dot.jpg"		
+		"iconourl":"../../assets/icon/maquinasiconos/verde2.png",
+		"alertas":"sin recibir dex"			
 	},
 	
 	{
@@ -63,7 +68,8 @@
 		"latitud":20.61639,
 		"longitud":-100.168,
 		"maximo":47,
-		"iconourl":"../../assets/icon/red-dot.jpg"		
+		"iconourl":"../../assets/icon/maquinasiconos/roja.png",
+		"alertas":" "			
 	},
 	
 	{
@@ -74,7 +80,8 @@
 		"latitud":20.618639,
 		"longitud":-100.173669,
 		"maximo":99,
-		"iconourl":"../../assets/icon/red-dot.jpg"		
+		"iconourl":"../../assets/icon/maquinasiconos/verde2.png"
+		,"alertas":" "			
 	}
 	]
 }

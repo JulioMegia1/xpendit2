@@ -264,7 +264,7 @@ export class PantallaprincipalPage {
         })
         var marker = new L.Marker([maquina.latitud,maquina.longitud],{icon:reddot}).addTo(this.map)
          //this.map.addLayer(marker);
-        .bindPopup(maquina.descripcion);
+        .bindPopup(maquina.descripcion + " | " + maquina.alertas);
        }   
     }
     );
@@ -281,17 +281,17 @@ export class PantallaprincipalPage {
       attribution: 'edupala.com © ionic LeafLet'
     }).addTo(this.map);
 
-    var reddot = L.icon({
-      iconUrl: "../../assets/icon/red-dot.jpg",
-      iconSize: [38, 38], // size of the icon
-      iconAnchor: [22, 94],
+    // var reddot = L.icon({
+    //   iconUrl: "../../assets/icon/red-dot.jpg",
+    //   iconSize: [38, 38], // size of the icon
+    //   iconAnchor: [22, 94],
 
-    })
+    // })
 
-    var marker = new L.Marker(this.center,{icon:reddot}).addTo(this.map);
-    //this.map.addLayer(marker);
-    marker.bindPopup("CI Technologies");
-    console.log(this.map)
+    // var marker = new L.Marker(this.center,{icon:reddot}).addTo(this.map);
+    // //this.map.addLayer(marker);
+    // marker.bindPopup("CI Technologies");
+    // console.log(this.map)
   }
   /*mapa leaflet*/
 
