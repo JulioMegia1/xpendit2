@@ -33,7 +33,7 @@ export class MenuPage {
   pages: PageInterface[] = [
     { title: 'Inicio', name: 'TabsPage', component: TabsPage, tabComponent: PantallaprincipalPage, index: 0, icon: 'home' },
     { title: 'Máquinas', name: 'TabsPage', component: TabsPage, tabComponent: DetallemvPage, index: 1, icon: 'calculator' },
-    { title: 'Productos', name: 'TabsPage', component: TabsPage, tabComponent: DetalleproductoPage, index: 2, icon: 'contacts' },
+    { title: 'Productos', name: 'TabsPage', component: TabsPage, tabComponent: DetalleproductoPage, index: 2, icon: 'cafe' },
     { title: 'Generar Reporte', name: 'SpecialPage', component: ReportePage, icon: 'stats' },
     { title: 'Configuración', name: 'SpecialPage', component: CatalogosPage, icon: 'settings' },
     { title: 'Salir', name: 'SpecialPage', component: LoginPage, icon: 'exit' },

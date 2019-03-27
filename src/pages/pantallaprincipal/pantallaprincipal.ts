@@ -254,8 +254,15 @@ export class PantallaprincipalPage {
       console.log("estoy en get menu y obtengo los datos del json:");
       console.log(this.maquinas); 
       for (let maquina of this.maquinas.maquinas) {
-        console.log(maquina.descripcion,maquina.latitud,maquina.longitud)
-        var marker = new L.Marker([maquina.latitud,maquina.longitud]).addTo(this.map)
+        console.log(maquina.descripcion,maquina.latitud,maquina.longitud,maquina.iconourl)
+        
+        var reddot = L.icon({
+          iconUrl: maquina.iconourl,
+          iconSize: [38, 38], // size of the icon
+          iconAnchor: [22, 94],
+
+        })
+        var marker = new L.Marker([maquina.latitud,maquina.longitud],{icon:reddot}).addTo(this.map)
          //this.map.addLayer(marker);
         .bindPopup(maquina.descripcion);
        }   
@@ -273,7 +280,15 @@ export class PantallaprincipalPage {
   var position = L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
       attribution: 'edupala.com © ionic LeafLet'
     }).addTo(this.map);
-    var marker = new L.Marker(this.center).addTo(this.map);
+
+    var reddot = L.icon({
+      iconUrl: "../../assets/icon/red-dot.jpg",
+      iconSize: [38, 38], // size of the icon
+      iconAnchor: [22, 94],
+
+    })
+
+    var marker = new L.Marker(this.center,{icon:reddot}).addTo(this.map);
     //this.map.addLayer(marker);
     marker.bindPopup("CI Technologies");
     console.log(this.map)

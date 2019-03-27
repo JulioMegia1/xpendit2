@@ -9,7 +9,8 @@
 		"direccion":"Parque Aeroespacial Querétaro",
 		"latitud":20.623873,
 		"longitud":-100.179543,
-		"maximo":80	
+		"maximo":80,
+		"iconourl":"../../assets/icon/red-dot.jpg"	
 	},
 	{
 		"tipo":"combo",
@@ -18,7 +19,8 @@
 		"direccion":"Industrias Plasticas de Queretaro",
 		"latitud":20.64455,
 		"longitud":-100.442739,
-		"maximo":74
+		"maximo":74,
+		"iconourl":"../../assets/icon/red-dot.jpg"
 	},
 	{
 		"tipo":"refresco",
@@ -27,7 +29,8 @@
 		"direccion":"Industrias Plasticas de Queretaro",
 		"latitud":20.6434,
 		"longitud":-100.442741,
-		"maximo":63
+		"maximo":63,
+		"iconourl":"../../assets/icon/red-dot.jpg"
 
 	},
 	{
@@ -37,7 +40,8 @@
 		"direccion":"Avenida Salvación #712",
 		"latitud":20.6270493	,
 		"longitud":-100.3899074,
-		"maximo":22		
+		"maximo":22,
+		"iconourl":"../../assets/icon/red-dot.jpg"		
 	},
 	
 	{
@@ -47,7 +51,8 @@
 		"direccion":"Ley 6 de enero #57",
 		"latitud":20.554083,
 		"longitud":-100.422486,
-		"maximo":55		
+		"maximo":55,
+		"iconourl":"../../assets/icon/red-dot.jpg"		
 	},
 	
 	{
@@ -57,7 +62,8 @@
 		"direccion":"Parque Aeronautico QRO",
 		"latitud":20.61639,
 		"longitud":-100.168,
-		"maximo":47		
+		"maximo":47,
+		"iconourl":"../../assets/icon/red-dot.jpg"		
 	},
 	
 	{
@@ -67,7 +73,8 @@
 		"direccion":"Parque Aeronautico QRO",	
 		"latitud":20.618639,
 		"longitud":-100.173669,
-		"maximo":99		
+		"maximo":99,
+		"iconourl":"../../assets/icon/red-dot.jpg"		
 	}
 	]
 }

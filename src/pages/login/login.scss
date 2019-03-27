@@ -1,6 +1,6 @@
 page-login  {
 
-  @media (max-width: 768px) {// Diseño parte móvil
+  @media (max-width: 1024px) {// Diseño parte móvil
       ion-card.card{
       background: rgba(255, 255,255,0.6px);
       border-radius: 10%;
@@ -12,7 +12,7 @@ page-login  {
   }
 }
 
-@media (min-width: 768px) {// Diseño parte WEB
+@media (min-width: 1024px) {// Diseño parte WEB
     ion-card.card{
       background: rgba(255, 255,255,0.6px);
       border-radius: 10%;
@@ -93,6 +93,7 @@ page-login  {
         margin-bottom: 10px;
         //border: medium none;
         border-radius: 20px;
+        width: 100%;
     }
 
     //INICIA XPEND-IT FLIP------------------------------------------------
