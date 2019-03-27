@@ -8,33 +8,22 @@ import 'rxjs/add/operator/map';
 import L from "leaflet";
 /*Mapa*/
 
-
  /*GRAFICAS Chartjs
  npm install chart.js --save
 */
 import { Chart } from 'chart.js';
 /*chartjs*/
 
-
-
 /*graficas fusioncharts
  npm install angular-fusioncharts
 npm install fusioncharts
-graficas fusioncharts*/
+*/
 import * as FusionCharts from 'fusioncharts';
 /*fusioncharts*/
-
-
 
  /*servicios*/
  import { DataServiceProvider } from '../../providers/data-service/data-service';
  /*servicios*/
-
-
-
-
-
-
 @IonicPage()
 @Component({
   selector: 'page-pantallaprincipal',
@@ -52,13 +41,11 @@ export class PantallaprincipalPage {
     ventaglobal: any;
     /*chartjs*/
 
-
   /*mapa leaf let*/
   maquinas :any;
   center: L.PointTuple;
   map:L.map;
   /*mapa leaf let*/
-
 
   /*grafica fusioncharts*/
   dataSource: any;
@@ -69,10 +56,8 @@ export class PantallaprincipalPage {
   datos:any;
 /*grafica fusioncharts*/
 
-
   constructor(public navCtrl: NavController, public navParams: NavParams,public dataService:DataServiceProvider) {
     this.getmaquinas();
-
 
     /*fusionchart*/
     this.type = 'timeseries';
@@ -104,7 +89,6 @@ export class PantallaprincipalPage {
     };
     this.fetchData();
     /*fusionchart*/
-    
   }
 
   ionViewDidLoad() {
@@ -113,46 +97,6 @@ export class PantallaprincipalPage {
     this.center = [20.621197, -100.331521];
     console.log(this.center)
     this.leafletMap();
-
-    /**graficas chartjs */
-  //   this.barChart = new Chart(this.barCanvas.nativeElement, {
-
-  //     type: 'bar',
-  //     data: {
-  //         labels: ["02:00", "03:00", "Yellow", "Green", "Purple", "Orange"],
-  //         datasets: [{
-  //             label: 'Venta x Hora',
-  //             data: [12, 19, 3, 5, 2, 3],
-  //             backgroundColor: [
-  //                 'rgba(24, 112, 61, 0.2)',
-  //                 'rgba(24, 112, 61, 0.2)',
-  //                 'rgba(24, 112, 61, 0.2)',
-  //                 'rgba(24, 112, 61, 0.2)',
-  //                 'rgba(24, 112, 61, 0.2)',
-  //                 'rgba(24, 112, 61, 0.2)'
-  //             ],
-  //             borderColor: [
-  //               'rgba(24, 112, 61, 0.2)',
-  //               'rgba(24, 112, 61, 0.2)',
-  //               'rgba(24, 112, 61, 0.2)',
-  //               'rgba(24, 112, 61, 0.2)',
-  //               'rgba(24, 112, 61, 0.2)',
-  //               'rgba(24, 112, 61, 0.2)'
-  //             ],
-  //             borderWidth: 1
-  //         }]
-  //     },
-  //     options: {
-  //         scales: {
-  //             yAxes: [{
-  //                 ticks: {
-  //                     beginAtZero:true
-  //                 }
-  //             }]
-  //         }
-  //     }
-  // });
-
 
   this.VentaHora = new Chart(this.Vhora.nativeElement, {
     type: 'line',
@@ -245,7 +189,7 @@ export class PantallaprincipalPage {
 
   });
   /**graficas chartjs */
-  }
+}
 
   getmaquinas(){
     console.log("constructor")
@@ -256,13 +200,13 @@ export class PantallaprincipalPage {
       for (let maquina of this.maquinas.maquinas) {
         console.log(maquina.descripcion,maquina.latitud,maquina.longitud,maquina.iconourl)
         
-        var reddot = L.icon({
+        var punto = L.icon({
           iconUrl: maquina.iconourl,
-          iconSize: [38, 38], // size of the icon
-          iconAnchor: [22, 94],
+          iconSize: [30, 30], // size of the icon
+          iconAnchor: [20, 90],
 
         })
-        var marker = new L.Marker([maquina.latitud,maquina.longitud],{icon:reddot}).addTo(this.map)
+        var marker = new L.Marker([maquina.latitud,maquina.longitud],{icon:punto}).addTo(this.map)
          //this.map.addLayer(marker);
         .bindPopup(maquina.descripcion + " | " + maquina.alertas);
        }   
@@ -281,20 +225,8 @@ export class PantallaprincipalPage {
       attribution: 'edupala.com © ionic LeafLet'
     }).addTo(this.map);
 
-    // var reddot = L.icon({
-    //   iconUrl: "../../assets/icon/red-dot.jpg",
-    //   iconSize: [38, 38], // size of the icon
-    //   iconAnchor: [22, 94],
-
-    // })
-
-    // var marker = new L.Marker(this.center,{icon:reddot}).addTo(this.map);
-    // //this.map.addLayer(marker);
-    // marker.bindPopup("CI Technologies");
-    // console.log(this.map)
-  }
+}
   /*mapa leaflet*/
-
 
   /*fusion charts*/
   fetchData() {
@@ -322,8 +254,4 @@ export class PantallaprincipalPage {
   );
   }
   /*fusion charts*/
-
-
-
-
 }
