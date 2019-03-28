@@ -245,6 +245,13 @@ let interval = setInterval(()=> {
         var marker = new L.Marker([maquina.latitud,maquina.longitud],{icon:punto}).addTo(this.map)
          //this.map.addLayer(marker);
         .bindPopup(maquina.descripcion + " | " + maquina.alertas);
+
+        marker.on('mouseover', function (e) {
+          this.openPopup();
+        });
+        marker.on('mouseout', function (e) {
+          this.closePopup();
+        });
        }   
     }
     );
