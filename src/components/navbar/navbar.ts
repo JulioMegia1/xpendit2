@@ -13,7 +13,7 @@ export class NavbarComponent {
     console.log('Hello NavbarComponent Component');
     this.text = 'Hello World';
   }
-  ngAfterViewInit()  {
+  ngOnInit()  {
     this.text=this.textTouse;
   
     

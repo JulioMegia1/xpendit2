@@ -7,10 +7,10 @@
     <!-- <luz [hidden]="shownSessions == 0"></luz> -->
   <!-- </ion-navbar>
 </ion-header> -->
-<navbar></navbar>
+<navbar mytext="Ci-Technologies"></navbar>
 
-<ion-content >
-    <br><br><br><br><br><br><br><br><br><br>
+<ion-content style="margin-top:60px" >
+
       <ion-card [hidden]="shownSessions == 0">
           <ion-card-content class="map-container">
   <!-- mapa leaflet -->
@@ -18,11 +18,11 @@
             </div>
           </ion-card-content>
         </ion-card>
-      <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+   
    <!-- mapa leaflet -->
 
   <!-- graficas chartjs -->
-  <ion-card>
+  <ion-card style="margin-top:400px">
     <ion-card-header>
       Venta x Hora
     </ion-card-header>
@@ -40,7 +40,7 @@
     </ion-card-content>
   </ion-card>
 
-  <ion-card>
+  <ion-card >
     <ion-card-header>
         Venta x maquina
    </ion-card-header>
@@ -51,6 +51,7 @@
 <!-- graficas chartjs -->
 
 <!-- graficas fusioncharts -->
+<ion-card style="margin-bottom:70px">
 <div>
     <fusioncharts
       [type]="type"
@@ -59,5 +60,6 @@
       [dataSource]="dataSource"
     ></fusioncharts>
   </div>
+</ion-card>
   <!-- graficas fusioncharts -->
 </ion-content>

@@ -1,14 +1,14 @@
-<ion-split-pane>
-  <ion-menu [content]="content">
+
+  <ion-menu [content]="content" class="my-custom-menu">
   
-    <ion-header>
+    <ion-header >
       <ion-toolbar color="primary">
-        <ion-title>Menu</ion-title>
+        <ion-title>Menú</ion-title>
       </ion-toolbar>
     </ion-header>
   
-    <ion-content>
-      <ion-list>
+    <ion-content  >
+      <ion-list >
         <button menuClose ion-item *ngFor="let p of pages" (click)="openPage(p)">
           <ion-icon item-start [name]="p.icon" [color]="isActive(p)"></ion-icon>
           {{p.title}}
@@ -19,4 +19,3 @@
   </ion-menu>
   
   <ion-nav [root]="rootPage" main #content swipeBackEnabled="false"></ion-nav>
-  </ion-split-pane>
