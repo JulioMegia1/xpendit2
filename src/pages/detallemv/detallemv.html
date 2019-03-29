@@ -15,12 +15,23 @@
     <ion-card>
         <ion-item>
             <ion-label>Máquinas</ion-label>
-            <ion-select [(ngModel)]="seleccion" interface="popover" [selectOptions]="customPopoverOptions" >
+            <ion-select [(ngModel)]="seleccion" interface="popover"  >
              <ion-option *ngFor="let maquina of maquinasCI" value="{{maquina.descripcion}}">{{maquina.descripcion}}</ion-option>  
             </ion-select>
           </ion-item>
         </ion-card>
-    <ion-label>{{seleccion}}</ion-label>
+    
+
+<!-- grafica producto-inventario -->
+    <ion-card >
+      <ion-card-header>
+        Productos en inventario - {{seleccion}}
+      </ion-card-header>
+      <ion-card-content>
+              <canvas #prodInv></canvas>
+      </ion-card-content>
+     </ion-card>
+     <!-- grafica producto-inventario -->
 
 
   <tacometro></tacometro>

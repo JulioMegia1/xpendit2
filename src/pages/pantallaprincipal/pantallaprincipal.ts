@@ -1,5 +1,6 @@
 import { Component,ViewChild } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { DetallemvPage } from "../detallemv/detallemv";
 
 /**MAPA leaflet
 npm install leaflet --save
@@ -99,7 +100,7 @@ export class PantallaprincipalPage {
     this.leafletMap();
     this.Funcionventahora();
     this.funcionventamaquina();
-    this.funcioncentaglobal();
+    this.funcionventaglobal();
 
   
 
@@ -110,13 +111,26 @@ export class PantallaprincipalPage {
 }
 
 Funcionventahora(){
+
+let datos=[65, 59, 80, 81, 56, 55, 40,65, 59, 80, 81, 56, 55, 40];
+let etiquetas=["00:00", "01:00", "02:00", "03:00", "04:00", "05:00", "06:00","07:00", "08:00", "09:00", "10:00", "11:00", "12:00", "13:00"];
+let chartOptions = {
+  legend: {
+      display: false,
+
+    },
+  responsive: true, // Instruct chart js to respond nicely.
+  maintainAspectRatio: false, // Add to prevent default behaviour of full-width/height 
+};
+Chart.defaults.global.defaultFontColor = 'blue';
   this.VentaHora = new Chart(this.Vhora.nativeElement, {
     type: 'line',
     data: {
-        labels: ["00:00", "01:00", "02:00", "03:00", "04:00", "05:00", "06:00","07:00", "08:00", "09:00", "10:00", "11:00", "12:00", "13:00"],
+        labels:etiquetas,
         datasets: [
             {
                 label: "Venta x Hora",
+                display: false,
                 fill: false,  
                 lineTension: 0.1,
                 backgroundColor: "rgba(24,112,61,0.4)",
@@ -134,11 +148,12 @@ Funcionventahora(){
                 pointHoverBorderWidth: 2,
                 pointRadius: 1,
                 pointHitRadius: 10,
-                data: [65, 59, 80, 81, 56, 55, 40,65, 59, 80, 81, 56, 55, 40],
+                data: datos ,
                 spanGaps: false,
             }
         ]
-    }
+    },
+    options:chartOptions
 
 });
 
@@ -146,13 +161,26 @@ Funcionventahora(){
 }
 
 funcionventamaquina(){
+let datos=[12, 19, 3, 5, 2, 3];
+let etiquetas=["IPQ botana", "IPQ Refresco", "SAFRAN I", "SAFRAN II", "CENTA", "KIWIT"];
+let configuraciones= {
+  legend: {
+     display: true,
+     position: 'right',
+     
+   },
+ //responsive: true, // Instruct chart js to respond nicely.
+ //maintainAspectRatio: false, // Add to prevent default behaviour of full-width/height 
+};
+
+Chart.defaults.global.defaultFontColor = 'blue';
   this.ventasmaquina = new Chart(this.Vmaquina.nativeElement, {
     type: 'pie',
     data: {
-        labels: ["IPQ botana", "IPQ Refresco", "SAFRAN I", "SAFRAN II", "CENTA", "KIWIT"],
+        labels: etiquetas,
         datasets: [{
             label: '# of Votes',
-            data: [12, 19, 3, 5, 2, 3],
+            data: datos,
             backgroundColor: [
                 'rgba(255, 99, 132, 0.2)',
                 'rgba(54, 162, 235, 0.2)',
@@ -170,16 +198,30 @@ funcionventamaquina(){
                 "#FFCE56"
             ]
         }]
-    }
+    },
+    options:configuraciones
+
 });
 
 }
 
-funcioncentaglobal(){
+funcionventaglobal(){
+let datos=[0, 40, 48, 81, 56, 55, 40,65, 59, 80, 81, 56, 55, 40,56, 55, 40,65, 59, 80, 81, 56, 55, 40];
+let etiquetas=["00:00", "01:00", "02:00", "03:00", "04:00", "05:00", "06:00","07:00", "08:00", "09:00", "10:00", "11:00", "12:00", "13:00", "14:00", "15:00", "16:00", "17:00", "18:00", "19:00","20:00", "21:00", "22:00", "23:00"];
+let chartOptions = {
+  legend: {
+      display: false,
+
+    },
+  responsive: true, // Instruct chart js to respond nicely.
+  maintainAspectRatio: false, // Add to prevent default behaviour of full-width/height 
+};
+
+Chart.defaults.global.defaultFontColor = 'blue';
   this.ventaglobal = new Chart(this.Vglobal.nativeElement, {
     type: 'line',
     data: {
-        labels: ["00:00", "01:00", "02:00", "03:00", "04:00", "05:00", "06:00","07:00", "08:00", "09:00", "10:00", "11:00", "12:00", "13:00", "14:00", "15:00", "16:00", "17:00", "18:00", "19:00","20:00", "21:00", "22:00", "23:00"],
+        labels: etiquetas,
         datasets: [
             {
                 label: "Venta Global",
@@ -200,11 +242,13 @@ funcioncentaglobal(){
                 pointHoverBorderWidth: 2,
                 pointRadius: 1,
                 pointHitRadius: 10,
-                data: [0, 40, 48, 81, 56, 55, 40,65, 59, 80, 81, 56, 55, 40,56, 55, 40,65, 59, 80, 81, 56, 55, 40],
+                data: datos,
                 spanGaps: false,
             }
         ]
-    }
+    },
+    options:chartOptions
+    
 
 });
 
@@ -217,7 +261,7 @@ let interval = setInterval(()=> {
   this.getmaquinas();
   this.Funcionventahora();
   this.funcionventamaquina();
-  this.funcioncentaglobal();
+  this.funcionventaglobal();
 
 
   
@@ -252,6 +296,13 @@ let interval = setInterval(()=> {
         marker.on('mouseout', function (e) {
           this.closePopup();
         });
+
+        marker.on('click', function (e) {
+          console.log("diste click aqui");
+          this.navCtrl.push(DetallemvPage);
+          
+          //disable mouseout behavior here?
+        });
        }   
     }
     );
@@ -270,6 +321,11 @@ let interval = setInterval(()=> {
 
 }
   /*mapa leaflet*/
+
+
+  ira(){
+    this.navCtrl.push(DetallemvPage)
+  }
 
   /*fusion charts*/
   fetchData() {
