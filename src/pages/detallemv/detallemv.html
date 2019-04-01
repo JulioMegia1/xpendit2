@@ -33,8 +33,61 @@
      </ion-card>
      <!-- grafica producto-inventario -->
 
+     <button ion-button >Reiniciar inventario</button>
+     <button ion-button (click)= "actInfo()"> Actualizar Info Rieles</button>
 
-  <tacometro></tacometro>
+
+  <ion-card>
+      <ion-card-header>
+          Valor acumulado desde ultimo reincio - {{seleccion}}
+        </ion-card-header>
+        <ion-card-content>
+            <ion-grid>
+                <ion-row>
+                  <ion-col>Alcancía: {{alcancia}}</ion-col>
+                  <ion-col>Monedero: {{monedero}}</ion-col>
+                  <ion-col> Billetero: {{billetero}}</ion-col>
+                </ion-row>
+              </ion-grid>
+        </ion-card-content>
+  </ion-card>
+
+
+  <ion-card>
+      <ion-card-header>
+          Venta x Hora - {{seleccion}}
+      </ion-card-header>
+      <ion-card-content>
+          <canvas #vhora></canvas>
+      </ion-card-content>
+    </ion-card>
+
+
+    <ion-card>
+        <ion-card-header>
+            Venta Global - {{seleccion}}
+        </ion-card-header>
+        <ion-card-content>
+            <canvas #vglobal></canvas>
+        </ion-card-content>
+      </ion-card>
+
+
+
+      <!-- graficas fusioncharts -->
+<ion-card style="margin-bottom:70px">
+    <div>
+        <fusioncharts
+          [type]="type"
+          [width]="width"
+          [height]="height"
+          [dataSource]="dataSource"
+        ></fusioncharts>
+      </div>
+    </ion-card>
+      <!-- graficas fusioncharts -->
+
+
 
 
   <ion-fab right bottom>

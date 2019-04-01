@@ -30,7 +30,6 @@ import { DataServiceProvider } from '../providers/data-service/data-service';
 
 /*componentes*/
 import {  LuzComponent} from "../components/luz/luz";
-import { TacometroComponent } from "../components/tacometro/tacometro";
 import { NavbarComponent } from "../components/navbar/navbar";
 /*componentes*/
 
@@ -66,7 +65,6 @@ FusionChartsModule.fcRoot(FusionCharts, Charts, TimeSeries,Widgets);
 
     /*componentes*/
     LuzComponent,
-    TacometroComponent,
     NavbarComponent
     /*componentes*/
     
@@ -98,7 +96,6 @@ FusionChartsModule.fcRoot(FusionCharts, Charts, TimeSeries,Widgets);
 
      /*componentes*/
      LuzComponent,
-     TacometroComponent,
      /*componentes*/
     
   ],

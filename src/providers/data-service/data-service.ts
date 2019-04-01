@@ -43,6 +43,27 @@ export class DataServiceProvider {
       });
     });
   }
+
+
+  getdata2 () {    //obtiene el JSON de los usuarios
+    return new Promise(resolve => {
+      this.http.get('assets/data/datosfusioncharthistoricos2.json').subscribe(data => { 
+        resolve(data);
+      },err => {
+        console.log(err);
+      });
+    });
+  }
+
+  getschema2 () {    //obtiene el JSON de los usuarios
+    return new Promise(resolve => {
+      this.http.get('assets/data/esquemafusioncharthistoricos2.json').subscribe(data => { 
+        resolve(data);
+      },err => {
+        console.log(err);
+      });
+    });
+  }
   
 
 

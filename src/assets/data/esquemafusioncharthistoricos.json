@@ -1,9 +1,0 @@
-[{
-    "name": "Time",
-    "type": "date",
-    "format": "%Y-%m-%d"
-  }, {
-    "name": "venta: ",
-    "type": "number"
-  }]
-  

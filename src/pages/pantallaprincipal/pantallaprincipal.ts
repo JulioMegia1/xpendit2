@@ -59,36 +59,10 @@ export class PantallaprincipalPage {
 
   constructor(public navCtrl: NavController, public navParams: NavParams,public dataService:DataServiceProvider) {
     this.getmaquinas();
-
-    /*fusionchart*/
-    this.type = 'timeseries';
-    this.width = '100%';
-    this.height = '400';
-    // This is the dataSource of the chart
-    this.dataSource = {
-      // Initially data is set as null
-      data: null,
-      chart: {
-        showLegend: 0
-      },
-      caption: {
-        text: 'Venta Global Historica($)'
-      },
-      yAxis: [
-        {
-          plot: {
-            value: 'venta: ',
-            type: 'column'
-          },
-          format: {
-            "prefix": "$",
-            "suffix": ".00"
-          },
-          title: 'Venta'
-        }
-      ]
-    };
+    this.funcionglobalhistorica();
     this.fetchData();
+   
+   
     /*fusionchart*/
   }
 
@@ -101,12 +75,7 @@ export class PantallaprincipalPage {
     this.Funcionventahora();
     this.funcionventamaquina();
     this.funcionventaglobal();
-
-  
-
- 
-
-  
+    
   /**graficas chartjs */
 }
 
@@ -330,12 +299,7 @@ let interval = setInterval(()=> {
   this.Funcionventahora();
   this.funcionventamaquina();
   this.funcionventaglobal();
-
-
-  
 },35000);
-
-  
 }
 
 
@@ -395,6 +359,39 @@ let interval = setInterval(()=> {
     this.navCtrl.push(DetallemvPage)
   }
 
+  /*grafica fusion charts*/
+  funcionglobalhistorica(){
+     /*fusionchart*/
+     this.type = 'timeseries';
+     this.width = '100%';
+     this.height = '400';
+     // This is the dataSource of the chart
+     this.dataSource = {
+       // Initially data is set as null
+       data: null,
+       chart: {
+         showLegend: 0
+       },
+       caption: {
+         text: 'Venta Global Histórica($)'
+       },
+       yAxis: [
+         {
+           plot: {
+             value: 'venta: ',
+             type: 'column'
+           },
+           format: {
+             "prefix": "$",
+             "suffix": ".00"
+           },
+           title: 'Venta'
+         }
+       ]
+     };
+  }
+  
+  
   /*fusion charts*/
   fetchData() {
     this.dataService.getschema().then(esquema => {
