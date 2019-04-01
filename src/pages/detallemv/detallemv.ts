@@ -2,6 +2,8 @@ import { Component,ViewChild } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { ToastController } from 'ionic-angular';
 
+/*paginas*/
+import { ActualizamvPage } from "../actualizamv/actualizamv";
 
 /*servicios*/
 import { DataServiceProvider } from '../../providers/data-service/data-service';
@@ -32,9 +34,9 @@ export class DetallemvPage {
   maquinasCI:any;
   seleccion:any;
 
-  alcancia:any;
-  monedero:any;
-  billetero:any;
+  alcancia:any="$";
+  monedero:any="$";
+  billetero:any="$";
 
   alertas:any;
 
@@ -325,9 +327,9 @@ ventaglobal: any;
 
       this.alertas=this.maquinasCI[0].alertas;
       console.log(this.alertas);
-      this.alcancia=this.maquinasCI[0].alcancia;
-      this.monedero=this.maquinasCI[0].monedero;
-      this.billetero=this.maquinasCI[0].billetero;
+      this.alcancia=this.alcancia.concat(this.maquinasCI[0].alcancia);
+      this.monedero=this.monedero.concat(this.maquinasCI[0].monedero);
+      this.billetero=this.billetero.concat(this.maquinasCI[0].billetero);
 
 
 
@@ -435,6 +437,7 @@ ventaglobal: any;
 
 
 actInfo(){
+  this.navCtrl.push(ActualizamvPage);
   
 }
 

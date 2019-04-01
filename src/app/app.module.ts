@@ -20,6 +20,7 @@ import { CatalarmasPage } from "../pages/catalarmas/catalarmas";
 import { CatusuariosPage } from "../pages/catusuarios/catusuarios";
 import { DetallemvPage  } from "../pages/detallemv/detallemv";
 import { DetalleproductoPage } from "../pages/detalleproducto/detalleproducto";
+import { ActualizamvPage } from "../pages/actualizamv/actualizamv";
 /**********Paginas******/
 
 /**********servicios******/
@@ -61,6 +62,7 @@ FusionChartsModule.fcRoot(FusionCharts, Charts, TimeSeries,Widgets);
     CatusuariosPage,
     DetallemvPage,
     DetalleproductoPage,
+    ActualizamvPage,
     /*paginas*/
 
     /*componentes*/
@@ -92,6 +94,7 @@ FusionChartsModule.fcRoot(FusionCharts, Charts, TimeSeries,Widgets);
     CatusuariosPage,
     DetallemvPage,
     DetalleproductoPage,
+    ActualizamvPage,
     /*paginas*/
 
      /*componentes*/
