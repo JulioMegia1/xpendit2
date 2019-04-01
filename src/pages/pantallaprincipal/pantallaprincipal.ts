@@ -116,13 +116,43 @@ let datos=[65, 59, 80, 81, 56, 55, 40,65, 59, 80, 81, 56, 55, 40];
 let etiquetas=["00:00", "01:00", "02:00", "03:00", "04:00", "05:00", "06:00","07:00", "08:00", "09:00", "10:00", "11:00", "12:00", "13:00"];
 let chartOptions = {
   legend: {
-      display: false,
+      display: false, //parte superior indentificador de la linea
+      //fontColor: 'black'
 
+    },scales: {
+      xAxes: [{
+        gridLines: {
+          display: false, 
+          color: "black"
+        },
+        scaleLabel: {
+          display: false,
+        }
+      }],
+      yAxes: [{
+        
+        scaleLabel: {
+          display: true,
+          labelString: "Venta",
+          fontColor: "green"
+        }
+      }]
+    },tooltips: {
+      //intersect:true,
+      cornerRadius: 20,
+      caretSize: 20,
+      xPadding: 20,
+      yPadding: 10,
+      backgroundColor: '#1b3861',
+      titleFontStyle: 'normal',
+      titleMarginBottom: 15
     },
   responsive: true, // Instruct chart js to respond nicely.
   maintainAspectRatio: false, // Add to prevent default behaviour of full-width/height 
 };
-Chart.defaults.global.defaultFontColor = 'blue';
+
+//Chart.defaults.global.defaultFontColor = 'black';
+
   this.VentaHora = new Chart(this.Vhora.nativeElement, {
     type: 'line',
     data: {
@@ -139,14 +169,15 @@ Chart.defaults.global.defaultFontColor = 'blue';
                 borderDash: [],
                 borderDashOffset: 0.0,
                 borderJoinStyle: 'miter',
-                pointBorderColor: "rgba(27,56,97,1)",
-                pointBackgroundColor: "#fff",
+                pointBorderColor: "#18703d",
+                pointBackgroundColor: "#18703d",
                 pointBorderWidth: 1,
                 pointHoverRadius: 5,
-                pointHoverBackgroundColor: "rgba(27,56,97,1)",
-                pointHoverBorderColor: "rgba(220,220,220,1)",
+                pointRadius: 3,
+                pointHoverBackgroundColor: "#18703d",
+                pointHoverBorderColor: "#18703d",
                 pointHoverBorderWidth: 2,
-                pointRadius: 1,
+                
                 pointHitRadius: 10,
                 data: datos ,
                 spanGaps: false,
@@ -169,11 +200,20 @@ let configuraciones= {
      position: 'right',
      
    },
+   tooltips: {
+    cornerRadius: 20,
+    caretSize: 20,
+    xPadding: 20,
+    yPadding: 10,
+    backgroundColor: '#1b3861',
+    titleFontStyle: 'normal',
+    titleMarginBottom: 15
+  }
  //responsive: true, // Instruct chart js to respond nicely.
  //maintainAspectRatio: false, // Add to prevent default behaviour of full-width/height 
 };
 
-Chart.defaults.global.defaultFontColor = 'blue';
+//Chart.defaults.global.defaultFontColor = 'blue';
   this.ventasmaquina = new Chart(this.Vmaquina.nativeElement, {
     type: 'pie',
     data: {
@@ -212,12 +252,38 @@ let chartOptions = {
   legend: {
       display: false,
 
+    },scales: {
+      xAxes: [{
+        gridLines: {
+          display: false,
+          color: "black"
+        },
+        scaleLabel: {
+          display: false,
+        }
+      }],
+      yAxes: [{
+        
+        scaleLabel: {
+          display: true,
+          labelString: "Venta",
+          fontColor: "green"
+        }
+      }]
+    },tooltips: {
+      cornerRadius: 20,
+      caretSize: 20,
+      xPadding: 20,
+      yPadding: 10,
+      backgroundColor: '#1b3861',
+      titleFontStyle: 'normal',
+      titleMarginBottom: 15
     },
   responsive: true, // Instruct chart js to respond nicely.
   maintainAspectRatio: false, // Add to prevent default behaviour of full-width/height 
 };
 
-Chart.defaults.global.defaultFontColor = 'blue';
+//Chart.defaults.global.defaultFontColor = 'blue';
   this.ventaglobal = new Chart(this.Vglobal.nativeElement, {
     type: 'line',
     data: {
@@ -233,14 +299,16 @@ Chart.defaults.global.defaultFontColor = 'blue';
                 borderDash: [],
                 borderDashOffset: 0.0,
                 borderJoinStyle: 'miter',
-                pointBorderColor: "rgba(75,192,192,1)",
-                pointBackgroundColor: "#fff",
+                pointBorderColor: "#18703d",
+                pointBackgroundColor: "#18703d",
                 pointBorderWidth: 1,
                 pointHoverRadius: 5,
-                pointHoverBackgroundColor: "rgba(75,192,192,1)",
-                pointHoverBorderColor: "rgba(220,220,220,1)",
+             
+                pointRadius: 3,
+                pointHoverBackgroundColor: "#18703d",
+                pointHoverBorderColor: "#18703d",
                 pointHoverBorderWidth: 2,
-                pointRadius: 1,
+              
                 pointHitRadius: 10,
                 data: datos,
                 spanGaps: false,
@@ -265,7 +333,7 @@ let interval = setInterval(()=> {
 
 
   
-},3000);
+},35000);
 
   
 }
@@ -299,7 +367,7 @@ let interval = setInterval(()=> {
 
         marker.on('click', function (e) {
           console.log("diste click aqui");
-          this.navCtrl.push(DetallemvPage);
+          //this.ira();
           
           //disable mouseout behavior here?
         });
