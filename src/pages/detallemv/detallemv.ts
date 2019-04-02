@@ -361,6 +361,13 @@ ventaglobal: any;
     this.dataSource = {
       // Initially data is set as null
       data: null,
+      chart: {
+        showLegend: 0,
+        theme: "gammel",
+        showValues:1,
+        exportEnabled:1 //Enable Export Feature
+
+      },
       caption: {
    text:'Venta Global Histórica',
         

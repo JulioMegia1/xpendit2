@@ -57,6 +57,7 @@ export class PantallaprincipalPage {
   datos:any;
 /*grafica fusioncharts*/
 
+
   constructor(public navCtrl: NavController, public navParams: NavParams,public dataService:DataServiceProvider) {
     this.getmaquinas();
     this.funcionglobalhistorica();
@@ -370,7 +371,13 @@ let interval = setInterval(()=> {
        // Initially data is set as null
        data: null,
        chart: {
-         showLegend: 0
+         showLegend: 0,
+         theme: "ocean",
+         showValues:1,
+         exportEnabled:1, //para exportar la grafica
+         rotatevalues:1,
+        placevaluesinside:1,
+         
        },
        caption: {
          text: 'Venta Global Histórica($)'
@@ -385,7 +392,7 @@ let interval = setInterval(()=> {
              "prefix": "$",
              "suffix": ".00"
            },
-           title: 'Venta'
+           title: 'Venta',
          }
        ]
      };
@@ -418,4 +425,8 @@ let interval = setInterval(()=> {
   );
   }
   /*fusion charts*/
+
+
+
+  
 }

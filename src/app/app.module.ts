@@ -32,6 +32,8 @@ import { DataServiceProvider } from '../providers/data-service/data-service';
 /*componentes*/
 import {  LuzComponent} from "../components/luz/luz";
 import { NavbarComponent } from "../components/navbar/navbar";
+import { CardexpandibleComponent } from "../components/cardexpandible/cardexpandible";
+import {GraficapieComponent  } from "../components/graficapie/graficapie";
 /*componentes*/
 
 /***************fusioncharts********************* */
@@ -40,9 +42,11 @@ import { FusionChartsModule } from 'angular-fusioncharts';
 import * as FusionCharts from 'fusioncharts';
 import * as Charts from 'fusioncharts/fusioncharts.charts';
 import * as TimeSeries from 'fusioncharts/fusioncharts.timeseries';
-import * as Widgets from 'fusioncharts/fusioncharts.widgets';
+import * as Ocean from 'fusioncharts/themes/fusioncharts.theme.ocean';
 
-FusionChartsModule.fcRoot(FusionCharts, Charts, TimeSeries,Widgets);
+import * as Gammel from 'fusioncharts/themes/fusioncharts.theme.gammel';
+
+FusionChartsModule.fcRoot(FusionCharts, Charts, TimeSeries,Ocean,Gammel);
 
 /******************************************** */
 
@@ -67,7 +71,9 @@ FusionChartsModule.fcRoot(FusionCharts, Charts, TimeSeries,Widgets);
 
     /*componentes*/
     LuzComponent,
-    NavbarComponent
+    NavbarComponent,
+    CardexpandibleComponent,
+    GraficapieComponent
     /*componentes*/
     
     

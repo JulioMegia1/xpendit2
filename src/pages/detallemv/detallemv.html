@@ -32,10 +32,11 @@
       </ion-card-content>
      </ion-card>
      <!-- grafica producto-inventario -->
-
-     <button ion-button >Reiniciar inventario</button>
-     <button ion-button (click)= "actInfo()"> Actualizar Info Rieles</button>
-
+    
+    <div style="justify-content:center;display:flex">
+     <button ion-button round >Reiniciar inventario</button>
+     <button ion-button  round (click)= "actInfo()"> Actualizar Info Rieles</button>
+    </div>
 
   <ion-card>
       <ion-card-header>
@@ -90,7 +91,7 @@
 
 
 
-  <ion-fab right bottom>
+  <!-- <ion-fab right top>
       <button ion-fab color="primary"><ion-icon name="calculator"></ion-icon></button>
       <ion-fab-list side="top">
         <ion-card>
@@ -98,5 +99,5 @@
           La maquina actual es: {{seleccion}}<br></ion-card>
      
       </ion-fab-list>
-    </ion-fab>
+    </ion-fab> -->
 </ion-content>
