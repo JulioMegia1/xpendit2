@@ -23,32 +23,20 @@
 
   <!-- graficas chartjs -->
   <ion-card style="margin-top:400px">
-    <ion-card-header>
-      Venta x Hora
-    </ion-card-header>
-    <ion-card-content>
-            <canvas #hora></canvas>
-    </ion-card-content>
+    <ventaxhora></ventaxhora>
    </ion-card>
-         <button ion-button (click)=ira()>boton</button>
-  <ion-card>
-    <ion-card-header>
-        Venta Global 
-    </ion-card-header>
-    <ion-card-content>
-        <canvas #global></canvas>
-    </ion-card-content>
-  </ion-card>
 
-  <ion-card >
-    <ion-card-header>
-        Venta x maquina
-   </ion-card-header>
-   <ion-card-content>
-       <canvas #maquina  height=80px></canvas>
-    </ion-card-content>
-  </ion-card>
-<!-- graficas chartjs -->
+<ion-card>
+  <ventaxdia></ventaxdia>
+</ion-card>
+
+         <button ion-button (click)=ira()>boton</button>
+ 
+
+<ion-card style="text-align:center;
+display:inline-block">
+  <graficapie> </graficapie>
+</ion-card>
 
 <!-- graficas fusioncharts -->
 <ion-card style="margin-bottom:70px">

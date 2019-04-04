@@ -66,6 +66,59 @@ export class DataServiceProvider {
   }
   
 
+  /*********************************************GLOBAL*************************/
+  getgraficalineasventahora () {    //obtiene el JSON de los usuarios
+    return new Promise(resolve => {
+      this.http.get('assets/data/graficalineasventas.json').subscribe(data => { 
+        resolve(data);
+      },err => {
+        console.log(err);
+      });
+    });
+  }
+
+
+  getgraficalineasventadia () {    //obtiene el JSON de los usuarios
+    return new Promise(resolve => {
+      this.http.get('assets/data/graficalineasventasdia.json').subscribe(data => { 
+        resolve(data);
+      },err => {
+        console.log(err);
+      });
+    });
+  }
+
+  /*********************************************GLOBAL*************************/
+
+
+
+  /*********************************************MAQUINAS*************************/
+
+  getgraficalineasventahoramaquina () {    //obtiene el JSON de los usuarios
+    return new Promise(resolve => {
+      this.http.get('assets/data/graficalineasventashoramaquina.json').subscribe(data => { 
+        resolve(data);
+      },err => {
+        console.log(err);
+      });
+    });
+  }
+
+
+  getgraficalineasventadiamaquina () {    //obtiene el JSON de los usuarios
+    return new Promise(resolve => {
+      this.http.get('assets/data/graficalineasventasdiamaquina.json').subscribe(data => { 
+        resolve(data);
+      },err => {
+        console.log(err);
+      });
+    });
+  }
+    /*********************************************MAQUINAS*************************/
+
+  
+
+
 
   
 

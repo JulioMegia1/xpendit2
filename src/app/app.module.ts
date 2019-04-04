@@ -34,6 +34,14 @@ import {  LuzComponent} from "../components/luz/luz";
 import { NavbarComponent } from "../components/navbar/navbar";
 import { CardexpandibleComponent } from "../components/cardexpandible/cardexpandible";
 import {GraficapieComponent  } from "../components/graficapie/graficapie";
+import { GraficalineasComponent } from "../components/graficalineas/graficalineas";
+import { VentaxhoraComponent } from "../components/ventaxhora/ventaxhora";
+import { VentaxdiaComponent } from "../components/ventaxdia/ventaxdia";
+import { VentaxhoramaquinaComponent } from "../components/ventaxhoramaquina/ventaxhoramaquina";
+import { VentaxdiamaquinaComponent } from "../components/ventaxdiamaquina/ventaxdiamaquina";
+import { GraficaproductosinventarioComponent } from "../components/graficaproductosinventario/graficaproductosinventario";
+import { TacometroproductosComponent } from "../components/tacometroproductos/tacometroproductos";
+import {  TacometroventasComponent} from "../components/tacometroventas/tacometroventas";
 /*componentes*/
 
 /***************fusioncharts********************* */
@@ -43,10 +51,11 @@ import * as FusionCharts from 'fusioncharts';
 import * as Charts from 'fusioncharts/fusioncharts.charts';
 import * as TimeSeries from 'fusioncharts/fusioncharts.timeseries';
 import * as Ocean from 'fusioncharts/themes/fusioncharts.theme.ocean';
-
+import * as Zune from 'fusioncharts/themes/fusioncharts.theme.zune';
 import * as Gammel from 'fusioncharts/themes/fusioncharts.theme.gammel';
+import * as Widgets from 'fusioncharts/fusioncharts.widgets';
 
-FusionChartsModule.fcRoot(FusionCharts, Charts, TimeSeries,Ocean,Gammel);
+FusionChartsModule.fcRoot(FusionCharts, Charts, TimeSeries,Ocean,Gammel,Zune,Widgets);
 
 /******************************************** */
 
@@ -67,13 +76,22 @@ FusionChartsModule.fcRoot(FusionCharts, Charts, TimeSeries,Ocean,Gammel);
     DetallemvPage,
     DetalleproductoPage,
     ActualizamvPage,
+  
     /*paginas*/
 
     /*componentes*/
     LuzComponent,
     NavbarComponent,
     CardexpandibleComponent,
-    GraficapieComponent
+    GraficapieComponent,
+    GraficalineasComponent,
+    VentaxhoraComponent,
+    VentaxdiaComponent,
+    VentaxhoramaquinaComponent,
+    VentaxdiamaquinaComponent,
+    GraficaproductosinventarioComponent,
+    TacometroproductosComponent,
+    TacometroventasComponent
     /*componentes*/
     
     
@@ -105,6 +123,8 @@ FusionChartsModule.fcRoot(FusionCharts, Charts, TimeSeries,Ocean,Gammel);
 
      /*componentes*/
      LuzComponent,
+     GraficalineasComponent,
+     VentaxhoraComponent
      /*componentes*/
     
   ],

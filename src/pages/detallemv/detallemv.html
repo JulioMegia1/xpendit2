@@ -28,7 +28,7 @@
         Productos en inventario - {{seleccion}}
       </ion-card-header>
       <ion-card-content>
-              <canvas #prodInv></canvas>
+          <graficaproductosinventario></graficaproductosinventario>
       </ion-card-content>
      </ion-card>
      <!-- grafica producto-inventario -->
@@ -38,7 +38,15 @@
      <button ion-button  round (click)= "actInfo()"> Actualizar Info Rieles</button>
     </div>
 
-  <ion-card>
+    <div style="justify-content:center;display:flex">
+
+     
+    <tacometroproductos></tacometroproductos>
+    <tacometroventas></tacometroventas>
+  
+</div>
+  
+    <ion-card>
       <ion-card-header>
           Valor acumulado desde ultimo reincio - {{seleccion}}
         </ion-card-header>
@@ -56,11 +64,11 @@
 
   <ion-card>
       <ion-card-header>
-          Venta x Hora - {{seleccion}}
-      </ion-card-header>
-      <ion-card-content>
-          <canvas #vhora></canvas>
-      </ion-card-content>
+      Venta Global - {{seleccion}}
+  </ion-card-header>
+  <ion-card-content>
+     <ventaxhoramaquina></ventaxhoramaquina>
+    </ion-card-content>
     </ion-card>
 
 
@@ -69,7 +77,7 @@
             Venta Global - {{seleccion}}
         </ion-card-header>
         <ion-card-content>
-            <canvas #vglobal></canvas>
+            <ventaxdiamaquina></ventaxdiamaquina>
         </ion-card-content>
       </ion-card>
 

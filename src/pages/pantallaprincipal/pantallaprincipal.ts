@@ -73,233 +73,25 @@ export class PantallaprincipalPage {
     this.center = [20.621197, -100.331521];
     console.log(this.center)
     this.leafletMap();
-    this.Funcionventahora();
-    this.funcionventamaquina();
-    this.funcionventaglobal();
+    
+    
+    
     
   /**graficas chartjs */
 }
 
-Funcionventahora(){
-
-let datos=[65, 59, 80, 81, 56, 55, 40,65, 59, 80, 81, 56, 55, 40];
-let etiquetas=["00:00", "01:00", "02:00", "03:00", "04:00", "05:00", "06:00","07:00", "08:00", "09:00", "10:00", "11:00", "12:00", "13:00"];
-let chartOptions = {
-  legend: {
-      display: false, //parte superior indentificador de la linea
-      //fontColor: 'black'
-
-    },scales: {
-      xAxes: [{
-        gridLines: {
-          display: false, 
-          color: "black"
-        },
-        scaleLabel: {
-          display: false,
-        }
-      }],
-      yAxes: [{
-        
-        scaleLabel: {
-          display: true,
-          labelString: "Venta",
-          fontColor: "green"
-        }
-      }]
-    },tooltips: {
-      //intersect:true,
-      cornerRadius: 20,
-      caretSize: 20,
-      xPadding: 20,
-      yPadding: 10,
-      backgroundColor: '#1b3861',
-      titleFontStyle: 'normal',
-      titleMarginBottom: 15
-    },
-  responsive: true, // Instruct chart js to respond nicely.
-  maintainAspectRatio: false, // Add to prevent default behaviour of full-width/height 
-};
-
-//Chart.defaults.global.defaultFontColor = 'black';
-
-  this.VentaHora = new Chart(this.Vhora.nativeElement, {
-    type: 'line',
-    data: {
-        labels:etiquetas,
-        datasets: [
-            {
-                label: "Venta x Hora",
-                display: false,
-                fill: false,  
-                lineTension: 0.1,
-                backgroundColor: "rgba(24,112,61,0.4)",
-                borderColor: "rgba(24,112,61,1)",
-                borderCapStyle: 'butt',
-                borderDash: [],
-                borderDashOffset: 0.0,
-                borderJoinStyle: 'miter',
-                pointBorderColor: "#18703d",
-                pointBackgroundColor: "#18703d",
-                pointBorderWidth: 1,
-                pointHoverRadius: 5,
-                pointRadius: 3,
-                pointHoverBackgroundColor: "#18703d",
-                pointHoverBorderColor: "#18703d",
-                pointHoverBorderWidth: 2,
-                
-                pointHitRadius: 10,
-                data: datos ,
-                spanGaps: false,
-            }
-        ]
-    },
-    options:chartOptions
-
-});
 
 
-}
 
-funcionventamaquina(){
-let datos=[12, 19, 3, 5, 2, 3];
-let etiquetas=["IPQ botana", "IPQ Refresco", "SAFRAN I", "SAFRAN II", "CENTA", "KIWIT"];
-let configuraciones= {
-  legend: {
-     display: true,
-     position: 'right',
-     
-   },
-   tooltips: {
-    cornerRadius: 20,
-    caretSize: 20,
-    xPadding: 20,
-    yPadding: 10,
-    backgroundColor: '#1b3861',
-    titleFontStyle: 'normal',
-    titleMarginBottom: 15
-  }
- //responsive: true, // Instruct chart js to respond nicely.
- //maintainAspectRatio: false, // Add to prevent default behaviour of full-width/height 
-};
-
-//Chart.defaults.global.defaultFontColor = 'blue';
-  this.ventasmaquina = new Chart(this.Vmaquina.nativeElement, {
-    type: 'pie',
-    data: {
-        labels: etiquetas,
-        datasets: [{
-            label: '# of Votes',
-            data: datos,
-            backgroundColor: [
-                'rgba(255, 99, 132, 0.2)',
-                'rgba(54, 162, 235, 0.2)',
-                'rgba(255, 206, 86, 0.2)',
-                'rgba(75, 192, 192, 0.2)',
-                'rgba(153, 102, 255, 0.2)',
-                'rgba(255, 159, 64, 0.2)'
-            ],
-            hoverBackgroundColor: [
-                "#FF6384",
-                "#36A2EB",
-                "#FFCE56",
-                "#FF6384",
-                "#36A2EB",
-                "#FFCE56"
-            ]
-        }]
-    },
-    options:configuraciones
-
-});
-
-}
-
-funcionventaglobal(){
-let datos=[0, 40, 48, 81, 56, 55, 40,65, 59, 80, 81, 56, 55, 40,56, 55, 40,65, 59, 80, 81, 56, 55, 40];
-let etiquetas=["00:00", "01:00", "02:00", "03:00", "04:00", "05:00", "06:00","07:00", "08:00", "09:00", "10:00", "11:00", "12:00", "13:00", "14:00", "15:00", "16:00", "17:00", "18:00", "19:00","20:00", "21:00", "22:00", "23:00"];
-let chartOptions = {
-  legend: {
-      display: false,
-
-    },scales: {
-      xAxes: [{
-        gridLines: {
-          display: false,
-          color: "black"
-        },
-        scaleLabel: {
-          display: false,
-        }
-      }],
-      yAxes: [{
-        
-        scaleLabel: {
-          display: true,
-          labelString: "Venta",
-          fontColor: "green"
-        }
-      }]
-    },tooltips: {
-      cornerRadius: 20,
-      caretSize: 20,
-      xPadding: 20,
-      yPadding: 10,
-      backgroundColor: '#1b3861',
-      titleFontStyle: 'normal',
-      titleMarginBottom: 15
-    },
-  responsive: true, // Instruct chart js to respond nicely.
-  maintainAspectRatio: false, // Add to prevent default behaviour of full-width/height 
-};
-
-//Chart.defaults.global.defaultFontColor = 'blue';
-  this.ventaglobal = new Chart(this.Vglobal.nativeElement, {
-    type: 'line',
-    data: {
-        labels: etiquetas,
-        datasets: [
-            {
-                label: "Venta Global",
-                fill: false,  
-                lineTension: 0.1,
-                backgroundColor: "rgba(24,112,61,0.4)",
-                borderColor: "rgba(24,112,61,1)",
-                borderCapStyle: 'butt',
-                borderDash: [],
-                borderDashOffset: 0.0,
-                borderJoinStyle: 'miter',
-                pointBorderColor: "#18703d",
-                pointBackgroundColor: "#18703d",
-                pointBorderWidth: 1,
-                pointHoverRadius: 5,
-             
-                pointRadius: 3,
-                pointHoverBackgroundColor: "#18703d",
-                pointHoverBorderColor: "#18703d",
-                pointHoverBorderWidth: 2,
-              
-                pointHitRadius: 10,
-                data: datos,
-                spanGaps: false,
-            }
-        ]
-    },
-    options:chartOptions
-    
-
-});
-
-}
 
 
 ngAfterViewInit()  {
 let interval = setInterval(()=> {
   console.log("hello");
   this.getmaquinas();
-  this.Funcionventahora();
-  this.funcionventamaquina();
-  this.funcionventaglobal();
+  
+  
+  
 },35000);
 }
 
@@ -374,11 +166,19 @@ let interval = setInterval(()=> {
          showLegend: 0,
          theme: "ocean",
          showValues:1,
-         exportEnabled:1, //para exportar la grafica
+         //exportEnabled:1, //para exportar la grafica
          rotatevalues:1,
-        placevaluesinside:1,
+        placevaluesinside:0,
          
        },
+         extensions: {
+          customRangeSelector: {
+              enabled:0 //1 para rangos de fechas
+          },
+          standardRangeSelector: {
+            enabled:0//1 para meses dias años
+        }
+      },
        caption: {
          text: 'Venta Global Histórica($)'
        },
