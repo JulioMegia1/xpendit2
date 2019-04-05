@@ -10,7 +10,15 @@ const data = {
     "enablemultislicing": "1",
     "legendposition": "right",
     "showlegend": "1",
+    "showpercentvalues": "1",
     "captionpadding": "0",
+    "legendcaption": "Máquinas: ",
+    "legendAllowDrag": "1",
+    "bgcolor": "#ffffff",
+    "legendscrollbgcolor": "#ffffff",
+    "legendBgColor": "#fff",
+    "legendBorderColor": "#ffffff",
+    "legendBorderThickness": "0",
     "theme": "fusion"
   },
   "data": [
@@ -50,7 +58,7 @@ const data = {
   templateUrl: 'graficapie.html'
 })
 export class GraficapieComponent {
-  "width" = "50%";
+  "width" = "65%";
   height = 400;
   type = 'pie3d';
   dataFormat = 'json';

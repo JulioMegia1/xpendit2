@@ -41,16 +41,27 @@ display:inline-block">
 <!-- graficas fusioncharts -->
 <ion-card style="margin-bottom:70px">
 <div>
-    <fusioncharts
+    <fusioncharts class="creditgroup"
       [type]="type"
       [width]="width"
       [height]="height"
       [dataSource]="dataSource"
     ></fusioncharts>
+   
+<style type="text/css">
+  g[class$='creditgroup'] {
+       display:none !important;
+  }
+</style>
   </div>
 
 
   
 </ion-card>
+
+<ion-card style="margin-bottom:70px">
+  <ventaglobalhistorica></ventaglobalhistorica>
+</ion-card>
   <!-- graficas fusioncharts -->
+ 
 </ion-content>

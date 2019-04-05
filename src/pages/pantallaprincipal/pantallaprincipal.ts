@@ -62,6 +62,9 @@ export class PantallaprincipalPage {
     this.getmaquinas();
     this.funcionglobalhistorica();
     this.fetchData();
+
+
+    
    
    
     /*fusionchart*/
@@ -164,19 +167,20 @@ let interval = setInterval(()=> {
        data: null,
        chart: {
          showLegend: 0,
-         theme: "ocean",
+         theme: "zune",
          showValues:1,
+        //  syAxisName: "Stock Price",
          //exportEnabled:1, //para exportar la grafica
-         rotatevalues:1,
-        placevaluesinside:0,
+        //  rotatevalues:1,
+        // placevaluesinside:0,
          
        },
          extensions: {
           customRangeSelector: {
-              enabled:0 //1 para rangos de fechas
+              enabled:1 //1 para rangos de fechas
           },
           standardRangeSelector: {
-            enabled:0//1 para meses dias años
+            enabled:1//1 para meses dias años
         }
       },
        caption: {
@@ -186,13 +190,13 @@ let interval = setInterval(()=> {
          {
            plot: {
              value: 'venta: ',
-             type: 'column'
+             type: 'column',
            },
            format: {
              "prefix": "$",
              "suffix": ".00"
            },
-           title: 'Venta',
+           //title: 'Venta',
          }
        ]
      };
@@ -226,7 +230,7 @@ let interval = setInterval(()=> {
   }
   /*fusion charts*/
 
-
+ 
 
   
 }

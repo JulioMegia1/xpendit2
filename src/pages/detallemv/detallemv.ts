@@ -145,10 +145,10 @@ export class DetallemvPage {
       },
       extensions: {
        customRangeSelector: {
-           enabled:0 //1 para rangos de fechas
+           enabled:1 //1 para rangos de fechas
        },
        standardRangeSelector: {
-         enabled:0//1 para meses dias años
+         enabled:1//1 para meses dias años
      }
    },
       caption: {
