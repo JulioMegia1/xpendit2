@@ -19,6 +19,7 @@ const data = {
     "legendBgColor": "#fff",
     "legendBorderColor": "#ffffff",
     "legendBorderThickness": "0",
+    
     "theme": "fusion"
   },
   "data": [
@@ -58,7 +59,7 @@ const data = {
   templateUrl: 'graficapie.html'
 })
 export class GraficapieComponent {
-  "width" = "65%";
+  "width" = "100%";
   height = 400;
   type = 'pie3d';
   dataFormat = 'json';

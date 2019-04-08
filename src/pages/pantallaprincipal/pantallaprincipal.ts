@@ -73,7 +73,7 @@ export class PantallaprincipalPage {
   ionViewDidLoad() {
     console.log('ionViewDidLoad MapPage');
     //20.631365, -100.292790
-    this.center = [20.621197, -100.331521];
+    this.center = [20.634012, -100.334345];
     console.log(this.center)
     this.leafletMap();
     
@@ -139,12 +139,12 @@ let interval = setInterval(()=> {
   leafletMap(){
     this.map = L.map('mapId', {
       center: this.center,
-      zoom: 11.5
+      zoom: 10.3
     });
    //var position = L.tileLayer('http://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}.png', {
    //var position = L.tileLayer('http://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/{z}/{y}/{x}', {
   var position = L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
-      attribution: 'edupala.com © ionic LeafLet'
+      attribution: 'Xpend-It'
     }).addTo(this.map);
 
 }
