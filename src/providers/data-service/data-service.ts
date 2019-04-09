@@ -116,7 +116,15 @@ export class DataServiceProvider {
   }
     /*********************************************MAQUINAS*************************/
 
-  
+    getcatalogousuarios () {    //obtiene el JSON de las maquinas
+      return new Promise(resolve => {
+        this.http.get('assets/data/usuarios.json').subscribe(data => { 
+          resolve(data);
+        },err => {
+          console.log(err);
+        });
+      });
+    }
 
 
 

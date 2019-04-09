@@ -5,7 +5,8 @@ import { MenuPage } from "../menu/menu";
 import { PantallaprincipalPage } from "../pantallaprincipal/pantallaprincipal";
 /*****************paginas**************/
 /*servicios*/
-import { ServicioApiProvider } from "../../providers/servicio-api/servicio-api";
+
+import { AuthserviceProvider } from "../../providers/authservice/authservice";
 /*servicios*/
 
 @IonicPage()
@@ -22,7 +23,7 @@ export class LoginPage {
   pwdenc2:any;
   entra:any;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams,public alertController:AlertController,public servicioApi: ServicioApiProvider) {
+  constructor(public navCtrl: NavController, public navParams: NavParams,public alertController:AlertController,public authservice: AuthserviceProvider) {
     this.getUsers();
   }
 
@@ -41,7 +42,7 @@ export class LoginPage {
     console.log('ionViewDidLoad LoginPage');
   }
   getUsers(){
-    this.servicioApi.getUsers().then(data => {
+    this.authservice.getUsers().then(data => {
       this.users=data;
       console.log("estoy en get users y obtengo los datos del json:");
       console.log(this.users)     
@@ -56,7 +57,7 @@ export class LoginPage {
 
     console.log(pwdencriptada);
 
-    this.servicioApi.encripta(pwdencriptada).then((result)=>{
+    this.authservice.encripta(pwdencriptada).then((result)=>{
       //console.log(result);
       this.pwdenc2=result;
       console.log(this.pwdenc2);
@@ -64,7 +65,7 @@ export class LoginPage {
       console.log(this.pwdenc2.password);
       let prueba={usuario:this.usuario,password:this.pwdenc2.password}
       console.log(prueba);
-      this.servicioApi.login(prueba).then((result)=>{
+      this.authservice.login(prueba).then((result)=>{
         console.log(result);
         this.entra= result;
         console.log(this.entra.msg,this.entra.status)

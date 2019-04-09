@@ -12,8 +12,8 @@
 
 
 <ion-content style="margin-top:75px">
-    <ion-card>
-        <ion-item>
+        <ion-card>
+          <ion-item>
             <ion-label>Máquinas</ion-label>
             <ion-select [(ngModel)]="seleccion" interface="popover"  >
              <ion-option *ngFor="let maquina of maquinasCI" value="{{maquina.descripcion}}">{{maquina.descripcion}}</ion-option>  

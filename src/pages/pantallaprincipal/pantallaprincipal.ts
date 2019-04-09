@@ -1,4 +1,4 @@
-import { Component,ViewChild } from '@angular/core';
+import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { DetallemvPage } from "../detallemv/detallemv";
 
@@ -9,11 +9,7 @@ import 'rxjs/add/operator/map';
 import L from "leaflet";
 /*Mapa*/
 
- /*GRAFICAS Chartjs
- npm install chart.js --save
-*/
-import { Chart } from 'chart.js';
-/*chartjs*/
+
 
 /*graficas fusioncharts
  npm install angular-fusioncharts
@@ -24,6 +20,7 @@ import * as FusionCharts from 'fusioncharts';
 
  /*servicios*/
  import { DataServiceProvider } from '../../providers/data-service/data-service';
+ import { MvserviceProvider } from "../../providers/mvservice/mvservice";
  /*servicios*/
 @IonicPage()
 @Component({
@@ -31,22 +28,16 @@ import * as FusionCharts from 'fusioncharts';
   templateUrl: 'pantallaprincipal.html',
 })
 export class PantallaprincipalPage {
-  shownSessions=1;
+  
+ /*mapa leaf let*/
+ maquinas :any;
+ center: L.PointTuple;
+ map:L.map;
 
-  /*chartjs*/
-  @ViewChild('hora') Vhora;
-  @ViewChild('maquina') Vmaquina;
-  @ViewChild('global') Vglobal;
-    VentaHora: any;
-    ventasmaquina: any;
-    ventaglobal: any;
-    /*chartjs*/
 
-  /*mapa leaf let*/
-  maquinas :any;
-  center: L.PointTuple;
-  map:L.map;
-  /*mapa leaf let*/
+ 
+ /*mapa leaf let*/
+
 
   /*grafica fusioncharts*/
   dataSource: any;
@@ -58,15 +49,10 @@ export class PantallaprincipalPage {
 /*grafica fusioncharts*/
 
 
-  constructor(public navCtrl: NavController, public navParams: NavParams,public dataService:DataServiceProvider) {
-    this.getmaquinas();
+  constructor(public navCtrl: NavController, public navParams: NavParams,public dataService:DataServiceProvider, public mvservice: MvserviceProvider) {
+   
     this.funcionglobalhistorica();
     this.fetchData();
-
-
-    
-   
-   
     /*fusionchart*/
   }
 
@@ -76,6 +62,9 @@ export class PantallaprincipalPage {
     this.center = [20.634012, -100.334345];
     console.log(this.center)
     this.leafletMap();
+    //this.getmaquinas(); 
+    this.mapa();
+    
     
     
     
@@ -91,65 +80,65 @@ export class PantallaprincipalPage {
 ngAfterViewInit()  {
 let interval = setInterval(()=> {
   console.log("hello");
-  this.getmaquinas();
   
+  //this.getmaquinas();
   
   
 },35000);
 }
 
 
-  getmaquinas(){
-    console.log("constructor")
-    this.dataService.getmaquinas().then(data => {
-      this.maquinas=data;
-      console.log("estoy en get menu y obtengo los datos del json:");
-      console.log(this.maquinas); 
-      for (let maquina of this.maquinas.maquinas) {
-        console.log(maquina.descripcion,maquina.latitud,maquina.longitud,maquina.iconourl)
+
+// getmaquinas(){
+//   console.log("constructor")
+//   this.dataService.getmaquinas().then(data => {
+//     this.maquinas=data;
+//     console.log("estoy en get menu y obtengo los datos del json:");
+//     console.log(this.maquinas); 
+//     for (let maquina of this.maquinas.maquinas) {
+//       console.log(maquina.descripcion,maquina.latitud,maquina.longitud,maquina.iconourl)
+      
+//       var punto = L.icon({
+//         iconUrl: maquina.iconourl,
+//         iconSize: [30, 30], // size of the icon
+//         iconAnchor: [20, 90],
+
+//       })
+//       var marker = new L.Marker([maquina.latitud,maquina.longitud],{icon:punto}).addTo(this.map)
+//        //this.map.addLayer(marker);
+//       .bindPopup(maquina.descripcion + " | " + maquina.alertas);
+
+//       marker.on('mouseover', function (e) {
+//         this.openPopup();
+//       });
+//       marker.on('mouseout', function (e) {
+//         this.closePopup();
+//       });
+
+//       marker.on('click', function (e) {
+//         console.log("diste click aqui");
+//         //this.ira();
         
-        var punto = L.icon({
-          iconUrl: maquina.iconourl,
-          iconSize: [30, 30], // size of the icon
-          iconAnchor: [20, 90],
-
-        })
-        var marker = new L.Marker([maquina.latitud,maquina.longitud],{icon:punto}).addTo(this.map)
-         //this.map.addLayer(marker);
-        .bindPopup(maquina.descripcion + " | " + maquina.alertas);
-
-        marker.on('mouseover', function (e) {
-          this.openPopup();
-        });
-        marker.on('mouseout', function (e) {
-          this.closePopup();
-        });
-
-        marker.on('click', function (e) {
-          console.log("diste click aqui");
-          //this.ira();
-          
-          //disable mouseout behavior here?
-        });
-       }   
-    }
-    );
-  }
+//         //disable mouseout behavior here?
+//       });
+//      }   
+//   }
+//   );
+// }
 /*mapa leaflet*/
-  leafletMap(){
-    this.map = L.map('mapId', {
-      center: this.center,
-      zoom: 10.3
-    });
-   //var position = L.tileLayer('http://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}.png', {
-   //var position = L.tileLayer('http://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/{z}/{y}/{x}', {
-  var position = L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
-      attribution: 'Xpend-It'
-    }).addTo(this.map);
+leafletMap(){
+  this.map = L.map('mapId', {
+    center: this.center,
+    zoom: 10.3
+  });
+ //var position = L.tileLayer('http://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}.png', {
+ //var position = L.tileLayer('http://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/{z}/{y}/{x}', {
+var position = L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
+    attribution: 'Xpend-It'
+  }).addTo(this.map);
 
 }
-  /*mapa leaflet*/
-
+/*mapa leaflet*/
 
   ira(){
     this.navCtrl.push(DetallemvPage)
@@ -231,6 +220,65 @@ let interval = setInterval(()=> {
   /*fusion charts*/
 
  
+mapa(){
+  
+  let usuario="admin";
+  this.mvservice.mapa(usuario).then(result=>{
+    
+     this.maquinas= result;
+     console.log(result);
+    for ( let maquina of this.maquinas)
+    {
 
+      console.log(maquina.idMaquina,maquina.latitud,maquina.longitud)
+       
+      var punto = L.icon({
+        iconUrl: maquina.icono,
+        iconSize: [30, 30], // size of the icon
+        iconAnchor: [20, 90],
+
+      })
+      var marker = new L.Marker([maquina.latitud,maquina.longitud],{icon:punto}).addTo(this.map)
+      //this.map.addLayer(marker);
+     .bindPopup(maquina.texto);
+
+     marker.on('mouseover', function (e) {
+       this.openPopup();
+     });
+     marker.on('mouseout', function (e) {
+       this.closePopup();
+     });
+
+     marker.on('click', function (e) {
+       console.log("diste click aqui");
+       //this.ira();
+       
+       //disable mouseout behavior here?
+     });
+    
+    
+    
+    
+    }
+
+
+
+
+     },(err)=>{
+       console.log(err);
+     }
+     );
+    }
+
+
+
+
+    // this.dataService.getmaquinas().then(data => {
+    //   this.maquinas=data;
+    //   console.log("estoy en get menu y obtengo los datos del json:");
+    //   console.log(this.maquinas); 
+        
+    // }
+    // );
   
 }

@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 
 
 @Injectable()
-export class ServicioApiProvider {
+export class AuthserviceProvider {
 
   url ='http://dev.xpend-it.com:8888'
 

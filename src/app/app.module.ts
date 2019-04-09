@@ -24,9 +24,16 @@ import { ActualizamvPage } from "../pages/actualizamv/actualizamv";
 /**********Paginas******/
 
 /**********servicios******/
-import { ServicioApiProvider } from '../providers/servicio-api/servicio-api';
+
+import { AuthserviceProvider } from "../providers/authservice/authservice";
+import { CatalogserviceProvider } from "../providers/catalogservice/catalogservice";
+import { ExtraserviceProvider } from "../providers/extraservice/extraservice";
+import { MvserviceProvider  } from "../providers/mvservice/mvservice";
+import { SelectserviceProvider } from "../providers/selectservice/selectservice";
+
 import { NightmodeProvider } from '../providers/nightmode/nightmode';
-import { DataServiceProvider } from '../providers/data-service/data-service';
+import { DataServiceProvider } from '../providers/data-service/data-service'; //datos de prueba locales
+
 /**********servicios******/
 
 /*componentes*/
@@ -43,6 +50,7 @@ import { GraficaproductosinventarioComponent } from "../components/graficaproduc
 import { TacometroproductosComponent } from "../components/tacometroproductos/tacometroproductos";
 import {  TacometroventasComponent} from "../components/tacometroventas/tacometroventas";
 import { VentaglobalhistoricaComponent } from "../components/ventaglobalhistorica/ventaglobalhistorica";
+import {  MapaComponent} from "../components/mapa/mapa";
 /*componentes*/
 
 /***************fusioncharts********************* */
@@ -93,7 +101,8 @@ FusionChartsModule.fcRoot(FusionCharts, Charts, TimeSeries,Ocean,Gammel,Zune,Wid
     GraficaproductosinventarioComponent,
     TacometroproductosComponent,
     TacometroventasComponent,
-    VentaglobalhistoricaComponent
+    VentaglobalhistoricaComponent,
+    MapaComponent,
 
     /*componentes*/
     
@@ -136,10 +145,17 @@ FusionChartsModule.fcRoot(FusionCharts, Charts, TimeSeries,Ocean,Gammel,Zune,Wid
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     /*Servicios**/
-    ServicioApiProvider,
+    AuthserviceProvider,
+    CatalogserviceProvider,
+    ExtraserviceProvider,
+    MvserviceProvider,
+    SelectserviceProvider,
+        
     NightmodeProvider,
+
     
-    DataServiceProvider,
+    DataServiceProvider, //prueba datos locales
+
     /*Servicios**/
   ]
 })

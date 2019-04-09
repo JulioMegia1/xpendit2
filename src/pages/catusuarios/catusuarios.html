@@ -2,4 +2,54 @@
 
 <ion-content style="margin-top:75px">
 
+        <cardexpandible title="Administrador de usuarios">
+                <ion-scroll scrollY="true"  direction="y">
+                <ion-label> Tipo*</ion-label>
+                <ion-input placeholder="Tipo*"> </ion-input>
+        
+                <ion-label>  Status*</ion-label>
+                <ion-input  placeholder="Status*" ></ion-input>
+        
+                <ion-label> Usuario*</ion-label>
+                <ion-input  placeholder="Usuario*" ></ion-input>
+
+                <ion-label> Password*</ion-label>
+                <ion-input  placeholder="Password" ></ion-input>
+
+                <ion-label> Nombre*</ion-label>
+                <ion-input  placeholder="Nombre*" ></ion-input>
+
+                <ion-label> Paterno*</ion-label>
+                <ion-input  placeholder="Paterno*" ></ion-input>
+
+                <ion-label> Materno*</ion-label>
+                <ion-input  placeholder="Materno*" ></ion-input>
+
+                <ion-label> Correo*</ion-label>
+                <ion-input  placeholder="Correo*" ></ion-input>
+
+                <ion-label> Móvil</ion-label>
+                <ion-input  placeholder="Móvil" ></ion-input>
+        
+        
+                <button ion-button round> Modificar </button>
+                <button ion-button round> Guardar  </button>
+            </ion-scroll>
+            </cardexpandible>
+        
+            <ion-card>
+                <ion-card-header>
+                    Productos
+                </ion-card-header>
+                <ion-card-content>
+                        <ion-searchbar (ionInput)="getItems($event)"></ion-searchbar>
+                </ion-card-content>
+                <ion-list>
+                    <ion-item *ngFor="let usuario of items">
+                        <ion-label>{{usuario.usuario}} | {{usuario.Tipo}} | {{usuario.Status}} | {{usuario.Nombre}} | {{usuario.Paterno}} | {{usuario.Materno}} | {{usuario.Correo}} | {{usuario.Movil}}</ion-label>
+                    </ion-item>
+                </ion-list>
+        
+            </ion-card>
+
 </ion-content>

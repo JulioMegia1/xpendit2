@@ -3,25 +3,31 @@
 <ion-content style="margin-top:75px">
 
     <cardexpandible title="ABC Alarmas">
+        <ion-scroll scrollY="true"  direction="y">
         <ion-label> Descripción*</ion-label>
-        <ion-input> </ion-input>
+        <ion-input placeholder="Descripción"> </ion-input>
 
-        <ion-label> Descripción*</ion-label>
-        <ion-input> </ion-input>
+        <ion-label>Prioridad*</ion-label>
+        <ion-item>
+             <ion-label>Prioridad*</ion-label>
+             <ion-select [(ngModel)]="seleccion" interface="popover"  >
+              <ion-option *ngFor="let prioridad of prioridades" value="{{prioridad.value}}">{{prioridad.value}}</ion-option>  
+             </ion-select>
+        </ion-item>
+    
 
-        <ion-label> Descripción*</ion-label>
-        <ion-input> </ion-input>
+        <ion-label> Estado</ion-label>
+        <ion-input  placeholder="Estado" ></ion-input>
 
-        <ion-label> Descripción*</ion-label>
-        <ion-input> </ion-input>
+        <ion-label> Subject</ion-label>
+        <ion-input  placeholder="Subject" ></ion-input>
 
-        <ion-label> Descripción*</ion-label>
-        <ion-input> </ion-input>
+        <ion-label> Cuerpo*</ion-label>
+        <ion-input  placeholder="Cuerpo*" ></ion-input>
 
         <button ion-button round> Modificar </button>
         <button ion-button round> Guardar  </button>
-
-
+    </ion-scroll>
     </cardexpandible>
 
     <ion-card>

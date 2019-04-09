@@ -3,4 +3,33 @@
 
 <ion-content style="margin-top:75px">
 
+        <cardexpandible title="ABC Productos">
+                <ion-scroll scrollY="true"  direction="y">
+                <ion-label> Descripción*</ion-label>
+                <ion-input placeholder="Descripción"> </ion-input>
+        
+                <ion-label> Precio compra*</ion-label>
+                <ion-input  placeholder="Precio compra*" ></ion-input>
+        
+                <ion-label> Presentación</ion-label>
+                <ion-input  placeholder="Presentación" ></ion-input>
+        
+                <ion-label> Imagen*</ion-label>
+                <!-- cargar imagen aqui -->
+        
+                <button ion-button round> Modificar </button>
+                <button ion-button round> Guardar  </button>
+            </ion-scroll>
+            </cardexpandible>
+        
+            <ion-card>
+                <ion-card-header>
+                    Productos
+                </ion-card-header>
+                <ion-card-content>
+                        <ion-searchbar></ion-searchbar>
+                </ion-card-content>
+        
+            </ion-card>
+
 </ion-content>

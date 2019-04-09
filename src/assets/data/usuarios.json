@@ -1,0 +1,103 @@
+[
+    {
+        "usuario": "Adda",
+        "Tipo": "Administrador",
+        "Status": "Activo",
+        "Nombre": "Adda",
+        "Paterno": "Florian",
+        "Materno": "Hernandez",
+        "Correo": "kbjkab@iuhsaih.com",
+        "Movil": "878787"
+    },
+    {
+        "usuario": "Jorge",
+        "Tipo": "Operado",
+        "Status": "Activo",
+        "Nombre": "Julio",
+        "Paterno": "Florian",
+        "Materno": "Hernandez",
+        "Correo": "kbjkab@iuhsaih.com",
+        "Movil": "878787"
+    },
+    {
+        "usuario": "admin",
+        "Tipo": "Administrador",
+        "Status": "Activo",
+        "Nombre": "Jorge",
+        "Paterno": "Florian",
+        "Materno": "Hernandez",
+        "Correo": "kbjkab@iuhsaih.com",
+        "Movil": "878787"
+    },
+    {
+        "usuario": "juan",
+        "Tipo": "solo",
+        "Status": "Activo",
+        "Nombre": "Emmanuel",
+        "Paterno": "Florian",
+        "Materno": "Hernandez",
+        "Correo": "kbjkab@iuhsaih.com",
+        "Movil": "878787"
+    },
+    {
+        "usuario": "fabian",
+        "Tipo": "Administrador",
+        "Status": "Activo",
+        "Nombre": "Fabian",
+        "Paterno": "Florian",
+        "Materno": "Hernandez",
+        "Correo": "kbjkab@iuhsaih.com",
+        "Movil": "878787"
+    },
+    {
+        "usuario": "Adda",
+        "Tipo": "Administrador",
+        "Status": "Activo",
+        "Nombre": "Leonardo",
+        "Paterno": "Florian",
+        "Materno": "Hernandez",
+        "Correo": "kbjkab@iuhsaih.com",
+        "Movil": "878787"
+    },
+    {
+        "usuario": "Adda",
+        "Tipo": "Administrador",
+        "Status": "Activo",
+        "Nombre": "Paulino",
+        "Paterno": "Florian",
+        "Materno": "Hernandez",
+        "Correo": "kbjkab@iuhsaih.com",
+        "Movil": "878787"
+    },
+    {
+        "usuario": "Adda",
+        "Tipo": "Administrador",
+        "Status": "Activo",
+        "Nombre": "Arturo",
+        "Paterno": "Florian",
+        "Materno": "Hernandez",
+        "Correo": "kbjkab@iuhsaih.com",
+        "Movil": "878787"
+    },
+    {
+        "usuario": "Adda",
+        "Tipo": "Administrador",
+        "Status": "Activo",
+        "Nombre": "Alejandro",
+        "Paterno": "Florian",
+        "Materno": "Hernandez",
+        "Correo": "kbjkab@iuhsaih.com",
+        "Movil": "878787"
+    },
+    {
+        "usuario": "Adda",
+        "Tipo": "Administrador",
+        "Status": "Activo",
+        "Nombre": "Carlos",
+        "Paterno": "Florian",
+        "Materno": "Hernandez",
+        "Correo": "kbjkab@iuhsaih.com",
+        "Movil": "878787"
+    }
+    
+]
