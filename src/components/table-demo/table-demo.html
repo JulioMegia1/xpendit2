@@ -1,0 +1,64 @@
+<label>Buscar</label>
+<input type="text" [(ngModel)]="searchTxt" class="form-control" name="searchTxt" placeholder="Buscar Usuario">
+ 
+ 
+  <table class="table table-striped" [mfData]="userlist | searchPipe:searchTxt" #mf="mfDataTable" [mfRowsOnPage]="5">
+    <thead>
+      <tr>
+        <th style="width: 20%">
+          <mfDefaultSorter by="usuario">Usuario</mfDefaultSorter>
+        </th>
+        <th style="width: 10%">
+          <mfDefaultSorter by="Tipo">Tipo</mfDefaultSorter>
+        </th>
+        <th style="width: 10%">
+          <mfDefaultSorter by="Status">Status</mfDefaultSorter>
+        </th>
+        <th style="width: 10%">
+          <mfDefaultSorter by="Nombre">Nombre</mfDefaultSorter>
+        </th>
+        <th style="width: 20%">
+          <mfDefaultSorter by="Paterno">Paterno</mfDefaultSorter>
+        </th>
+        <th style="width: 10%">
+          <mfDefaultSorter by="Materno">Materno</mfDefaultSorter>
+        </th>
+        <th style="width: 10%">
+          <mfDefaultSorter by="Correo">Correo</mfDefaultSorter>
+        </th>
+        <th style="width: 10%">
+          <mfDefaultSorter by="Movil">Movil</mfDefaultSorter>
+        </th>
+        <th style="width: 10%">
+          <mfDefaultSorter by="usuario">Acciones</mfDefaultSorter>
+        </th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let item of mf.data">
+        <ng-container *ngIf="item == -1">
+          <td colspan="4" align="center">No Data Found</td>
+        </ng-container>
+        <ng-container *ngIf="item!=-1">
+          <td>{{item.usuario}}</td>
+          <td>{{item.Tipo}}</td>
+          <td>{{item.Status}}</td>
+          <td>{{item.Nombre}}</td>
+          <td>{{item.Paterno}}</td>
+          <td>{{item.Materno}}</td>
+          <td>{{item.Correo}}</td>
+          <td>{{item.Movil}}</td>
+          <td><i class="fa fa-plus" aria-hidden="true"></i>
+            <i class="fa fa-trash" aria-hidden="true"></i>
+          </td>
+        </ng-container>
+      </tr>
+    </tbody>
+    <tfoot>
+      <tr>
+        <td colspan="4">
+          <mfBootstrapPaginator [rowsOnPageSet]="[5,10,25]"></mfBootstrapPaginator>
+        </td>
+      </tr>
+    </tfoot>
+  </table>

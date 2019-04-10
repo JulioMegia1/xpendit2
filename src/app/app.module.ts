@@ -68,6 +68,13 @@ FusionChartsModule.fcRoot(FusionCharts, Charts, TimeSeries,Ocean,Gammel,Zune,Wid
 
 /******************************************** */
 
+
+
+// import {DataTableModule} from "angular-6-datatable";
+// import { SearchPipe } from "../pipes/search/search";
+// import {   TableDemoComponent} from "../components/table-demo/table-demo";
+
+
 @NgModule({
   declarations: [
     MyApp,
@@ -87,6 +94,9 @@ FusionChartsModule.fcRoot(FusionCharts, Charts, TimeSeries,Ocean,Gammel,Zune,Wid
     ActualizamvPage,
   
     /*paginas*/
+
+    // ,TableDemoComponent ,
+    // SearchPipe,
 
     /*componentes*/
     LuzComponent,
@@ -112,7 +122,8 @@ FusionChartsModule.fcRoot(FusionCharts, Charts, TimeSeries,Ocean,Gammel,Zune,Wid
     BrowserModule,
     HttpClientModule,
     FusionChartsModule,
-    IonicModule.forRoot(MyApp)
+    IonicModule.forRoot(MyApp),
+    // DataTableModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [

@@ -4,23 +4,44 @@
 <ion-content style="margin-top:75px">
 
         <cardexpandible title="ABC Productos">
-                <ion-scroll scrollY="true"  direction="y">
-                <ion-label> Descripción*</ion-label>
-                <ion-input placeholder="Descripción"> </ion-input>
+            <ion-grid>
+                <ion-row>
+                    <ion-col col-auto>
+                        <ion-label> Descripción*</ion-label>     
+                    </ion-col>
+                    <ion-col col-auto>
+                        <ion-input placeholder="Descripción"> </ion-input>
+                    </ion-col>
+                    <ion-col col-auto>
+                        <ion-label> Precio compra*</ion-label>
+                    </ion-col>
+                    <ion-col col-auto>
+                        <ion-input  placeholder="Precio compra*" ></ion-input>
+                    </ion-col>
+                </ion-row>
+
+                <ion-row>
+                    <ion-col col-auto>
+                        <ion-label> Presentación</ion-label>      
+                    </ion-col>
+                    <ion-col col-auto>
+                        <ion-input  placeholder="Presentación" ></ion-input>
+                    </ion-col>
+                    <ion-col col-auto>
+                        <ion-label> Imagen*</ion-label>
+                    </ion-col>
+                    <ion-col col-auto>
+                        <ion-input  placeholder="Imagen*" ></ion-input>
+                    </ion-col>
+                </ion-row>
+            </ion-grid>
         
-                <ion-label> Precio compra*</ion-label>
-                <ion-input  placeholder="Precio compra*" ></ion-input>
-        
-                <ion-label> Presentación</ion-label>
-                <ion-input  placeholder="Presentación" ></ion-input>
-        
-                <ion-label> Imagen*</ion-label>
-                <!-- cargar imagen aqui -->
-        
+            <div style="justify-content:center;display:flex">
                 <button ion-button round> Modificar </button>
                 <button ion-button round> Guardar  </button>
-            </ion-scroll>
-            </cardexpandible>
+        </div>
+            
+        </cardexpandible>
         
             <ion-card>
                 <ion-card-header>

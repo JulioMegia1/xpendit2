@@ -11,12 +11,18 @@ page-catalarmas {
         //height: auto;
         //overflow: scroll;
 
-
             .scroll-content {
             padding: 0px !important;
             display: inline-block;
 
         }    
+    }
+
+    ion-label{
+        background:#18703d;
+        color:#fff;
+        padding:10px;
+        border-radius: 10px;
     }
 
 

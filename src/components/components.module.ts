@@ -15,6 +15,7 @@ import { TacometroproductosComponent } from './tacometroproductos/tacometroprodu
 import { TacometroventasComponent } from './tacometroventas/tacometroventas';
 import { VentaglobalhistoricaComponent } from './ventaglobalhistorica/ventaglobalhistorica';
 import { MapaComponent } from './mapa/mapa';
+import { TableDemoComponent } from './table-demo/table-demo';
 @NgModule({
 	declarations: [LuzComponent,
     NavbarComponent,
@@ -31,7 +32,8 @@ import { MapaComponent } from './mapa/mapa';
     TacometroproductosComponent,
     TacometroventasComponent,
     VentaglobalhistoricaComponent,
-    MapaComponent],
+    MapaComponent,
+    TableDemoComponent],
 	imports: [IonicModule],
 	exports: [LuzComponent,
     NavbarComponent,
@@ -48,7 +50,8 @@ import { MapaComponent } from './mapa/mapa';
     TacometroproductosComponent,
     TacometroventasComponent,
     VentaglobalhistoricaComponent,
-    MapaComponent],
+    MapaComponent,
+    TableDemoComponent],
 	schemas:[CUSTOM_ELEMENTS_SCHEMA,NO_ERRORS_SCHEMA]
 })
 export class ComponentsModule {}
