@@ -1,11 +1,6 @@
 import { Component, ViewChild, OnInit, Renderer, Input  } from '@angular/core';
 
-/**
- * Generated class for the CardexpandibleComponent component.
- *
- * See https://angular.io/api/core/Component for more info on Angular
- * Components.
- */
+
 @Component({
   selector: 'cardexpandible',
   templateUrl: 'cardexpandible.html'
@@ -35,7 +30,7 @@ export class CardexpandibleComponent implements OnInit{
       this.renderer.setElementStyle(this.cardContent.nativeElement, "padding", "0px 16px");
 
     } else {
-      this.renderer.setElementStyle(this.cardContent.nativeElement, "max-height", "500px");
+      this.renderer.setElementStyle(this.cardContent.nativeElement, "max-height", "900px");
       this.renderer.setElementStyle(this.cardContent.nativeElement, "padding", "13px 16px");
 
     }

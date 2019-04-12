@@ -75,6 +75,11 @@ export class DetallemvPage {
    
   }
 
+  ionViewDidEnter()
+  {
+    this.alarma();
+  }
+
 
   
 
@@ -108,7 +113,7 @@ export class DetallemvPage {
 
 
 
-      this.alarma();
+     
       
 
 

@@ -53,6 +53,13 @@ import { VentaglobalhistoricaComponent } from "../components/ventaglobalhistoric
 import {  MapaComponent} from "../components/mapa/mapa";
 /*componentes*/
 
+/*plugins*/
+import { Camera } from '@ionic-native/camera';
+import { FileTransfer } from '@ionic-native/file-transfer';
+import { File } from '@ionic-native/file';
+
+
+
 /***************fusioncharts********************* */
 
 import { FusionChartsModule } from 'angular-fusioncharts';
@@ -73,6 +80,14 @@ FusionChartsModule.fcRoot(FusionCharts, Charts, TimeSeries,Ocean,Gammel,Zune,Wid
 // import {DataTableModule} from "angular-6-datatable";
 // import { SearchPipe } from "../pipes/search/search";
 // import {   TableDemoComponent} from "../components/table-demo/table-demo";
+
+// class CameraMock extends Camera {
+//   getPicture(options) {
+//     return new Promise((resolve, reject) => {
+//       resolve("BASE_64_ENCODED_DATA_GOES_HERE");
+//     })
+//   }
+// }
 
 
 @NgModule({
@@ -163,6 +178,9 @@ FusionChartsModule.fcRoot(FusionCharts, Charts, TimeSeries,Ocean,Gammel,Zune,Wid
     SelectserviceProvider,
         
     NightmodeProvider,
+    /*plugins*/
+    // { provide: Camera, useClass: CameraMock }
+    , FileTransfer, File,Camera,
 
     
     DataServiceProvider, //prueba datos locales

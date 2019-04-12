@@ -1,4 +1,31 @@
 page-catalogos {
+  @media (max-width: 1024px) {// Diseño parte móvil
+    ion-card.card{
+    background: rgba(255, 255,255,0.6px);
+    border-radius: 10%;
+    box-shadow: none;
+    width: 90%;
+    margin: auto;
+    margin-top: 50px;
+    display: block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+}
+
+@media (min-width: 1024px) {// Diseño parte WEB
+  ion-card.card{
+    background: rgba(255, 255,255,0.6px);
+    border-radius: 10%;
+    box-shadow: none;
+    width: 45%;
+    margin: auto;
+    margin-top: 50px;
+    display: block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+}
     ul {
          display: flex;
          justify-content: space-around;

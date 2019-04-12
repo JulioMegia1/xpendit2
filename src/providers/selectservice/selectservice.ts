@@ -29,5 +29,22 @@ export class SelectserviceProvider {
   }
 
 
+  selectproductos() { //
+    console.log("--------entre al servicio del menu-----------");
+    return new Promise(resolve => {
+  
+      let select=this.url+'select/productos/'
+      console.log(select);
+      this.http.get(select).subscribe(data => {
+        resolve(data);
+      }
+      ,err => {
+        console.log(err);
+      });
+    });
+  
+  }
+
+
 
 }

@@ -48,6 +48,113 @@
 				{
 					"riel":7,
 					"existencias":"12"
+				},
+				{
+					"riel":11,
+					"existencias":"12"
+				},
+				{
+					"riel":12,
+					"existencias":"12"
+				},
+				{
+					"riel":13,
+					"existencias":"12"
+				},
+				{
+					"riel":21,
+					"existencias":"12"
+				},
+				{
+					"riel":24,
+					"existencias":"12"
+				},
+				{
+					"riel":25,
+					"existencias":"12"
+				},
+				{
+					"riel":26,
+					"existencias":"12"
+				},
+				{
+					"riel":27,
+					"existencias":"12"
+				}
+				,{
+					"riel":31,
+					"existencias":"12"
+				},
+				{
+					"riel":32,
+					"existencias":"12"
+				},
+				{
+					"riel":33,
+					"existencias":"12"
+				},
+				{
+					"riel":41,
+					"existencias":"12"
+				},
+				{
+					"riel":44,
+					"existencias":"12"
+				},
+				{
+					"riel":45,
+					"existencias":"12"
+				},
+				{
+					"riel":56,
+					"existencias":"12"
+				},
+				{
+					"riel":57,
+					"existencias":"12"
+				}
+				,
+				{
+					"riel":58,
+					"existencias":"12"
+				},
+
+				{
+					"riel":61,
+					"existencias":"12"
+				},
+				{
+					"riel":62,
+					"existencias":"12"
+				},
+				{
+					"riel":63,
+					"existencias":"12"
+				},
+				{
+					"riel":64,
+					"existencias":"12"
+				},
+				{
+					"riel":65,
+					"existencias":"12"
+				},
+				{
+					"riel":66,
+					"existencias":"12"
+				},
+				{
+					"riel":67,
+					"existencias":"12"
+				},
+				
+				{
+					"riel":68,
+					"existencias":"12"
+				},
+				{
+					"riel":69,
+					"existencias":"12"
 				}
 		],
 		"productos":[
@@ -307,10 +414,7 @@
 				"riel":31,
 				"precio":"12.50"
 			},
-			{
-				"riel":21,
-				"precio":"12.50"
-			},
+			
 			{
 				"riel":32,
 				"precio":"12.50"
@@ -338,35 +442,43 @@
 		"existencias":[
 			
 			{
-				"riel":1,
+				"riel":"A0",
 				"existencias":"12"
 			},
 			{
-				"riel":1,
+				"riel":"A1",
 				"existencias":"12"
 			},
 			{
-				"riel":1,
+				"riel":"A2",
 				"existencias":"12"
 			},
 			{
-				"riel":1,
+				"riel":"B1",
 				"existencias":"12"
 			},
 			{
-				"riel":1,
+				"riel":"B2",
 				"existencias":"12"
 			},
 			{
-				"riel":1,
+				"riel":"B3",
 				"existencias":"12"
 			},
 			{
-				"riel":1,
+				"riel":"B4",
 				"existencias":"12"
 			},
 			{
-				"riel":1,
+				"riel":"C1",
+				"existencias":"12"
+			},
+			{
+				"riel":"C2",
+				"existencias":"12"
+			},
+			{
+				"riel":"C3",
 				"existencias":"12"
 			}
 

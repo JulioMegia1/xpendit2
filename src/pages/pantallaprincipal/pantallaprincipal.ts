@@ -251,7 +251,7 @@ mapa(){
 
      marker.on('click', function (e) {
        console.log("diste click aqui");
-       //this.ira();
+       this.ira();
        
        //disable mouseout behavior here?
      });
