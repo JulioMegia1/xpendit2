@@ -22,8 +22,12 @@ export class LoginPage {
   passwordshow : boolean=false;
   pwdenc2:any;
   entra:any;
+  tipousuario:any;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams,public alertController:AlertController,public authservice: AuthserviceProvider) {
+  
+  
+
+  constructor(public navCtrl: NavController, public navParams:NavParams,public alertController:AlertController,public authservice: AuthserviceProvider) {
     this.getUsers();
   }
 
@@ -83,10 +87,10 @@ export class LoginPage {
         {
            console.log("valido");
            //let datosusuario=this.entra.usuario;
-           let usuario=this.entra.usuario.tipoUsuario;
-           console.log(usuario);
+           this.tipousuario={tipousuario:this.entra.usuario.tipoUsuario};
+           console.log(this.tipousuario);
           //  this.navCtrl.push(PantallaprincipalPage,{"datosusuario":datosusuario});
-           this.navCtrl.push(MenuPage,{usuario});
+           this.navCtrl.push(MenuPage,{usuario:this.tipousuario});
         }
         else{
           if(this.entra.msg=="El usuario no se encuentra activo..."){

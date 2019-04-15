@@ -45,6 +45,24 @@ export class SelectserviceProvider {
   
   }
 
+  selectmaquinas() { //
+    console.log("--------entre al servicio del menu-----------");
+    return new Promise(resolve => {
+      let select=this.url+'select/maquina/'
+      console.log(select);
+      this.http.get(select).subscribe(data => {
+        resolve(data);
+      }
+      ,err => {
+        console.log(err);
+      });
+    });
+  
+  }
+
+
+
+
 
 
 }

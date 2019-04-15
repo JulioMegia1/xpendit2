@@ -28,11 +28,15 @@ import * as FusionCharts from 'fusioncharts';
   templateUrl: 'pantallaprincipal.html',
 })
 export class PantallaprincipalPage {
+
+  tipoUsuario:any;
   
  /*mapa leaf let*/
  maquinas :any;
  center: L.PointTuple;
  map:L.map;
+
+ 
 
 
  
@@ -50,7 +54,9 @@ export class PantallaprincipalPage {
 
 
   constructor(public navCtrl: NavController, public navParams: NavParams,public dataService:DataServiceProvider, public mvservice: MvserviceProvider) {
-   
+    console.log(navParams) 
+    this.tipoUsuario=this.navParams.get("usuario");
+     console.log(this.tipoUsuario)
     this.funcionglobalhistorica();
     this.fetchData();
     /*fusionchart*/
@@ -222,56 +228,41 @@ var position = L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
  
 mapa(){
   
-  let usuario="admin";
+  let usuario="admin";//falta paserle el usuario real IMPORTANTE
   this.mvservice.mapa(usuario).then(result=>{
-    
-     this.maquinas= result;
-     console.log(result);
-    for ( let maquina of this.maquinas)
-    {
-
-      console.log(maquina.idMaquina,maquina.latitud,maquina.longitud)
-       
-      var punto = L.icon({
-        iconUrl: maquina.icono,
-        iconSize: [30, 30], // size of the icon
-        iconAnchor: [20, 90],
-
-      })
-      var marker = new L.Marker([maquina.latitud,maquina.longitud],{icon:punto}).addTo(this.map)
-      //this.map.addLayer(marker);
-     .bindPopup(maquina.texto);
-
-     marker.on('mouseover', function (e) {
-       this.openPopup();
-     });
-     marker.on('mouseout', function (e) {
-       this.closePopup();
-     });
-
-     marker.on('click', function (e) {
-       console.log("diste click aqui");
-       this.ira();
-       
-       //disable mouseout behavior here?
-     });
-    
-    
-    
-    
-    }
-
-
-
-
+           this.maquinas= result;
+           console.log(result);
+          for ( let maquina of this.maquinas)
+          {
+            console.log(maquina.idMaquina,maquina.latitud,maquina.longitud)
+            var punto = L.icon({
+              iconUrl: maquina.icono,
+              iconSize: [30, 30], // size of the icon
+              iconAnchor: [20, 90],
+            })
+            var marker = new L.Marker([maquina.latitud,maquina.longitud],{icon:punto}).addTo(this.map)
+            //this.map.addLayer(marker);
+           .bindPopup(maquina.texto);
+      
+           marker.on('mouseover', function (e) {
+             this.openPopup();
+           });
+           marker.on('mouseout', function (e) {
+             this.closePopup();
+           });
+      
+           marker.on('click', function (e) {
+             console.log("diste click aqui");
+             this.ira();
+             
+             //disable mouseout behavior here?
+           });
+          }
      },(err)=>{
        console.log(err);
      }
      );
     }
-
-
-
 
     // this.dataService.getmaquinas().then(data => {
     //   this.maquinas=data;

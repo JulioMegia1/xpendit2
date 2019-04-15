@@ -1,51 +1,90 @@
-<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous"> -->
 <!-- usar para iconos -->
-
-
-
 <navbar mytext="Configuración"></navbar>
 
-
 <ion-content style="margin-top:75px">
-
     <ion-grid>
         <ion-row>
-          <ion-col>
+          <ion-col >
             <ion-card text-center>
-            <h2>Máquinas</h2>
-            <ul>
-                <li>   <a (click)="irmaquinas()"><i  class="fa fa-calculator" aria-hidden="true"></i></a></li>
-                </ul>
-              </ion-card>
-              </ion-col>
-          <ion-col>
+                <h2 style="color: white;font-weight: bold;font-size: 24px" style="color: white;font-weight: bold;font-size: 24px">Máquinas</h2>
+                <ul><li><a (click)="irmaquinas()"><i  class="fa fa-calculator" aria-hidden="true"></i></a></li></ul>
+            </ion-card>
+          </ion-col>
+
+          <ion-col >
             <ion-card text-center>
-              <h2>Productos</h2>  
-              <ul>
-                  <li>  <a (click)="irproductos()"><i  class="fas fa-coffee" aria-hidden="true"></i></a></li>
-                  
-                </ul>
-          </ion-card>
+                <h2 style="color: white;font-weight: bold;font-size: 24px">Productos</h2>  
+                <ul><li>  <a (click)="irproductos()"><i  class="fas fa-coffee" aria-hidden="true"></i></a></li></ul> 
+            </ion-card>
           </ion-col>
         </ion-row>
+
         <ion-row>
-            <ion-col>
+          <ion-col >
+            <ion-card text-center>
+               <h2 style="color: white;font-weight: bold;font-size: 24px">Usuarios</h2>
+               <ul><li><a (click)="irusuarios()"><i  class="fa fa-user" aria-hidden="true"></i></a></li></ul>
+           </ion-card>
+          </ion-col>
+
+          <ion-col>
               <ion-card text-center>
-                <h2>Usuarios</h2>
-                <ul>
-                    <li>  <a (click)="irusuarios()"><i  class="fa fa-user" aria-hidden="true"></i></a></li>
-                    </ul>
-                </ion-card>
-                </ion-col>
-            <ion-col>   
-              <ion-card text-center>
-                <h2>Alarmas</h2>  
-                <ul>
-                    <li>  <a (click)="iralarmas()"><i  class="fa fa-bell" aria-hidden="true"></i></a></li>
-                    </ul>
+                  <h2 style="color: white;font-weight: bold;font-size: 24px">Alarmas</h2>  
+                  <ul><li>  <a (click)="iralarmas()"><i  class="fa fa-bell" aria-hidden="true"></i></a></li></ul>
               </ion-card>
-              </ion-col>
-          </ion-row>
+          </ion-col>
+        </ion-row>
       </ion-grid>
+
+
+
+
+      <!-- <ion-grid>
+        <ion-row>
+          <ion-col col-2></ion-col>
+          <ion-col col-4>
+            <ion-card text-center padding class="fondo"  (click)="irmaquinas()">
+              <ion-card-content>
+                  <ion-icon name="calculator"></ion-icon>
+                 <h2 style="color: white;font-weight: bold;font-size: 24px">Máquinas </h2>
+              </ion-card-content>
+            </ion-card>
+          </ion-col>
+
+          <ion-col col-4>
+            <ion-card  text-center padding  (click)="irproductos()" class="fondo">
+              <ion-card-content>
+                <i class="fas fa-truck"></i>
+              <h2 style="color: white;font-weight: bold;font-size: 24px">Productos</h2>
+            </ion-card-content>
+            </ion-card>
+          </ion-col>
+          <ion-col col-2></ion-col>
+        </ion-row>
+
+
+        <ion-row>
+          <ion-col col-2></ion-col>
+          <ion-col col-4>
+            <ion-card text-center padding class="fondo"  (click)="irusuarios()">
+            <ion-card-content>
+                <ion-icon name="person" ></ion-icon>
+               <h2 style="color: white;font-weight: bold;font-size: 24px">Usuarios</h2>
+            </ion-card-content>
+            </ion-card>
+          </ion-col>
+          
+          <ion-col col-4>
+            <ion-card text-center padding  (click)="iralarmas()" class="fondo">
+              <ion-card-content>
+                <i  class="fa fa-bell" aria-hidden="true" color="light"></i>
+               <h2 style="color: white;font-weight: bold;font-size: 24px">Alarmas</h2>
+            </ion-card-content>
+            </ion-card>
+          </ion-col>
+        </ion-row>
+        <ion-col col-2></ion-col>
+    </ion-grid> -->
 
 </ion-content>

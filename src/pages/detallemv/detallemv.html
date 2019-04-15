@@ -1,22 +1,14 @@
-<!-- <ion-header>
-  <ion-navbar>
-      <button ion-button menuToggle>
-      <ion-icon name="menu"></ion-icon>
-    </button>
-    <ion-title>Máquina {{seleccion}} </ion-title>
-  </ion-navbar>
-</ion-header> -->
-
-<navbar mytext="Máquina {{seleccion}}"></navbar>
+<navbar mytext="Máquina"></navbar>
 
 
 
-<ion-content style="margin-top:75px">
-        <ion-card>
+<ion-content style="margin-top:75px;">
+        <!-- seleccion de la máquina -->
+      <ion-card>
           <ion-item>
             <ion-label>Máquinas</ion-label>
-            <ion-select [(ngModel)]="seleccion" interface="popover"  >
-             <ion-option *ngFor="let maquina of maquinasCI" value="{{maquina.descripcion}}">{{maquina.descripcion}}</ion-option>  
+            <ion-select [(ngModel)]="seleccion" interface="popover" (ionChange)="getalarmas(seleccion)"  (ionChange)="getcontables(seleccion)" (ionChange)="getgraficahora(seleccion)">
+             <ion-option *ngFor="let maquina of maquinas" value="{{maquina.idMaquina}}">{{maquina.idMaquina}} - {{maquina.descripcion}}</ion-option>  
             </ion-select>
           </ion-item>
         </ion-card>
@@ -34,17 +26,14 @@
      <!-- grafica producto-inventario -->
     
     <div style="justify-content:center;display:flex">
-     <button ion-button round >Reiniciar inventario</button>
-     <button ion-button  round (click)= "actInfo()"> Actualizar Info Rieles</button>
+        <button ion-button round (click)="reiniciaInventario(seleccion)"> Reiniciar inventario</button>
+        <button ion-button  round (click)= "actInfo()"> Actualizar Info Rieles</button>
     </div>
 
     <div style="justify-content:center;display:flex">
-
-     
-    <tacometroproductos></tacometroproductos> 
-    <tacometroventas></tacometroventas>
-  
-</div>
+        <tacometroproductos></tacometroproductos> 
+        <tacometroventas></tacometroventas>
+    </div>
   
     <ion-card>
       <ion-card-header>
@@ -53,24 +42,20 @@
         <ion-card-content>
             <ion-grid>
                 <ion-row>
-                  <ion-col>Alcancía: {{alcancia}}</ion-col>
-                  <ion-col>Monedero: {{monedero}}</ion-col>
-                  <ion-col> Billetero: {{billetero}}</ion-col>
+                  <ion-col *ngFor="let contable of contables">{{contable.label}}: {{contable.value}} </ion-col>
                 </ion-row>
               </ion-grid>
         </ion-card-content>
-  </ion-card>
-
+     </ion-card> 
 
   <ion-card>
       <ion-card-header>
-      Venta Global - {{seleccion}}
-  </ion-card-header>
-  <ion-card-content>
-     <ventaxhoramaquina></ventaxhoramaquina>
+           #-{{seleccion}}
+     </ion-card-header>
+     <ion-card-content>
+        <ventaxhoramaquina></ventaxhoramaquina>
     </ion-card-content>
-    </ion-card>
-
+  </ion-card>
 
     <ion-card>
         <ion-card-header>
@@ -79,12 +64,10 @@
         <ion-card-content>
             <ventaxdiamaquina></ventaxdiamaquina>
         </ion-card-content>
-      </ion-card>
-
-
+    </ion-card> 
 
       <!-- graficas fusioncharts -->
-<ion-card style="margin-bottom:70px">
+<!-- <ion-card style="margin-bottom:70px">
     <div>
         <fusioncharts
           [type]="type"
@@ -93,7 +76,7 @@
           [dataSource]="dataSource"
         ></fusioncharts>
       </div>
-    </ion-card>
+    </ion-card> -->
       <!-- graficas fusioncharts -->
 
 

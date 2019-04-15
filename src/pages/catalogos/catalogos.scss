@@ -2,6 +2,7 @@ page-catalogos {
   @media (max-width: 1024px) {// Diseño parte móvil
     ion-card.card{
     background: rgba(255, 255,255,0.6px);
+         background-color: #18703d;
     border-radius: 10%;
     box-shadow: none;
     width: 90%;
@@ -9,22 +10,30 @@ page-catalogos {
     margin-top: 50px;
     display: block;
     border: 1px solid #ccc;
-    border-radius: 4px;
+    border-radius: 10px;
 }
 }
 
 @media (min-width: 1024px) {// Diseño parte WEB
   ion-card.card{
     background: rgba(255, 255,255,0.6px);
+         background-color: #18703d;
     border-radius: 10%;
     box-shadow: none;
-    width: 45%;
+    
     margin: auto;
     margin-top: 50px;
     display: block;
     border: 1px solid #ccc;
-    border-radius: 4px;
+    border-radius: 10px;
+    
 }
+
+}
+h2{
+  color:white;
+  font-weight: bold;
+  text-transform: uppercase;
 }
     ul {
          display: flex;
@@ -87,12 +96,67 @@ page-catalogos {
       
       ul li:nth-of-type(1):before,
       ul li:nth-of-type(1):after {
-        background: rgb(27, 56, 97);
+        background: #64bc44;
       }
 
       ul li:nth-of-type(2):before,
 ul li:nth-of-type(2):after {
-  background: #18703d;
+  background: #64bc44;
+  
 }
+
+// @media (max-width: 1024px) {
+//   i.fas,i.fab,i.fa {
+//     font-size: 3em;
+//     color:#fff
+//   }
+//   ion-icon {
+//     font-size: 3em;
+//     color:#fff
+//   }
+  
+//   .fondo{
+//     background-color: #18703d;
+
+//     border-radius:10px  
+//   }
+//   .fondo:hover{
+//     color:lightblue
+
+//   }
+
+
+  
+//    }
+
+// @media (min-width: 1024px) {// Diseño parte WEB
+//   i.fas,i.fab,i.fa {
+//     font-size: 5em;
+//     color:#fff
+//   }
+//   ion-icon {
+//     font-size: 5em;
+//     color:#fff
+//   }
+  
+//   .fondo{
+    
+//     background-color: #18703d;
+//     border-radius:10px
+    
+//   }
+  
+
+//    }
+
+
+// .texto{
+//   color:#fff;
+// }
+ion-col{
+  width: 160px !important;
+
+}
+
 
 }

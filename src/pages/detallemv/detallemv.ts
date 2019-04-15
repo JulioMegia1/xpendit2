@@ -6,22 +6,12 @@ import { ToastController } from 'ionic-angular';
 import { ActualizamvPage } from "../actualizamv/actualizamv";
 
 /*servicios*/
-import { DataServiceProvider } from '../../providers/data-service/data-service';
-/*servicios*/
-
-/*chartjs*/
-import { Chart } from 'chart.js';
-/*chartjs*/
-
+//import { DataServi ceProvider } from '../../providers/data-service/data-service'; BORRAR
+import { MvserviceProvider } from "../../providers/mvservice/mvservice";
+import { SelectserviceProvider } from "../../providers/selectservice/selectservice";
 
 /*fusioncharts*/
 import * as FusionCharts from 'fusioncharts';
-/**fusioncharts*/
-
-
-
-
-
 
 @IonicPage()
 @Component({
@@ -30,25 +20,12 @@ import * as FusionCharts from 'fusioncharts';
 })
 export class DetallemvPage {
 
-  maquinas :any;
-  maquinasCI:any;
-  seleccion:any;
-
-  alcancia:any="$";
-  monedero:any="$";
-  billetero:any="$";
-
-  alertas:any;
-
-  // grafica producto-inventario
-  @ViewChild('prodInv') RprodInv;
-  prodsInv: any;
-// grafica producto-inventario
-
-
-
-
-
+  maquinas :any;//obtiene todas las maquinas
+  seleccion:any; //obtiene elid de la maquina seleccionada
+  alarmas:any;  //obtiene las alarmas de la maquina seleccionada
+  contables:any//obtiene los contables de la maquina seleccionada
+  reinicia:any//reincia el inventario y muestra msj
+  graficahora:any;
 
  /*grafica fusioncharts*/
  dataSource: any;
@@ -57,75 +34,119 @@ export class DetallemvPage {
  height: string;
  esquema:any;
  datos:any;
- 
-/*grafica fusioncharts*/
 
-
+  constructor(public navCtrl: NavController, public navParams: NavParams,
+    //public data Service:DataServiceProvider, BORRAR
+    public toastCtrl: ToastController,public mvservice:MvserviceProvider,public selectprovider:SelectserviceProvider
+    ) {
+    
+    this.getmaquinas();
+  
+    
   
 
-
- 
-
-  constructor(public navCtrl: NavController, public navParams: NavParams,public dataService:DataServiceProvider,public toastCtrl: ToastController) {
-    this.getmaquinas();
+    // this.getmaquinasid();
     
     
-    this.funcionglobalhistorica();
-    this.fetchData();
+    // this.funcionglobalhistorica();
+    // this.fetchData();
    
   }
 
-  ionViewDidEnter()
+  ionViewDidEnter() //cuando la paginas esta activa
   {
-    this.alarma();
+    
+    this.getalarmas(this.seleccion);
+    this.getcontables(this.seleccion);
+    this.getgraficahora(this.seleccion);
   }
 
 
+  getmaquinas(){
+    console.log("constructor")
+    let tipousuario="admin"//CAMBIAR y PONER EL USUARIO QUE SEA CAMBIAR IMPORTANTE
+    this.mvservice.maquinas(tipousuario).then(data => {
+      this.maquinas=data;
+      console.log("estoy en get menu y obtengo los datos del json:");
+      console.log(this.maquinas); 
+      this.seleccion=this.maquinas[0].idMaquina;  //ASINGNA LA PRIMER MAQUINA COMO LA ELEGIDA
+      console.log(this.seleccion);
+
+    this.getalarmas(this.seleccion);
+    this.getcontables(this.seleccion);
+    this.getgraficahora(this.seleccion);
+    }
+    );
+  }
+
+  getalarmas(seleccion){
+    
+  this.mvservice.alarmas(seleccion).then(result=>{
+    this.alarmas= result;
+    this.alarmas=this.alarmas.value;
+    console.log(result);
+    this.alarma();
+    },(err)=>{
+      console.log(err);
+    }
+    );
+  }
+
+  getcontables(seleccion){
+  this.mvservice.contables(seleccion).then(result=>{
+    this.contables= result;
+    console.log(result);
+    },(err)=>{
+      console.log(err);
+    }
+    );
+  }
+
+  reiniciaInventario(seleccion){
+    this.mvservice.reiniciainventario(seleccion).then(result=>{
+      this.reinicia= result;
+      console.log(result);
+      },(err)=>{
+        console.log(err);
+      }
+      );
+
+
+  }
+
+  getgraficahora(seleccion){
+    this.mvservice.ventahoramaquina(seleccion).then(result=>{
+      this.graficahora= result;
+      console.log(result);
+      },(err)=>{
+        console.log(err);
+      }
+      );
+    }
+
+
+
+
+  // getmaquinasid(){
+  //   this.selectprovider.selectmaquinas().then(result=>{
+  //     this.seleccion=result;
+  //     console.log(result);
+  //     },(err)=>{
+  //       console.log(err);
+  //     }
+  //     );
+  // }
+
   
 
-
-    
+  
 
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad DetallemvPage');
-    
-    
-    
-    
   }
-  getmaquinas(){
-    console.log("constructor")
-    this.dataService.getmaquinas().then(data => {
-      this.maquinas=data;
-      console.log("estoy en get menu y obtengo los datos del json:");
-      console.log(this.maquinas.maquinas); 
-       this.maquinasCI=this.maquinas.maquinas;
-      console.log(this.maquinasCI[0].descripcion)
-      this.seleccion=this.maquinasCI[0].descripcion;  
-
-
-      this.alertas=this.maquinasCI[0].alertas;
-      console.log(this.alertas);
-      this.alcancia=this.alcancia.concat(this.maquinasCI[0].alcancia);
-      this.monedero=this.monedero.concat(this.maquinasCI[0].monedero);
-      this.billetero=this.billetero.concat(this.maquinasCI[0].billetero);
-
-
-
-     
-      
-
-
-      
-    }
-    );
-       
-  }
-
 
   
-
 
 
   /*grafica fusion charts*/
@@ -191,36 +212,35 @@ export class DetallemvPage {
     };
  }
  
- 
  /*fusion charts*/
- fetchData() {
-  this.dataService.getschema2().then(esquema => {
-    this.esquema=esquema;
-    console.log("estoy en get menu y obtengo los datos del json:");
-    console.log(this.esquema); 
-    this.dataService.getdata2().then(datos => {
-      this.datos=datos;
-      console.log(this.datos)
-    Promise.all([this.datos, this.esquema]).then(res => {
-    const data = res[0];
-    const schema = res[1];
-    // First we are creating a DataStore
-    const fusionDataStore = new FusionCharts.DataStore();
-    // After that we are creating a DataTable by passing our data and schema as arguments
-    const fusionTable = fusionDataStore.createDataTable(data, schema);
-    // Afet that we simply mutated our timeseries datasource by attaching the above
-    // DataTable into its data property.
-    this.dataSource.data = fusionTable;
-  });
-}
-  );
-}
-);
- }
+//  fetchData() {
+//   this.dataService.getschema2().then(esquema => {
+//     this.esquema=esquema;
+//     console.log("estoy en get menu y obtengo los datos del json:");
+//     console.log(this.esquema); 
+//     this.dataService.getdata2().then(datos => {
+//       this.datos=datos;
+//       console.log(this.datos)
+//     Promise.all([this.datos, this.esquema]).then(res => {
+//     const data = res[0];
+//     const schema = res[1];
+//     // First we are creating a DataStore
+//     const fusionDataStore = new FusionCharts.DataStore();
+//     // After that we are creating a DataTable by passing our data and schema as arguments
+//     const fusionTable = fusionDataStore.createDataTable(data, schema);
+//     // Afet that we simply mutated our timeseries datasource by attaching the above
+//     // DataTable into its data property.
+//     this.dataSource.data = fusionTable;
+//   });
+// }
+//   );
+// }
+// );
+//  }
 
  alarma(){
     let toast = this.toastCtrl.create({
-      message:this.alertas,
+      message:this.alarmas,
       showCloseButton: true,
       closeButtonText: 'Ok',
       duration: 3000,
@@ -236,11 +256,5 @@ actInfo(){
   this.navCtrl.push(ActualizamvPage);
   
 }
-
-  
-
-
-
-  
 
 }
