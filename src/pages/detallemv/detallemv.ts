@@ -1,6 +1,8 @@
 import { Component,ViewChild } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { ToastController } from 'ionic-angular';
+import { AlertController } from 'ionic-angular';
+
 
 /*paginas*/
 import { ActualizamvPage } from "../actualizamv/actualizamv";
@@ -12,6 +14,7 @@ import { SelectserviceProvider } from "../../providers/selectservice/selectservi
 
 /*fusioncharts*/
 import * as FusionCharts from 'fusioncharts';
+import { SelectorListContext } from '@angular/compiler';
 
 @IonicPage()
 @Component({
@@ -25,7 +28,12 @@ export class DetallemvPage {
   alarmas:any;  //obtiene las alarmas de la maquina seleccionada
   contables:any//obtiene los contables de la maquina seleccionada
   reinicia:any//reincia el inventario y muestra msj
+  tacometros:any;//obtiene los tacometros
+  inventario:any;
   graficahora:any;
+  graficahoraacumulada:any;
+  historicaventa:any;
+  historicaunidad:any;
 
  /*grafica fusioncharts*/
  dataSource: any;
@@ -35,14 +43,14 @@ export class DetallemvPage {
  esquema:any;
  datos:any;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams,
+  constructor(public navCtrl: NavController, public navParams: NavParams,public alertCtrl: AlertController,
     //public data Service:DataServiceProvider, BORRAR
     public toastCtrl: ToastController,public mvservice:MvserviceProvider,public selectprovider:SelectserviceProvider
     ) {
     
-    this.getmaquinas();
+    //this.getmaquinas();
   
-    
+     
   
 
     // this.getmaquinasid();
@@ -53,12 +61,15 @@ export class DetallemvPage {
    
   }
 
-  ionViewDidEnter() //cuando la paginas esta activa
+  ionViewCanEnter() //cuando la paginas esta activa
   {
+    this.getmaquinas();
     
-    this.getalarmas(this.seleccion);
-    this.getcontables(this.seleccion);
-    this.getgraficahora(this.seleccion);
+    // this.getalarmas(this.seleccion);
+    // this.gettacometros(this.seleccion);
+    // this.getcontables(this.seleccion);
+    // this.getgraficahora(this.seleccion);
+    // this.getinventario(this.seleccion);
   }
 
 
@@ -72,9 +83,14 @@ export class DetallemvPage {
       this.seleccion=this.maquinas[0].idMaquina;  //ASINGNA LA PRIMER MAQUINA COMO LA ELEGIDA
       console.log(this.seleccion);
 
+    this.gettacometros(this.seleccion);
     this.getalarmas(this.seleccion);
     this.getcontables(this.seleccion);
     this.getgraficahora(this.seleccion);
+    this.getgraficahoraacumulada(this.seleccion);
+    this.getinventario(this.seleccion);
+    this.gethistoricaventa(this.seleccion);
+    this.gethistoricaunidad(this.seleccion)
     }
     );
   }
@@ -92,6 +108,21 @@ export class DetallemvPage {
     );
   }
 
+  getinventario(seleccion){
+    this.mvservice.inventario(seleccion).then(result=>{
+      this.inventario= result;
+      console.log(result);
+      },(err)=>{
+        console.log(err);
+      }
+      );
+    }
+
+  
+
+
+
+
   getcontables(seleccion){
   this.mvservice.contables(seleccion).then(result=>{
     this.contables= result;
@@ -101,6 +132,42 @@ export class DetallemvPage {
     }
     );
   }
+
+  gettacometros(seleccion){
+    this.mvservice.tacometros(seleccion).then(result=>{
+      this.tacometros= result;
+      console.log(result);
+      },(err)=>{
+        console.log(err);
+      }
+      );
+    }
+
+
+
+  confirmareinicioinventario() {
+    const confirm = this.alertCtrl.create({
+      title: 'Desea Actualizar el inventario de la máquina '+this.seleccion+'?',
+      message: '',
+      buttons: [
+        {
+          text: 'Cancelar',
+          handler: () => {
+            console.log('Disagree clicked');
+          }
+        },
+        {
+          text: 'Confirmar',
+          handler: () => {
+            this.reiniciaInventario(this.seleccion)
+            console.log('Agree clicked');
+          }
+        }
+      ]
+    });
+    confirm.present();
+  }
+
 
   reiniciaInventario(seleccion){
     this.mvservice.reiniciainventario(seleccion).then(result=>{
@@ -123,6 +190,36 @@ export class DetallemvPage {
       }
       );
     }
+
+    getgraficahoraacumulada(seleccion){
+      this.mvservice.ventahoraacumuladamaquina(seleccion).then(result=>{
+        this.graficahoraacumulada= result;
+        console.log(result);
+        },(err)=>{
+          console.log(err);
+        }
+        );
+      }
+
+      gethistoricaventa(seleccion){
+        this.mvservice.ventamaquinahistoricaventa(seleccion).then(result=>{
+          this.historicaventa= result;
+          console.log(result);
+          },(err)=>{
+            console.log(err);
+          }
+          );
+        }
+
+        gethistoricaunidad(seleccion){
+          this.mvservice.ventamaquinahistoricaunidad(seleccion).then(result=>{
+            this.historicaunidad= result;
+            console.log(result);
+            },(err)=>{
+              console.log(err);
+            }
+            );
+          }
 
 
 
@@ -239,8 +336,12 @@ export class DetallemvPage {
 //  }
 
  alarma(){
+   
     let toast = this.toastCtrl.create({
       message:this.alarmas,
+      
+      
+      //message:"hola\njulio",
       showCloseButton: true,
       closeButtonText: 'Ok',
       duration: 3000,
@@ -252,8 +353,9 @@ export class DetallemvPage {
 }
 
 
-actInfo(){
-  this.navCtrl.push(ActualizamvPage);
+actualizarInfoRieles(){
+  
+  this.navCtrl.push(ActualizamvPage,{"seleccion":this.seleccion});
   
 }
 

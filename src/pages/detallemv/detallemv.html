@@ -26,12 +26,12 @@
      <!-- grafica producto-inventario -->
     
     <div style="justify-content:center;display:flex">
-        <button ion-button round (click)="reiniciaInventario(seleccion)"> Reiniciar inventario</button>
-        <button ion-button  round (click)= "actInfo()"> Actualizar Info Rieles</button>
+        <button ion-button round (click)="confirmareinicioinventario()"> Reiniciar inventario</button>
+        <button ion-button  round (click)= "actualizarInfoRieles()"> Actualizar Info Rieles</button>
     </div>
 
     <div style="justify-content:center;display:flex">
-        <tacometroproductos></tacometroproductos> 
+        <tacometroproductos [mytext]="" ></tacometroproductos> 
         <tacometroventas></tacometroventas>
     </div>
   

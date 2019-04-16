@@ -3,6 +3,7 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 /*servicios*/
 import { DataServiceProvider } from "../../providers/data-service/data-service";
 import { SelectserviceProvider } from "../../providers/selectservice/selectservice";
+import { MvserviceProvider } from "../../providers/mvservice/mvservice";
 
 
 @IonicPage()
@@ -11,6 +12,14 @@ import { SelectserviceProvider } from "../../providers/selectservice/selectservi
   templateUrl: 'actualizamv.html',
 })
 export class ActualizamvPage {
+
+  obtenido:any;
+  existenciassistema:any;
+  productossistema:any;
+  preciossistema:any;
+  idmaquina=5;
+
+
 
   seleccion:any;
   productos:any;
@@ -46,10 +55,23 @@ export class ActualizamvPage {
 
   inputstatusexistencias:any="disabled";
 
-  constructor(public navCtrl: NavController, public navParams: NavParams,public dataService:DataServiceProvider,public selectService:SelectserviceProvider) 
+  constructor(public navCtrl: NavController, public navParams: NavParams,public dataService:DataServiceProvider,public selectService:SelectserviceProvider,public mvservice:MvserviceProvider) 
   {
+    this.obtenido=navParams.get("seleccion")
+    console.log(this.obtenido)
     this.obtenermaquinas();
     this.Selectproductos();
+  }
+
+
+  ionViewCanEnter() //cuando la paginas esta activa
+  {
+    this.getrielexistencia(this.idmaquina);
+    this.getrielproducto(this.idmaquina);
+    this.getrielproducto(this.idmaquina);
+
+    
+    
   }
 
   ionViewDidLoad() {
@@ -172,6 +194,38 @@ Selectproductos(){
      );
     }
 
+
+    getrielexistencia(idmaquina){
+      this.mvservice.rielexistencia(idmaquina).then(result=>{
+        this.existenciassistema= result;
+        console.log(result);
+        },(err)=>{
+          console.log(err);
+        }
+        );
+      }
+
+
+    getrielproducto(idmaquina){
+      this.mvservice.rielproducto(idmaquina).then(result=>{
+        this.productossistema= result;
+        console.log(result);
+        },(err)=>{
+          console.log(err);
+        }
+        );
+      }
+
+
+    getrielprecio(idmaquina){
+      this.mvservice.rielprecio(idmaquina).then(result=>{
+        this.preciossistema= result;
+        console.log(result);
+        },(err)=>{
+          console.log(err);
+        }
+        );
+      }
 
 
 

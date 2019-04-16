@@ -29,6 +29,94 @@ export class MvserviceProvider {
     });
   
   }
+  graficahoras(tipoUsuario) { //
+    console.log("--------entre al servicio del menu-----------");
+    return new Promise(resolve => {
+  
+      let menu=this.url+'/principal/grafica/horas/'+tipoUsuario
+      console.log(menu);
+      this.http.get(menu).subscribe(data => {
+        resolve(data);
+      }
+      ,err => {
+        console.log(err);
+      });
+    });
+  
+  }
+
+  graficadia(tipoUsuario) { //
+    console.log("--------entre al servicio del menu-----------");
+    return new Promise(resolve => {
+  
+      let menu=this.url+'/principal/grafica/dia/'+tipoUsuario
+      console.log(menu);
+      this.http.get(menu).subscribe(data => {
+        resolve(data);
+      }
+      ,err => {
+        console.log(err);
+      });
+    });
+  
+  }
+
+  
+
+  graficapie(tipoUsuario) { //
+    console.log("--------entre al servicio del menu-----------");
+    return new Promise(resolve => {
+      let menu=this.url+'/principal/grafica/pie/'+tipoUsuario
+      console.log(menu);
+      this.http.get(menu).subscribe(data => {
+        resolve(data);
+      }
+      ,err => {
+        console.log(err);
+      });
+    });
+  
+  }
+
+
+  graficahistorica(tipoUsuario) { //
+    console.log("--------entre al servicio del menu-----------");
+    return new Promise(resolve => {
+  
+      let menu=this.url+'/principal/grafica/historica/'+tipoUsuario
+      console.log(menu);
+      this.http.get(menu).subscribe(data => {
+        resolve(data);
+      }
+      ,err => {
+        console.log(err);
+      });
+    });
+  
+  }
+
+
+  graficahistoricaultimo(tipoUsuario) { //
+    console.log("--------entre al servicio del menu-----------");
+    return new Promise(resolve => {
+  
+      let menu=this.url+'/principal/grafica/historica/dia/'+tipoUsuario
+      console.log(menu);
+      this.http.get(menu).subscribe(data => {
+        resolve(data);
+      }
+      ,err => {
+        console.log(err);
+      });
+    });
+  
+  }
+
+
+
+
+
+
 
 
   //Detalle máquina************************
@@ -63,10 +151,40 @@ export class MvserviceProvider {
     });
   }
 
+  inventario(idmaquina){
+    return new Promise(resolve => {
+      let menu=this.url+'/detalle/inventario/'+idmaquina
+      console.log(menu);
+      this.http.get(menu).subscribe(data => {
+        resolve(data);
+      }
+      ,err => {
+        console.log(err);
+      });
+    });
+  }
+
+  
+
   reiniciainventario(idmaquina){
     return new Promise(resolve => {
   
       let menu=this.url+'/detalle/inventario/reinicia/'+idmaquina
+      console.log(menu);
+      this.http.get(menu).subscribe(data => {
+        resolve(data);
+      }
+      ,err => {
+        console.log(err);
+      });
+    });
+
+  }
+
+  tacometros(idmaquina){
+    return new Promise(resolve => {
+  
+      let menu=this.url+'/detalle/tacometros/'+idmaquina
       console.log(menu);
       this.http.get(menu).subscribe(data => {
         resolve(data);
@@ -104,10 +222,106 @@ export class MvserviceProvider {
         console.log(err);
       });
     });
-
-
-
   }
+
+  ventahoraacumuladamaquina(idmaquina){
+    return new Promise(resolve => {
+      let menu=this.url+'/detalle/grafica/dia/acumulada/'+idmaquina
+      console.log(menu);
+      this.http.get(menu).subscribe(data => {
+        resolve(data);
+      }
+      ,err => {
+        console.log(err);
+      });
+    });
+  }
+
+  ventamaquinahistoricaventa(idmaquina){
+    return new Promise(resolve => {
+      let menu=this.url+'/detalle/grafica/historica/venta/'+idmaquina
+      console.log(menu);
+      this.http.get(menu).subscribe(data => {
+        resolve(data);
+      }
+      ,err => {
+        console.log(err);
+      });
+    });
+  }
+
+  ventamaquinahistoricaunidad(idmaquina){
+    return new Promise(resolve => {
+      let menu=this.url+'/detalle/grafica/historica/unidad/'+idmaquina
+      console.log(menu);
+      this.http.get(menu).subscribe(data => {
+        resolve(data);
+      }
+      ,err => {
+        console.log(err);
+      });
+    });
+  }
+
+  /*actualizamv*/
+  rielexistencia(idmaquina){
+    return new Promise(resolve => {
+      let menu=this.url+'/actualiza/get/existencia/'+idmaquina
+      console.log(menu);
+      this.http.get(menu).subscribe(data => {
+        resolve(data);
+      }
+      ,err => {
+        console.log(err);
+      });
+    });
+  }
+
+  rielproducto(idmaquina){
+    return new Promise(resolve => {
+      let menu=this.url+'/actualiza/get/producto/'+idmaquina
+      console.log(menu);
+      this.http.get(menu).subscribe(data => {
+        resolve(data);
+      }
+      ,err => {
+        console.log(err);
+      });
+    });
+  }
+
+  rielprecio(idmaquina){
+    return new Promise(resolve => {
+      let menu=this.url+'/actualiza/get/precio/'+idmaquina
+      console.log(menu);
+      this.http.get(menu).subscribe(data => {
+        resolve(data);
+      }
+      ,err => {
+        console.log(err);
+      });
+    });
+  }
+
+
+  /*detalle Producto*/
+  infoproducto(idmaquina,idproducto){
+    return new Promise(resolve => {
+      let menu=this.url+'/producto/'+idmaquina+'/'+idproducto
+      console.log(menu);
+      this.http.get(menu).subscribe(data => {
+        resolve(data);
+      }
+      ,err => {
+        console.log(err);
+      });
+    });
+  }
+  
+
+
+
+  
 
 
 

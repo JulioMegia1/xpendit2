@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component,Input } from '@angular/core';
 
 const data = {
   chart: {
@@ -37,7 +37,6 @@ const data = {
     ]
   }
 };
- 
 
 @Component({
   selector: 'tacometroproductos',
@@ -45,12 +44,24 @@ const data = {
 })
 export class TacometroproductosComponent {
 
-
+  @Input("mytext") textTouse;
+  text: string;
 
   constructor() {
     console.log('Hello TacometroproductosComponent Component');
 
   }
+
+
+  ngOnInit()  {
+    this.text=this.textTouse;
+    console.log(this.text);
+  }
+    
+
+
+
+  
 
   height = 150;
   type = "angulargauge";

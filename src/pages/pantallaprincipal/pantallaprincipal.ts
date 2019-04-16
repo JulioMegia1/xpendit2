@@ -29,17 +29,21 @@ import * as FusionCharts from 'fusioncharts';
 })
 export class PantallaprincipalPage {
 
+  usuario:any="admin";//falta paserle el usuario real IMPORTANTE
+  graficahora:any;
+  graficadia:any;
+  graficapie:any;
+  historico:any;
+  historicoultimo:any;
+
+
+
   tipoUsuario:any;
   
  /*mapa leaf let*/
  maquinas :any;
  center: L.PointTuple;
  map:L.map;
-
- 
-
-
- 
  /*mapa leaf let*/
 
 
@@ -54,9 +58,7 @@ export class PantallaprincipalPage {
 
 
   constructor(public navCtrl: NavController, public navParams: NavParams,public dataService:DataServiceProvider, public mvservice: MvserviceProvider) {
-    console.log(navParams) 
-    this.tipoUsuario=this.navParams.get("usuario");
-     console.log(this.tipoUsuario)
+    
     this.funcionglobalhistorica();
     this.fetchData();
     /*fusionchart*/
@@ -69,7 +71,7 @@ export class PantallaprincipalPage {
     console.log(this.center)
     this.leafletMap();
     //this.getmaquinas(); 
-    this.mapa();
+    this.mapa(this.usuario);
     
     
     
@@ -226,9 +228,9 @@ var position = L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
   /*fusion charts*/
 
  
-mapa(){
+mapa(usuario){
   
-  let usuario="admin";//falta paserle el usuario real IMPORTANTE
+  
   this.mvservice.mapa(usuario).then(result=>{
            this.maquinas= result;
            console.log(result);
@@ -258,11 +260,76 @@ mapa(){
              //disable mouseout behavior here?
            });
           }
+          this.getventahoras(usuario);
+          this.getventadia(usuario);
+          this.getpie(usuario);
+          this.gethistorico(usuario);
+          this.getultimohistorico(usuario);
+          
+
+          
      },(err)=>{
        console.log(err);
      }
      );
     }
+
+
+
+    getventahoras(usuario){
+      this.mvservice.graficahoras(usuario).then(result=>{
+        this.graficahora= result;
+        console.log(result);
+      },(err)=>{
+        console.log(err);
+      }
+      );
+    }
+    
+    getventadia(usuario){
+      this.mvservice.graficadia(usuario).then(result=>{
+        this.graficadia= result;
+        console.log(result);
+       },(err)=>{
+         console.log(err);
+       }
+       );
+    }
+
+    getpie(usuario){
+      this.mvservice.graficapie(usuario).then(result=>{
+        this.graficapie= result;
+        console.log(result);
+       },(err)=>{
+         console.log(err);
+       }
+       );
+    }
+
+    gethistorico(usuario){
+      this.mvservice.graficahistorica(usuario).then(result=>{
+        this.historico= result;
+        console.log(result);
+       },(err)=>{
+         console.log(err);
+       }
+       );
+    }
+
+    getultimohistorico(usuario){
+      this.mvservice.graficahistoricaultimo(usuario).then(result=>{
+        this.historicoultimo= result;
+        console.log(result);
+       },(err)=>{
+         console.log(err);
+       }
+       );
+    }
+
+
+
+
+
 
     // this.dataService.getmaquinas().then(data => {
     //   this.maquinas=data;

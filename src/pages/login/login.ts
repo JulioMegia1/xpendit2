@@ -90,7 +90,8 @@ export class LoginPage {
            this.tipousuario={tipousuario:this.entra.usuario.tipoUsuario};
            console.log(this.tipousuario);
           //  this.navCtrl.push(PantallaprincipalPage,{"datosusuario":datosusuario});
-           this.navCtrl.push(MenuPage,{usuario:this.tipousuario});
+          
+           this.navCtrl.push(MenuPage,{"usuario":this.tipousuario});
         }
         else{
           if(this.entra.msg=="El usuario no se encuentra activo..."){

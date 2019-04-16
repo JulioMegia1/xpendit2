@@ -28,6 +28,7 @@ export interface PageInterface {
   templateUrl: 'menu.html',
 })
 export class MenuPage {
+  tipousuario:any
 
   rootPage:any = TabsPage;
   pages: PageInterface[] = [
@@ -41,6 +42,9 @@ export class MenuPage {
   @ViewChild(Nav) nav: Nav;
 
   constructor(public navCtrl: NavController, public navParams: NavParams) {
+    this.tipousuario=navParams.get("usuario")
+    console.log(this.tipousuario)
+
   }
 
   openPage(page: PageInterface) {
