@@ -7,6 +7,7 @@ import { PantallaprincipalPage } from "../pantallaprincipal/pantallaprincipal";
 /*servicios*/
 
 import { AuthserviceProvider } from "../../providers/authservice/authservice";
+import { DatosUsuarioProvider } from "../../providers/data/data";
 /*servicios*/
 
 @IonicPage()
@@ -27,7 +28,7 @@ export class LoginPage {
   
   
 
-  constructor(public navCtrl: NavController, public navParams:NavParams,public alertController:AlertController,public authservice: AuthserviceProvider) {
+  constructor(public navCtrl: NavController, public navParams:NavParams,public alertController:AlertController,public authservice: AuthserviceProvider,public servicetipousuario:DatosUsuarioProvider) {
     this.getUsers();
   }
 
@@ -90,6 +91,7 @@ export class LoginPage {
            this.tipousuario={tipousuario:this.entra.usuario.tipoUsuario};
            console.log(this.tipousuario);
           //  this.navCtrl.push(PantallaprincipalPage,{"datosusuario":datosusuario});
+          this.servicetipousuario.setTipoUsuario(this.entra.usuario.usuario);
           
            this.navCtrl.push(MenuPage,{"usuario":this.tipousuario});
         }

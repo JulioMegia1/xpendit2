@@ -19,7 +19,8 @@ import * as FusionCharts from 'fusioncharts';
 /*fusioncharts*/
 
  /*servicios*/
- import { DataServiceProvider } from '../../providers/data-service/data-service';
+ import { DataServiceProvider } from '../../providers/data-service/data-service'; //datos locales de prueba
+ import { DatosUsuarioProvider } from "../../providers/data/data";
  import { MvserviceProvider } from "../../providers/mvservice/mvservice";
  /*servicios*/
 @IonicPage()
@@ -29,7 +30,17 @@ import * as FusionCharts from 'fusioncharts';
 })
 export class PantallaprincipalPage {
 
-  usuario:any="admin";//falta paserle el usuario real IMPORTANTE
+  //Variables fijas
+  usuario:any;//falta paserle el usuario real IMPORTANTE
+  permisosvista:boolean;
+
+
+   /*mapa leaf let*/
+     maquinas :any;
+     center: L.PointTuple;
+     map:L.map;
+ /*mapa leaf let*/
+  
   graficahora:any;
   graficadia:any;
   graficapie:any;
@@ -37,14 +48,6 @@ export class PantallaprincipalPage {
   historicoultimo:any;
 
 
-
-  tipoUsuario:any;
-  
- /*mapa leaf let*/
- maquinas :any;
- center: L.PointTuple;
- map:L.map;
- /*mapa leaf let*/
 
 
   /*grafica fusioncharts*/
@@ -57,8 +60,8 @@ export class PantallaprincipalPage {
 /*grafica fusioncharts*/
 
 
-  constructor(public navCtrl: NavController, public navParams: NavParams,public dataService:DataServiceProvider, public mvservice: MvserviceProvider) {
-    
+  constructor(public navCtrl: NavController, public navParams: NavParams,public dataService:DataServiceProvider, public mvservice: MvserviceProvider,public servicetipousuario:DatosUsuarioProvider) {
+    this.usuario=this.servicetipousuario.getTipoUsuario();
     this.funcionglobalhistorica();
     this.fetchData();
     /*fusionchart*/
@@ -72,12 +75,16 @@ export class PantallaprincipalPage {
     this.leafletMap();
     //this.getmaquinas(); 
     this.mapa(this.usuario);
-    
-    
-    
-    
-    
   /**graficas chartjs */
+}
+ionViewCanEnter(){
+  // if(this.usuario=="oper")
+  // {
+  //     this.permisosvista=false;
+  // }
+  // else{
+  //   this.permisosvista=true;
+  // }
 }
 
 
@@ -279,6 +286,7 @@ mapa(usuario){
     getventahoras(usuario){
       this.mvservice.graficahoras(usuario).then(result=>{
         this.graficahora= result;
+        this.servicetipousuario.setdatagraficas(this.graficahora);
         console.log(result);
       },(err)=>{
         console.log(err);

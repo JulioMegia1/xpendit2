@@ -1,12 +1,13 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { DataServiceProvider } from "../../providers/data-service/data-service";
+import { DatosUsuarioProvider } from "../../providers/data/data";
 
 
 @Component({
   selector: 'ventaxhora',
   templateUrl: 'ventaxhora.html'
 })
-export class VentaxhoraComponent {
+export class VentaxhoraComponent implements OnInit{
 
   "width" = "100%";
   height = 250;
@@ -28,11 +29,20 @@ export class VentaxhoraComponent {
   }; 
   datosdeljson:any;
 
+  datos:any;
+
  
-  constructor(public dataService:DataServiceProvider) {
+  constructor(public dataService:DataServiceProvider,public servicetipousuario:DatosUsuarioProvider) {
     console.log('Hello GraficafusionComponent Component');
     this.dataSource=this.data
     this.obtenerdatosgrafica();
+    
+  }
+  ngOnInit(): void {
+    //Called after the constructor, initializing input properties, and the first call to ngOnChanges.
+    //Add 'implements OnInit' to the class.
+    this.getdatos();
+    
   }
 
   obtenerdatosgrafica(){
@@ -45,6 +55,15 @@ export class VentaxhoraComponent {
       //this.data.chart.yaxisname=this.datosdeljson.ejeY;
       
   });
+}
+
+
+getdatos(){
+  this.datos=this.servicetipousuario.getdatagraficas();
+  console.log("DATOS DESDE COMPONENTE"+this.datos);
+
+  
+
 }
 
 }

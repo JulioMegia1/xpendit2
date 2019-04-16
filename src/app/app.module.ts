@@ -31,6 +31,8 @@ import { ExtraserviceProvider } from "../providers/extraservice/extraservice";
 import { MvserviceProvider  } from "../providers/mvservice/mvservice";
 import { SelectserviceProvider } from "../providers/selectservice/selectservice";
 
+import { DatosUsuarioProvider } from "../providers/data/data"
+
 import { NightmodeProvider } from '../providers/nightmode/nightmode';
 import { DataServiceProvider } from '../providers/data-service/data-service'; //datos de prueba locales
 
@@ -70,6 +72,7 @@ import * as Ocean from 'fusioncharts/themes/fusioncharts.theme.ocean';
 import * as Zune from 'fusioncharts/themes/fusioncharts.theme.zune';
 import * as Gammel from 'fusioncharts/themes/fusioncharts.theme.gammel';
 import * as Widgets from 'fusioncharts/fusioncharts.widgets';
+
 
 FusionChartsModule.fcRoot(FusionCharts, Charts, TimeSeries,Ocean,Gammel,Zune,Widgets);
 
@@ -176,6 +179,7 @@ FusionChartsModule.fcRoot(FusionCharts, Charts, TimeSeries,Ocean,Gammel,Zune,Wid
     ExtraserviceProvider,
     MvserviceProvider,
     SelectserviceProvider,
+    DatosUsuarioProvider,
         
     NightmodeProvider,
     /*plugins*/
@@ -183,7 +187,8 @@ FusionChartsModule.fcRoot(FusionCharts, Charts, TimeSeries,Ocean,Gammel,Zune,Wid
     , FileTransfer, File,Camera,
 
     
-    DataServiceProvider, //prueba datos locales
+    DataServiceProvider,//prueba datos locales
+    DatosUsuarioProvider, 
 
     /*Servicios**/
   ]
