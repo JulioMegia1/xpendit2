@@ -5,15 +5,16 @@ import { Injectable } from '@angular/core';
 export class DatosUsuarioProvider {
 
   tipousuario:any;
-  graficas:any;
+  idmaquina:any;
   
     constructor(public http: HttpClient) {
     console.log('Hello DataProvider Provider');
     this.tipousuario="default"
+    this.idmaquina="1"
   }
 
-    setTipoUsuario(firstName) {
-    this.tipousuario = firstName;  
+    setTipoUsuario(datos) {
+    this.tipousuario = datos;  
     console.log("SERVICIO TIPO USUARIO"+this.tipousuario) 
 }
 
@@ -21,14 +22,13 @@ export class DatosUsuarioProvider {
     return this.tipousuario;
 }  
 
-
-setdatagraficas(datos) {
-  this.graficas = datos;  
-  console.log("SERVICIO DATOS GRAFICAS"+this.graficas) 
+    setIdMaquina(datos) {
+      this.idmaquina = datos;  
+      console.log("SERVICIO ID MAQUINA: "+this.idmaquina) 
 }
 
-  getdatagraficas() {
-  return this.graficas;
+    getIdmaquina() {
+    return this.idmaquina;
 }  
 
 

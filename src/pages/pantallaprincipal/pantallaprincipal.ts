@@ -41,9 +41,7 @@ export class PantallaprincipalPage {
      map:L.map;
  /*mapa leaf let*/
   
-  graficahora:any;
-  graficadia:any;
-  graficapie:any;
+
   historico:any;
   historicoultimo:any;
 
@@ -267,9 +265,9 @@ mapa(usuario){
              //disable mouseout behavior here?
            });
           }
-          this.getventahoras(usuario);
-          this.getventadia(usuario);
-          this.getpie(usuario);
+          
+          
+          
           this.gethistorico(usuario);
           this.getultimohistorico(usuario);
           
@@ -283,36 +281,10 @@ mapa(usuario){
 
 
 
-    getventahoras(usuario){
-      this.mvservice.graficahoras(usuario).then(result=>{
-        this.graficahora= result;
-        this.servicetipousuario.setdatagraficas(this.graficahora);
-        console.log(result);
-      },(err)=>{
-        console.log(err);
-      }
-      );
-    }
+  
     
-    getventadia(usuario){
-      this.mvservice.graficadia(usuario).then(result=>{
-        this.graficadia= result;
-        console.log(result);
-       },(err)=>{
-         console.log(err);
-       }
-       );
-    }
+    
 
-    getpie(usuario){
-      this.mvservice.graficapie(usuario).then(result=>{
-        this.graficapie= result;
-        console.log(result);
-       },(err)=>{
-         console.log(err);
-       }
-       );
-    }
 
     gethistorico(usuario){
       this.mvservice.graficahistorica(usuario).then(result=>{

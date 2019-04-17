@@ -1,12 +1,18 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { DataServiceProvider } from "../../providers/data-service/data-service";
+
+
+/*servicios*/
+import { DatosUsuarioProvider } from "../../providers/data/data";
+import { MvserviceProvider } from "../../providers/mvservice/mvservice";
+
 
 
 @Component({
   selector: 'ventaxdiamaquina',
   templateUrl: 'ventaxdiamaquina.html'
 })
-export class VentaxdiamaquinaComponent {
+export class VentaxdiamaquinaComponent implements OnInit{
 
   "width" = "100%";
   height = 250;
@@ -26,26 +32,44 @@ export class VentaxdiamaquinaComponent {
     },
     "data": "null"
   }; 
-  datosdeljson:any;
+  grafica:any;
+  idmaquina:any;
 
-  constructor(public dataService:DataServiceProvider) {
+
+  constructor(public dataService:DataServiceProvider,public servicetipousuario:DatosUsuarioProvider, public mvservice:MvserviceProvider) {
     console.log('Hello VentaxdiamaquinaComponent Component');
-    this.dataSource=this.data
-    this.obtenerdatosgrafica();
+   
   }
 
-  obtenerdatosgrafica(){
+  ngOnInit(){
 
-      this.dataService.getgraficalineasventadiamaquina().then(datos => {
-      this.datosdeljson=datos;
-      console.log(this.datosdeljson.puntos);
-      console.log(this.data.data);
-      this.data.data=this.datosdeljson.puntos;
-      this.data.chart.caption=this.datosdeljson.titulo;
-      //this.data.chart.yaxisname=this.datosdeljson.ejeY;
-      
-  });
+    this.idmaquina=this.servicetipousuario.getIdmaquina(); //obtener el tipo de usuario
+    console.log("TENGO EL ID DE LA MAQU(INA" + this.idmaquina)
+   
+    //this.getgrafica(this.usuario); //obtener datos de la grafica
+
+
+
+    this.dataSource=this.data
+    this.getgrafica(this.idmaquina)
+    //this.obtenerdatosgrafica();
+
+  }
+
+  
+
+getgrafica(idmaquina){
+  this.mvservice.ventahoraacumuladamaquina(idmaquina).then(result=>{
+  this.grafica= result;
+  this.data.data=this.grafica.puntos;
+  this.data.chart.caption=this.grafica.titulo;
+  console.log(result);
+},(err)=>{
+  console.log(err);
 }
+);
+}
+
 
 
 

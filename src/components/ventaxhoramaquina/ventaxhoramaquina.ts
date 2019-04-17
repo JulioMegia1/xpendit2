@@ -1,11 +1,16 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { DataServiceProvider } from "../../providers/data-service/data-service";
+
+/*servicios*/
+import { DatosUsuarioProvider } from "../../providers/data/data";
+import { MvserviceProvider } from "../../providers/mvservice/mvservice";
+
 
 @Component({
   selector: 'ventaxhoramaquina',
   templateUrl: 'ventaxhoramaquina.html'
 })
-export class VentaxhoramaquinaComponent {
+export class VentaxhoramaquinaComponent implements OnInit{
 
   "width" = "100%";
   height = 250;
@@ -25,25 +30,44 @@ export class VentaxhoramaquinaComponent {
     },
     "data": "null"
   }; 
-  datosdeljson:any;
+
+  grafica:any;
+  idmaquina:any;
 
 
-  constructor(public dataService:DataServiceProvider) {
+
+  constructor(public dataService:DataServiceProvider,public servicetipousuario:DatosUsuarioProvider, public mvservice:MvserviceProvider) {
     console.log('Hello VentaxhoramaquinaComponent Component');
+    
+  }
+  ngOnInit(){
+
+    this.idmaquina=this.servicetipousuario.getIdmaquina(); //obtener el tipo de usuario
+    console.log("TENGO EL ID DE LA MAQU(INA" + this.idmaquina)
+   
+    //this.getgrafica(this.usuario); //obtener datos de la grafica
+
+
+
     this.dataSource=this.data
-    this.obtenerdatosgrafica();
+    this.getgrafica(this.idmaquina)
+    //this.obtenerdatosgrafica();
+
   }
 
-  obtenerdatosgrafica(){
-    this.dataService.getgraficalineasventahoramaquina().then(datos => {
-      this.datosdeljson=datos;
-      console.log(this.datosdeljson.puntos);
-      console.log(this.data.data);
-      this.data.data=this.datosdeljson.puntos;
-      this.data.chart.caption=this.datosdeljson.titulo;
-      //this.data.chart.yaxisname=this.datosdeljson.ejeY;
-      
-  });
+ 
+
+
+getgrafica(idmaquina){
+  this.mvservice.ventahoramaquina(idmaquina).then(result=>{
+  this.grafica= result;
+  this.data.data=this.grafica.puntos;
+  this.data.chart.caption=this.grafica.titulo;
+  console.log(result);
+},(err)=>{
+  console.log(err);
+}
+);
 }
 
 }

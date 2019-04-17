@@ -1,59 +1,8 @@
-import { Component,AfterViewInit, NgZone } from '@angular/core';
+import { Component, NgZone } from '@angular/core';
+/*servicios*/
+import { DatosUsuarioProvider } from "../../providers/data/data";
+import { MvserviceProvider } from "../../providers/mvservice/mvservice";
 
-const data = {
-  "chart": {
-    "caption": "Venta x Maquina",
-    //"subcaption": "For a net-worth of $1M",
-    "showvalues": "1",
-    "showpercentintooltip": "0",
-    "numberprefix": "$",
-    "enablemultislicing": "1",
-    "legendposition": "right",
-    "showlegend": "1",
-    "showpercentvalues": "1",
-    "captionpadding": "0",
-    "legendcaption": "Máquinas: ",
-    "legendAllowDrag": "1",
-    "bgcolor": "#ffffff",
-    "legendscrollbgcolor": "#ffffff",
-    "legendBgColor": "#fff",
-    "legendBorderColor": "#ffffff",
-    "legendBorderThickness": "0",
-    
-    "theme": "fusion"
-  },
-  "data": [
-    {
-      "label": "IPQ botana",
-      "value": "12"
-    },
-    {
-      "label": "IPQ REFRESCO",
-      "value": "24"
-    },
-    {
-      "label": "SAFRAN I",
-      "value": "42"
-    },
-    {
-      "label": "SAFRAN II",
-      "value": "32"
-    },
-    {
-      "label": "CENTA",
-      "value": "12"
-    },
-    {
-      "label": "KIWIT",
-      "value": "17"
-    },
-    
-  ]
-};
-
-
-
- 
 @Component({
   selector: 'graficapie',
   templateUrl: 'graficapie.html'
@@ -63,16 +12,47 @@ export class GraficapieComponent {
   height = 400;
   type = 'pie3d';
   dataFormat = 'json';
-  dataSource = data;
-  total:number;
-  
+  // dataSource = data;
+  dataSource:any;
+  data = {
+    "chart": {
+      "caption": "Venta x Maquina",
+      //"subcaption": "For a net-worth of $1M",
+      "showvalues": "1",
+      "showpercentintooltip": "0",
+      "numberprefix": "$",
+      "enablemultislicing": "1",
+      "legendposition": "right",
+      "showlegend": "1",
+      "showpercentvalues": "1",
+      "captionpadding": "0",
+      "legendcaption": "Máquinas: ",
+      "legendAllowDrag": "1",
+      "bgcolor": "#ffffff",
+      "legendscrollbgcolor": "#ffffff",
+      "legendBgColor": "#fff",
+      "legendBorderColor": "#ffffff",
+      "legendBorderThickness": "0",
+      
+      "theme": "fusion"
+    },
+    "data": "null"
+  };
 
+  grafica:any;
+  usuario:any;
+
+  total:number;
   logMessage = '% de venta de cada máquina';
 
   
 
-  constructor(private zone:NgZone) {
+  constructor(private zone:NgZone,public servicetipousuario:DatosUsuarioProvider, public mvservice:MvserviceProvider) {
+
     console.log('Hello GraficapieComponent Component');
+    this.usuario=this.servicetipousuario.getTipoUsuario(); //obtener el tipo de usuario
+    this.dataSource=this.data; //
+    this.getgrafica(this.usuario); //obtener datos de la grafica
     let myData = this.dataSource.data;
 
         this.total = 0;
@@ -83,6 +63,19 @@ export class GraficapieComponent {
         }
    
   }
+
+
+  getgrafica(usuario){
+    this.mvservice.graficapie(usuario).then(result=>{
+    this.grafica= result;
+    this.data.data=this.grafica.puntos;
+    this.data.chart.caption=this.grafica.titulo;
+    console.log(result);
+  },(err)=>{
+    console.log(err);
+  }
+  );
+}
 
   events = {
     dataPlotRollOver: this.getPercentValue()

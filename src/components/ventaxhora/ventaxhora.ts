@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { DataServiceProvider } from "../../providers/data-service/data-service";
+
+/*servicios*/
 import { DatosUsuarioProvider } from "../../providers/data/data";
+import { MvserviceProvider } from "../../providers/mvservice/mvservice";
 
 
 @Component({
@@ -27,43 +29,31 @@ export class VentaxhoraComponent implements OnInit{
     },
     "data": "null"
   }; 
-  datosdeljson:any;
-
-  datos:any;
+  
+  grafica:any;
+  usuario:any;
 
  
-  constructor(public dataService:DataServiceProvider,public servicetipousuario:DatosUsuarioProvider) {
+  constructor(public servicetipousuario:DatosUsuarioProvider, public mvservice:MvserviceProvider) {
     console.log('Hello GraficafusionComponent Component');
-    this.dataSource=this.data
-    this.obtenerdatosgrafica();
-    
-  }
-  ngOnInit(): void {
-    //Called after the constructor, initializing input properties, and the first call to ngOnChanges.
-    //Add 'implements OnInit' to the class.
-    this.getdatos();
-    
+    this.usuario=this.servicetipousuario.getTipoUsuario(); //obtener el tipo de usuario
+    this.dataSource=this.data; //
+    this.getgrafica(this.usuario); //obtener datos de la grafica
   }
 
-  obtenerdatosgrafica(){
-    this.dataService.getgraficalineasventahora().then(datos => {
-      this.datosdeljson=datos;
-      console.log(this.datosdeljson.puntos);
-      console.log(this.data.data);
-      this.data.data=this.datosdeljson.puntos;
-      this.data.chart.caption=this.datosdeljson.titulo;
-      //this.data.chart.yaxisname=this.datosdeljson.ejeY;
-      
-  });
+ngOnInit(){
 }
 
-
-getdatos(){
-  this.datos=this.servicetipousuario.getdatagraficas();
-  console.log("DATOS DESDE COMPONENTE"+this.datos);
-
-  
-
+  getgrafica(usuario){
+    this.mvservice.graficahoras(usuario).then(result=>{
+    this.grafica= result;
+    this.data.data=this.grafica.puntos;
+    this.data.chart.caption=this.grafica.titulo;
+    console.log(result);
+  },(err)=>{
+    console.log(err);
+  }
+  );
 }
 
 }

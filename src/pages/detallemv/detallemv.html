@@ -17,7 +17,7 @@
 <!-- grafica producto-inventario -->
     <ion-card >
       <ion-card-header>
-        Productos en inventario - {{seleccion}}
+        Productos en inventario : {{seleccion}}
       </ion-card-header>
       <ion-card-content>
           <graficaproductosinventario></graficaproductosinventario>
@@ -31,13 +31,13 @@
     </div>
 
     <div style="justify-content:center;display:flex">
-        <tacometroproductos [mytext]="" ></tacometroproductos> 
+        <tacometroproductos ></tacometroproductos> 
         <tacometroventas></tacometroventas>
     </div>
   
     <ion-card>
       <ion-card-header>
-          Valor acumulado desde ultimo reincio - {{seleccion}}
+          Valor acumulado desde ultimo reincio : {{seleccion}}
         </ion-card-header>
         <ion-card-content>
             <ion-grid>
@@ -50,7 +50,7 @@
 
   <ion-card>
       <ion-card-header>
-           #-{{seleccion}}
+           #:{{seleccion}}
      </ion-card-header>
      <ion-card-content>
         <ventaxhoramaquina></ventaxhoramaquina>
@@ -59,7 +59,7 @@
 
     <ion-card>
         <ion-card-header>
-            Venta Global - {{seleccion}}
+            Venta Global : {{seleccion}}
         </ion-card-header>
         <ion-card-content>
             <ventaxdiamaquina></ventaxdiamaquina>

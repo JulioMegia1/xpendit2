@@ -11,6 +11,7 @@ import { ActualizamvPage } from "../actualizamv/actualizamv";
 //import { DataServi ceProvider } from '../../providers/data-service/data-service'; BORRAR
 import { MvserviceProvider } from "../../providers/mvservice/mvservice";
 import { SelectserviceProvider } from "../../providers/selectservice/selectservice";
+import { DatosUsuarioProvider } from "../../providers/data/data";
 
 /*fusioncharts*/
 import * as FusionCharts from 'fusioncharts';
@@ -45,7 +46,7 @@ export class DetallemvPage {
 
   constructor(public navCtrl: NavController, public navParams: NavParams,public alertCtrl: AlertController,
     //public data Service:DataServiceProvider, BORRAR
-    public toastCtrl: ToastController,public mvservice:MvserviceProvider,public selectprovider:SelectserviceProvider
+    public toastCtrl: ToastController,public mvservice:MvserviceProvider,public selectprovider:SelectserviceProvider,public servicetipousuario:DatosUsuarioProvider
     ) {
     
     //this.getmaquinas();
@@ -81,6 +82,7 @@ export class DetallemvPage {
       console.log("estoy en get menu y obtengo los datos del json:");
       console.log(this.maquinas); 
       this.seleccion=this.maquinas[0].idMaquina;  //ASINGNA LA PRIMER MAQUINA COMO LA ELEGIDA
+      this.servicetipousuario.setIdMaquina(this.seleccion);
       console.log(this.seleccion);
 
     this.gettacometros(this.seleccion);
