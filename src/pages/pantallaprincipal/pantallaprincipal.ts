@@ -20,7 +20,7 @@ import * as FusionCharts from 'fusioncharts';
 
  /*servicios*/
  import { DataServiceProvider } from '../../providers/data-service/data-service'; //datos locales de prueba
- import { DatosUsuarioProvider } from "../../providers/data/data";
+ import { DatosUsuarioProvider } from '../../providers/data/data';
  import { MvserviceProvider } from "../../providers/mvservice/mvservice";
  /*servicios*/
 @IonicPage()
@@ -32,7 +32,7 @@ export class PantallaprincipalPage {
 
   //Variables fijas
   usuario:any;//falta paserle el usuario real IMPORTANTE
-  permisosvista:boolean;
+ 
 
 
    /*mapa leaf let*/
@@ -44,6 +44,10 @@ export class PantallaprincipalPage {
 
   historico:any;
   historicoultimo:any;
+
+
+  esquemaprueba:any//PRUEBA
+  b=[];
 
 
 
@@ -60,8 +64,12 @@ export class PantallaprincipalPage {
 
   constructor(public navCtrl: NavController, public navParams: NavParams,public dataService:DataServiceProvider, public mvservice: MvserviceProvider,public servicetipousuario:DatosUsuarioProvider) {
     this.usuario=this.servicetipousuario.getTipoUsuario();
+    this.getesquema();
+    this.gethistorico(this.usuario);
+    this.getultimohistorico(this.usuario);  
+    
     this.funcionglobalhistorica();
-    this.fetchData();
+    //this.fetchData();
     /*fusionchart*/
   }
 
@@ -76,13 +84,7 @@ export class PantallaprincipalPage {
   /**graficas chartjs */
 }
 ionViewCanEnter(){
-  // if(this.usuario=="oper")
-  // {
-  //     this.permisosvista=false;
-  // }
-  // else{
-  //   this.permisosvista=true;
-  // }
+  
 }
 
 
@@ -100,44 +102,6 @@ let interval = setInterval(()=> {
 },35000);
 }
 
-
-
-// getmaquinas(){
-//   console.log("constructor")
-//   this.dataService.getmaquinas().then(data => {
-//     this.maquinas=data;
-//     console.log("estoy en get menu y obtengo los datos del json:");
-//     console.log(this.maquinas); 
-//     for (let maquina of this.maquinas.maquinas) {
-//       console.log(maquina.descripcion,maquina.latitud,maquina.longitud,maquina.iconourl)
-      
-//       var punto = L.icon({
-//         iconUrl: maquina.iconourl,
-//         iconSize: [30, 30], // size of the icon
-//         iconAnchor: [20, 90],
-
-//       })
-//       var marker = new L.Marker([maquina.latitud,maquina.longitud],{icon:punto}).addTo(this.map)
-//        //this.map.addLayer(marker);
-//       .bindPopup(maquina.descripcion + " | " + maquina.alertas);
-
-//       marker.on('mouseover', function (e) {
-//         this.openPopup();
-//       });
-//       marker.on('mouseout', function (e) {
-//         this.closePopup();
-//       });
-
-//       marker.on('click', function (e) {
-//         console.log("diste click aqui");
-//         //this.ira();
-        
-//         //disable mouseout behavior here?
-//       });
-//      }   
-//   }
-//   );
-// }
 /*mapa leaflet*/
 leafletMap(){
   this.map = L.map('mapId', {
@@ -156,6 +120,7 @@ var position = L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
   ira(){
     this.navCtrl.push(DetallemvPage)
   }
+
 
   /*grafica fusion charts*/
   funcionglobalhistorica(){
@@ -203,6 +168,8 @@ var position = L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
        ]
      };
   }
+
+
   
   
   /*fusion charts*/
@@ -214,7 +181,13 @@ var position = L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
       this.dataService.getdata().then(datos => {
         this.datos=datos;
         console.log(this.datos)
-      Promise.all([this.datos, this.esquema]).then(res => {
+        this.esquemaprueba[0].index=0;
+        this.esquemaprueba[1].index=1;
+        this.esquemaprueba[0].outputAs=null;
+       
+        // Promise.all([this.datos, this.esquema]).then(res => {
+      Promise.all([this.b, this.esquemaprueba]).then(res => {
+        console.log(res)
       const data = res[0];
       const schema = res[1];
       // First we are creating a DataStore
@@ -234,8 +207,6 @@ var position = L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
 
  
 mapa(usuario){
-  
-  
   this.mvservice.mapa(usuario).then(result=>{
            this.maquinas= result;
            console.log(result);
@@ -261,16 +232,10 @@ mapa(usuario){
            marker.on('click', function (e) {
              console.log("diste click aqui");
              this.ira();
-             
              //disable mouseout behavior here?
            });
           }
-          
-          
-          
-          this.gethistorico(usuario);
-          this.getultimohistorico(usuario);
-          
+              
 
           
      },(err)=>{
@@ -279,17 +244,17 @@ mapa(usuario){
      );
     }
 
-
-
-  
-    
-    
-
-
     gethistorico(usuario){
       this.mvservice.graficahistorica(usuario).then(result=>{
         this.historico= result;
         console.log(result);
+        let puntos=this.historico.puntos;
+        console.log(puntos);
+        for(let i=0;i<puntos.length;i=i+1)
+        {
+          this.b.push([puntos[i].label,parseInt(puntos[i].value)]);
+        }
+        console.log(this.b);
        },(err)=>{
          console.log(err);
        }
@@ -299,6 +264,20 @@ mapa(usuario){
     getultimohistorico(usuario){
       this.mvservice.graficahistoricaultimo(usuario).then(result=>{
         this.historicoultimo= result;
+        console.log(result);
+        let punto=this.historicoultimo.puntos;
+        console.log(punto);
+        this.b.push([punto[0].label,parseInt(punto[0].value)])
+        console.log(this.b);
+       },(err)=>{
+         console.log(err);
+       }
+       );
+    }
+
+    getesquema(){
+      this.servicetipousuario.getschema().then(result=>{
+        this.esquemaprueba= result;
         console.log(result);
        },(err)=>{
          console.log(err);

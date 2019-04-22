@@ -1,16 +1,18 @@
 import { Component, OnInit } from '@angular/core';
-//import { DataServiceProvider } from "../../providers/data-service/data-service";
+import { DataServiceProvider } from "../../providers/data-service/data-service";
+
 
 /*servicios*/
 import { DatosUsuarioProvider } from "../../providers/data/data";
 import { MvserviceProvider } from "../../providers/mvservice/mvservice";
 
 
+
 @Component({
-  selector: 'ventaxhoramaquina',
-  templateUrl: 'ventaxhoramaquina.html'
+  selector: 'ventaxdiaproductomaquina',
+  templateUrl: 'ventaxdiaproductomaquina.html'
 })
-export class VentaxhoramaquinaComponent implements OnInit{
+export class VentaxdiaproductomaquinaComponent implements OnInit{
 
   "width" = "100%";
   height = 250;
@@ -23,23 +25,22 @@ export class VentaxhoramaquinaComponent implements OnInit{
       "syaxisname": "",
       //"subcaption": "[2005-2016]",
       "numberprefix": " $",
-      "divlinedashed": "0",
       "rotatelabels": "1",
+      "divlinedashed": "0",
       "setadaptiveymin": "1",
       "theme": "ocean"
     },
     "data": "null"
   }; 
-
   grafica:any;
   idmaquina:any;
 
 
-
-  constructor(public servicetipousuario:DatosUsuarioProvider, public mvservice:MvserviceProvider) {
-    console.log('Hello VentaxhoramaquinaComponent Component');
-    
+  constructor(public dataService:DataServiceProvider,public servicetipousuario:DatosUsuarioProvider, public mvservice:MvserviceProvider) {
+    console.log('Hello VentaxdiamaquinaComponent Component');
+   
   }
+
   ngOnInit(){
 
     this.idmaquina=this.servicetipousuario.getIdmaquina(); //obtener el tipo de usuario
@@ -55,11 +56,10 @@ export class VentaxhoramaquinaComponent implements OnInit{
 
   }
 
- 
-
+  
 
 getgrafica(idmaquina){
-  this.mvservice.ventahoramaquina(idmaquina).then(result=>{
+  this.mvservice.ventahoraacumuladamaquina(idmaquina).then(result=>{
   this.grafica= result;
   this.data.data=this.grafica.puntos;
   this.data.chart.caption=this.grafica.titulo;
@@ -69,5 +69,8 @@ getgrafica(idmaquina){
 }
 );
 }
+
+
+
 
 }

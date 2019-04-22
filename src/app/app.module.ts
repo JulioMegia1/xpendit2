@@ -53,6 +53,8 @@ import { TacometroproductosComponent } from "../components/tacometroproductos/ta
 import {  TacometroventasComponent} from "../components/tacometroventas/tacometroventas";
 import { VentaglobalhistoricaComponent } from "../components/ventaglobalhistorica/ventaglobalhistorica";
 import {  MapaComponent} from "../components/mapa/mapa";
+import { VentaxdiaproductomaquinaComponent } from "../components/ventaxdiaproductomaquina/ventaxdiaproductomaquina";
+import { VentaxhoraproductomaquinaComponent } from "../components/ventaxhoraproductomaquina/ventaxhoraproductomaquina";
 /*componentes*/
 
 /*plugins*/
@@ -131,6 +133,9 @@ FusionChartsModule.fcRoot(FusionCharts, Charts, TimeSeries,Ocean,Gammel,Zune,Wid
     TacometroventasComponent,
     VentaglobalhistoricaComponent,
     MapaComponent,
+    VentaxhoraproductomaquinaComponent,
+    VentaxdiaproductomaquinaComponent,
+
 
     /*componentes*/
     

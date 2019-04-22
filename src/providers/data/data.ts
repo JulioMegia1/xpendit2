@@ -31,6 +31,17 @@ export class DatosUsuarioProvider {
     return this.idmaquina;
 }  
 
+getschema () {    //obtiene el JSON de los usuarios
+  return new Promise(resolve => {
+    this.http.get('assets/data/esquemaCI.json').subscribe(data => { 
+      resolve(data);
+    },err => {
+      console.log(err);
+    });
+  });
+}
+
+
 
 
 

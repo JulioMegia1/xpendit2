@@ -1,0 +1,15 @@
+[
+    {
+      "name": "Time",
+      "type": "date",
+      "format": "%d/%m/%Y",
+      "column":"Time",
+      "index":"0"
+    },
+    {
+      "name": "venta: ",
+      "type": "number",
+      "column":"venta: ",
+      "index":"1"
+    }
+  ]

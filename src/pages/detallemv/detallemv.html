@@ -7,7 +7,7 @@
       <ion-card>
           <ion-item>
             <ion-label>Máquinas</ion-label>
-            <ion-select [(ngModel)]="seleccion" interface="popover" (ionChange)="getalarmas(seleccion)"  (ionChange)="getcontables(seleccion)" (ionChange)="getgraficahora(seleccion)">
+            <ion-select [(ngModel)]="seleccion" interface="popover" (ionChange)="getalarmas(seleccion)"  (ionChange)="getcontables(seleccion)" >
              <ion-option *ngFor="let maquina of maquinas" value="{{maquina.idMaquina}}">{{maquina.idMaquina}} - {{maquina.descripcion}}</ion-option>  
             </ion-select>
           </ion-item>
@@ -37,7 +37,7 @@
   
     <ion-card>
       <ion-card-header>
-          Valor acumulado desde ultimo reincio : {{seleccion}}
+          Valor acumulado desde ultimo reinicio : {{seleccion}}
         </ion-card-header>
         <ion-card-content>
             <ion-grid>
@@ -57,8 +57,8 @@
     </ion-card-content>
   </ion-card>
 
-    <ion-card>
-        <ion-card-header>
+    <ion-card style="margin-bottom:70px">
+        <ion-card-header >
             Venta Global : {{seleccion}}
         </ion-card-header>
         <ion-card-content>

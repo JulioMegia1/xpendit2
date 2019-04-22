@@ -1,16 +1,14 @@
 import { Component, OnInit } from '@angular/core';
-//import { DataServiceProvider } from "../../providers/data-service/data-service";
 
 /*servicios*/
 import { DatosUsuarioProvider } from "../../providers/data/data";
 import { MvserviceProvider } from "../../providers/mvservice/mvservice";
 
-
 @Component({
-  selector: 'ventaxhoramaquina',
-  templateUrl: 'ventaxhoramaquina.html'
+  selector: 'ventaxhoraproductomaquina',
+  templateUrl: 'ventaxhoraproductomaquina.html'
 })
-export class VentaxhoramaquinaComponent implements OnInit{
+export class VentaxhoraproductomaquinaComponent implements OnInit {
 
   "width" = "100%";
   height = 250;
@@ -35,9 +33,8 @@ export class VentaxhoramaquinaComponent implements OnInit{
   idmaquina:any;
 
 
-
   constructor(public servicetipousuario:DatosUsuarioProvider, public mvservice:MvserviceProvider) {
-    console.log('Hello VentaxhoramaquinaComponent Component');
+    console.log('Hello VentaxhoraproductomaquinaComponent Component');
     
   }
   ngOnInit(){
@@ -55,19 +52,16 @@ export class VentaxhoramaquinaComponent implements OnInit{
 
   }
 
- 
-
-
-getgrafica(idmaquina){
-  this.mvservice.ventahoramaquina(idmaquina).then(result=>{
-  this.grafica= result;
-  this.data.data=this.grafica.puntos;
-  this.data.chart.caption=this.grafica.titulo;
-  console.log(result);
-},(err)=>{
-  console.log(err);
-}
-);
-}
+  getgrafica(idmaquina){
+    this.mvservice.ventahoramaquina(idmaquina).then(result=>{
+    this.grafica= result;
+    this.data.data=this.grafica.puntos;
+    this.data.chart.caption=this.grafica.titulo;
+    console.log(result);
+  },(err)=>{
+    console.log(err);
+  }
+  );
+  }
 
 }
