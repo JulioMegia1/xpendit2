@@ -1,13 +1,12 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams,AlertController } from 'ionic-angular';
+import { IonicPage, NavController,AlertController } from 'ionic-angular';
 /*****************paginas**************/
 import { MenuPage } from "../menu/menu";
-import { PantallaprincipalPage } from "../pantallaprincipal/pantallaprincipal";
 /*****************paginas**************/
 /*servicios*/
 
 import { AuthserviceProvider } from "../../providers/authservice/authservice";
-import { DatosUsuarioProvider } from "../../providers/data/data";
+import { CIprovider } from "../../providers/data/data";
 /*servicios*/
 
 @IonicPage()
@@ -17,18 +16,12 @@ import { DatosUsuarioProvider } from "../../providers/data/data";
 })
 export class LoginPage {
   users: any;//usado para obtener los usuarios del json 
-  usuario: string;//Agregue usuario 
-  password: string;////agregue contraseña
-  passwordType: string ='password';
-  passwordshow : boolean=false;
-  pwdenc2:any;
-  entra:any;
-  tipousuario:any;
+  usuario: string;// usuario 
+  password: any;// contraseña
+  passwordType: string ='password'; //cambiar el tipo de campo del pasword
+  passwordshow : boolean=false; //cambiar el tipo de campo del pasword
 
-  
-  
-
-  constructor(public navCtrl: NavController, public navParams:NavParams,public alertController:AlertController,public authservice: AuthserviceProvider,public servicetipousuario:DatosUsuarioProvider) {
+  constructor(public navCtrl: NavController, public alertController:AlertController,public authservice: AuthserviceProvider,public servicetipousuario:CIprovider) {
     this.getUsers();
   }
 
@@ -43,9 +36,6 @@ export class LoginPage {
     }
   }
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad LoginPage');
-  }
   getUsers(){
     this.authservice.getUsers().then(data => {
       this.users=data;
@@ -59,21 +49,22 @@ export class LoginPage {
     console.log("esta es la contraseña ingresada en el input:")
     console.log(this.password)
     let pwdencriptada={ password:this.password}; //contraseña en formato requerido para que el JSON lo encripte
-
     console.log(pwdencriptada);
 
     this.authservice.encripta(pwdencriptada).then((result)=>{
       //console.log(result);
-      this.pwdenc2=result;
-      console.log(this.pwdenc2);
+      let resppwdwdenc:any; //Respuesta de la encriptacion
+      resppwdwdenc=result;
+      console.log(resppwdwdenc);
       // ****************************
-      console.log(this.pwdenc2.password);
-      let prueba={usuario:this.usuario,password:this.pwdenc2.password}
-      console.log(prueba);
-      this.authservice.login(prueba).then((result)=>{
+      console.log(resppwdwdenc.password);
+      let login={usuario:this.usuario,password:resppwdwdenc.password} //datos para enviar al login
+      console.log(login);
+      this.authservice.login(login).then((result)=>{
         console.log(result);
-        this.entra= result;
-        console.log(this.entra.msg,this.entra.status)
+        let entra:any;///respuesta del login
+        entra= result;
+        console.log(entra.msg,entra.status)
         if(this.password==null || this.usuario==null)
              {
               console.log("El usuario o password no pueden estar vacios");
@@ -84,19 +75,14 @@ export class LoginPage {
               alert.present();
              }
              else{
-        if(this.entra.msg=="" || this.entra.status!=1)
+        if(entra.msg=="" || entra.status!=1)
         {
            console.log("valido");
-           //let datosusuario=this.entra.usuario;
-           this.tipousuario={tipousuario:this.entra.usuario.tipoUsuario};
-           console.log(this.tipousuario);
-          //  this.navCtrl.push(PantallaprincipalPage,{"datosusuario":datosusuario});
-          this.servicetipousuario.setTipoUsuario(this.entra.usuario.usuario);
-          
-           this.navCtrl.push(MenuPage,{"usuario":this.tipousuario});
+         this.servicetipousuario.setTipoUsuario(entra.usuario.usuario); //obtener el tipo de usuario mediante el provider
+           this.navCtrl.push(MenuPage);
         }
         else{
-          if(this.entra.msg=="El usuario no se encuentra activo..."){
+          if(entra.msg=="El usuario no se encuentra activo..."){
             console.log("El usuario no se encuentra activo");
             let alert = this.alertController.create ({
               title: 'El usuario no se encuentra activo, contacte al administrador',
@@ -105,7 +91,7 @@ export class LoginPage {
             alert.present();
           }
           else{
-            if(this.entra.msg=="Usuario/Password incorrecto..."){
+            if(entra.msg=="Usuario/Password incorrecto..."){
               console.log("El usuario o password esta incorrecto");
               let alert = this.alertController.create ({
                 title: 'El usuario o password esta incorrecto!',

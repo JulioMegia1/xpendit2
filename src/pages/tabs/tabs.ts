@@ -1,8 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-
 /**********Paginas******/
-
 import { PantallaprincipalPage } from "../../pages/pantallaprincipal/pantallaprincipal";
 import { DetallemvPage } from "../detallemv/detallemv";
 import { DetalleproductoPage } from "../detalleproducto/detalleproducto";

@@ -14,8 +14,8 @@ import { GraficaproductosinventarioComponent } from './graficaproductosinventari
 import { TacometroproductosComponent } from './tacometroproductos/tacometroproductos';
 import { TacometroventasComponent } from './tacometroventas/tacometroventas';
 import { VentaglobalhistoricaComponent } from './ventaglobalhistorica/ventaglobalhistorica';
-import { MapaComponent } from './mapa/mapa';
-import { TableDemoComponent } from './table-demo/table-demo';
+// import { MapaComponent } from './mapa/mapa';
+// import { TableDemoComponent } from './table-demo/table-demo';
 import { VentaxhoraproductomaquinaComponent } from './ventaxhoraproductomaquina/ventaxhoraproductomaquina';
 import { VentaxdiaproductomaquinaComponent } from './ventaxdiaproductomaquina/ventaxdiaproductomaquina';
 @NgModule({
@@ -34,8 +34,8 @@ import { VentaxdiaproductomaquinaComponent } from './ventaxdiaproductomaquina/ve
     TacometroproductosComponent,
     TacometroventasComponent,
     VentaglobalhistoricaComponent,
-    MapaComponent,
-    TableDemoComponent,
+    // MapaComponent,
+    // TableDemoComponent,
     VentaxhoraproductomaquinaComponent,
     VentaxdiaproductomaquinaComponent],
 	imports: [IonicModule],
@@ -54,8 +54,8 @@ import { VentaxdiaproductomaquinaComponent } from './ventaxdiaproductomaquina/ve
     TacometroproductosComponent,
     TacometroventasComponent,
     VentaglobalhistoricaComponent,
-    MapaComponent,
-    TableDemoComponent,
+    // MapaComponent,
+    // TableDemoComponent,
     VentaxhoraproductomaquinaComponent,
     VentaxdiaproductomaquinaComponent],
 	schemas:[CUSTOM_ELEMENTS_SCHEMA,NO_ERRORS_SCHEMA]

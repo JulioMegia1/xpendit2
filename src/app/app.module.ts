@@ -30,8 +30,7 @@ import { CatalogserviceProvider } from "../providers/catalogservice/catalogservi
 import { ExtraserviceProvider } from "../providers/extraservice/extraservice";
 import { MvserviceProvider  } from "../providers/mvservice/mvservice";
 import { SelectserviceProvider } from "../providers/selectservice/selectservice";
-
-import { DatosUsuarioProvider } from "../providers/data/data"
+import { CIprovider } from "../providers/data/data"
 
 import { NightmodeProvider } from '../providers/nightmode/nightmode';
 import { DataServiceProvider } from '../providers/data-service/data-service'; //datos de prueba locales
@@ -43,7 +42,7 @@ import {  LuzComponent} from "../components/luz/luz";
 import { NavbarComponent } from "../components/navbar/navbar";
 import { CardexpandibleComponent } from "../components/cardexpandible/cardexpandible";
 import {GraficapieComponent  } from "../components/graficapie/graficapie";
-import { GraficalineasComponent } from "../components/graficalineas/graficalineas";
+import { GraficalineasComponent } from "../components/graficalineas/graficalineas";///BORRAR????
 import { VentaxhoraComponent } from "../components/ventaxhora/ventaxhora";
 import { VentaxdiaComponent } from "../components/ventaxdia/ventaxdia";
 import { VentaxhoramaquinaComponent } from "../components/ventaxhoramaquina/ventaxhoramaquina";
@@ -52,7 +51,7 @@ import { GraficaproductosinventarioComponent } from "../components/graficaproduc
 import { TacometroproductosComponent } from "../components/tacometroproductos/tacometroproductos";
 import {  TacometroventasComponent} from "../components/tacometroventas/tacometroventas";
 import { VentaglobalhistoricaComponent } from "../components/ventaglobalhistorica/ventaglobalhistorica";
-import {  MapaComponent} from "../components/mapa/mapa";
+
 import { VentaxdiaproductomaquinaComponent } from "../components/ventaxdiaproductomaquina/ventaxdiaproductomaquina";
 import { VentaxhoraproductomaquinaComponent } from "../components/ventaxhoraproductomaquina/ventaxhoraproductomaquina";
 /*componentes*/
@@ -75,25 +74,9 @@ import * as Zune from 'fusioncharts/themes/fusioncharts.theme.zune';
 import * as Gammel from 'fusioncharts/themes/fusioncharts.theme.gammel';
 import * as Widgets from 'fusioncharts/fusioncharts.widgets';
 
-
 FusionChartsModule.fcRoot(FusionCharts, Charts, TimeSeries,Ocean,Gammel,Zune,Widgets);
 
 /******************************************** */
-
-
-
-// import {DataTableModule} from "angular-6-datatable";
-// import { SearchPipe } from "../pipes/search/search";
-// import {   TableDemoComponent} from "../components/table-demo/table-demo";
-
-// class CameraMock extends Camera {
-//   getPicture(options) {
-//     return new Promise((resolve, reject) => {
-//       resolve("BASE_64_ENCODED_DATA_GOES_HERE");
-//     })
-//   }
-// }
-
 
 @NgModule({
   declarations: [
@@ -115,9 +98,6 @@ FusionChartsModule.fcRoot(FusionCharts, Charts, TimeSeries,Ocean,Gammel,Zune,Wid
   
     /*paginas*/
 
-    // ,TableDemoComponent ,
-    // SearchPipe,
-
     /*componentes*/
     LuzComponent,
     NavbarComponent,
@@ -132,22 +112,16 @@ FusionChartsModule.fcRoot(FusionCharts, Charts, TimeSeries,Ocean,Gammel,Zune,Wid
     TacometroproductosComponent,
     TacometroventasComponent,
     VentaglobalhistoricaComponent,
-    MapaComponent,
     VentaxhoraproductomaquinaComponent,
     VentaxdiaproductomaquinaComponent,
-
-
     /*componentes*/
-    
-    
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
     FusionChartsModule,
     IonicModule.forRoot(MyApp),
-    // DataTableModule
-  ],
+   ],
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
@@ -167,11 +141,6 @@ FusionChartsModule.fcRoot(FusionCharts, Charts, TimeSeries,Ocean,Gammel,Zune,Wid
     ActualizamvPage,
     /*paginas*/
 
-     /*componentes*/
-     LuzComponent,
-     GraficalineasComponent,
-     VentaxhoraComponent
-     /*componentes*/
     
   ],
   providers: [
@@ -184,17 +153,14 @@ FusionChartsModule.fcRoot(FusionCharts, Charts, TimeSeries,Ocean,Gammel,Zune,Wid
     ExtraserviceProvider,
     MvserviceProvider,
     SelectserviceProvider,
-    DatosUsuarioProvider,
-        
-    NightmodeProvider,
+    CIprovider,
+
+    NightmodeProvider,//BORRAR----------------------------------------?????
     /*plugins*/
-    // { provide: Camera, useClass: CameraMock }
     , FileTransfer, File,Camera,
-
+    /*plugins*/
     
-    DataServiceProvider,//prueba datos locales
-    DatosUsuarioProvider, 
-
+    DataServiceProvider,//prueba datos locales //BORRAR----------------------------------------?????
     /*Servicios**/
   ]
 })

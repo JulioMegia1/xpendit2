@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 /*servicios*/
-import { DatosUsuarioProvider } from "../../providers/data/data";
+import { CIprovider } from "../../providers/data/data";
 import { MvserviceProvider } from "../../providers/mvservice/mvservice";
 
 
@@ -34,9 +34,9 @@ export class VentaxhoraComponent implements OnInit{
   usuario:any;
 
  
-  constructor(public servicetipousuario:DatosUsuarioProvider, public mvservice:MvserviceProvider) {
+  constructor(public ciService:CIprovider, public mvservice:MvserviceProvider) {
     console.log('Hello GraficafusionComponent Component');
-    this.usuario=this.servicetipousuario.getTipoUsuario(); //obtener el tipo de usuario
+    this.usuario=this.ciService.getTipoUsuario(); //obtener el tipo de usuario
     this.dataSource=this.data; //
     this.getgrafica(this.usuario); //obtener datos de la grafica
   }

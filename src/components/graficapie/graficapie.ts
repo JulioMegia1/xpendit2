@@ -1,6 +1,6 @@
 import { Component, NgZone } from '@angular/core';
 /*servicios*/
-import { DatosUsuarioProvider } from "../../providers/data/data";
+import { CIprovider } from "../../providers/data/data";
 import { MvserviceProvider } from "../../providers/mvservice/mvservice";
 
 @Component({
@@ -47,10 +47,10 @@ export class GraficapieComponent {
 
   
 
-  constructor(private zone:NgZone,public servicetipousuario:DatosUsuarioProvider, public mvservice:MvserviceProvider) {
+  constructor(private zone:NgZone,public ciService:CIprovider, public mvservice:MvserviceProvider) {
 
     console.log('Hello GraficapieComponent Component');
-    this.usuario=this.servicetipousuario.getTipoUsuario(); //obtener el tipo de usuario
+    this.usuario=this.ciService.getTipoUsuario(); //obtener el tipo de usuario
     this.dataSource=this.data; //
     this.getgrafica(this.usuario); //obtener datos de la grafica
     let myData = this.dataSource.data;

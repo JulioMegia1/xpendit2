@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 //import { DataServiceProvider } from "../../providers/data-service/data-service";
 
 /*servicios*/
-import { DatosUsuarioProvider } from "../../providers/data/data";
+import { CIprovider } from "../../providers/data/data";
 import { MvserviceProvider } from "../../providers/mvservice/mvservice";
 
 
@@ -36,13 +36,13 @@ export class VentaxhoramaquinaComponent implements OnInit{
 
 
 
-  constructor(public servicetipousuario:DatosUsuarioProvider, public mvservice:MvserviceProvider) {
+  constructor(public ciService:CIprovider, public mvservice:MvserviceProvider) {
     console.log('Hello VentaxhoramaquinaComponent Component');
     
   }
   ngOnInit(){
 
-    this.idmaquina=this.servicetipousuario.getIdmaquina(); //obtener el tipo de usuario
+    this.idmaquina=this.ciService.getIdmaquina(); //obtener el tipo de usuario
     console.log("TENGO EL ID DE LA MAQU(INA" + this.idmaquina)
    
     //this.getgrafica(this.usuario); //obtener datos de la grafica

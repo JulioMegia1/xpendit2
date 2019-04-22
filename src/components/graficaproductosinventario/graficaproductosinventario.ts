@@ -1,7 +1,7 @@
-import { Component } from '@angular/core';
+import { Component,Input,OnInit } from '@angular/core';
 
 /*servicios*/
-import { DatosUsuarioProvider } from "../../providers/data/data";
+import { CIprovider } from "../../providers/data/data";
 import { MvserviceProvider } from "../../providers/mvservice/mvservice";
 
 
@@ -14,7 +14,10 @@ import { MvserviceProvider } from "../../providers/mvservice/mvservice";
   selector: 'graficaproductosinventario',
   templateUrl: 'graficaproductosinventario.html'
 })
-export class GraficaproductosinventarioComponent {
+export class GraficaproductosinventarioComponent implements OnInit{
+
+  @Input("mytext") textTouse;
+  text: string;
 
   "width" = "100%";
   height = 250;
@@ -31,6 +34,8 @@ export class GraficaproductosinventarioComponent {
       exportenabled: "0",
       numvisibleplot:12,
       showValues:1,
+      yaxisminvalue: 0,
+      hideZeroPlane:1,
       placeValuesInside:0,
       rotateValues:1,
       theme: "zune"
@@ -61,14 +66,22 @@ export class GraficaproductosinventarioComponent {
  
 
 
-  constructor(public servicetipousuario:DatosUsuarioProvider, public mvservice:MvserviceProvider) {
+  constructor(public ciService:CIprovider, public mvservice:MvserviceProvider) {
     console.log('Hello GraficaproductosinventarioComponent Component');
-    this.idmaquina=this.servicetipousuario.getIdmaquina(); //obtener el tipo de usuario
+    this.idmaquina=this.ciService.getIdmaquina(); //obtener el tipo de usuario
     this.dataSource=this.data;
     this.getgrafica(this.idmaquina)
 
   
   }
+
+  ngOnInit()  {
+    this.text=this.textTouse;
+    console.log(this.text)
+
+  }
+  
+
 
   getgrafica(idmaquina){
     this.mvservice.inventario(idmaquina).then(result=>{
@@ -82,8 +95,24 @@ export class GraficaproductosinventarioComponent {
     this.data.categories[0].category=this.listarieles(puntos);
     console.log(this.listavalorrieles(puntos));
     console.log(this.data.categories[0].category)
-    this.data.dataset[0].data=this.listavalorrieles(puntos);
-    this.data.dataset[1].data=this.listavalorrieles(puntos);
+    
+
+  let a=this.listavalorrieles(puntos);
+  for(let i=0;i<a.length;i=i+1)
+  {
+    if(a[i].value<0)
+    {
+      a[i].value=0
+    }
+      
+  }
+  console.log(a)
+  
+    this.data.dataset[0].data=a;
+    this.data.dataset[1].data=a;
+  
+    // this.data.dataset[0].data=this.listavalorrieles(puntos);
+    // this.data.dataset[1].data=this.listavalorrieles(puntos);
   },(err)=>{
     console.log(err);
   }
@@ -103,6 +132,7 @@ export class GraficaproductosinventarioComponent {
     }return valor;
   }
 
+  
 
   
 

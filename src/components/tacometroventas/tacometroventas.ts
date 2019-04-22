@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 
 /*servicios*/
-import { DatosUsuarioProvider } from "../../providers/data/data";
+import { CIprovider } from "../../providers/data/data";
 import { MvserviceProvider } from "../../providers/mvservice/mvservice";
 
 @Component({
@@ -56,14 +56,14 @@ export class TacometroventasComponent {
   grafica:any;
   idmaquina:any;
   
-  constructor(public servicetipousuario:DatosUsuarioProvider, public mvservice:MvserviceProvider) {
+  constructor(public ciService:CIprovider, public mvservice:MvserviceProvider) {
     console.log('Hello TacometroventasComponent Component');
   
   }
 
 
   ngOnInit()  {
-    this.idmaquina=this.servicetipousuario.getIdmaquina(); //obtener el tipo de usuario
+    this.idmaquina=this.ciService.getIdmaquina(); //obtener el tipo de usuario
     console.log("TENGO EL ID DE LA MAQUINA" + this.idmaquina)
     console.log('Hello TacometroproductosComponent Component');
     this.getgrafica(this.idmaquina)

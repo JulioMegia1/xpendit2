@@ -9,8 +9,6 @@ import 'rxjs/add/operator/map';
 import L from "leaflet";
 /*Mapa*/
 
-
-
 /*graficas fusioncharts
  npm install angular-fusioncharts
 npm install fusioncharts
@@ -20,7 +18,7 @@ import * as FusionCharts from 'fusioncharts';
 
  /*servicios*/
  import { DataServiceProvider } from '../../providers/data-service/data-service'; //datos locales de prueba
- import { DatosUsuarioProvider } from '../../providers/data/data';
+ import { CIprovider } from '../../providers/data/data';
  import { MvserviceProvider } from "../../providers/mvservice/mvservice";
  /*servicios*/
 @IonicPage()
@@ -62,8 +60,8 @@ export class PantallaprincipalPage {
 /*grafica fusioncharts*/
 
 
-  constructor(public navCtrl: NavController, public navParams: NavParams,public dataService:DataServiceProvider, public mvservice: MvserviceProvider,public servicetipousuario:DatosUsuarioProvider) {
-    this.usuario=this.servicetipousuario.getTipoUsuario();
+  constructor(public navCtrl: NavController, public navParams: NavParams,public dataService:DataServiceProvider, public mvservice: MvserviceProvider,public ciService:CIprovider) {
+    this.usuario=this.ciService.getTipoUsuario();
     this.getesquema();
     this.gethistorico(this.usuario);
     this.getultimohistorico(this.usuario);  
@@ -87,18 +85,10 @@ ionViewCanEnter(){
   
 }
 
-
-
-
-
-
 ngAfterViewInit()  {
 let interval = setInterval(()=> {
   console.log("hello");
-  
   //this.getmaquinas();
-  
-  
 },35000);
 }
 
@@ -110,7 +100,7 @@ leafletMap(){
   });
  //var position = L.tileLayer('http://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}.png', {
  //var position = L.tileLayer('http://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/{z}/{y}/{x}', {
-var position = L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
+    var position = L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
     attribution: 'Xpend-It'
   }).addTo(this.map);
 
@@ -231,7 +221,7 @@ mapa(usuario){
       
            marker.on('click', function (e) {
              console.log("diste click aqui");
-             this.ira();
+            //  this.ira();
              //disable mouseout behavior here?
            });
           }
@@ -276,7 +266,7 @@ mapa(usuario){
     }
 
     getesquema(){
-      this.servicetipousuario.getschema().then(result=>{
+      this.ciService.getschema().then(result=>{
         this.esquemaprueba= result;
         console.log(result);
        },(err)=>{
