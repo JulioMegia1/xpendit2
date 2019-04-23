@@ -66,7 +66,7 @@ export class PantallaprincipalPage {
     this.gethistorico(this.usuario);
     this.getultimohistorico(this.usuario);  
     
-    this.funcionglobalhistorica();
+    // this.funcionglobalhistorica();
     //this.fetchData();
     /*fusionchart*/
   }
@@ -112,87 +112,81 @@ leafletMap(){
   }
 
 
-  /*grafica fusion charts*/
-  funcionglobalhistorica(){
-     /*fusionchart*/
-     this.type = 'timeseries';
-     this.width = '100%';
-     this.height = '400';
-     // This is the dataSource of the chart
-     this.dataSource = {
-       // Initially data is set as null
-       data: null,
-       chart: {
-         showLegend: 0,
-         theme: "zune",
-         showValues:1,
-        //  syAxisName: "Stock Price",
-         //exportEnabled:1, //para exportar la grafica
-        //  rotatevalues:1,
-        // placevaluesinside:0,
+  // /*grafica fusion charts*/
+  // funcionglobalhistorica(){
+  //    /*fusionchart*/
+  //    this.type = 'timeseries';
+  //    this.width = '100%';
+  //    this.height = '400';
+  //    // This is the dataSource of the chart
+  //    this.dataSource = {
+  //      // Initially data is set as null
+  //      data: null,
+  //      chart: {
+  //        showLegend: 0,
+  //        theme: "zune",
+  //        showValues:1,
+  //       //  syAxisName: "Stock Price",
+  //        //exportEnabled:1, //para exportar la grafica
+  //       //  rotatevalues:1,
+  //       // placevaluesinside:0,
          
-       },
-         extensions: {
-          customRangeSelector: {
-              enabled:1 //1 para rangos de fechas
-          },
-          standardRangeSelector: {
-            enabled:1//1 para meses dias años
-        }
-      },
-       caption: {
-         text: 'Venta Global Histórica($)'
-       },
-       yAxis: [
-         {
-           plot: {
-             value: 'venta: ',
-             type: 'column',
-           },
-           format: {
-             "prefix": "$",
-             "suffix": ".00"
-           },
-           //title: 'Venta',
-         }
-       ]
-     };
-  }
+  //      },
+  //        extensions: {
+  //         customRangeSelector: {
+  //             enabled:1 //1 para rangos de fechas
+  //         },
+  //         standardRangeSelector: {
+  //           enabled:1//1 para meses dias años
+  //       }
+  //     },
+  //      caption: {
+  //        text: 'Venta Global Histórica($)'
+  //      },
+  //      yAxis: [
+  //        {
+  //          plot: {
+  //            value: 'venta: ',
+  //            type: 'column',
+  //          },
+  //          format: {
+  //            "prefix": "$",
+  //            "suffix": ".00"
+  //          },
+  //          //title: 'Venta',
+  //        }
+  //      ]
+  //    };
+  // }
 
 
   
   
-  /*fusion charts*/
-  fetchData() {
-    this.dataService.getschema().then(esquema => {
-      this.esquema=esquema;
-      console.log("estoy en get menu y obtengo los datos del json:");
-      console.log(this.esquema); 
-      this.dataService.getdata().then(datos => {
-        this.datos=datos;
-        console.log(this.datos)
-        this.esquemaprueba[0].index=0;
-        this.esquemaprueba[1].index=1;
-        this.esquemaprueba[0].outputAs=null;
-       
-        // Promise.all([this.datos, this.esquema]).then(res => {
-      Promise.all([this.b, this.esquemaprueba]).then(res => {
-        console.log(res)
-      const data = res[0];
-      const schema = res[1];
-      // First we are creating a DataStore
-      const fusionDataStore = new FusionCharts.DataStore();
-      // After that we are creating a DataTable by passing our data and schema as arguments
-      const fusionTable = fusionDataStore.createDataTable(data, schema);
-      // Afet that we simply mutated our timeseries datasource by attaching the above
-      // DataTable into its data property.
-      this.dataSource.data = fusionTable;
-    });
-  }
-    );
-  }
-  );
-  }
+  // /*fusion charts*/
+  // fetchData() {
+  //   this.dataService.getschema().then(esquema => {
+  //     this.esquema=esquema;
+  //     console.log("estoy en get menu y obtengo los datos del json:");
+  //     console.log(this.esquema); 
+  //     this.dataService.getdata().then(datos => {
+  //       this.datos=datos;
+  //       console.log(this.datos)
+  //     Promise.all([this.datos, this.esquema]).then(res => {
+  //     const data = res[0];
+  //     const schema = res[1];
+  //     // First we are creating a DataStore
+  //     const fusionDataStore = new FusionCharts.DataStore();
+  //     // After that we are creating a DataTable by passing our data and schema as arguments
+  //     const fusionTable = fusionDataStore.createDataTable(data, schema);
+  //     // Afet that we simply mutated our timeseries datasource by attaching the above
+  //     // DataTable into its data property.
+  //     this.dataSource.data = fusionTable;
+  //   });
+  // }
+  //   );
+  // }
+  // );
+  // }
   /*fusion charts*/
 
  

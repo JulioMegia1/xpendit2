@@ -18,6 +18,8 @@ import { VentaglobalhistoricaComponent } from './ventaglobalhistorica/ventagloba
 // import { TableDemoComponent } from './table-demo/table-demo';
 import { VentaxhoraproductomaquinaComponent } from './ventaxhoraproductomaquina/ventaxhoraproductomaquina';
 import { VentaxdiaproductomaquinaComponent } from './ventaxdiaproductomaquina/ventaxdiaproductomaquina';
+import { HistoricoComponent } from './historico/historico';
+import { HistoricomaquinaproductoventaComponent } from './historicomaquinaproductoventa/historicomaquinaproductoventa';
 @NgModule({
 	declarations: [LuzComponent,
     NavbarComponent,
@@ -37,7 +39,10 @@ import { VentaxdiaproductomaquinaComponent } from './ventaxdiaproductomaquina/ve
     // MapaComponent,
     // TableDemoComponent,
     VentaxhoraproductomaquinaComponent,
-    VentaxdiaproductomaquinaComponent],
+    VentaxdiaproductomaquinaComponent,
+    HistoricoComponent,
+    HistoricoComponent,
+    HistoricomaquinaproductoventaComponent],
 	imports: [IonicModule],
 	exports: [LuzComponent,
     NavbarComponent,
@@ -57,7 +62,10 @@ import { VentaxdiaproductomaquinaComponent } from './ventaxdiaproductomaquina/ve
     // MapaComponent,
     // TableDemoComponent,
     VentaxhoraproductomaquinaComponent,
-    VentaxdiaproductomaquinaComponent],
+    VentaxdiaproductomaquinaComponent,
+    HistoricoComponent,
+    HistoricoComponent,
+    HistoricomaquinaproductoventaComponent],
 	schemas:[CUSTOM_ELEMENTS_SCHEMA,NO_ERRORS_SCHEMA]
 })
 export class ComponentsModule {}
