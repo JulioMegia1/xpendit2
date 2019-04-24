@@ -22,6 +22,7 @@ export class VentaxhoraComponent implements OnInit{
       "syaxisname": "",
       //"subcaption": "[2005-2016]",
       "numberprefix": " $",
+      "formatnumberscale": "0",
       "rotatelabels": "1",
       "divlinedashed": "0",
       "setadaptiveymin": "1",

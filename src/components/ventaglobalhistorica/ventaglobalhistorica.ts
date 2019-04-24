@@ -25,6 +25,7 @@ export class VentaglobalhistoricaComponent {
       showvalues: "1",
       numvisibleplot: "7",
       numberprefix: "$",
+      formatnumberscale: "0",
       plottooltext:
         "<b>$label</b> Venta:  <b>$dataValue</b> ",
       theme: "zune",

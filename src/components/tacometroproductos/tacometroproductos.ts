@@ -59,7 +59,7 @@ export class TacometroproductosComponent {
   }
 
   ngOnInit()  {
-    this.idmaquina=this.ciService.getIdmaquina(); //obtener el tipo de usuario
+    this.idmaquina=this.ciService.getIdmaquina(); //obtener el id de la  maquina
     console.log("TENGO EL ID DE LA MAQUINA" + this.idmaquina)
     console.log('Hello TacometroproductosComponent Component');
     this.getgrafica(this.idmaquina)

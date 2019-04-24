@@ -2,14 +2,14 @@
   {
     "name": "Date",
     "type": "date",
-    "format": "%-m/%d/%Y"
+    "format": "%d/%m/%Y"
   },
   {
-    "name": "venta",
+    "name": "Venta",
     "type": "number"
   },
   {
-    "name": "Productos",
+    "name": "Producto",
     "type": "number"
   }
 ]

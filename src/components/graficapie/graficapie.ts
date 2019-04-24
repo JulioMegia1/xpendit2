@@ -24,6 +24,7 @@ export class GraficapieComponent {
       "enablemultislicing": "1",
       "legendposition": "right",
       "showlegend": "1",
+      "formatnumberscale": "0",
       "showpercentvalues": "1",
       "captionpadding": "0",
       "legendcaption": "Máquinas: ",

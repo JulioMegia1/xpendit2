@@ -1,66 +1,90 @@
-import {
-  Component,
-  NgZone
-} from '@angular/core';
+import {  Component,  NgZone} from '@angular/core';
 import * as FusionCharts from 'fusioncharts';
+
+/*servicios*/
+import { CIprovider } from "../../providers/data/data";
+import { MvserviceProvider } from "../../providers/mvservice/mvservice";
+import { DataServiceProvider } from '../../providers/data-service/data-service'; //datos locales de prueba
+
 
 @Component({
   selector: 'historicomaquinaproductoventa',
   templateUrl: 'historicomaquinaproductoventa.html'
 })
 export class HistoricomaquinaproductoventaComponent {
+  
+  "width" = "100%";
+  height = 400;
+  type = "timeseries";
   dataSource: any;
-  type: string;
-  width: string;
-  height: string;
-  constructor() {
-    this.type = 'timeseries';
-    this.width = '100%';
-    this.height = '400';
-    // This is the dataSource of the chart
-    this.dataSource = {
-      // Initially data is set as null
-      data: null,
-      caption: {
-        text: 'Historico de Ventas y productos'
+  data={
+    // Initially data is set as null
+    data: null,
+    "chart": {
+      "showLegend": "0"
+  },
+    caption: {
+      text: 'Historico de Ventas y productos'
+    },
+    // subcaption: {
+    //   text: 'Analysis of O₂ Concentration and Surface Temperature'
+    // },
+    yAxis: [
+      {
+        plot: {
+          value:'Venta',
+          type:"line"
       },
-      // subcaption: {
-      //   text: 'Analysis of O₂ Concentration and Surface Temperature'
-      // },
-      yAxis: [
-        {
-          plot: 'O2 concentration',
-          // min: '3',
-          // max: '6',
-          title: 'Venta'
-        },
-        {
-          plot: {
-            value:'Surface Temperature',
-          // min: '18',
-          // max: '30',
-          
-          type: "column"
-        },
-        title: 'Producto',
-        }
-      ]
-    };
+        // min: '3',
+        // max: '6',
+        title: 'Venta'
+      },
+      {
+        plot: {
+          value:'Producto',
+          type:"column"
+        // min: '18',
+        // max: '30',
+      },
+        title: 'Producto'
+      }
+    ]
+  };
+
+  idmaquina:any;
+  esquema:any;
+  unidades:any;
+  ventas:any;
+  constructor(public ciService:CIprovider, public mvservice:MvserviceProvider,public dataService:DataServiceProvider) {
+    this.idmaquina=this.ciService.getIdmaquina(); //obtener el id de la  maquina
+    // This is the dataSource of the chart
+    this.dataSource = this.data;
     this.fetchData();
   }
-
-  // In this method we will create our DataStore and using that we will create a custom DataTable which takes two
-  // parameters, one is data another is schema.
+  
   fetchData() {
-    var jsonify = res => res.json();
-    var dataFetch = fetch(
-      'https://s3.eu-central-1.amazonaws.com/fusion.store/ft/data/plotting-two-variable-measures-data.json'
-    ).then(jsonify);
-    var schemaFetch = fetch(
-      'https://s3.eu-central-1.amazonaws.com/fusion.store/ft/schema/plotting-two-variable-measures-schema.json'
-    ).then(jsonify);
+      this.dataService.getschema2().then(esquema => {
+      this.esquema=esquema;
+      console.log("estoy en get menu y obtengo los datos del json:");
+      console.log(this.esquema); 
+      this.mvservice.ventamaquinahistoricaunidad(this.idmaquina).then(result => {
+      this.unidades= result;
+      this.mvservice.ventamaquinahistoricaventa(this.idmaquina).then(result => {
+        this.ventas= result;
+        let a =this.ventas.puntos;
+        let b=this.unidades.puntos;
+        console.log(a)
+        console.log(b)
+        let c=[];
+        for(let i=0;i<a.length;i=i+1){
+          c.push([a[i].label,parseFloat(a[i].value),parseInt(b[i].value)])
+        }
+        console.log(c);
+        
 
-    Promise.all([dataFetch, schemaFetch]).then(res => {
+
+
+    Promise.all([c, this.esquema]).then(res => {
       const data = res[0];
       const schema = res[1];
       // First we are creating a DataStore
@@ -71,6 +95,12 @@ export class HistoricomaquinaproductoventaComponent {
       // DataTable into its data property.
       this.dataSource.data = fusionTable;
     });
+  }
+  );
+}
+);
+}
+);
   }
 
   ngOnInit() {

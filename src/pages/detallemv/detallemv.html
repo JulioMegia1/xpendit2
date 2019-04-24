@@ -48,9 +48,17 @@
         </ion-card-content>
      </ion-card> 
 
+     <cardexpandible title="  Valor acumulado desde ultimo reinicio : {{seleccion}}" >
+      <ion-grid>
+        <ion-row>
+          <ion-col *ngFor="let contable of contables">{{contable.label}}: {{contable.value}} </ion-col>
+        </ion-row>
+      </ion-grid>
+     </cardexpandible>
+
   <ion-card>
       <ion-card-header>
-           #:{{seleccion}}
+          Venta por Hora #:{{seleccion}}
      </ion-card-header>
      <ion-card-content>
         <ventaxhoramaquina></ventaxhoramaquina>

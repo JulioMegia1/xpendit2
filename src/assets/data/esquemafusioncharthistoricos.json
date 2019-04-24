@@ -1,7 +1,7 @@
 [{
     "name": "Time",
     "type": "date",
-    "format": "%Y-%m-%d"
+    "format": "%d/%m/%Y"
   }, {
     "name": "venta: ",
     "type": "number"

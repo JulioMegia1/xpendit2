@@ -24,6 +24,7 @@ export class VentaxhoramaquinaComponent implements OnInit{
       //"subcaption": "[2005-2016]",
       "numberprefix": " $",
       "divlinedashed": "0",
+      "formatnumberscale": "0",
       "rotatelabels": "1",
       "setadaptiveymin": "1",
       "theme": "ocean"
@@ -62,7 +63,8 @@ getgrafica(idmaquina){
   this.mvservice.ventahoramaquina(idmaquina).then(result=>{
   this.grafica= result;
   this.data.data=this.grafica.puntos;
-  this.data.chart.caption=this.grafica.titulo;
+  
+  this.data.chart.caption="Venta Global ";//this.data.chart.caption=this.grafica.titulo;corregir nombre SERVICIO
   console.log(result);
 },(err)=>{
   console.log(err);

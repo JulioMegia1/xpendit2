@@ -26,6 +26,7 @@ export class VentaxdiamaquinaComponent implements OnInit{
       //"subcaption": "[2005-2016]",
       "numberprefix": " $",
       "rotatelabels": "1",
+      "formatnumberscale": "0",
       "divlinedashed": "0",
       "setadaptiveymin": "1",
       "theme": "ocean"

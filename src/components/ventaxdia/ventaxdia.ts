@@ -20,6 +20,7 @@ export class VentaxdiaComponent {
       "syaxisname": "",
       //"subcaption": "[2005-2016]",
       "numberprefix": " $",
+      "formatnumberscale": "0",
       "rotatelabels": "1",
       "setadaptiveymin": "1",
       "divlinedashed": "0",
