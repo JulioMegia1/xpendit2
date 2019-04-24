@@ -14,7 +14,15 @@ import { CIprovider } from "../../providers/data/data";
 
 /*fusioncharts*/
 import * as FusionCharts from 'fusioncharts';
-import { SelectorListContext } from '@angular/compiler';
+
+/**********************************SELECTABLE**************************/
+import { IonicSelectableComponent } from 'ionic-selectable';
+class Port {
+  public label: any;
+  public value: any;
+}
+/**********************************SELECTABLE**************************/
+
 
 @IonicPage()
 @Component({
@@ -29,6 +37,13 @@ export class DetallemvPage {
   contables:any//obtiene los contables de la maquina seleccionada
   reinicia:any//reincia el inventario y muestra msj
   tacometros:any;//obtiene los tacometros
+
+
+  /*********SELECT SEARCHEABLE***********/
+  ports: Port[];
+    port: Port;
+    seleccion2:any;
+/**********SELECT SEARCHEABLE***********/
  
 
   historicaventa:any;
@@ -46,7 +61,7 @@ export class DetallemvPage {
     public dataService:DataServiceProvider, 
     public toastCtrl: ToastController,public mvservice:MvserviceProvider,public selectprovider:SelectserviceProvider,public ciService:CIprovider
     ) {
-    
+      this.getmaquinasid();
     //this.getmaquinas();
   
     // this.getmaquinasid();
@@ -67,6 +82,28 @@ export class DetallemvPage {
     // this.getgraficahora(this.seleccion);
     // this.getinventario(this.seleccion);
   }
+
+  getmaquinasid(){
+    this.selectprovider.selectmaquinas().then(result=>{
+      this.seleccion2=result;
+      this.ports=this.seleccion2;
+      this.port=this.ports[0];
+
+      console.log(result);
+      },(err)=>{
+        console.log(err);
+      }
+      );
+  }
+
+  /**********************************SELECTABLE**************************/
+portChange(event: {
+  component: IonicSelectableComponent,
+  value: any 
+}) {
+  console.log('port:', event.value);
+}
+/**********************************SELECTABLE**************************/
 
 
   getmaquinas(){

@@ -4,6 +4,21 @@
 
 <ion-content style="margin-top:75px;">
         <!-- seleccion de la máquina -->
+
+        <ion-item>
+          <ion-label>Máquinas</ion-label>
+          <ionic-selectable 
+            item-content 
+            [(ngModel)]="port"
+            [items]="ports"
+            itemValueField="label"
+            itemTextField="value"
+            [canSearch]="true"
+            (onChange)="portChange($event)">
+          </ionic-selectable>
+        </ion-item>
+
+
       <ion-card>
           <ion-item>
             <ion-label>Máquinas</ion-label>

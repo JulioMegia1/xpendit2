@@ -58,6 +58,12 @@ import { HistoricoComponent } from "../components/historico/historico";
 import { HistoricomaquinaproductoventaComponent } from "../components/historicomaquinaproductoventa/historicomaquinaproductoventa";
 /*componentes*/
 
+/**********************************selectable*************/
+// npm install ionic-selectable@3.4.0 --save
+import { IonicSelectableModule } from 'ionic-selectable';
+
+
+
 /*plugins*/
 import { Camera } from '@ionic-native/camera';
 import { FileTransfer } from '@ionic-native/file-transfer';
@@ -124,6 +130,7 @@ FusionChartsModule.fcRoot(FusionCharts, Charts, TimeSeries,Ocean,Gammel,Zune,Wid
     BrowserModule,
     HttpClientModule,
     FusionChartsModule,
+    IonicSelectableModule,//selectable
     IonicModule.forRoot(MyApp),
    ],
   bootstrap: [IonicApp],
