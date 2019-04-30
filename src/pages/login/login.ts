@@ -21,7 +21,7 @@ export class LoginPage {
   passwordType: string ='password'; //cambiar el tipo de campo del pasword
   passwordshow : boolean=false; //cambiar el tipo de campo del pasword
 
-  constructor(public navCtrl: NavController, public alertController:AlertController,public authservice: AuthserviceProvider,public servicetipousuario:CIprovider) {
+  constructor(public navCtrl: NavController, public alertController:AlertController,public authservice: AuthserviceProvider,public ciService:CIprovider) {
     this.getUsers();
   }
 
@@ -78,7 +78,7 @@ export class LoginPage {
         if(entra.msg=="" || entra.status!=1)
         {
            console.log("valido");
-         this.servicetipousuario.setTipoUsuario(entra.usuario.usuario); //obtener el tipo de usuario mediante el provider
+         this.ciService.setTipoUsuario(entra.usuario.usuario); //obtener el tipo de usuario mediante el provider
            this.navCtrl.push(MenuPage);
         }
         else{

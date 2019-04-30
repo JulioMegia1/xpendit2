@@ -1,7 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
-
 @Injectable()
 export class MvserviceProvider {
 
@@ -120,7 +119,7 @@ export class MvserviceProvider {
 
 
   //Detalle máquina************************
-  maquinas(tipousuario){
+  maquinas(tipousuario){ //TRAE TODA LA INFORMACION
     return new Promise(resolve => {
   
       let menu=this.url+'/principal/busca/'+tipousuario
@@ -134,7 +133,24 @@ export class MvserviceProvider {
     });
 
   }
+
+  buscaproductomaquina(idmaquina){
+    return new Promise(resolve => {
   
+      let menu=this.url+'/detalle/busca/'+idmaquina
+      console.log(menu);
+      this.http.get(menu).subscribe(data => {
+        resolve(data);
+      }
+      ,err => {
+        console.log(err);
+      });
+    });
+
+  }
+  
+  
+
 
   
 
@@ -305,9 +321,35 @@ export class MvserviceProvider {
 
 
   /*detalle Producto*/
-  infoproducto(idmaquina,idproducto){
+  infoproducto(idmaquina,idproducto){ ///???????????????duda no deberia ser llamado igual por seleccion???
     return new Promise(resolve => {
       let menu=this.url+'/producto/'+idmaquina+'/'+idproducto
+      console.log(menu);
+      this.http.get(menu).subscribe(data => {
+        resolve(data);
+      }
+      ,err => {
+        console.log(err);
+      });
+    });
+  }
+
+  ventamaquinaproductohora(idmaquina,seleccion){  //indfo del producto
+    return new Promise(resolve => {
+      let menu=this.url+'/producto/grafica/dia/'+idmaquina+'/'+seleccion
+      console.log(menu);
+      this.http.get(menu).subscribe(data => {
+        resolve(data);
+      }
+      ,err => {
+        console.log(err);
+      });
+    });
+  }
+
+  ventamaquinaproductohoraacumulada(idmaquina,seleccion){  //indfo del producto
+    return new Promise(resolve => {
+      let menu=this.url+'/producto/grafica/dia/acumulada/'+idmaquina+'/'+seleccion
       console.log(menu);
       this.http.get(menu).subscribe(data => {
         resolve(data);

@@ -1,4 +1,4 @@
-import {  Component,  NgZone} from '@angular/core';
+import { Component, NgZone, Renderer } from '@angular/core';
 import * as FusionCharts from 'fusioncharts';
 
 /*servicios*/
@@ -55,6 +55,7 @@ export class HistoricomaquinaproductoventaComponent {
   esquema:any;
   unidades:any;
   ventas:any;
+  fusionDataStore
   constructor(public ciService:CIprovider, public mvservice:MvserviceProvider,public dataService:DataServiceProvider) {
     this.idmaquina=this.ciService.getIdmaquina(); //obtener el id de la  maquina
     // This is the dataSource of the chart
@@ -85,12 +86,19 @@ export class HistoricomaquinaproductoventaComponent {
 
 
     Promise.all([c, this.esquema]).then(res => {
-      const data = res[0];
-      const schema = res[1];
+      var data = res[0];
+      var schema = res[1];
       // First we are creating a DataStore
-      const fusionDataStore = new FusionCharts.DataStore();
+   
+       this.fusionDataStore = new FusionCharts.DataStore();
+       
+       console.log()
+      // var fusionDataStore2 = new FusionCharts.render();
+      
+      console.log(this.fusionDataStore)
       // After that we are creating a DataTable by passing our data and schema as arguments
-      const fusionTable = fusionDataStore.createDataTable(data, schema);
+      var fusionTable = this.fusionDataStore.createDataTable(data, schema);
+      console.log(fusionTable)
       // Afet that we simply mutated our timeseries datasource by attaching the above
       // DataTable into its data property.
       this.dataSource.data = fusionTable;
@@ -105,5 +113,14 @@ export class HistoricomaquinaproductoventaComponent {
 
   ngOnInit() {
     
+  }
+
+  updatedata(){
+    this.idmaquina=this.ciService.getIdmaquina(); //obtener el id de la  maquina
+    // this.dataSource = this.data;
+    this.fetchData();
+    console.log("actualice historico")
+    // this.fusionDataStore.render() 
+ 
   }
 }

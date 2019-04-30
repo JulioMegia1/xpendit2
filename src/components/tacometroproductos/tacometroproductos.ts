@@ -93,4 +93,13 @@ export class TacometroproductosComponent {
   }
   );
 }
+
+updatedata(){
+  this.idmaquina=this.ciService.getIdmaquina(); //obtener el id de la  maquina
+
+    this.getgrafica(this.idmaquina)
+    this.dataSource=this.data;
+
+}
+
 }

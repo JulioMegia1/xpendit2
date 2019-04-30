@@ -23,6 +23,10 @@ import { DetalleproductoPage } from "../pages/detalleproducto/detalleproducto";
 import { ActualizamvPage } from "../pages/actualizamv/actualizamv";
 /**********Paginas******/
 
+/*********popover******/
+import { BuscamaquinaproductoPage } from "../pages/buscamaquinaproducto/buscamaquinaproducto";
+
+
 /**********servicios******/
 
 import { AuthserviceProvider } from "../providers/authservice/authservice";
@@ -106,6 +110,10 @@ FusionChartsModule.fcRoot(FusionCharts, Charts, TimeSeries,Ocean,Gammel,Zune,Wid
   
     /*paginas*/
 
+
+    /****popover* */
+    BuscamaquinaproductoPage,
+
     /*componentes*/
     LuzComponent,
     NavbarComponent,
@@ -151,6 +159,9 @@ FusionChartsModule.fcRoot(FusionCharts, Charts, TimeSeries,Ocean,Gammel,Zune,Wid
     DetalleproductoPage,
     ActualizamvPage,
     /*paginas*/
+
+    /****popover */
+    BuscamaquinaproductoPage,
 
     
   ],

@@ -31,6 +31,7 @@ export class VentaxhoraproductomaquinaComponent implements OnInit {
 
   grafica:any;
   idmaquina:any;
+  seleccionproducto:any;
 
 
   constructor(public ciService:CIprovider, public mvservice:MvserviceProvider) {
@@ -40,20 +41,24 @@ export class VentaxhoraproductomaquinaComponent implements OnInit {
   ngOnInit(){
 
     this.idmaquina=this.ciService.getIdmaquina(); //obtener el tipo de usuario
-    console.log("TENGO EL ID DE LA MAQU(INA" + this.idmaquina)
+    this.seleccionproducto=this.ciService.getIdProducto();
+    console.log("TENGO EL ID DE LA MAQUINA" + this.idmaquina)
+    console.log("TENGO la seleccion DEl producto" + this.seleccionproducto)
+    
+
    
     //this.getgrafica(this.usuario); //obtener datos de la grafica
 
 
 
     this.dataSource=this.data
-    this.getgrafica(this.idmaquina)
+    this.getgrafica(this.idmaquina,this.seleccionproducto)
     //this.obtenerdatosgrafica();
 
   }
 
-  getgrafica(idmaquina){
-    this.mvservice.ventahoramaquina(idmaquina).then(result=>{
+  getgrafica(idmaquina,seleccion){
+    this.mvservice.ventamaquinaproductohora(idmaquina,seleccion).then(result=>{
     this.grafica= result;
     this.data.data=this.grafica.puntos;
     this.data.chart.caption=this.grafica.titulo;

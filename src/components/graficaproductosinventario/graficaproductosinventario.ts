@@ -5,18 +5,13 @@ import { CIprovider } from "../../providers/data/data";
 import { MvserviceProvider } from "../../providers/mvservice/mvservice";
 
 
-
-
-
-
-
 @Component({
   selector: 'graficaproductosinventario',
   templateUrl: 'graficaproductosinventario.html'
 })
 export class GraficaproductosinventarioComponent implements OnInit{
 
-  @Input("mytext") textTouse;
+  @Input() public ciudad :string;;
   text: string;
 
   "width" = "100%";
@@ -64,25 +59,19 @@ export class GraficaproductosinventarioComponent implements OnInit{
   grafica:any;
   idmaquina:any;
  
-
-
   constructor(public ciService:CIprovider, public mvservice:MvserviceProvider) {
     console.log('Hello GraficaproductosinventarioComponent Component');
-    this.idmaquina=this.ciService.getIdmaquina(); //obtener el tipo de usuario
+    this.idmaquina=this.ciService.getIdmaquina(); //obtener el id de la maquina
     this.dataSource=this.data;
-    this.getgrafica(this.idmaquina)
-
-  
+    this.getgrafica(this.idmaquina)  
   }
 
   ngOnInit()  {
-    this.text=this.textTouse;
-    console.log(this.text)
+    // this.text=this.textTouse;
+    // console.log(this.model);
 
   }
   
-
-
   getgrafica(idmaquina){
     this.mvservice.inventario(idmaquina).then(result=>{
     this.grafica= result;
@@ -132,10 +121,12 @@ export class GraficaproductosinventarioComponent implements OnInit{
     }return valor;
   }
 
-  
+  updatedata(){
+    this.idmaquina=this.ciService.getIdmaquina(); //obtener el id de la maquina
+    this.dataSource=this.data;
+    this.getgrafica(this.idmaquina)  
+    console.log("actualice")
 
-  
-
- 
+  }
 
 }

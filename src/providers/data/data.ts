@@ -5,25 +5,22 @@ import { SelectserviceProvider } from '../selectservice/selectservice';
 @Injectable()
 export class CIprovider {
 
-  maquinas
-
   tipousuario:any;
   idmaquina:any;
+  idproducto:any;
   
     constructor(public http: HttpClient,public selectprovider:SelectserviceProvider) {
       this.selectprovider.selectmaquinas().then(data => {
-        this.maquinas=data;
+        let maquinas=data;
         console.log("estoy en get menu y obtengo los datos del json:");
-        console.log(this.maquinas); 
+        console.log(maquinas); 
         console.log('Hello DataProvider Provider');
         this.tipousuario="default"
-        this.idmaquina=this.maquinas[0].label
-      
+        this.idmaquina=maquinas[0].label;
 
+        this.idproducto=11;//corregir usar la primera seleccion del riel de la maquina especificada
 
       })
-
- 
   }
 
     setTipoUsuario(datos) {
@@ -44,6 +41,16 @@ export class CIprovider {
     return this.idmaquina;
 }  
 
+
+setIdProducto(datos) {
+  this.idproducto = datos;  
+  console.log("SERVICIO ID producto: "+this.idproducto) 
+}
+
+getIdProducto() {
+return this.idproducto;
+}  
+
 getschema () {    //obtiene el JSON de los usuarios
   return new Promise(resolve => {
     this.http.get('assets/data/esquemaCI.json').subscribe(data => { 
@@ -54,12 +61,4 @@ getschema () {    //obtiene el JSON de los usuarios
   });
 }
 
-
-
-
-
 }
-
-
-
-

@@ -98,5 +98,13 @@ export class TacometroventasComponent {
 );
 }
 
+updatedata(){
+  this.idmaquina=this.ciService.getIdmaquina(); //obtener el tipo de usuario
+
+    this.getgrafica(this.idmaquina)
+    this.dataSource=this.data;
+
+}
+
  
 }

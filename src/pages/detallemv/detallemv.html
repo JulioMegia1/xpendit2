@@ -4,6 +4,12 @@
 
 <ion-content style="margin-top:75px;">
         <!-- seleccion de la máquina -->
+        <ion-buttons end>
+          <button ion-button icon-only (click)="presentPopover($event)">
+            <ion-icon name="more"></ion-icon>
+          </button>
+        </ion-buttons>
+      
 
         <ion-item>
           <ion-label>Máquinas</ion-label>
@@ -18,24 +24,13 @@
           </ionic-selectable>
         </ion-item>
 
-
-      <ion-card>
-          <ion-item>
-            <ion-label>Máquinas</ion-label>
-            <ion-select [(ngModel)]="seleccion" interface="popover" (ionChange)="getalarmas(seleccion)"  (ionChange)="getcontables(seleccion)" >
-             <ion-option *ngFor="let maquina of maquinas" value="{{maquina.idMaquina}}">{{maquina.idMaquina}} - {{maquina.descripcion}}</ion-option>  
-            </ion-select>
-          </ion-item>
-        </ion-card>
-    
-
 <!-- grafica producto-inventario -->
     <ion-card >
       <ion-card-header>
-        Productos en inventario : {{seleccion}}
+        Productos en inventario  {{nombremaquina}}: <!--{{port.value}}-->
       </ion-card-header>
       <ion-card-content>
-          <graficaproductosinventario [mytext]="seleccion"></graficaproductosinventario>
+          <graficaproductosinventario #prodInv></graficaproductosinventario>
       </ion-card-content>
      </ion-card>
      <!-- grafica producto-inventario -->
@@ -46,70 +41,46 @@
     </div>
 
     <div style="justify-content:center;display:flex">
-        <tacometroproductos ></tacometroproductos> 
-        <tacometroventas></tacometroventas>
+        <tacometroproductos #tacProd></tacometroproductos> 
+        <tacometroventas #tacVent></tacometroventas>
     </div>
   
-    <ion-card>
-      <ion-card-header>
-          Valor acumulado desde ultimo reinicio : {{seleccion}}
+    <ion-card style="border-radius: 10px">
+      <ion-card-header style="color:#ffffff;background-color: #242b5f;border-radius: 10px;">
+         <b> Valor acumulado desde ultimo reinicio : {{nombremaquina}}</b>
         </ion-card-header>
         <ion-card-content>
             <ion-grid>
                 <ion-row>
-                  <ion-col *ngFor="let contable of contables">{{contable.label}}: {{contable.value}} </ion-col>
+                  <ion-col *ngFor="let contable of contables"><b>{{contable.label}}:</b> {{contable.value}} </ion-col>
                 </ion-row>
               </ion-grid>
         </ion-card-content>
      </ion-card> 
 
-     <cardexpandible title="  Valor acumulado desde ultimo reinicio : {{seleccion}}" >
-      <ion-grid>
-        <ion-row>
-          <ion-col *ngFor="let contable of contables">{{contable.label}}: {{contable.value}} </ion-col>
-        </ion-row>
-      </ion-grid>
-     </cardexpandible>
-
   <ion-card>
       <ion-card-header>
-          Venta por Hora #:{{seleccion}}
+          Venta por Hora {{nombremaquina}}
      </ion-card-header>
      <ion-card-content>
-        <ventaxhoramaquina></ventaxhoramaquina>
+        <ventaxhoramaquina #ventaXhora></ventaxhoramaquina>
     </ion-card-content>
   </ion-card>
 
     <ion-card >
         <ion-card-header >
-            Venta Global : {{seleccion}}
+            Venta Global {{nombremaquina}} 
         </ion-card-header>
         <ion-card-content>
-            <ventaxdiamaquina></ventaxdiamaquina>
+            <ventaxdiamaquina #ventaXdia></ventaxdiamaquina>
         </ion-card-content>
     </ion-card> 
 
     <ion-card style="margin-bottom:70px">
-      <historicomaquinaproductoventa>
+      <historicomaquinaproductoventa #histoVentaProd>
 
       </historicomaquinaproductoventa>
     </ion-card>
-
-      <!-- graficas fusioncharts -->
-<!-- <ion-card style="margin-bottom:70px">
-    <div>
-        <fusioncharts
-          [type]="type"
-          [width]="width"
-          [height]="height"
-          [dataSource]="dataSource"
-        ></fusioncharts>
-      </div>
-    </ion-card> -->
-      <!-- graficas fusioncharts -->
-
-
-
 
   <!-- <ion-fab right top>
       <button ion-fab color="primary"><ion-icon name="calculator"></ion-icon></button>

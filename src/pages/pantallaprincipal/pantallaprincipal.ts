@@ -9,15 +9,8 @@ import 'rxjs/add/operator/map';
 import L from "leaflet";
 /*Mapa*/
 
-/*graficas fusioncharts
- npm install angular-fusioncharts
-npm install fusioncharts
-*/
-import * as FusionCharts from 'fusioncharts';
-/*fusioncharts*/
-
  /*servicios*/
- import { DataServiceProvider } from '../../providers/data-service/data-service'; //datos locales de prueba
+
  import { CIprovider } from '../../providers/data/data';
  import { MvserviceProvider } from "../../providers/mvservice/mvservice";
  /*servicios*/
@@ -30,8 +23,6 @@ export class PantallaprincipalPage {
 
   //Variables fijas
   usuario:any;//falta paserle el usuario real IMPORTANTE
- 
-
 
    /*mapa leaf let*/
      maquinas :any;
@@ -39,32 +30,9 @@ export class PantallaprincipalPage {
      map:L.map;
  /*mapa leaf let*/
   
-
-  historico:any;
-  historicoultimo:any;
-
-
-  esquemaprueba:any//PRUEBA
-  b=[];
-
-
-
-
-  /*grafica fusioncharts*/
-  dataSource: any;
-  type: string;
-  width: string;
-  height: string;
-  esquema:any;
-  datos:any;
-/*grafica fusioncharts*/
-
-
-  constructor(public navCtrl: NavController, public navParams: NavParams,public dataService:DataServiceProvider, public mvservice: MvserviceProvider,public ciService:CIprovider) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public mvservice: MvserviceProvider,public ciService:CIprovider) {
     this.usuario=this.ciService.getTipoUsuario();
-    this.getesquema();
-    this.gethistorico(this.usuario);
-    this.getultimohistorico(this.usuario);  
+  
     
     // this.funcionglobalhistorica();
     //this.fetchData();
@@ -111,85 +79,6 @@ leafletMap(){
     this.navCtrl.push(DetallemvPage)
   }
 
-
-  // /*grafica fusion charts*/
-  // funcionglobalhistorica(){
-  //    /*fusionchart*/
-  //    this.type = 'timeseries';
-  //    this.width = '100%';
-  //    this.height = '400';
-  //    // This is the dataSource of the chart
-  //    this.dataSource = {
-  //      // Initially data is set as null
-  //      data: null,
-  //      chart: {
-  //        showLegend: 0,
-  //        theme: "zune",
-  //        showValues:1,
-  //       //  syAxisName: "Stock Price",
-  //        //exportEnabled:1, //para exportar la grafica
-  //       //  rotatevalues:1,
-  //       // placevaluesinside:0,
-         
-  //      },
-  //        extensions: {
-  //         customRangeSelector: {
-  //             enabled:1 //1 para rangos de fechas
-  //         },
-  //         standardRangeSelector: {
-  //           enabled:1//1 para meses dias años
-  //       }
-  //     },
-  //      caption: {
-  //        text: 'Venta Global Histórica($)'
-  //      },
-  //      yAxis: [
-  //        {
-  //          plot: {
-  //            value: 'venta: ',
-  //            type: 'column',
-  //          },
-  //          format: {
-  //            "prefix": "$",
-  //            "suffix": ".00"
-  //          },
-  //          //title: 'Venta',
-  //        }
-  //      ]
-  //    };
-  // }
-
-
-  
-  
-  // /*fusion charts*/
-  // fetchData() {
-  //   this.dataService.getschema().then(esquema => {
-  //     this.esquema=esquema;
-  //     console.log("estoy en get menu y obtengo los datos del json:");
-  //     console.log(this.esquema); 
-  //     this.dataService.getdata().then(datos => {
-  //       this.datos=datos;
-  //       console.log(this.datos)
-  //     Promise.all([this.datos, this.esquema]).then(res => {
-  //     const data = res[0];
-  //     const schema = res[1];
-  //     // First we are creating a DataStore
-  //     const fusionDataStore = new FusionCharts.DataStore();
-  //     // After that we are creating a DataTable by passing our data and schema as arguments
-  //     const fusionTable = fusionDataStore.createDataTable(data, schema);
-  //     // Afet that we simply mutated our timeseries datasource by attaching the above
-  //     // DataTable into its data property.
-  //     this.dataSource.data = fusionTable;
-  //   });
-  // }
-  //   );
-  // }
-  // );
-  // }
-  /*fusion charts*/
-
- 
 mapa(usuario){
   this.mvservice.mapa(usuario).then(result=>{
            this.maquinas= result;
@@ -228,58 +117,4 @@ mapa(usuario){
      );
     }
 
-    gethistorico(usuario){
-      this.mvservice.graficahistorica(usuario).then(result=>{
-        this.historico= result;
-        console.log(result);
-        let puntos=this.historico.puntos;
-        console.log(puntos);
-        for(let i=0;i<puntos.length;i=i+1)
-        {
-          this.b.push([puntos[i].label,parseInt(puntos[i].value)]);
-        }
-        console.log(this.b);
-       },(err)=>{
-         console.log(err);
-       }
-       );
-    }
-
-    getultimohistorico(usuario){
-      this.mvservice.graficahistoricaultimo(usuario).then(result=>{
-        this.historicoultimo= result;
-        console.log(result);
-        let punto=this.historicoultimo.puntos;
-        console.log(punto);
-        this.b.push([punto[0].label,parseInt(punto[0].value)])
-        console.log(this.b);
-       },(err)=>{
-         console.log(err);
-       }
-       );
-    }
-
-    getesquema(){
-      this.ciService.getschema().then(result=>{
-        this.esquemaprueba= result;
-        console.log(result);
-       },(err)=>{
-         console.log(err);
-       }
-       );
-    }
-
-
-
-
-
-
-    // this.dataService.getmaquinas().then(data => {
-    //   this.maquinas=data;
-    //   console.log("estoy en get menu y obtengo los datos del json:");
-    //   console.log(this.maquinas); 
-        
-    // }
-    // );
-  
 }

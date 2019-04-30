@@ -1,3 +1,7 @@
+/*graficas fusioncharts
+ npm install angular-fusioncharts
+npm install fusioncharts
+*/
 import { Component, OnInit } from '@angular/core';
 
 /*servicios*/

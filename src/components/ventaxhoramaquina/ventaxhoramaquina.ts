@@ -45,14 +45,9 @@ export class VentaxhoramaquinaComponent implements OnInit{
 
     this.idmaquina=this.ciService.getIdmaquina(); //obtener el tipo de usuario
     console.log("TENGO EL ID DE LA MAQU(INA" + this.idmaquina)
-   
-    //this.getgrafica(this.usuario); //obtener datos de la grafica
-
-
-
     this.dataSource=this.data
     this.getgrafica(this.idmaquina)
-    //this.obtenerdatosgrafica();
+
 
   }
 
@@ -71,5 +66,15 @@ getgrafica(idmaquina){
 }
 );
 }
+
+updatedata(){
+  this.idmaquina=this.ciService.getIdmaquina(); //obtener el tipo de usuario
+  
+  this.dataSource=this.data
+  this.getgrafica(this.idmaquina)
+
+}
+
+
 
 }
