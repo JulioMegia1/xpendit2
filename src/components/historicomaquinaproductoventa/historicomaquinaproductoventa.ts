@@ -1,11 +1,9 @@
-import { Component, NgZone, Renderer } from '@angular/core';
+import { Component, } from '@angular/core';
 import * as FusionCharts from 'fusioncharts';
 
 /*servicios*/
 import { CIprovider } from "../../providers/data/data";
 import { MvserviceProvider } from "../../providers/mvservice/mvservice";
-import { DataServiceProvider } from '../../providers/data-service/data-service'; //datos locales de prueba
-
 
 @Component({
   selector: 'historicomaquinaproductoventa',
@@ -53,10 +51,9 @@ export class HistoricomaquinaproductoventaComponent {
 
   idmaquina:any;
   esquema:any;
-  unidades:any;
-  ventas:any;
-  fusionDataStore
-  constructor(public ciService:CIprovider, public mvservice:MvserviceProvider,public dataService:DataServiceProvider) {
+  fusionDataStore;
+  
+  constructor(public ciService:CIprovider, public mvservice:MvserviceProvider) {
     this.idmaquina=this.ciService.getIdmaquina(); //obtener el id de la  maquina
     // This is the dataSource of the chart
     this.dataSource = this.data;
@@ -64,16 +61,19 @@ export class HistoricomaquinaproductoventaComponent {
   }
   
   fetchData() {
-      this.dataService.getschema2().then(esquema => {
+      this.ciService.getschema2().then(esquema => {
       this.esquema=esquema;
       console.log("estoy en get menu y obtengo los datos del json:");
       console.log(this.esquema); 
       this.mvservice.ventamaquinahistoricaunidad(this.idmaquina).then(result => {
-      this.unidades= result;
+        let unidades;
+
+        unidades= result;
       this.mvservice.ventamaquinahistoricaventa(this.idmaquina).then(result => {
-        this.ventas= result;
-        let a =this.ventas.puntos;
-        let b=this.unidades.puntos;
+        let ventas;
+        ventas= result;
+        let a =ventas.puntos;
+        let b=unidades.puntos;
         console.log(a)
         console.log(b)
         let c=[];

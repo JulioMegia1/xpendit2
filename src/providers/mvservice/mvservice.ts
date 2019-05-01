@@ -359,6 +359,35 @@ export class MvserviceProvider {
       });
     });
   }
+
+  historicaventa(idmaquina,seleccion){  //indfo del producto
+    return new Promise(resolve => {
+      let menu=this.url+'/producto/grafica/historica/venta/'+idmaquina+'/'+seleccion
+      console.log(menu);
+      this.http.get(menu).subscribe(data => {
+        resolve(data);
+      }
+      ,err => {
+        console.log(err);
+      });
+    });
+  }
+
+  historicaunidad(idmaquina,seleccion){  //indfo del producto
+    return new Promise(resolve => {
+      let menu=this.url+'/producto/grafica/historica/unidad/'+idmaquina+'/'+seleccion
+      console.log(menu);
+      this.http.get(menu).subscribe(data => {
+        resolve(data);
+      }
+      ,err => {
+        console.log(err);
+      });
+    });
+  }
+
+
+  
   
 
 

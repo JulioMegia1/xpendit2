@@ -2,7 +2,7 @@
 
     <ion-searchbar (ionInput)="getItems($event)"></ion-searchbar>
     <ion-list>
-      <ion-item *ngFor="let item of items" (click)="Cerrarpopover(item)">
-        {{ item }}
+      <ion-item *ngFor="let item of items" (click)="Cerrarpopover(item.label)">
+        {{ item.value }}
       </ion-item>
     </ion-list>

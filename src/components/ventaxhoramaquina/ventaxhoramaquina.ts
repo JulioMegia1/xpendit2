@@ -44,7 +44,7 @@ export class VentaxhoramaquinaComponent implements OnInit{
   ngOnInit(){
 
     this.idmaquina=this.ciService.getIdmaquina(); //obtener el tipo de usuario
-    console.log("TENGO EL ID DE LA MAQU(INA" + this.idmaquina)
+    console.log("TENGO EL ID DE LA MAQUINA" + this.idmaquina)
     this.dataSource=this.data
     this.getgrafica(this.idmaquina)
 

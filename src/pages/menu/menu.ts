@@ -95,6 +95,7 @@ export class MenuPage {
     let childNav = this.nav.getActiveChildNavs()[0];
  
     if (childNav) {
+     
       if (childNav.getSelected() && childNav.getSelected().root === page.tabComponent) {
         return 'primary';
       }

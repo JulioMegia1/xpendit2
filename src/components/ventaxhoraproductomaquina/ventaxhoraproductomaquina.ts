@@ -40,7 +40,7 @@ export class VentaxhoraproductomaquinaComponent implements OnInit {
   }
   ngOnInit(){
 
-    this.idmaquina=this.ciService.getIdmaquina(); //obtener el tipo de usuario
+    this.idmaquina=this.ciService.getIdmaquina(); //obtener el tipo de id de la maquina
     this.seleccionproducto=this.ciService.getIdProducto();
     console.log("TENGO EL ID DE LA MAQUINA" + this.idmaquina)
     console.log("TENGO la seleccion DEl producto" + this.seleccionproducto)
@@ -67,6 +67,14 @@ export class VentaxhoraproductomaquinaComponent implements OnInit {
     console.log(err);
   }
   );
+  }
+
+  updatedata(){
+    this.idmaquina=this.ciService.getIdmaquina(); //obtener el tipo de usuario
+    
+    this.dataSource=this.data
+    this.getgrafica(this.idmaquina,this.seleccionproducto)
+  
   }
 
 }

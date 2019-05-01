@@ -1,6 +1,53 @@
 <navbar mytext="Productos"></navbar>
 
-<ion-content style="margin-top:75px">
+<ion-content style="margin-top:85px">
+
+    <ion-header>
+        <ion-toolbar>
+            <!-- <ion-grid>
+                <ion-row>
+                    <ion-col> -->
+              <ion-item>
+                <ion-label>Máquinas</ion-label>
+                <ionic-selectable 
+                  item-content 
+                  [(ngModel)]="port"
+                  [items]="ports"
+                  itemValueField="label"
+                  itemTextField="value"
+                  [canSearch]="true"
+                  (onChange)="portChange($event)">
+                </ionic-selectable>
+              </ion-item>
+            <!-- </ion-col> -->
+
+            <!-- <ion-col>
+
+              <ion-item>
+                <ion-label>Productos</ion-label>
+                <ionic-selectable 
+                  item-content 
+                  [(ngModel)]="port"
+                  [items]="ports"
+                  itemValueField="label"
+                  itemTextField="value"
+                  [canSearch]="true"
+                  (onChange)="portChange($event)">
+                </ionic-selectable>
+              </ion-item>
+            </ion-col> -->
+      
+              <ion-buttons end>
+                  <button ion-button icon-only (click)="presentPopover($event)">
+                    <ion-icon name="search"></ion-icon>
+                  </button>
+                </ion-buttons>
+            
+            
+                <!-- </ion-row>
+            </ion-grid> -->
+            </ion-toolbar>
+      </ion-header>
                 <!-- PANEL LATERAL CAMBIO DE PRODUCTOS -->
     <!-- <ion-buttons end>
         <button ion-button icon-only (click)="presentPopover($event)">
@@ -72,21 +119,30 @@
                     <!-- VENTA XHORA MAQUINA PRODUCTO --> 
  <ion-card >
     <ion-card-header >
-        Venta x Hora :
+        Venta x Hora de {{nombremaquina}} del producto X
     </ion-card-header>
     <ion-card-content>
-        <ventaxhoraproductomaquina></ventaxhoraproductomaquina>
+        <ventaxhoraproductomaquina #ventaHora></ventaxhoraproductomaquina>
     </ion-card-content>
 </ion-card> 
 
                 <!-- VENTA GLOBAL MAQUINA PRODUCTO -->
-<!-- <ion-card style="margin-bottom:70px">
+<ion-card style="margin-bottom:70px">
     <ion-card-header >
-            Venta Global :
+            Venta Global de {{nombremaquina}} del producto :X
     </ion-card-header>
     <ion-card-content>
-        <ventaxdiaproductomaquina></ventaxdiaproductomaquina>
+        <ventaxdiaproductomaquina #ventaHoraAcum></ventaxdiaproductomaquina>
     </ion-card-content>
-</ion-card>  -->
+</ion-card> 
+
+<ion-card style="margin-bottom:70px">
+    <ion-card-header >
+      Historico de venta($) y unidades del producto : de la maquina {{nombremaquina}}
+</ion-card-header>
+
+  <historicodetalleproducto></historicodetalleproducto>
+  </ion-card>
+
 
 </ion-content>

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component,ViewChild } from '@angular/core';
 import { IonicPage, NavController, NavParams,PopoverController } from 'ionic-angular';
 import { AlertController } from 'ionic-angular';
 
@@ -14,6 +14,8 @@ import { CIprovider } from "../../providers/data/data";
 
 /**********************************SELECTABLE**************************/
 import { IonicSelectableComponent } from 'ionic-selectable';
+import { VentaxhoraproductomaquinaComponent } from '../../components/ventaxhoraproductomaquina/ventaxhoraproductomaquina';
+import { VentaxdiaproductomaquinaComponent } from '../../components/ventaxdiaproductomaquina/ventaxdiaproductomaquina';
 class Port {
   public label: any;
   public value: any;
@@ -21,10 +23,6 @@ class Port {
 /**********************************SELECTABLE**************************/
 
 
-class Port2 {
-  public id: number;
-  public name: string;
-}
 
 @IonicPage()
 @Component({
@@ -32,49 +30,39 @@ class Port2 {
   templateUrl: 'detalleproducto.html',
 })
 export class DetalleproductoPage {
+
+  @ViewChild("ventaHora") ventahora:VentaxhoraproductomaquinaComponent
+  @ViewChild("ventaHoraAcum") ventahoraacum:VentaxdiaproductomaquinaComponent
+  
+
   /*variables*/
-//   idmaquina:any;  
-//   productosmaquina:any//para la busqueda del popover y para elegir el primer producto
-//   idproducto:any;
+ idmaquina:any;  
+  productomaquina:any//para la busqueda del popover y para elegir el primer producto
+  maquinas:any;
+  nombremaquina:any;
+  seleccion:any;
+//idproducto:any;
 //   listaproductos:any;
   
 
 // infoproducto:any;
   
-
-  
-//   // buiscar si se puede hacer mejor
-//   seleccion:any;
 //   nombreproducto:any;
 //   precio:any;
 //   faltante:any;
 //   existencia:any;
 //   maximo:any;
   
-
-
    /*********SELECT SEARCHEABLE para cambiar l prducto del riel ***********/
-//    ports: Port[];  ///muestra las opciones del select
-//    port: Port; //muestra la opcion elegida del select
+   ports: Port[];  ///muestra las opciones del select
+   port: Port; //muestra la opcion elegida del select
  
 // /**********SELECT SEARCHEABLE***********/
-// /****popover */
 
-
-//    /*********SELECT SEARCHEABLE para cambio de maquinas***********/
-//    ports2: Port2[];  ///muestra las opciones del select
-//    port2: Port2; //muestra la opcion elegida del select
- 
-/**********SELECT SEARCHEABLE***********/
 // productomaquina:any;
 
 
   constructor(public navCtrl: NavController,public alertCtrl: AlertController, public navParams: NavParams,public mvservice:MvserviceProvider,public selectprovider:SelectserviceProvider,public popoverCtrl:PopoverController,public ciService:CIprovider) {
-    // this.ports2 = [
-    //   { id: 1, name: 'Tokai' },
-    //   { id: 2, name: 'Vladivostok' },
-    //   { id: 3, name: 'Navlakhi' }
-    // ];
    
   }
 
@@ -82,9 +70,10 @@ export class DetalleproductoPage {
     console.log('ionViewDidLoad DetalleproductoPage'); 
   }
   ionViewCanEnter(){
-    // this.idmaquina=this.ciService.getIdmaquina(); //obtienes el id de la maquina
+    this.idmaquina=this.ciService.getIdmaquina(); //obtienes el id de la maquina
+    this.getmaquinasid()
     // console.log(this.idmaquina)
-    // this.getproductomaquina(this.idmaquina); //obtienes los productos de la maquina para el popover y sacar el primer producto
+   this.getproductomaquina(this.idmaquina); //obtienes los productos de la maquina para el popover y sacar el primer producto
 
     
   }
@@ -92,7 +81,7 @@ export class DetalleproductoPage {
       //  this.getinfoproducto(this.idmaquina,this.idproducto); 
   }
 
-  getproductomaquina(idmaquina){
+  // getproductomaquina(idmaquina){
     // this.mvservice.buscaproductomaquina(idmaquina).then(result=>{
     //   this.productosmaquina= result;
     //   console.log(this.productosmaquina); 
@@ -105,7 +94,7 @@ export class DetalleproductoPage {
     //     console.log(err);
     //   }
     //   );
-    }
+    // }
   
   
     // presentPopover(ev) {
@@ -144,16 +133,20 @@ export class DetalleproductoPage {
   }
 
   /**********************************SELECTABLE**************************/
-// portChange(event: {
-//   component: IonicSelectableComponent,
-//   value: any 
-// }) {
-//   console.log('port:', event.value);
-//   console.log("cambio el valor")
-//   console.log(this.port);
-//   this.nombreproducto=this.port.value;
-
-// }
+  portChange(event: {
+    component: IonicSelectableComponent,
+    value: any 
+  }) {
+    console.log('port:', event.value);
+    console.log("cambio el valor")
+    console.log(this.port);
+    this.seleccion=this.port.label;
+    this.nombremaquina=this.port.value;
+    this.ciService.setIdMaquina(this.seleccion);
+    this.getproductomaquina(this.seleccion);
+    this.ventahora.updatedata();
+    this.ventahoraacum.updatedata();   
+  }
 /**********************************SELECTABLE**************************/
 
 // portChange2(event: {
@@ -187,6 +180,58 @@ export class DetalleproductoPage {
     //     console.log(err);
     //   }
     //   );
+    }
+
+    getmaquinasid(){
+      this.selectprovider.selectmaquinas().then(result=>{
+        this.maquinas=result; //obtiene las maquinas
+        console.log(this.maquinas);
+        this.ports=this.maquinas; //
+        console.log(this.ports)
+        this.port=this.ports[0]; 
+        console.log(this.port)
+        this.seleccion=this.port.label;
+        this.nombremaquina=this.port.value;
+        this.ciService.setIdMaquina(this.seleccion);
+        console.log(this.seleccion)
+        // this.ciService.setIdMaquina(this.seleccion);
+ 
+        this.getproductomaquina(this.seleccion)
+  
+        console.log(result);
+        },(err)=>{
+          console.log(err);
+        }
+        );
+    }
+
+    getproductomaquina(idmaquina){
+      this.mvservice.buscaproductomaquina(idmaquina).then(result=>{
+        this.productomaquina= result;
+        console.log(this.productomaquina);
+        },(err)=>{
+          console.log(err);
+        }
+        );
+      }
+    
+    
+    
+    presentPopover(ev) {
+
+      let popover = this.popoverCtrl.create(BuscamaquinaproductoPage, {
+         productosmaquina: this.productomaquina,
+        // textEle: this.text.nativeElement
+      });
+  
+      popover.present({
+        ev: ev
+      });
+      popover.onDidDismiss(popoverData=>{
+        console.log(popoverData)
+
+      })
+  
     }
 
 
@@ -233,6 +278,8 @@ export class DetalleproductoPage {
       //   ]
       // });
       // prompt.present();
+
+
      
     }
   
