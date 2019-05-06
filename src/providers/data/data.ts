@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { SelectserviceProvider } from '../selectservice/selectservice';
+import { MvserviceProvider } from "../mvservice/mvservice";
 
 @Injectable()
 export class CIprovider {
@@ -9,16 +10,20 @@ export class CIprovider {
   idmaquina:any;
   idproducto:any;
   
-    constructor(public http: HttpClient,public selectprovider:SelectserviceProvider) {
+    constructor(public http: HttpClient,public selectprovider:SelectserviceProvider,public mvService:MvserviceProvider) {
       this.selectprovider.selectmaquinas().then(data => {
         let maquinas=data;
-        console.log("estoy en get menu y obtengo los datos del json:");
         console.log(maquinas); 
         console.log('Hello DataProvider Provider');
         this.tipousuario="default"
         this.idmaquina=maquinas[0].label;
+        this.mvService.buscaproductomaquina(this.idmaquina).then(data=>{
+          let productos=data;
+          this.idproducto=productos[0].label;
 
-        this.idproducto=11;//corregir usar la primera seleccion del riel de la maquina especificada
+        })
+
+        
 
       })
   }

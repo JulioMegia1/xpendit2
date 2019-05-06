@@ -76,6 +76,8 @@ getgrafica(idmaquina,seleccion){
 
 updatedata(){
   this.idmaquina=this.ciService.getIdmaquina(); //obtener el tipo de usuario
+  this.seleccionproducto=this.ciService.getIdProducto();
+
   
   this.dataSource=this.data
   this.getgrafica(this.idmaquina,this.seleccionproducto)

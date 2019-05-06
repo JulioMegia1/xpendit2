@@ -5,7 +5,7 @@ import { Injectable } from '@angular/core';
 @Injectable()
 export class AuthserviceProvider {
 
-  url ='http://dev.xpend-it.com:8888'
+  url ='http://dev.xpend-it.com:8893'
 
   constructor(public http: HttpClient) {
     console.log('Hello ServicioApiProvider Provider');

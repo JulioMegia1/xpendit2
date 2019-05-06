@@ -4,7 +4,7 @@ import { Injectable } from '@angular/core';
 @Injectable()
 export class MvserviceProvider {
 
-  url ='http://dev.xpend-it.com:8890'
+  url ='http://dev.xpend-it.com:8893'
 
   constructor(public http: HttpClient) {
     console.log('Hello MvserviceProvider Provider');
@@ -385,6 +385,56 @@ export class MvserviceProvider {
       });
     });
   }
+
+  catproductosInfogralproductos(){  //indfo del producto
+    return new Promise(resolve => {
+      let menu=this.url+'/catalogos/productos/getAll'
+      console.log(menu);
+      this.http.get(menu).subscribe(data => {
+        resolve(data);
+      }
+      ,err => {
+        console.log(err);
+      });
+    });
+  }
+
+  updexistencia (data,idmaquina)
+  {
+    var options = {
+       headers : { 'Content-Type': 'application/json' }
+    }
+    return new Promise ((resolve,reject)=>{
+      let menu=this.url+"/producto/update/existencia/"+idmaquina;
+      this.http.put(menu, JSON.stringify(data),options)
+      .subscribe(res=>{
+        resolve(res);
+      },(err)=>{
+        reject(err);
+      });
+    });
+ }
+
+ updproducto (data,idmaquina)
+  {
+    var options = {
+       headers : { 'Content-Type': 'application/json' }
+    }
+    return new Promise ((resolve,reject)=>{
+      let menu=this.url+"/producto/update/riel/"+idmaquina;
+      this.http.put(menu, JSON.stringify(data),options)
+      .subscribe(res=>{
+        resolve(res);
+      },(err)=>{
+        reject(err);
+      });
+    });
+ }
+
+
+
+  /*******catalogo productos */
+
 
 
   
