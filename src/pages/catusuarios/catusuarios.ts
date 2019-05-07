@@ -1,7 +1,13 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { AlertController } from 'ionic-angular';
+
+
 /*servicios*/
-import { DataServiceProvider } from "../../providers/data-service/data-service";
+import { AuthserviceProvider } from "../../providers/authservice/authservice";
+import { SelectserviceProvider } from "../../providers/selectservice/selectservice";
+import {  MvserviceProvider} from "../../providers/mvservice/mvservice";
+
 
 
 @IonicPage()
@@ -10,51 +16,144 @@ import { DataServiceProvider } from "../../providers/data-service/data-service";
   templateUrl: 'catusuarios.html',
 })
 export class CatusuariosPage {
+  valor="true" //habilita input
+  password:any;//
+  infousuario= {
+    "usuario": null,
+    "tipoUsuario": null,
+    "password": null,
+    "estadoUsuario": null,
+    "persona": {
+        "nombre": null,
+        "paterno": null,
+        "materno": null,
+        "email": null
+    },
+    "notificar": 0
+}
+mensaje:any;
 
-  usuarios:any; 
-  searchQuery: string = '';
-  items: any;
+selectEstadosUsuarios:any;
+selectTipoUsuarios:any;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams,public dataservice:DataServiceProvider) {
-    this.getusuarios();
-    this.initializeItems();
+
+ 
+
+  constructor(public alertCtrl: AlertController,public navCtrl: NavController, public navParams: NavParams,public authservice:AuthserviceProvider,public selectService:SelectserviceProvider,public mvService:MvserviceProvider ) {
+ 
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad CatusuariosPage');
-//    this.getusuarios();
+    this.infoselectEstadousuario();
+    this.infoselectTipousuario();
     
   }
 
-  getusuarios(){
-  console.log("constructor")
-  this.dataservice.getcatalogousuarios().then(data => {
-    this.usuarios=data;
-    console.log("estoy en get menu y obtengo los datos del json:");
-    console.log(this.usuarios); 
-     
+  nuevousuario(){
+    this.valor="false"
   }
-  );
-}
+
+ 
+
+  encriptacontrasena(){
+
+    let pwdencriptada={ password:this.password}; //contraseña en formato requerido para que el JSON lo encripte
+    this.authservice.encripta(pwdencriptada).then((result)=>{
+  
+      let respuesta:any; //Respuesta de la encriptacion
+      respuesta=result;
+      console.log(respuesta);
+      this.infousuario.password=respuesta.password;
+      this.guardarusuario();
+      
+  
+
+       },(err)=>{
+         console.log(err);
+       }
+      
+       );
 
 
-initializeItems() {
-  this.items = this.usuarios;
-}
-
-getItems(ev: any) {
-  // Reset items back to all of the items
-  this.initializeItems();
-
-  // set val to the value of the searchbar
-  const val = ev.target.value;
-
-  // if the value is an empty string don't filter the items
-  if (val && val.trim() != '') {
-    this.items = this.items.filter((item) => {
-      return (item.Nombre.toLowerCase().indexOf(val.toLowerCase()) > -1);
-    })
   }
-}
+
+  guardarusuario(){
+
+    if(this.infousuario.tipoUsuario==null || this.infousuario.tipoUsuario==""
+    || this.infousuario.estadoUsuario==null || this.infousuario.estadoUsuario==""
+    || this.infousuario.persona.nombre==null || this.infousuario.persona.nombre==""
+    || this.infousuario.persona.paterno==null || this.infousuario.persona.paterno==""
+    || this.infousuario.persona.materno==null || this.infousuario.persona.materno==""
+    || this.infousuario.persona.email==null || this.infousuario.persona.email==""
+    || this.infousuario.usuario==null || this.infousuario.usuario==""
+    || this.infousuario.password==null || this.infousuario.password==""
+    // || this.infousuario.movil==null || this.infousuario.movil==""
+    ){
+      this.mensaje="Usuario no creado\n favor de ingresar todos los datos"
+      this.showAlert();
+      console.log("no creado")
+    
+      }
+      else{
+        this.mvService.newUsuario(this.infousuario).then((result)=>{
+  
+          let respuesta:any; //Respuesta de la encriptacion
+          respuesta=result;
+          console.log(respuesta);
+          console.log(this.infousuario)
+          this.mensaje="Usuario creado exitosamente!"
+
+          this.showAlert();
+    
+           },(err)=>{
+             console.log(err);
+           }
+          
+           );
+
+      }
+    
+  }
+
+
+  infoselectEstadousuario(){
+    this.selectService.selectEstadoUsuario().then((result)=>{
+      this.selectEstadosUsuarios=result;
+      console.log(this.selectEstadosUsuarios);
+       },(err)=>{
+         console.log(err);
+       }
+      
+       );
+
+
+  }
+
+  infoselectTipousuario(){
+    this.selectService.selectTipoUsuarios().then((result)=>{
+      this.selectTipoUsuarios=result;
+      console.log(this.selectTipoUsuarios);
+       },(err)=>{
+         console.log(err);
+       }
+      
+       );
+
+
+  }
+
+  showAlert() {
+    const alert = this.alertCtrl.create({
+      title: this.mensaje,
+      buttons: ['OK']
+    });
+    alert.present();
+  }
+
+
+
+
+
 
 }

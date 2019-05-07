@@ -12,13 +12,13 @@
                         <ion-label> Descripción*</ion-label>     
                     </ion-col>
                     <ion-col col-auto>
-                        <ion-input placeholder="Descripción"> </ion-input>
+                        <ion-input placeholder="Descripción" [disabled]=valor [(ngModel)]="infoproducto.descripcion"> </ion-input>
                     </ion-col>
                     <ion-col col-auto>
                         <ion-label> Precio compra*</ion-label>
                     </ion-col>
                     <ion-col col-auto>
-                        <ion-input  placeholder="Precio compra*" ></ion-input>
+                        <ion-input  placeholder="Precio compra*" [disabled]=valor  [(ngModel)]="infoproducto.precioCompra"></ion-input>
                     </ion-col>
                 </ion-row>
 
@@ -28,7 +28,7 @@
                     </ion-col>
 
                     <ion-col col-auto>
-                        <ion-input  placeholder="Presentación" ></ion-input>
+                        <ion-input  placeholder="Presentación" [disabled]=valor  [(ngModel)]="infoproducto.presentacion"></ion-input>
                     </ion-col>
                     <ion-col col-auto>
 <div style="justify-content:center;display:flex">
@@ -44,7 +44,9 @@
         
             <div style="justify-content:center;display:flex">
                 <button ion-button round> Modificar </button>
-                <button ion-button round> Guardar  </button>
+                <button ion-button round (click)="guardarproducto()"> Guardar  </button>
+                <button ion-button round (click)="nuevoproducto()"> Nuevo </button>
+
                         
 
         </div>

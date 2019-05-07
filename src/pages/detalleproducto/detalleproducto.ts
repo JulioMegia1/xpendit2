@@ -19,13 +19,13 @@ import { HistoricodetalleproductoComponent } from "../../components/historicodet
 /**********************************SELECTABLE**************************/
 import { IonicSelectableComponent } from 'ionic-selectable';
 
-class Port {
+class Port { //clase para select maquinas
   public label: any;
   public value: any;
 }
 /**********************************SELECTABLE**************************/
 
-class Port2 {
+class Port2 {//clase para select productos
   public label:any;
   public value:any;
 }
@@ -37,29 +37,27 @@ class Port2 {
 })
 export class DetalleproductoPage {
 
-  @ViewChild("ventaHora") ventahora:VentaxhoraproductomaquinaComponent
+  @ViewChild("ventaHora") ventahora:VentaxhoraproductomaquinaComponent 
   @ViewChild("ventaHoraAcum") ventahoraacum:VentaxdiaproductomaquinaComponent
   @ViewChild("Historico") historico:HistoricodetalleproductoComponent
                         
   /*variables*/
-  maquinas:any;
-  idmaquina:any;  
-  nombremaquina:any;
+  maquinas:any; //obtiene la info de todas las maquinas
+  idmaquina:any;  //id de la maquina seleccionada
+  nombremaquina:any; //nombre de la maquina seleccionada
   productomaquina:any //lista de productos popover
-  // idproducto:any;
-  infoproducto:any;
-  riel:any
+  riel:any //riel o seleccion
 
 
-  // seleccion:any;
+  infoproducto:any; //info gral del producto seleccionado
+  nombreproducto:any; //nombre del producto seleccionado
+  precio:any; //precio " " "
+  faltante:any; //faltante " " " "
+  existencia:any; //existencia " " " "
+  maximo:any;//maximo del riel
+  listaproductos:any; //lista para select productos
 
- 
-  nombreproducto:any;
-  precio:any;
-  faltante:any;
-  existencia:any;
-  maximo:any;
-  listaproductos:any; //lista productos para select
+  mensaje:any;
 
    /*********SELECT SEARCHEABLE para cambiar de maquinas ***********/
    ports: Port[];  ///muestra las opciones del select
@@ -88,21 +86,19 @@ export class DetalleproductoPage {
   ngOnInit() {
   }
 
-
   getmaquinasid(){
     this.selectprovider.selectmaquinas().then(result=>{
       this.maquinas=result; //obtiene las maquinas
       console.log(this.maquinas);
-      this.ports=this.maquinas; //
+      this.ports=this.maquinas; //asigno las maquinas al select searcheable
       console.log(this.ports)
-      this.port=this.ports[0]; 
+      this.port=this.ports[0]; //eligo la primera maquina como la default
       console.log(this.port)
-      this.idmaquina=this.port.label;
+      this.idmaquina=this.port.label; 
       this.nombremaquina=this.port.value;
-      this.ciService.setIdMaquina(this.idmaquina);
+      this.ciService.setIdMaquina(this.idmaquina); //asigno el id de la maquina al servicio para ser usado en las graficas
       console.log(this.idmaquina)
-      this.riel=this.ciService.getIdProducto();
-
+      this.riel=this.ciService.getIdProducto(); //
       this.getinfoproducto(this.idmaquina,this.riel);
       this.getproductomaquina(this.idmaquina)
       console.log(result);
@@ -112,7 +108,7 @@ export class DetalleproductoPage {
       );
   }
 
-  getproductomaquina(idmaquina){
+  getproductomaquina(idmaquina){//info para popover
     this.mvservice.buscaproductomaquina(idmaquina).then(result=>{
       this.productomaquina= result;
       console.log(this.productomaquina);
@@ -122,7 +118,7 @@ export class DetalleproductoPage {
       );
     }
 
-    getinfoproducto(idmaquina,idproducto){
+    getinfoproducto(idmaquina,idproducto){ 
       this.mvservice.infoproducto(idmaquina,idproducto).then(result=>{
         this.infoproducto= result;
         console.log(this.infoproducto);
@@ -148,7 +144,7 @@ export class DetalleproductoPage {
         );
       }
 
-    getselectproductos(){
+    getselectproductos(){ //info de productos
       this.selectprovider.selectproductos().then(result=>{
         this.listaproductos=result; //obtiene los productos
         console.log(this.listaproductos);
@@ -170,7 +166,7 @@ export class DetalleproductoPage {
         );
     }
 
-    /**********************************SELECTABLE**************************/
+    /**********************************SELECTABLE de maquinas**************************/
   portChange(event: {
     component: IonicSelectableComponent,
     value: any 
@@ -188,7 +184,7 @@ export class DetalleproductoPage {
     this.historico.updatedata();
     
   }
-/**********************************SELECTABLE**************************/
+/**********************************SELECTABLE de productos**************************/
 
 portChange2(event: {
   component: IonicSelectableComponent,
@@ -253,17 +249,28 @@ portChange2(event: {
           {
             text: 'Actualizar',
             handler: data => {
-              if(isNaN(data.existencia)==false)
+              if(isNaN(data.existencia)==true || data.existencia==null || data.existencia=="")
               {
-                console.log("si es un numero");
+                // prompt.setMessage("Favor de ingresar un número válido");
+                // prompt.present();
+                console.log("existencia no actualizada")
+                this.mensaje="Existencia no Actualizada"
+                this.showAlert();
+                console.log(this.existencia);
+                
+                
+              }
+              else{  
+                console.log("si es un numero valido");
                 console.log(data)
                 console.log(data.existencia);
                 this.existencia=data.existencia;
                 console.log(this.existencia);
+                this.mensaje="Existencia Actualizada correctamente"
+                this.showAlert();
                 this.putexistencia();
-              }
-              else{  
-                prompt.setMessage("Favor de ingresar un número válido");
+
+               
               }
             }
           }
@@ -275,24 +282,39 @@ portChange2(event: {
 
     putexistencia(){
       let datos={label:this.riel,value:this.existencia} 
+  
       this.mvservice.updexistencia(datos,this.idmaquina).then((result)=>{
         console.log(result);
+        this.getproductomaquina(this.idmaquina)
+        console.log("correctamente")
+
+
+         },(err)=>{
+           console.log(err);
+         }
+         );
+        
+    }
+
+    putnuevoproducto(){
+      let datos={label:this.riel,value:this.port2.label} //
+      console.log(datos)
+      this.mvservice.updproducto(datos,this.idmaquina).then((result)=>{
+        console.log(datos)
+        console.log(result);
+        this.getproductomaquina(this.idmaquina)
+
          },(err)=>{
            console.log(err);
          }
          );
     }
 
-    putnuevoproducto(){
-      let datos={label:this.riel,value:this.port2.label} 
-      console.log(datos)
-      this.mvservice.updproducto(datos,this.idmaquina).then((result)=>{
-        console.log(datos)
-        console.log(result);
-        
-         },(err)=>{
-           console.log(err);
-         }
-         );
+    showAlert() {
+      const alert = this.alertCtrl.create({
+        title: this.mensaje,
+        buttons: ['OK']
+      });
+      alert.present();
     }
 }

@@ -431,9 +431,58 @@ export class MvserviceProvider {
     });
  }
 
+ /*catalogo maquinas*/
+ newMaquina (data){
+  var options = {
+     headers : { 'Content-Type': 'application/json' }
+  }
+  return new Promise ((resolve,reject)=>{
+    this.http.post(this.url+'/catalogos/mvs/new/', JSON.stringify(data),options)
+    .subscribe(res=>{
+      resolve(res);
+    },(err)=>{
+      reject(err);
+    });
+  });
+}
+
+
 
 
   /*******catalogo productos */
+  newProducto (data){
+    var options = {
+       headers : { 'Content-Type': 'application/json' }
+    }
+    return new Promise ((resolve,reject)=>{
+      this.http.post(this.url+'/catalogos/productos/new/', JSON.stringify(data),options)
+      .subscribe(res=>{
+        resolve(res);
+      },(err)=>{
+        reject(err);
+      });
+    });
+ }
+
+
+
+
+  /*catalogo usuarios*/
+  newUsuario (data){
+    var options = {
+       headers : { 'Content-Type': 'application/json' }
+    }
+    return new Promise ((resolve,reject)=>{
+      this.http.post(this.url+'/catalogos/usuarios/new/', JSON.stringify(data),options)
+      .subscribe(res=>{
+        resolve(res);
+      },(err)=>{
+        reject(err);
+      });
+    });
+ }
+
+
 
 
 

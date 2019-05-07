@@ -3,4 +3,62 @@
 
 <ion-content style="margin-top:75px">
 
+        <cardexpandible title="Generales de Maquina">
+                <!-- <ion-scroll scrollY="true"  direction="y"> -->
+              <ion-grid>
+               
+                  <ion-row>
+                      <ion-col col-auto col-sm-2>
+                          <ion-label> Descripcion*</ion-label>
+                      </ion-col>
+                      <ion-col col-auto col-sm-4>
+                          <ion-input  placeholder="Descripcion*" [disabled]=valor [(ngModel)]="infomaquina.descripcion"></ion-input>
+                      </ion-col>
+                      <ion-col col-auto col-sm-2>
+                          <ion-label> Tipo*</ion-label>
+                      </ion-col>
+                      <ion-col col-auto col-sm-4>
+                            <ion-list>
+                                    <ion-item>    
+                                        <ion-select [(ngModel)]="infomaquina.tipo"  [disabled]=valor okText="Aceptar" cancelText="Cancelar" interface="popover">
+                                          <ion-option *ngFor="let tipo of selectTipoMaquina" value="{{tipo.value}}"> {{tipo.label}}</ion-option>
+                                       
+                                        </ion-select>
+                                    </ion-item>
+                                    </ion-list>                      
+                                </ion-col>
+                  </ion-row>
+      
+                  <ion-row>
+                      <ion-col col-auto col-sm-2>
+                          <ion-label> Modelo*</ion-label>
+                      </ion-col>
+                      <ion-col col-auto col-sm-4>
+                            <ion-list>
+                                    <ion-item>    
+                                        <ion-select [(ngModel)]="infomaquina.modelo"  [disabled]=valor okText="Aceptar" cancelText="Cancelar" interface="popover">
+                                          <ion-option *ngFor="let modelo of selectModeloMaquina" value="{{modelo.value}}"> {{modelo.label}}</ion-option>
+                                       
+                                        </ion-select>
+                                    </ion-item>
+                                    </ion-list>                        </ion-col>
+                      <ion-col col-auto col-sm-2>
+                          <ion-label> Direción*</ion-label>
+                      </ion-col>
+                      <ion-col col-auto col-sm-4>
+                          <ion-input  placeholder="Dirección*" [disabled]=valor [(ngModel)]="infomaquina.direccion"></ion-input>
+                      </ion-col>
+                  </ion-row>
+      
+                 
+      
+               
+              </ion-grid>
+              <div style="justify-content:center;display:flex">
+                      <button ion-button round [disabled]=valor> Modificar </button>
+                      <button ion-button round (click)="guardarmaquina()"> Guardar  </button>
+                      <button ion-button round (click)="nuevamaquina()"> Nuevo </button>
+              </div>
+          </cardexpandible>
+
 </ion-content>

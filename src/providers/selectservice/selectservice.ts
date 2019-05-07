@@ -61,7 +61,65 @@ export class SelectserviceProvider {
   }
 
 
-  select 
+  selectTipoUsuarios() { //
+    console.log("--------entre al servicio del menu-----------");
+    return new Promise(resolve => {
+      let select=this.url+'select/tipo/usuario'
+      console.log(select);
+      this.http.get(select).subscribe(data => {
+        resolve(data);
+      }
+      ,err => {
+        console.log(err);
+      });
+    });
+  
+  }
+
+  selectEstadoUsuario() { //
+    console.log("--------entre al servicio del menu-----------");
+    return new Promise(resolve => {
+      let select=this.url+'select/estado/'
+      console.log(select);
+      this.http.get(select).subscribe(data => {
+        resolve(data);
+      }
+      ,err => {
+        console.log(err);
+      });
+    });
+  
+  }
+  selectTipoMaquina() { //
+    console.log("--------entre al servicio del menu-----------");
+    return new Promise(resolve => {
+      let select=this.url+'select/tipo/maquina'
+      console.log(select);
+      this.http.get(select).subscribe(data => {
+        resolve(data);
+      }
+      ,err => {
+        console.log(err);
+      });
+    });
+  
+  }
+
+  selectModeloMaquina() { //
+    console.log("--------entre al servicio del menu-----------");
+    return new Promise(resolve => {
+      let select=this.url+'select/modelo'
+      console.log(select);
+      this.http.get(select).subscribe(data => {
+        resolve(data);
+      }
+      ,err => {
+        console.log(err);
+      });
+    });
+  
+  }
+ 
 
 
 

@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { AlertController } from 'ionic-angular';
+
 
 /*servicios*/
 import { MvserviceProvider } from "../../providers/mvservice/mvservice";
@@ -15,23 +17,34 @@ import { File } from '@ionic-native/file';
   templateUrl: 'catproductos.html',
 })
 export class CatproductosPage {
-  infogralproductos:any;
-  descripcion:any;
-  preciocompra:any;
-  presentacion:any;
+
+  valor="true"//habilita inputs
+  mensaje:any;//mensaje del alert
+
+  infoproducto={
+    
+    "idProducto": 14,
+    "descripcion": null,
+    "precioCompra": null,
+    "imagen": "default.jpg",
+    "presentacion": null
+}
+
 
 
   myphoto:any;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams,private camera: Camera, private transfer: FileTransfer, private file: File,
-    public mvservice:MvserviceProvider) {
+  constructor(public navCtrl: NavController, public navParams: NavParams,private camera: Camera, private transfer: FileTransfer, private file: File,public alertCtrl: AlertController,
+    public mvService:MvserviceProvider) {
 
-      this.getinfogralproductos();
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad CatproductosPage');
   }
+
+
+  /*************foto*/
   takePhoto(){
     const options: CameraOptions = {
       quality: 70,
@@ -65,16 +78,50 @@ export class CatproductosPage {
       // Handle error
     });
   }
+    /***********foto*/
 
-  getinfogralproductos(){
-    this.mvservice.catproductosInfogralproductos().then(result=>{
-      this.infogralproductos= result;
-      console.log(this.infogralproductos);
-      },(err)=>{
-        console.log(err);
-      }
-      );
+    nuevoproducto(){
+      this.valor="false"
     }
+
+    guardarproducto(){
+      if(this.infoproducto.descripcion==null || this.infoproducto.descripcion==""
+      || this.infoproducto.precioCompra==null || this.infoproducto.precioCompra==""
+      || this.infoproducto.presentacion==null || this.infoproducto.presentacion==""
+      ){
+          console.log("no creado")
+          this.mensaje="Producto no creado\n favor de ingresar los datos correctamente"
+          this.showAlert();
+
+
+        }
+        else{
+          this.mvService.newProducto(this.infoproducto).then((result)=>{
+  
+            let respuesta:any; //Respuesta de la encriptacion
+            respuesta=result;
+            console.log(respuesta);
+            console.log(this.infoproducto)
+            this.mensaje="Producto creado exitosamente!"
+            this.showAlert();
+      
+             },(err)=>{
+               console.log(err);
+             }
+            
+             );
+        }
+    }
+
+    showAlert() {
+      const alert = this.alertCtrl.create({
+        title: this.mensaje,
+        buttons: ['OK']
+      });
+      alert.present();
+    }
+  
+  
 
 
 
