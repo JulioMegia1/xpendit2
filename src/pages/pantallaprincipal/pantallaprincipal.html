@@ -25,18 +25,18 @@
    <!-- mapa leaflet -->
 
   <!-- graficas chartjs -->
-  <ion-card style="margin-top:400px" >
+  <ion-card style="margin-top:400px"[hidden]="oculta == false" >
     <ventaxhora></ventaxhora>
    </ion-card>
 
-<ion-card >
+<ion-card  [hidden]="oculta == false">
   <ventaxdia></ventaxdia>
 </ion-card>
 
-         <button ion-button (click)=ira()> </button>
+         <button ion-button (click)=ira() [hidden]="oculta == false"> </button>
  
 
-<ion-card style="text-align:center;display:inline-block" >
+<ion-card style="text-align:center;display:inline-block" [hidden]="oculta == false" >
   <graficapie> </graficapie>
 </ion-card>
 
@@ -44,7 +44,7 @@
   <!-- <ventaglobalhistorica></ventaglobalhistorica> -->
 </ion-card>
 
-<ion-card style="margin-bottom:70px">
+<ion-card style="margin-bottom:70px" [hidden]="oculta == false">
   <historico ></historico>
 </ion-card>
 

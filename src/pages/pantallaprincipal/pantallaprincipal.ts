@@ -22,34 +22,34 @@ import L from "leaflet";
 export class PantallaprincipalPage {
 
   //Variables fijas
-  usuario:any;//falta paserle el usuario real IMPORTANTE
+  usuario:any;//
 
    /*mapa leaf let*/
      maquinas :any;
      center: L.PointTuple;
      map:L.map;
  /*mapa leaf let*/
+
+oculta:boolean;
   
   constructor(public navCtrl: NavController, public navParams: NavParams, public mvservice: MvserviceProvider,public ciService:CIprovider) {
     this.usuario=this.ciService.getTipoUsuario();
   
-    
-    // this.funcionglobalhistorica();
-    //this.fetchData();
-    /*fusionchart*/
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad MapPage');
-    //20.631365, -100.292790
+
     this.center = [20.634012, -100.334345];
     console.log(this.center)
     this.leafletMap();
-    //this.getmaquinas(); 
+
     this.mapa(this.usuario);
-  /**graficas chartjs */
+
 }
 ionViewCanEnter(){
+  this.oculta=this.valida();
+
   
 }
 
@@ -115,6 +115,14 @@ mapa(usuario){
        console.log(err);
      }
      );
+    }
+
+
+    valida(){
+      if(this.usuario=="oper")
+      return false;
+
+
     }
 
 }
