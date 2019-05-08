@@ -20,7 +20,7 @@
                       <ion-col col-auto col-sm-4>
                             <ion-list>
                                     <ion-item>    
-                                        <ion-select [(ngModel)]="infomaquina.tipo"  [disabled]=valor okText="Aceptar" cancelText="Cancelar" interface="popover">
+                                        <ion-select [(ngModel)]="infomaquina.tipo"  [disabled]=valor okText="Aceptar" cancelText="Cancelar" interface="popover" placeholder="Selecciona">
                                           <ion-option *ngFor="let tipo of selectTipoMaquina" value="{{tipo.value}}"> {{tipo.label}}</ion-option>
                                        
                                         </ion-select>
@@ -36,7 +36,7 @@
                       <ion-col col-auto col-sm-4>
                             <ion-list>
                                     <ion-item>    
-                                        <ion-select [(ngModel)]="infomaquina.modelo"  [disabled]=valor okText="Aceptar" cancelText="Cancelar" interface="popover">
+                                        <ion-select [(ngModel)]="infomaquina.modelo"  [disabled]=valor okText="Aceptar" cancelText="Cancelar" interface="popover" placeholder="Selecciona">
                                           <ion-option *ngFor="let modelo of selectModeloMaquina" value="{{modelo.value}}"> {{modelo.label}}</ion-option>
                                        
                                         </ion-select>

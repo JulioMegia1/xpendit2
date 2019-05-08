@@ -75,6 +75,12 @@ export class VentaglobalhistoricaComponent {
   
     this.mvservice.graficahistorica(usuario).then(result=>{
       this.grafica= result;
+      if(this.grafica.puntos==null || this.grafica.puntos=="" || this.grafica.puntos==[])
+      {  
+        console.log("no hago nada")
+  
+      }
+      else{
       let label=this.grafica.puntos;
   
  
@@ -90,7 +96,7 @@ export class VentaglobalhistoricaComponent {
     console.log(puntos);
     this.data.dataset[0].data=puntos;
     
-    }
+    }}
     )
 
     

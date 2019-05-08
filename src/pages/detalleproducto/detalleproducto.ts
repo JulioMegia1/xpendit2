@@ -249,7 +249,7 @@ portChange2(event: {
           {
             text: 'Actualizar',
             handler: data => {
-              if(isNaN(data.existencia)==true || data.existencia==null || data.existencia=="")
+              if(isNaN(data.existencia)==true || data.existencia==null || data.existencia=="" || data.existencia>this.maximo)
               {
                 // prompt.setMessage("Favor de ingresar un número válido");
                 // prompt.present();

@@ -69,9 +69,18 @@ export class GraficapieComponent {
   getgrafica(usuario){
     this.mvservice.graficapie(usuario).then(result=>{
     this.grafica= result;
-    this.data.data=this.grafica.puntos;
+    if(this.grafica.puntos==null || this.grafica.puntos=="" || this.grafica.puntos==[])
+    {  
+      console.log("no hago nada")
+
+    }
+    else{
+      this.data.data=this.grafica.puntos;
     this.data.chart.caption=this.grafica.titulo;
     console.log(result);
+
+    }
+    
   },(err)=>{
     console.log(err);
   }

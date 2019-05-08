@@ -80,6 +80,13 @@ export class HistoricoComponent {
       console.log(this.esquema); 
       this.mvservice.graficahistorica(this.usuario).then(result => {
         this.grafica= result;
+        if(this.grafica.puntos==null || this.grafica.puntos=="" || this.grafica.puntos==[])
+        {  
+          console.log("no hago nada")
+    
+        }
+        else{
+        
     let a=this.grafica.puntos
 
      let b=[];
@@ -98,6 +105,7 @@ export class HistoricoComponent {
       // DataTable into its data property.
       this.dataSource.data = fusionTable;
     });
+  }
   }
     );
   }

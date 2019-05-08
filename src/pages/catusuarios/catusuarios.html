@@ -12,7 +12,7 @@
                 <ion-col col-auto col-sm-4>
                  <ion-list>
                      <ion-item>    
-                         <ion-select [(ngModel)]="infousuario.tipoUsuario"  [disabled]=valor okText="Aceptar" cancelText="Cancelar" interface="popover">
+                         <ion-select [(ngModel)]="infousuario.tipoUsuario"  [disabled]=valor okText="Aceptar" cancelText="Cancelar" interface="popover" placeholder="Selecciona">
                            <ion-option *ngFor="let tipo of selectTipoUsuarios" value="{{tipo.value}}"> {{tipo.label}}</ion-option>
                          </ion-select>
                      </ion-item>
@@ -25,7 +25,7 @@
                 <ion-col col-auto col-sm-4>
 <ion-list>
 <ion-item>    
-    <ion-select [(ngModel)]="infousuario.estadoUsuario"  [disabled]=valor okText="Aceptar" cancelText="Cancelar" interface="popover">
+    <ion-select [(ngModel)]="infousuario.estadoUsuario"  [disabled]=valor okText="Aceptar" cancelText="Cancelar" interface="popover" placeholder="Selecciona">
       <ion-option *ngFor="let estado of selectEstadosUsuarios" value="{{estado.value}}"> {{estado.label}}</ion-option>
    
     </ion-select>
@@ -39,13 +39,13 @@
                     <ion-label> Nombre*</ion-label>
                 </ion-col>
                 <ion-col col-auto col-sm-4>
-                    <ion-input  placeholder="Nombre*" [disabled]=valor [(ngModel)]="infousuario.persona.nombre"></ion-input>
+                    <ion-input  placeholder="Nombre*" [disabled]=valor [(ngModel)]="infousuario.persona.nombre" ></ion-input>
                 </ion-col>
                 <ion-col col-auto col-sm-2>
                     <ion-label> Paterno*</ion-label>
                 </ion-col>
                 <ion-col col-auto col-sm-4>
-                    <ion-input  placeholder="Paterno*" [disabled]=valor [(ngModel)]="infousuario.persona.paterno"></ion-input>
+                    <ion-input  placeholder="Paterno*" [disabled]=valor [(ngModel)]="infousuario.persona.paterno" ></ion-input>
                 </ion-col>
             </ion-row>
 
@@ -54,13 +54,13 @@
                     <ion-label> Materno*</ion-label>
                 </ion-col>
                 <ion-col col-auto col-sm-4>
-                    <ion-input  placeholder="Materno*" [disabled]=valor [(ngModel)]="infousuario.persona.materno"></ion-input>
+                    <ion-input  placeholder="Materno*" [disabled]=valor [(ngModel)]="infousuario.persona.materno" ></ion-input>
                 </ion-col>
                 <ion-col col-auto col-sm-2>
                     <ion-label> Correo*</ion-label>
                 </ion-col>
                 <ion-col col-auto col-sm-4>
-                    <ion-input  placeholder="Correo*" [disabled]=valor [(ngModel)]="infousuario.persona.email"></ion-input>
+                    <ion-input  placeholder="Correo*" [disabled]=valor [(ngModel)]="infousuario.persona.email" type="email" ></ion-input>
                 </ion-col>
             </ion-row>
 
@@ -69,13 +69,13 @@
                     <ion-label> Usuario*</ion-label>
                 </ion-col>
                 <ion-col col-auto col-sm-4>
-                    <ion-input  placeholder="Usuario*" [disabled]=valor [(ngModel)]="infousuario.usuario"></ion-input>
+                    <ion-input  placeholder="Usuario*" [disabled]=valor [(ngModel)]="infousuario.usuario" ></ion-input>
                 </ion-col>
                 <ion-col col-auto col-sm-2>
                     <ion-label> Password*</ion-label>
                 </ion-col>
                 <ion-col col-auto col-sm-4>
-                    <ion-input type="password" placeholder="Password" [disabled]=valor [(ngModel)]="password"></ion-input>
+                    <ion-input type="password" placeholder="Password" [disabled]=valor [(ngModel)]="password" ></ion-input>
                 </ion-col>
             </ion-row>
 
@@ -84,7 +84,7 @@
                     <ion-label> Móvil</ion-label>
                 </ion-col>
                 <ion-col col-4>
-                    <ion-input  placeholder="Móvil" [disabled]=valor ></ion-input>
+                    <ion-input  placeholder="Móvil" [disabled]=valor  type="number" maxlength="15"></ion-input>
                 </ion-col>
                 <ion-col col-2>
             
