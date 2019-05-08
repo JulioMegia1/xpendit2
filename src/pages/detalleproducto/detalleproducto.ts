@@ -302,6 +302,8 @@ portChange2(event: {
       this.mvservice.updproducto(datos,this.idmaquina).then((result)=>{
         console.log(datos)
         console.log(result);
+        this.mensaje="El producto ha sido actualizado"
+        this.showAlert();
         this.getproductomaquina(this.idmaquina)
 
          },(err)=>{

@@ -49,6 +49,35 @@
                           <ion-input  placeholder="Dirección*" [disabled]=valor [(ngModel)]="infomaquina.direccion"></ion-input>
                       </ion-col>
                   </ion-row>
+
+
+                  <ion-row>
+                        <ion-col col-auto col-sm-2>
+                            <ion-label> Asignados*</ion-label>
+                        </ion-col>
+                        <ion-col col-auto col-sm-4>
+                                <ion-list>
+                                        <ion-item>    
+                                            <ion-select [(ngModel)]="asignados"  [disabled]=valor okText="Aceptar" cancelText="Cancelar"  placeholder="Selecciona" multiple="true">
+                                              <ion-option *ngFor="let usuario of infoasignados" value="{{usuario.value}}"> {{usuario.label}}</ion-option>
+                                           
+                                            </ion-select>
+                                        </ion-item>
+                                        </ion-list>                      </ion-col>
+                        <ion-col col-auto col-sm-2>
+                            <ion-label> No asignados*</ion-label>
+                        </ion-col>
+                        <ion-col col-auto col-sm-4>
+                              <ion-list>
+                                      <ion-item>    
+                                          <ion-select [(ngModel)]="noasignados"  [disabled]=valor okText="Aceptar" cancelText="Cancelar"  placeholder="Selecciona" multiple="true">
+                                            <ion-option *ngFor="let noasignado of infonoasignados" value="{{noasignado.value}}"> {{noasignado.label}}</ion-option>
+                                         
+                                          </ion-select>
+                                      </ion-item>
+                                      </ion-list>                      
+                                  </ion-col>
+                    </ion-row>
       
                  
       
@@ -58,7 +87,14 @@
                       <button ion-button round [disabled]=valor> Modificar </button>
                       <button ion-button round (click)="guardarmaquina()"> Guardar  </button>
                       <button ion-button round (click)="nuevamaquina()"> Nuevo </button>
+
+                      <button ion-button round (click)="asigna()"> <--- </button>
+
+
+
               </div>
           </cardexpandible>
+
+         
 
 </ion-content>

@@ -119,6 +119,37 @@ export class SelectserviceProvider {
     });
   
   }
+
+
+  selectasignados(idmaquina) { //
+    console.log("--------entre al servicio del menu-----------");
+    return new Promise(resolve => {
+      let select=this.url+'select/asignados/'+idmaquina
+      console.log(select);
+      this.http.get(select).subscribe(data => {
+        resolve(data);
+      }
+      ,err => {
+        console.log(err);
+      });
+    });
+  
+  }
+
+  selectNoasignados(idmaquina) { //
+    console.log("--------entre al servicio del menu-----------");
+    return new Promise(resolve => {
+      let select=this.url+'select/asignados/no/'+idmaquina
+      console.log(select);
+      this.http.get(select).subscribe(data => {
+        resolve(data);
+      }
+      ,err => {
+        console.log(err);
+      });
+    });
+  
+  }
  
 
 

@@ -6,6 +6,7 @@ import { AlertController } from 'ionic-angular';
 /*servicios*/
 import { SelectserviceProvider } from "../../providers/selectservice/selectservice";
 import { MvserviceProvider } from "../../providers/mvservice/mvservice";
+import { AuthserviceProvider } from "../../providers/authservice/authservice";
 
 
 @IonicPage()
@@ -56,16 +57,26 @@ export class CatmaquinasPage {
 mensaje:any;
 selectTipoMaquina:any
 selectModeloMaquina:any;
+infoasignados:any
+infonoasignados:any;
+
+listausuarios:any;
+asignados:any;
+noasignados:any;
 
   constructor(public navCtrl: NavController, public navParams: NavParams,public alertCtrl: AlertController,
-    public selectService:SelectserviceProvider, public mvService:MvserviceProvider,) {
+    public selectService:SelectserviceProvider, public mvService:MvserviceProvider,public authService:AuthserviceProvider) {
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad CatmaquinasPage');
-    this.infoselecTipoMaquina();
-    this.infoselecModeloMaquina()
+    this.getselecTipoMaquina();
+    this.getselecModeloMaquina()
+    this.getselectasignados();    
+    this.getselectNoasignados();
+    this.getusuarios();
   }
+
 
 
 
@@ -102,7 +113,7 @@ selectModeloMaquina:any;
   }
 
 
-  infoselecTipoMaquina(){
+getselecTipoMaquina(){
     this.selectService.selectTipoMaquina().then((result)=>{
       this.selectTipoMaquina=result;
       console.log(this.selectTipoMaquina);
@@ -116,7 +127,7 @@ selectModeloMaquina:any;
   }
 
 
-  infoselecModeloMaquina(){
+  getselecModeloMaquina(){
     this.selectService.selectModeloMaquina().then((result)=>{
       this.selectModeloMaquina=result;
       console.log(this.selectModeloMaquina);
@@ -136,6 +147,56 @@ selectModeloMaquina:any;
     });
     alert.present();
   }
+
+
+getselectasignados(){
+    this.selectService.selectasignados(this.infomaquina.idMaquina).then((result)=>{
+      this.infoasignados=result;
+      console.log(this.infoasignados);
+       },(err)=>{
+         console.log(err);
+       }
+       );
+  }
+
+  getselectNoasignados(){
+    this.selectService.selectNoasignados(this.infomaquina.idMaquina).then((result)=>{
+      this.infonoasignados=result;
+      console.log(this.infonoasignados);
+       },(err)=>{
+         console.log(err);
+       }
+       );
+  }
+
+
+asigna(){
+  console.log(this.noasignados)
+  let agregar=[]
+  for(let i=0; i<this.noasignados.length;i=i+1)
+  {
+    for(let j=0;j<this.listausuarios.length;j=j+1){
+      if(this.noasignados[i]==this.listausuarios[j].usuario){
+        agregar.push(this.listausuarios[j]);
+        console.log("lo encontre")
+        
+      }
+    }
+  }
+  console.log(agregar)
+ 
+}
+
+getusuarios(){
+  this.authService.getUsers().then((result)=>{
+    this.listausuarios=result;
+    console.log(this.listausuarios);
+     },(err)=>{
+       console.log(err);
+     }
+     );
+}
+
 
   
 

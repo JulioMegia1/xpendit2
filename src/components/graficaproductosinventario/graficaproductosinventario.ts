@@ -78,6 +78,15 @@ export class GraficaproductosinventarioComponent implements OnInit{
     // this.data.data=this.grafica.puntos;
     // this.data.chart.caption=this.grafica.titulo;
     console.log(result);
+    if(this.grafica.puntos==null || this.grafica.puntos=="" || this.grafica.puntos==[])
+    {  
+      console.log("no hago nada")
+
+    }
+    else{
+    
+
+
     let puntos=this.grafica.puntos;
     console.log(puntos);
     console.log(this.listarieles(puntos));
@@ -99,6 +108,7 @@ export class GraficaproductosinventarioComponent implements OnInit{
   
     this.data.dataset[0].data=a;
     this.data.dataset[1].data=a;
+}
   
     // this.data.dataset[0].data=this.listavalorrieles(puntos);
     // this.data.dataset[1].data=this.listavalorrieles(puntos);

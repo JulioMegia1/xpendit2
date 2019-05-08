@@ -46,7 +46,6 @@ import {  LuzComponent} from "../components/luz/luz";
 import { NavbarComponent } from "../components/navbar/navbar";
 import { CardexpandibleComponent } from "../components/cardexpandible/cardexpandible";
 import {GraficapieComponent  } from "../components/graficapie/graficapie";
-import { GraficalineasComponent } from "../components/graficalineas/graficalineas";///BORRAR????
 import { VentaxhoraComponent } from "../components/ventaxhora/ventaxhora";
 import { VentaxdiaComponent } from "../components/ventaxdia/ventaxdia";
 import { VentaxhoramaquinaComponent } from "../components/ventaxhoramaquina/ventaxhoramaquina";
@@ -120,7 +119,6 @@ FusionChartsModule.fcRoot(FusionCharts, Charts, TimeSeries,Ocean,Gammel,Zune,Wid
     NavbarComponent,
     CardexpandibleComponent,
     GraficapieComponent,
-    GraficalineasComponent,
     VentaxhoraComponent,
     VentaxdiaComponent,
     VentaxhoramaquinaComponent,

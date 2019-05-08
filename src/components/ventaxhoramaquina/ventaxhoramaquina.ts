@@ -57,10 +57,19 @@ export class VentaxhoramaquinaComponent implements OnInit{
 getgrafica(idmaquina){
   this.mvservice.ventahoramaquina(idmaquina).then(result=>{
   this.grafica= result;
+  if(this.grafica.puntos==null || this.grafica.puntos=="" || this.grafica.puntos==[])
+    {  
+      console.log("no hago nada VENTA XHORAMÁQUINA")
+
+    }
+    else{
+
   this.data.data=this.grafica.puntos;
   
   this.data.chart.caption="Venta Global ";//this.data.chart.caption=this.grafica.titulo;corregir nombre SERVICIO
   console.log(result);
+
+  }
 },(err)=>{
   console.log(err);
 }

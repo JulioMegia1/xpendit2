@@ -54,9 +54,17 @@ export class VentaxdiamaquinaComponent implements OnInit{
 getgrafica(idmaquina){
   this.mvservice.ventahoraacumuladamaquina(idmaquina).then(result=>{
   this.grafica= result;
+  if(this.grafica.puntos==null || this.grafica.puntos=="" || this.grafica.puntos==[])
+  {  
+    console.log("no hago nada VENTA X diaMÁQUINA")
+
+  }
+  else{
+  
   this.data.data=this.grafica.puntos;
   this.data.chart.caption=this.grafica.titulo;
   console.log(result);
+  }
 },(err)=>{
   console.log(err);
 }

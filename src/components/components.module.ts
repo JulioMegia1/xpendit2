@@ -5,7 +5,6 @@ import { IonicModule } from "ionic-angular";
 import { NavbarComponent } from './navbar/navbar';
 import { CardexpandibleComponent } from './cardexpandible/cardexpandible';
 import { GraficapieComponent } from './graficapie/graficapie';
-import { GraficalineasComponent } from './graficalineas/graficalineas';
 import { VentaxhoraComponent } from './ventaxhora/ventaxhora';
 import { VentaxdiaComponent } from './ventaxdia/ventaxdia';
 import { VentaxhoramaquinaComponent } from './ventaxhoramaquina/ventaxhoramaquina';
@@ -27,7 +26,6 @@ import { HistoricodetalleproductoComponent } from './historicodetalleproducto/hi
     NavbarComponent,
     CardexpandibleComponent,
     GraficapieComponent,
-    GraficalineasComponent,
     VentaxhoraComponent,
     VentaxdiaComponent,
     VentaxdiaComponent,
@@ -51,7 +49,6 @@ import { HistoricodetalleproductoComponent } from './historicodetalleproducto/hi
     NavbarComponent,
     CardexpandibleComponent,
     GraficapieComponent,
-    GraficalineasComponent,
     VentaxhoraComponent,
     VentaxdiaComponent,
     VentaxdiaComponent,
