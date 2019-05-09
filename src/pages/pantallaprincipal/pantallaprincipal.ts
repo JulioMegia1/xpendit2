@@ -56,6 +56,7 @@ ionViewCanEnter(){
 ngAfterViewInit()  {
 let interval = setInterval(()=> {
   console.log("hello");
+  this.mapa(this.usuario);
   //this.getmaquinas();
 },35000);
 }

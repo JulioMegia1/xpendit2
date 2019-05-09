@@ -26,6 +26,35 @@ export class CatalogserviceProvider {
   });
 }
 
+getInfoMaquina(idmaquina){  //indfo del producto
+  return new Promise(resolve => {
+    let menu=this.url+'/catalogos/mvs/get/'+idmaquina
+    console.log(menu);
+    this.http.get(menu).subscribe(data => {
+      resolve(data);
+    }
+    ,err => {
+      console.log(err);
+    });
+  });
+}
+
+updMaquina (data){
+  var options = {
+     headers : { 'Content-Type': 'application/json' }
+  }
+  return new Promise ((resolve,reject)=>{
+    this.http.put(this.url+'/catalogos/mvs/upd/', JSON.stringify(data),options)
+    .subscribe(res=>{
+      resolve(res);
+    },(err)=>{
+      reject(err);
+    });
+  });
+}
+
+
+
 
 
 
