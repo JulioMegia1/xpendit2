@@ -81,6 +81,9 @@ export class GraficaproductosinventarioComponent implements OnInit{
     if(this.grafica.puntos==null || this.grafica.puntos=="" || this.grafica.puntos==[])
     {  
       console.log("no hago nada")
+      this.data.categories[0].category=null;
+      this.data.dataset[0].data=null;
+      this.data.dataset[1].data=null;
 
     }
     else{

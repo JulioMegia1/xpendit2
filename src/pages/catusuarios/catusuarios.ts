@@ -7,6 +7,8 @@ import { AlertController } from 'ionic-angular';
 import { AuthserviceProvider } from "../../providers/authservice/authservice";
 import { SelectserviceProvider } from "../../providers/selectservice/selectservice";
 import {  MvserviceProvider} from "../../providers/mvservice/mvservice";
+import { CatalogserviceProvider } from "../../providers/catalogservice/catalogservice";
+
 
 
 
@@ -39,7 +41,13 @@ selectTipoUsuarios:any;
 
  
 
-  constructor(public alertCtrl: AlertController,public navCtrl: NavController, public navParams: NavParams,public authservice:AuthserviceProvider,public selectService:SelectserviceProvider,public mvService:MvserviceProvider ) {
+  constructor(public alertCtrl: AlertController,public navCtrl: NavController, public navParams: NavParams,
+    //servicios CI
+    public authservice:AuthserviceProvider,
+    public selectService:SelectserviceProvider,
+    public mvService:MvserviceProvider,
+    public catService:CatalogserviceProvider,
+    ) {
  
   }
 
@@ -96,7 +104,7 @@ selectTipoUsuarios:any;
     
       }
       else{
-        this.mvService.newUsuario(this.infousuario).then((result)=>{
+        this.catService.newUsuario(this.infousuario).then((result)=>{
   
           let respuesta:any; //Respuesta de la encriptacion
           respuesta=result;

@@ -71,6 +71,13 @@ export class TacometroproductosComponent {
       this.mvservice.tacometros(idmaquina).then(result=>{
       this.grafica= result;
       console.log(this.grafica);
+      if(this.grafica.error){
+        console.log("ESTE DATO ESTA ERRONEO")
+        this.data.dials.dial[0].value="0"
+
+
+      }else{
+
       this.data.dials.dial[0].value=this.grafica[0].valor;//valor del indicador 
       console.log('valor del '+this.data.dials.dial[0].value+'valor del '+this.grafica[0].valor);
 
@@ -87,6 +94,7 @@ export class TacometroproductosComponent {
 
       tercio=tercio*3;
       this.data.colorrange.color[2].maxvalue=tercio;
+    }
   
   },(err)=>{
     console.log(err);

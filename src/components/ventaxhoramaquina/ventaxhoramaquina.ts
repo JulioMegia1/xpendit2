@@ -60,6 +60,7 @@ getgrafica(idmaquina){
   if(this.grafica.puntos==null || this.grafica.puntos=="" || this.grafica.puntos==[])
     {  
       console.log("no hago nada VENTA XHORAMÁQUINA")
+      this.data.data=null
 
     }
     else{

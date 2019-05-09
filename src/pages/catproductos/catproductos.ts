@@ -5,6 +5,8 @@ import { AlertController } from 'ionic-angular';
 
 /*servicios*/
 import { MvserviceProvider } from "../../providers/mvservice/mvservice";
+import { CatalogserviceProvider } from "../../providers/catalogservice/catalogservice";
+
 
 /**subir imagen */
 import { Camera, CameraOptions } from '@ionic-native/camera';
@@ -35,7 +37,9 @@ export class CatproductosPage {
   myphoto:any;
 
   constructor(public navCtrl: NavController, public navParams: NavParams,private camera: Camera, private transfer: FileTransfer, private file: File,public alertCtrl: AlertController,
-    public mvService:MvserviceProvider) {
+    public mvService:MvserviceProvider,
+    public catService:CatalogserviceProvider,
+    ) {
 
   }
 
@@ -96,7 +100,7 @@ export class CatproductosPage {
 
         }
         else{
-          this.mvService.newProducto(this.infoproducto).then((result)=>{
+          this.catService.newProducto(this.infoproducto).then((result)=>{
   
             let respuesta:any; //Respuesta de la encriptacion
             respuesta=result;

@@ -74,6 +74,11 @@ export class HistoricomaquinaproductoventaComponent {
         ventas= result;
         let a =ventas.puntos;
         let b=unidades.puntos;
+        if(a==null || b==null){
+          console.log("Error")
+
+        }else{
+
         console.log(a)
         console.log(b)
         let c=[];
@@ -102,7 +107,8 @@ export class HistoricomaquinaproductoventaComponent {
       // Afet that we simply mutated our timeseries datasource by attaching the above
       // DataTable into its data property.
       this.dataSource.data = fusionTable;
-    });
+      
+    });}
   }
   );
 }

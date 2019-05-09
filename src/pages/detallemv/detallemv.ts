@@ -5,6 +5,7 @@ import { AlertController } from 'ionic-angular';
 
 /*paginas*/
 import { ActualizamvPage } from "../actualizamv/actualizamv";
+// import { PantallaprincipalPage } from "../pantallaprincipal/pantallaprincipal";
 /******popover */
 import { BuscamaquinaproductoPage } from "../buscamaquinaproducto/buscamaquinaproducto";
 
@@ -44,6 +45,9 @@ export class DetallemvPage {
   @ViewChild("ventaXhora") ventaxhora:VentaxhoramaquinaComponent;
   @ViewChild("ventaXdia") ventaxdia:VentaxdiamaquinaComponent;
   @ViewChild("histoVentaProd") histoventaprod:HistoricomaquinaproductoventaComponent;
+
+  // @ViewChild("PantallaprincipalPage") principal:PantallaprincipalPage
+
   
 
   maquinas :any;//obtiene todas las maquinas
@@ -87,11 +91,9 @@ productomaquina:any;
       this.nombremaquina=this.port.value;
       this.ciService.setIdMaquina(this.seleccion);
       console.log(this.seleccion)
-      // this.ciService.setIdMaquina(this.seleccion);
       this.getalarmas(this.seleccion);
       this.getcontables(this.seleccion);
       this.getproductomaquina(this.seleccion)
-
       console.log(result);
       },(err)=>{
         console.log(err);
@@ -149,6 +151,21 @@ portChange(event: {
     console.log(result);
     },(err)=>{
       console.log(err);
+      this.contables= [
+            {
+                "label": "Caja",
+                "value": "$0"
+            },
+            {
+                "label": "Monedero",
+                "value": "$0"
+            },
+            {
+                "label": "Billetero",
+                "value": "$0"
+            }
+        ];
+    
     }
     );
   }
@@ -181,6 +198,11 @@ portChange(event: {
       this.reinicia= result;
       this.getcontables(this.seleccion);
       this.prodinv.updatedata();
+
+      // let usuario:any=this.ciService.getTipoUsuario();
+
+      // this.principal.mapa(usuario);
+      // console.log("acttualice el mapa");
       console.log(result);
       },(err)=>{
         console.log(err);

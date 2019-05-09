@@ -121,6 +121,21 @@ export class DetalleproductoPage {
     getinfoproducto(idmaquina,idproducto){ 
       this.mvservice.infoproducto(idmaquina,idproducto).then(result=>{
         this.infoproducto= result;
+        if(this.infoproducto.error){
+          console.log("estoy en el ERROR INFOPRODUCTO")
+          this.riel=null
+          this.precio=null
+          this.existencia=null
+          this.nombreproducto=null
+          this.faltante=null
+          this.maximo=null
+  
+
+
+        }
+        else{
+
+        
         console.log(this.infoproducto);
       //   console.log(this.infoproducto.seleccion)
        this.riel=this.infoproducto.seleccion;
@@ -138,6 +153,7 @@ export class DetalleproductoPage {
  
         this.getselectproductos();
       //   this.getlistaproductos();
+    }
         },(err)=>{
           console.log(err);
         }

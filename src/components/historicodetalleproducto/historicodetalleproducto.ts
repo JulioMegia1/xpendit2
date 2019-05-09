@@ -79,8 +79,13 @@ export class HistoricodetalleproductoComponent {
     this.mvservice.historicaventa(this.idmaquina,this.seleccionproducto).then(result => {
       let ventas;
       ventas= result;
+      
       let a =ventas.puntos;
       let b=unidades.puntos;
+      if(a==null  || b==null){
+        console.log("error")
+      }
+      else{
       console.log(a)
       console.log(b)
       let c=[];
@@ -109,7 +114,7 @@ export class HistoricodetalleproductoComponent {
     // Afet that we simply mutated our timeseries datasource by attaching the above
     // DataTable into its data property.
     this.dataSource.data = fusionTable;
-  });
+  });}
 }
 );
 }

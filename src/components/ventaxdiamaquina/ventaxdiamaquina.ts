@@ -57,6 +57,7 @@ getgrafica(idmaquina){
   if(this.grafica.puntos==null || this.grafica.puntos=="" || this.grafica.puntos==[])
   {  
     console.log("no hago nada VENTA X diaMÁQUINA")
+    this.data.data=null
 
   }
   else{

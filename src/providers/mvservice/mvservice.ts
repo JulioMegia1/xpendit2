@@ -201,12 +201,14 @@ export class MvserviceProvider {
     return new Promise(resolve => {
   
       let menu=this.url+'/detalle/tacometros/'+idmaquina
+      let error
       console.log(menu);
       this.http.get(menu).subscribe(data => {
         resolve(data);
       }
       ,err => {
         console.log(err);
+        resolve(err) 
       });
     });
 
@@ -222,6 +224,21 @@ export class MvserviceProvider {
       }
       ,err => {
         console.log(err);
+        let error=[
+          {
+              "label": "Caja",
+              "value": "$0"
+          },
+          {
+              "label": "Monedero",
+              "value": "$0"
+          },
+          {
+              "label": "Billetero",
+              "value": "$0"
+          }
+      ]
+        resolve(error)
       });
     });
 
@@ -330,6 +347,7 @@ export class MvserviceProvider {
       }
       ,err => {
         console.log(err);
+        resolve(err)
       });
     });
   }
@@ -386,18 +404,18 @@ export class MvserviceProvider {
     });
   }
 
-  catproductosInfogralproductos(){  //indfo del producto
-    return new Promise(resolve => {
-      let menu=this.url+'/catalogos/productos/getAll'
-      console.log(menu);
-      this.http.get(menu).subscribe(data => {
-        resolve(data);
-      }
-      ,err => {
-        console.log(err);
-      });
-    });
-  }
+  // catproductosInfogralproductos(){  //indfo del producto
+  //   return new Promise(resolve => {
+  //     let menu=this.url+'/catalogos/productos/getAll'
+  //     console.log(menu);
+  //     this.http.get(menu).subscribe(data => {
+  //       resolve(data);
+  //     }
+  //     ,err => {
+  //       console.log(err);
+  //     });
+  //   });
+  // }
 
   updexistencia (data,idmaquina)
   {
@@ -431,56 +449,6 @@ export class MvserviceProvider {
     });
  }
 
- /*catalogo maquinas*/
- newMaquina (data){
-  var options = {
-     headers : { 'Content-Type': 'application/json' }
-  }
-  return new Promise ((resolve,reject)=>{
-    this.http.post(this.url+'/catalogos/mvs/new/', JSON.stringify(data),options)
-    .subscribe(res=>{
-      resolve(res);
-    },(err)=>{
-      reject(err);
-    });
-  });
-}
-
-
-
-
-  /*******catalogo productos */
-  newProducto (data){
-    var options = {
-       headers : { 'Content-Type': 'application/json' }
-    }
-    return new Promise ((resolve,reject)=>{
-      this.http.post(this.url+'/catalogos/productos/new/', JSON.stringify(data),options)
-      .subscribe(res=>{
-        resolve(res);
-      },(err)=>{
-        reject(err);
-      });
-    });
- }
-
-
-
-
-  /*catalogo usuarios*/
-  newUsuario (data){
-    var options = {
-       headers : { 'Content-Type': 'application/json' }
-    }
-    return new Promise ((resolve,reject)=>{
-      this.http.post(this.url+'/catalogos/usuarios/new/', JSON.stringify(data),options)
-      .subscribe(res=>{
-        resolve(res);
-      },(err)=>{
-        reject(err);
-      });
-    });
- }
 
 
 
