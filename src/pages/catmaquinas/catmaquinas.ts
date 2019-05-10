@@ -2,8 +2,10 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { AlertController } from 'ionic-angular';
 
-/*componente*/
-import { IonicSelectableComponent } from 'ionic-selectable';
+/*mapa*/
+import 'rxjs/add/operator/map';
+import L from "leaflet";
+
 
 /*servicios*/
 import { SelectserviceProvider } from "../../providers/selectservice/selectservice";
@@ -11,6 +13,10 @@ import { MvserviceProvider } from "../../providers/mvservice/mvservice";
 import { AuthserviceProvider } from "../../providers/authservice/authservice";
 import { CatalogserviceProvider } from "../../providers/catalogservice/catalogservice";
 
+
+/*selectable*/
+import { IonicSelectableComponent } from 'ionic-selectable';
+import { map } from 'rxjs/operator/map';
 class Port {
   public label: any;
   public value: any;
@@ -89,6 +95,11 @@ listausuarios:any;
 asignados:any;
 noasignados:any;
 
+/*mapa*/
+center: L.PointTuple;
+map:L.map;
+marker:any;
+
 
 /*infomodem*/
 idModem:any;
@@ -111,6 +122,10 @@ expiracion:any;
     this.getmaquinasid()
     this.getselecTipoMaquina();
     this.getselecModeloMaquina();
+    this.center = [20.634012, -100.334345];
+    console.log(this.center)
+    this.leafletMap();
+
     
   }
 
@@ -305,6 +320,8 @@ getInfomaquina(){
     
     this.telefono=this.infomaquinaSeleccionada.infoModem.telefono;
     this.expiracion=this.infomaquinaSeleccionada.infoModem.expiracion;
+    // this.map.removeLayer()
+    this.mapa();
 
 
      },(err)=>{
@@ -375,7 +392,52 @@ modificainfomodem(){
 
 
 }
+/*mapa leaflet*/
+leafletMap(){
+  this.map = L.map('mapId', {
+    center: this.center,
+    zoom: 10.3
+  });
+ //var position = L.tileLayer('http://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}.png', {
+ //var position = L.tileLayer('http://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/{z}/{y}/{x}', {
+    var position = L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
+    attribution: 'Xpend-It'
+  }).addTo(this.map);
 
+}
+
+
+mapa(){
+  if(this.marker){
+    this.map.removeLayer(this.marker)
+  }
+ this.marker = new L.Marker([this.infomaquinaSeleccionada.latitud,this.infomaquinaSeleccionada.longitud]).addTo(this.map)
+  //this.map.addLayer(marker);
+ .bindPopup(this.infomaquinaSeleccionada.descripcion);
+ console.log(L.marker);
+ console.log(this.map)
+ console.log(L.map)
+
+
+ this.marker.on('mouseover', function (e) {
+  this.openPopup();
+});
+this.marker.on('mouseout', function (e) {
+  this.closePopup();
+});
+
+}
+
+ionViewWillLeave(){
+  console.log("estoy saliendo will leave")
+  // this.map.off();
+  // document.getElementById("mapId").outerHTML=""
+  // this.map.remove();
+}
+
+ionViewDidLeave(){
+  console.log("estoy saliendo Did leave")
+}
 
   
 

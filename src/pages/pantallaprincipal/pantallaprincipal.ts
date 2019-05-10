@@ -13,6 +13,7 @@ import L from "leaflet";
 
  import { CIprovider } from '../../providers/data/data';
  import { MvserviceProvider } from "../../providers/mvservice/mvservice";
+import { map } from 'rxjs/operator/map';
  /*servicios*/
 @IonicPage()
 @Component({
@@ -40,11 +41,17 @@ oculta:boolean;
   ionViewDidLoad() {
     console.log('ionViewDidLoad MapPage');
 
-    this.center = [20.634012, -100.334345];
-    console.log(this.center)
-    this.leafletMap();
 
-    this.mapa(this.usuario);
+}
+
+
+ionViewDidEnter(){
+
+  this.center = [20.634012, -100.334345];
+  console.log(this.center)
+  this.leafletMap();
+
+  this.mapa(this.usuario);
 
 }
 ionViewCanEnter(){
@@ -56,13 +63,20 @@ ionViewCanEnter(){
 ngAfterViewInit()  {
 let interval = setInterval(()=> {
   console.log("hello");
-  this.mapa(this.usuario);
+  // this.mapa(this.usuario);
   //this.getmaquinas();
 },35000);
 }
 
 /*mapa leaflet*/
 leafletMap(){
+  if(this.map)
+  {
+    this.map.remove();
+    console.log("ya existe lo borre")
+  }
+ 
+    console.log("lo creare ")
   this.map = L.map('mapId', {
     center: this.center,
     zoom: 10.3
@@ -123,6 +137,32 @@ mapa(usuario){
       if(this.usuario=="oper")
       return false;
 
+
+    }
+
+    ionViewWillLeave(){
+      console.log("estoy saliendo will leave")
+// if(this.map!=undefined || this.map!=null){
+
+//       this.map.off();
+      // document.getElementById("mapId").innerHTML='<div id="mapId" style="width: 100%; height: 400px;border-radius: 20px;" class="map-container">'
+//       this.map.remove();
+//     }
+    }
+    ionViewDidLeave(){
+      console.log("estoy saliendo Did leave")
+      // if(this.map!=undefined || this.map!=null){
+      //   this.map.remove()
+              // }
+    }
+
+    ionViewWillUnload(){
+      console.log("estoy saliendo will unload")
+      // if(this.map!=undefined || this.map!=null){
+      //   this.map.off();
+      // document.getElementById("mapId").innerHTML='<div id="mapId" style="width: 100%; height: 400px;border-radius: 20px;" class="map-container">'
+      // this.map.remove();
+              // }
 
     }
 
