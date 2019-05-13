@@ -3,6 +3,7 @@
 
 <ion-content style="margin-top:75px" fullscreen=true>
 
+    <!-- toolbar máquinas -->
         <ion-header>
                 <ion-toolbar>  
                       <ion-item>                 
@@ -74,10 +75,23 @@
               </ion-grid>
 
               <div style="justify-content:center;display:flex">
-                      <button ion-button round (click)="modificar()" > Modificar </button>
-                      <button ion-button round  (click)="guardarmaquina()"> Guardar  </button>
-                      <button ion-button round (click)="nuevamaquina()"> Nuevo </button>
+                    <!-- <button ion-button round (click)="nuevamaquina()"> <i class="fa fa-plus" aria-hidden="true"></i>Nuevo </button>
+                      <button ion-button round (click)="modificar()" > <i class="fas fa-edit    "></i> Modificar </button>
+                      <button ion-button round  (click)="guardarmaquina()"> <i class="fas fa-save    "></i> Guardar  </button>
+                      <button ion-button round (click)="nuevamaquina()"><i class="fa fa-trash" aria-hidden="true"></i>Eliminar </button>
+ -->
+
+                      <ion-fab middle center >
+                            <button ion-fab mini color="verde">  <i class="fas fa-chevron-left"></i></button>
+                            <ion-fab-list side="left">
+                                    <button ion-fab color="danger" (click)="eliminarMaquina()"><i class="fa fa-trash" aria-hidden="true"></i> </button>
+                                    <button ion-fab color="azul" (click)="guardarmaquina()"> <i class="fas fa-save    "></i>   </button>
+                                    <button ion-fab color="azul" (click)="modificar()" > <i class="fas fa-edit    "></i>  </button>
+                                    <button ion-fab color="azul" (click)="nuevamaquina()"> <i class="fa fa-plus" aria-hidden="true"></i> </button>
+                                </ion-fab-list>
+                          </ion-fab>
               </div>
+              
               </ion-card-content>
         </ion-card>
 
@@ -117,9 +131,9 @@
                                 </ion-row>
                       </ion-grid>
                       <div style="justify-content:center;display:flex">
-                            <button ion-button round >--> </button>
+                            <button ion-button round ><i class="fas fa-chevron-right"></i></button>
 
-                      <button ion-button round (click)="asigna()"> <-- </button>
+                      <button ion-button round (click)="asigna()"> <i class="fas fa-chevron-left"></i></button>
                       </div>
                      
                   </ion-card-content>
@@ -127,13 +141,17 @@
 
         <!-- ubicacion -->
         <!-- <ion-card   > -->
+        
+        <ion-card>
+            <ion-card-header>
 
-            <!-- <ion-card-content > -->
-    
-                <div id="mapId" class="map-container2" style="width: 100%; height: 400px;border-radius: 20px;">
-                </div>
-              <!-- </ion-card-content> -->
-            <!-- </ion-card> -->
+            </ion-card-header>
+         
+        <div id="mapId" class="map-container2" style="width: 100%; height: 400px;border-radius: 20px;">
+        </div>
+ 
+        </ion-card>
+          
 
         <!-- Info Módem -->
         <ion-card style="border-radius: 10px">

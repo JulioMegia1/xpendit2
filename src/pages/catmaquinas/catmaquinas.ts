@@ -12,6 +12,7 @@ import { SelectserviceProvider } from "../../providers/selectservice/selectservi
 import { MvserviceProvider } from "../../providers/mvservice/mvservice";
 import { AuthserviceProvider } from "../../providers/authservice/authservice";
 import { CatalogserviceProvider } from "../../providers/catalogservice/catalogservice";
+import {CIprovider  } from "../../providers/data/data";
 
 
 /*selectable*/
@@ -107,14 +108,26 @@ password:any;
 telefono:any;
 expiracion:any;
 
+/*ubicacion*/
+latitud:any;
+longitud:any;
+
+
+/*usuario*/
+usuario:any;
+
 
   constructor(public navCtrl: NavController, public navParams: NavParams,public alertCtrl: AlertController,
 
     public selectprovider:SelectserviceProvider, 
     public mvService:MvserviceProvider,
     public authService:AuthserviceProvider,
-    public catService:CatalogserviceProvider
+    public catService:CatalogserviceProvider,
+    public ciService:CIprovider
     ) {
+      this.usuario=this.ciService.getTipoUsuario();
+      console.log(this.usuario)
+
   }
 
   ionViewDidLoad() {
@@ -137,7 +150,7 @@ expiracion:any;
   }
 
   getmaquinasid(){
-    this.selectprovider.selectmaquinas().then(result=>{
+    this.selectprovider.selectmaquinas(this.usuario).then(result=>{
       this.maquinas=result; //obtiene las maquinas
       console.log(this.maquinas);
       this.ports=this.maquinas; //
@@ -427,6 +440,18 @@ this.marker.on('mouseout', function (e) {
 });
 
 }
+
+eliminarMaquina(){
+
+  this.catService.delMaquina(this.idMaquina).then((result)=>{
+    console.log(result)
+       },(err)=>{
+         console.log(err);
+       }
+       );
+
+}
+
 
 ionViewWillLeave(){
   console.log("estoy saliendo will leave")

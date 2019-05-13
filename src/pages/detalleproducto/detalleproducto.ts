@@ -40,6 +40,8 @@ export class DetalleproductoPage {
   @ViewChild("ventaHora") ventahora:VentaxhoraproductomaquinaComponent 
   @ViewChild("ventaHoraAcum") ventahoraacum:VentaxdiaproductomaquinaComponent
   @ViewChild("Historico") historico:HistoricodetalleproductoComponent
+
+  usuario:any;
                         
   /*variables*/
   maquinas:any; //obtiene la info de todas las maquinas
@@ -70,7 +72,8 @@ export class DetalleproductoPage {
 // // /**********SELECT SEARCHEABLE***********/
 
   constructor(public navCtrl: NavController,public alertCtrl: AlertController, public navParams: NavParams,public mvservice:MvserviceProvider,public selectprovider:SelectserviceProvider,public popoverCtrl:PopoverController,public ciService:CIprovider) {
-   
+    this.usuario=this.ciService.getTipoUsuario();
+
   }
 
   ionViewDidLoad() {
@@ -87,7 +90,7 @@ export class DetalleproductoPage {
   }
 
   getmaquinasid(){
-    this.selectprovider.selectmaquinas().then(result=>{
+    this.selectprovider.selectmaquinas(this.usuario).then(result=>{
       this.maquinas=result; //obtiene las maquinas
       console.log(this.maquinas);
       this.ports=this.maquinas; //asigno las maquinas al select searcheable
@@ -265,7 +268,12 @@ portChange2(event: {
           {
             text: 'Actualizar',
             handler: data => {
-              if(isNaN(data.existencia)==true || data.existencia==null || data.existencia=="" || data.existencia>this.maximo)
+              if(isNaN(data.existencia)==true || //si no es un numero
+              data.existencia==null  //si es nulo
+              || data.existencia=="" //si esta vacio
+               || data.existencia>this.maximo //si es mayor que el máximo
+               || data.existencia<0
+               )
               {
                 // prompt.setMessage("Favor de ingresar un número válido");
                 // prompt.present();

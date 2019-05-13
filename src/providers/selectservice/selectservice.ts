@@ -45,10 +45,10 @@ export class SelectserviceProvider {
   
   }
 
-  selectmaquinas() { //
+  selectmaquinas(usuario) { //
     console.log("--------entre al servicio del menu-----------");
     return new Promise(resolve => {
-      let select=this.url+'select/maquina/'
+      let select=this.url+'select/maquina/'+usuario
       console.log(select);
       this.http.get(select).subscribe(data => {
         resolve(data);

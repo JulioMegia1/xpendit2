@@ -47,6 +47,7 @@ export class DetallemvPage {
   @ViewChild("histoVentaProd") histoventaprod:HistoricomaquinaproductoventaComponent;
 
   // @ViewChild("PantallaprincipalPage") principal:PantallaprincipalPage
+  usuario:any
 
   
 
@@ -70,6 +71,8 @@ productomaquina:any;
   constructor(public navCtrl: NavController, public navParams: NavParams,public alertCtrl: AlertController,private popoverCtrl: PopoverController,
     public toastCtrl: ToastController,public mvservice:MvserviceProvider,public selectprovider:SelectserviceProvider,public ciService:CIprovider
     ) {
+      this.usuario=this.ciService.getTipoUsuario();
+
       this.getmaquinasid();
      
   }
@@ -80,7 +83,7 @@ productomaquina:any;
   }
 
   getmaquinasid(){
-    this.selectprovider.selectmaquinas().then(result=>{
+    this.selectprovider.selectmaquinas(this.usuario).then(result=>{
       this.maquinas=result; //obtiene las maquinas
       console.log(this.maquinas);
       this.ports=this.maquinas; //

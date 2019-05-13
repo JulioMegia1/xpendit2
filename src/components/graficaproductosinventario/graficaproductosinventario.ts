@@ -62,6 +62,7 @@ export class GraficaproductosinventarioComponent implements OnInit{
   constructor(public ciService:CIprovider, public mvservice:MvserviceProvider) {
     console.log('Hello GraficaproductosinventarioComponent Component');
     this.idmaquina=this.ciService.getIdmaquina(); //obtener el id de la maquina
+    console.log(this.idmaquina)
     this.dataSource=this.data;
     this.getgrafica(this.idmaquina)  
   }

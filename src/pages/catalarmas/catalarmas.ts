@@ -11,6 +11,7 @@ class Port {
 /*servicios*/
 import { SelectserviceProvider } from "../../providers/selectservice/selectservice";
 import { CatalogserviceProvider } from "../../providers/catalogservice/catalogservice";
+import { CIprovider } from "../../providers/data/data";
 
 @IonicPage()
 @Component({
@@ -30,12 +31,16 @@ export class CatalarmasPage {
   prioridades:any;
 
   alarmas:any;
+  usuario:any;
 
   constructor(public navCtrl: NavController, public navParams: NavParams,
     public selectprovider: SelectserviceProvider,
-    public catService:CatalogserviceProvider
+    public catService:CatalogserviceProvider,
+    public ciService:CIprovider
     ) {
   this.SelectPrioridadAlarmas();
+  this.usuario=this.ciService.getTipoUsuario();
+
   }
 
   ionViewDidLoad() {
@@ -57,7 +62,7 @@ export class CatalarmasPage {
 
 
       getmaquinasid(){
-        this.selectprovider.selectmaquinas().then(result=>{
+        this.selectprovider.selectmaquinas(this.usuario).then(result=>{
           this.maquinas=result; //obtiene las maquinas
           console.log(this.maquinas);
           this.ports=this.maquinas; //

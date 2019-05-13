@@ -74,6 +74,8 @@ export class HistoricomaquinaproductoventaComponent {
         ventas= result;
         let a =ventas.puntos;
         let b=unidades.puntos;
+        console.log(a)
+        console.log(b)
         if(a==null || b==null){
           console.log("Error")
 
