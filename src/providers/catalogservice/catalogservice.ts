@@ -12,6 +12,21 @@ export class CatalogserviceProvider {
   }
 
  /*catalogo maquinas*/
+ getidMaquina(){  //indfo del producto
+  return new Promise(resolve => {
+    let menu=this.url+'/sequence/maquina/'
+    console.log(menu);
+    this.http.get(menu).subscribe(data => {
+      resolve(data);
+    }
+    ,err => {
+      console.log(err);
+    });
+  });
+}
+
+
+
  newMaquina (data){
   var options = {
      headers : { 'Content-Type': 'application/json' }

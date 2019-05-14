@@ -46,7 +46,7 @@ direccion:any;
   valornuevo="true" //habilita input
   infomaquinanueva={
 
-    "idMaquina": 102,
+    "idMaquina": null,
     "descripcion": null,
     "tipo": null,
     "modelo": null,
@@ -76,7 +76,7 @@ direccion:any;
     "existencias": {    },
     "ignorados": {    },
     "infoModem": {
-        "idModem": 101,
+        "idModem": null,
         "telefono": null,
         "password": null,
         "expiracion": "12/12/2222"
@@ -109,8 +109,8 @@ telefono:any;
 expiracion:any;
 
 /*ubicacion*/
-latitud:any;
-longitud:any;
+Latitud:any;
+Longitud:any;
 
 
 /*usuario*/
@@ -138,15 +138,23 @@ usuario:any;
     this.center = [20.634012, -100.334345];
     console.log(this.center)
     this.leafletMap();
-
-    
+   
   }
-
-
-
 
   nuevamaquina(){
     this.valornuevo="false"
+    this.catService.getidMaquina().then(result=>{
+    console.log(result)
+    this.infomaquinanueva.idMaquina=result[0].value;
+    this.infomaquinanueva.infoModem.idModem=result[0].value;
+    this.Latitud=this.infomaquinanueva.latitud;
+    this.Longitud=this.infomaquinanueva.longitud;
+      console.log(this.infomaquinanueva);
+      },(err)=>{
+        console.log(err);
+      }
+      );
+
   }
 
   getmaquinasid(){
@@ -191,16 +199,21 @@ usuario:any;
     if( this.descripcion==null || this.descripcion==""
     ||  this.tipo==null || this.tipo==""
     || this.modelo==null || this.modelo==""
+    || this.Latitud==null || this.Latitud==""  || this.Latitud<-90 || this.Latitud>90 
+  || this.Longitud== null || this.Longitud=="" || this.Longitud>180 || this.Longitud<-180
     ){
       this.mensaje="Máquina no creada\n favor de ingresar todos los datos correctamente"
       this.showAlert();
       console.log("no creado")
     }
     else{
+
       this.infomaquinanueva.descripcion=this.descripcion
         this.infomaquinanueva.modelo=this.modelo
         this.infomaquinanueva.tipo=this.tipo
         this.infomaquinanueva.direccion=this.direccion;
+        this.infomaquinanueva.latitud=this.Latitud;
+        this.infomaquinanueva.longitud=this.Longitud;
       this.catService.newMaquina(this.infomaquinanueva).then((result)=>{
   
         let respuesta:any; //Respuesta de la encriptacion
@@ -280,35 +293,73 @@ getselectasignados(){
   }
 
 
-asigna(){
+async asigna(){
+  if(this.noasignados==null){
+    this.mensaje="No hay usuarios selecionados";
+    this.showAlert();
+    console.log("No hago nada")
+  }
+  else{
   console.log(this.noasignados)
-  // let usuariosnuevos=[]
   for(let i=0; i<this.noasignados.length;i=i+1)
   {
     for(let j=0;j<this.listausuarios.length;j=j+1){
       if(this.noasignados[i]==this.listausuarios[j].usuario){
-        // usuariosnuevos.push(this.listausuarios[j]);
         console.log(this.listausuarios[j])
         console.log("lo encontre")
         this.infomaquinaSeleccionada.usuarios.push(this.listausuarios[j])
-
-        
       }
     }
   }
-  // console.log(usuariosnuevos)
   console.log(this.infomaquinaSeleccionada);
-  this.actualizainfo();
-  this.mensaje="Los Usuarios asignados han sido modificados correctamente"
+  await this.actualizainfo();
+  this.mensaje="Los Usuarios asignados han sido modificados correctamente";
   this.showAlert();
   this.infoasignados=null;
-  this.infonoasignados=null
+  this.infonoasignados=null;
   this.noasignados=null;
-    this.asignados=null;
-  this.getselectasignados()
-  this.getselectNoasignados();
+  this.asignados=null;
+  await this.getselectasignados();
+  await this.getselectNoasignados();
+}
+}
+
+ async desasigna(){
+   if(this.asignados==null){
+     console.log("no hago nada");
+     this.mensaje="No hay usuarios selecionados"
+     this.showAlert();
+     
+   }
+   else{
+
+  
+
+  console.log(this.asignados)
+  for(let i=0;i<this.asignados.length;i=i+1) {
+    for(let j=0;j<this.infomaquinaSeleccionada.usuarios.length;j=j+1){
+            if(this.asignados[i]==this.infomaquinaSeleccionada.usuarios[j].usuario)
+                    {
+                            console.log("lo encontre");
+                            this.infomaquinaSeleccionada.usuarios.splice(j,1)
+                    }
+    }
+}
+console.log(this.infomaquinaSeleccionada.usuarios);
+this.mensaje="Los Usuarios se han desasignado correctamente";
+this.showAlert();
+await this.actualizainfo();
+this.infoasignados=null;
+this.infonoasignados=null;
+this.noasignados=null;
+this.asignados=null;
+await this.getselectasignados();
+await this.getselectNoasignados();
+}
 
  
+
+
 }
 
 getusuarios(){
@@ -330,7 +381,12 @@ getInfomaquina(){
     this.modelo=this.infomaquinaSeleccionada.modelo;
     this.tipo=this.infomaquinaSeleccionada.tipo;
     this.password=this.infomaquinaSeleccionada.infoModem.password;
+
+    /*ubicacion*/
+    this.Latitud=this.infomaquinaSeleccionada.latitud;
+    this.Longitud=this.infomaquinaSeleccionada.longitud;
     
+    /*info modem*/
     this.telefono=this.infomaquinaSeleccionada.infoModem.telefono;
     this.expiracion=this.infomaquinaSeleccionada.infoModem.expiracion;
     // this.map.removeLayer()
@@ -345,9 +401,15 @@ getInfomaquina(){
 }
 
 
-actualizainfo(){
-  this.catService.updMaquina(this.infomaquinaSeleccionada).then((result)=>{
+ actualizainfo(){
+  this.catService.updMaquina(this.infomaquinaSeleccionada).then(async (result)=>{
   console.log(result)
+  this.infoasignados=null;
+  this.infonoasignados=null;
+  this.noasignados=null;
+  this.asignados=null;
+  await this.getselectNoasignados()
+  await this.getselectasignados();
      },(err)=>{
        console.log(err);
      }
@@ -405,6 +467,28 @@ modificainfomodem(){
 
 
 }
+
+updUbicacion(){
+  if(this.Latitud==null || this.Latitud==""  || this.Latitud<-90 || this.Latitud>90 
+  || this.Longitud== null || this.Longitud=="" || this.Longitud>180 || this.Longitud<-180
+  ){
+    console.log("Coordenadas inválidas ")
+    this.mensaje="Coordenadas inválidas"
+    this.showAlert();
+  }
+  else{
+    
+
+  this.infomaquinaSeleccionada.latitud=this.Latitud;
+  this.infomaquinaSeleccionada.longitud=this.Longitud;
+  this.mapa();
+  this.mensaje="Ubicación actualizada "
+  this.showAlert();
+
+  }
+
+
+}
 /*mapa leaflet*/
 leafletMap(){
   this.map = L.map('mapId', {
@@ -445,6 +529,8 @@ eliminarMaquina(){
 
   this.catService.delMaquina(this.idMaquina).then((result)=>{
     console.log(result)
+    this.mensaje="La máquina ha sido eliminada"
+    this.showAlert();
        },(err)=>{
          console.log(err);
        }
