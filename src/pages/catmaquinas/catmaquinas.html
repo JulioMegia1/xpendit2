@@ -1,29 +1,31 @@
-<navbar mytext="Catálogos Maquinas"></navbar>
+<ion-header>
+        <navbar></navbar>
 
 
-<ion-content style="margin-top:75px" fullscreen=true>
+    <ion-toolbar>  
+        <ion-item>                 
+          <ion-label>Máquinas</ion-label>
+    
+          <ionic-selectable 
+            item-content 
+            [(ngModel)]="port"
+            [items]="ports"
+            itemValueField="label"
+            itemTextField="value"
+            [canSearch]="true"
+            (onChange)="portChange($event)">
+          </ionic-selectable>         
+        </ion-item>               
+    </ion-toolbar>
+</ion-header>
+
+<ion-content >
 
     <!-- toolbar máquinas -->
-        <ion-header>
-                <ion-toolbar>  
-                      <ion-item>                 
-                        <ion-label>Máquinas</ion-label>
-                  
-                        <ionic-selectable 
-                          item-content 
-                          [(ngModel)]="port"
-                          [items]="ports"
-                          itemValueField="label"
-                          itemTextField="value"
-                          [canSearch]="true"
-                          (onChange)="portChange($event)">
-                        </ionic-selectable>         
-                      </ion-item>               
-                    </ion-toolbar>
-        </ion-header>
+     
 
         <!-- Datos generales maquinas -->
-        <ion-card style="border-radius: 10px;margin-top:90px">
+        <ion-card style="border-radius: 10px">
                         <ion-card-header style="color:#ffffff;background-color: #242b5f;border-radius: 10px;">
                            <b> Datos Generales Máquina</b>
                           </ion-card-header>

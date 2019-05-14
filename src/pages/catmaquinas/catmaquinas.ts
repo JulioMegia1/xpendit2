@@ -34,7 +34,7 @@ export class CatmaquinasPage {
  ports: Port[];  ///muestra las opciones del select
  port: Port; //muestra la opcion elegida del select
 
-/**********SELECT SEARCHEABLE***********/
+
 
 maquinas:any;//máquinas select
 idMaquina:any;
@@ -216,9 +216,7 @@ usuario:any;
         this.infomaquinanueva.longitud=this.Longitud;
       this.catService.newMaquina(this.infomaquinanueva).then((result)=>{
   
-        let respuesta:any; //Respuesta de la encriptacion
-        respuesta=result;
-        console.log(respuesta);
+        console.log(result);
         console.log(this.infomaquinanueva)
         this.mensaje="Máquina creada exitosamente!";
         
@@ -529,6 +527,24 @@ eliminarMaquina(){
 
   this.catService.delMaquina(this.idMaquina).then((result)=>{
     console.log(result)
+    this.getmaquinasid();
+    this.port=null;
+    this.descripcion=null;
+    this.tipo=null;
+    this.modelo=null;
+    this.direccion=null;
+    this.infonoasignados=null;
+    this.noasignados=null;
+    this.asignados=null;
+    this.infoasignados=null;
+    this.Latitud=null;
+    this.Longitud=null;
+    this.idModem=null;
+    this.password=null;
+    this.telefono=null;
+    this.expiracion=null;
+
+
     this.mensaje="La máquina ha sido eliminada"
     this.showAlert();
        },(err)=>{

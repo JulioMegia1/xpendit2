@@ -1,72 +1,38 @@
-<!-- <ion-header>
-  <ion-navbar>
-      <button ion-button menuToggle>
-          <ion-icon name="menu"></ion-icon>
-        </button>
-    <ion-title><img src="../../assets/imgs/xpendit.jpg" style="width:auto;height:70px;border-radius: 20px;display:block;margin:auto;"></ion-title> -->
-    <!-- <luz [hidden]="shownSessions == 0"></luz> -->
-  <!-- </ion-navbar>
-</ion-header> -->
-<navbar mytext="Ci-Technologies "></navbar>
+<ion-header>
+  <navbar></navbar> 
+  <!-- <navbar mytext="Ci-Technologies "></navbar> -->
 
-<ion-content style="margin-top:60px" >
+</ion-header>
+
+<ion-content>
 
   <!-- mapa leaflet -->
-
-
-    
-
-            <div id="mapId" style="width: 100%; height: 400px;border-radius: 20px;" class="map-container">
-            </div>
-       
-        
-        <!-- <mapa></mapa> -->
-   
-   <!-- mapa leaflet -->
-
-  <!-- graficas chartjs -->
-  <ion-card [hidden]="oculta == false" >
-    <ventaxhora></ventaxhora>
-   </ion-card>
-
-<ion-card  [hidden]="oculta == false">
-  <ventaxdia></ventaxdia>
-</ion-card>
-
-         <button ion-button (click)=ira() [hidden]="oculta == false"> </button>
- 
-
-<ion-card style="text-align:center;display:inline-block" [hidden]="oculta == false" >
-  <graficapie> </graficapie>
-</ion-card>
-
-<ion-card>
-  <!-- <ventaglobalhistorica></ventaglobalhistorica> -->
-</ion-card>
-
-<ion-card style="margin-bottom:70px" [hidden]="oculta == false">
-  <historico ></historico>
-</ion-card>
-
-
-<!-- graficas fusioncharts -->
-<!-- <ion-card style="margin-bottom:70px">
-<div>
-    <fusioncharts class="creditgroup"
-      [type]="type"
-      [width]="width"
-      [height]="height"
-      [dataSource]="dataSource"
-    ></fusioncharts>
-
+  <div id="mapId" style="width: 100%; height: 400px;border-radius: 20px;" class="map-container">
   </div>
 
+  <!-- Venta x Hora -->
+  <ion-card [hidden]="oculta == false" >
+    <ventaxhora></ventaxhora>
+  </ion-card>
 
-  
-</ion-card> -->
+  <!-- Venta x Dia -->
+  <ion-card  [hidden]="oculta == false">
+    <ventaxdia></ventaxdia>
+  </ion-card>
 
+  <button ion-button (click)=ira() [hidden]="oculta == false"> </button>
 
+  <!-- grafica pie -->
+  <ion-card style="text-align:center;display:inline-block" [hidden]="oculta == false" >
+    <graficapie> </graficapie>
+  </ion-card>
 
-  <!-- graficas fusioncharts -->
- 
+  <ion-card>
+    <!-- <ventaglobalhistorica></ventaglobalhistorica> -->
+  </ion-card>
+
+  <ion-card [hidden]="oculta == false">
+    <historico ></historico>
+  </ion-card>
+
 </ion-content>

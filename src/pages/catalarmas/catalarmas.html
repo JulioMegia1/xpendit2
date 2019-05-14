@@ -1,33 +1,29 @@
-<navbar mytext="Catálogos Alarmas"></navbar>
+<ion-header>
+        <navbar ></navbar>
+</ion-header>
 
-<ion-content style="margin-top:75px">
+<ion-content >
 
-                <ion-header>
-                                <ion-toolbar>
-                                   
-                                           
-                                      <ion-item>
-                                    
-                                        <ion-label>Máquinas</ion-label>
-                                  
-                                        <ionic-selectable 
-                                          item-content 
-                                          [(ngModel)]="port"
-                                          [items]="ports"
-                                          itemValueField="label"
-                                          itemTextField="value"
-                                          [canSearch]="true"
-                                          (onChange)="portChange($event)">
-                                        </ionic-selectable>
-                                
-                                      </ion-item>
-                                 
-                              
-                                    
-                                    </ion-toolbar>
-                              </ion-header>
+        <ion-header>
+                <ion-toolbar>
+                        <ion-item>
+                                <ion-label>Máquinas</ion-label>
+                          
+                                <ionic-selectable 
+                                  item-content 
+                                  [(ngModel)]="port"
+                                  [items]="ports"
+                                  itemValueField="label"
+                                  itemTextField="value"
+                                  [canSearch]="true"
+                                  (onChange)="portChange($event)">
+                                </ionic-selectable>
+                        
+                        </ion-item>
+                 </ion-toolbar>
+        </ion-header>
 
-                <ion-card style="border-radius: 10px;margin-top:90px">
+        <ion-card style="border-radius: 10px;margin-top:90px">
                                 <ion-card-header style="color:#ffffff;background-color: #242b5f;border-radius: 10px;">
                                    <b> Alarmas</b>
                                   </ion-card-header>

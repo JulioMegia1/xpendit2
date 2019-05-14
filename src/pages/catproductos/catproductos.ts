@@ -6,12 +6,21 @@ import { AlertController } from 'ionic-angular';
 /*servicios*/
 import { MvserviceProvider } from "../../providers/mvservice/mvservice";
 import { CatalogserviceProvider } from "../../providers/catalogservice/catalogservice";
+import { SelectserviceProvider } from "../../providers/selectservice/selectservice";
 
 
 /**subir imagen */
 import { Camera, CameraOptions } from '@ionic-native/camera';
 import { FileTransfer,   } from '@ionic-native/file-transfer';
 import { File } from '@ionic-native/file';
+
+/*selectable*/
+import { IonicSelectableComponent } from 'ionic-selectable';
+import { map } from 'rxjs/operator/map';
+class Port {
+  public label: any;
+  public value: any;
+}
 
 @IonicPage()
 @Component({
@@ -20,17 +29,29 @@ import { File } from '@ionic-native/file';
 })
 export class CatproductosPage {
 
-  valor="true"//habilita inputs
+   /*********SELECT SEARCHEABLE***********/
+ listaproductos:any;
+ ports: Port[];  ///muestra las opciones del select
+ port: Port; //muestra la opcion elegida del select
+
   mensaje:any;//mensaje del alert
 
-  infoproducto={
+
+
+  infoproductonuevo={
     
-    "idProducto": 14,
+    "idProducto": null,
     "descripcion": null,
     "precioCompra": null,
     "imagen": "default.jpg",
     "presentacion": null
 }
+infoProductoSeleccionado:any;
+
+idProducto:any;
+descripcion:any;
+precioCompra:any;
+presentacion:any;
 
 
 
@@ -39,13 +60,105 @@ export class CatproductosPage {
   constructor(public navCtrl: NavController, public navParams: NavParams,private camera: Camera, private transfer: FileTransfer, private file: File,public alertCtrl: AlertController,
     public mvService:MvserviceProvider,
     public catService:CatalogserviceProvider,
+    public selectprovider:SelectserviceProvider
     ) {
 
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad CatproductosPage');
+    this.getproductos();
   }
+
+
+  eliminarProducto(){
+    this.catService.delProducto(this.idProducto).then((result)=>{
+      console.log(result)
+      this.mensaje="Seguro que desea eliminar la maqunia?"
+      this.showAlert();
+      this.getproductos();
+      this.port=null;
+      this.descripcion=null;
+      this.precioCompra=null;
+      this.presentacion=null;
+
+    },(err)=>{
+      console.log(err);
+    }
+    );
+
+  }
+  guardarProducto(){
+    if(this.descripcion==null || this.descripcion==""
+    || this.precioCompra<0 || this.precioCompra =="" || this.precioCompra==null
+    || this.presentacion==null || this.presentacion==""
+    )
+    {
+      this.mensaje="Producto no creado\n favor de ingresar todos los datos correctamente";
+      this.showAlert();
+
+    }
+    else{
+      this.infoproductonuevo.descripcion=this.descripcion;
+      this.infoproductonuevo.precioCompra=this.precioCompra;
+      this.infoproductonuevo.presentacion=this.presentacion;
+      console.log(this.infoproductonuevo);
+      this.catService.newProducto(this.infoproductonuevo).then((result)=>{
+
+                console.log(result);
+                console.log(this.infoproductonuevo)
+                this.mensaje="Producto creado exitosamente!"
+                this.showAlert();
+          
+                 },(err)=>{
+                   console.log(err);
+                 }
+                
+                 );
+    
+
+    }
+
+
+
+  }
+
+  modificarProducto(){
+    if(this.descripcion==null || this.descripcion==""
+    || this.precioCompra<0 || this.precioCompra =="" || this.precioCompra==null
+    || this.presentacion==null || this.presentacion==""
+    ){
+      this.mensaje="Producto no modificado\n favor de ingresar todos los datos correctamente";
+      this.showAlert();
+
+    }
+    else{
+      this.infoProductoSeleccionado.descripcion=this.descripcion;
+      this.infoProductoSeleccionado.precioCompra=this.precioCompra;
+      this.infoProductoSeleccionado.presentacion=this.presentacion;
+      console.log(this.infoProductoSeleccionado);
+      this.updProducto();
+      this.mensaje="Producto modificado correctamente";
+      this.showAlert();
+
+
+    }
+    
+
+  }
+
+  nuevoProducto(){
+    this.catService.getidProducto().then(result=>{
+      console.log(result)
+      this.infoproductonuevo.idProducto=result[0].value;
+      console.log(this.infoproductonuevo);
+        },(err)=>{
+          console.log(err);
+        }
+        );
+
+  }
+
 
 
   /*************foto*/
@@ -84,39 +197,57 @@ export class CatproductosPage {
   }
     /***********foto*/
 
-    nuevoproducto(){
-      this.valor="false"
-    }
-
-    guardarproducto(){
-      if(this.infoproducto.descripcion==null || this.infoproducto.descripcion==""
-      || this.infoproducto.precioCompra==null || this.infoproducto.precioCompra==""
-      || this.infoproducto.presentacion==null || this.infoproducto.presentacion==""
-      ){
-          console.log("no creado")
-          this.mensaje="Producto no creado\n favor de ingresar los datos correctamente"
-          this.showAlert();
-
-
-        }
-        else{
-          this.catService.newProducto(this.infoproducto).then((result)=>{
+    getproductos(){
+      this.selectprovider.selectproductos().then(result=>{
+        this.listaproductos=result; //obtiene las maquinas
+        console.log(this.listaproductos);
+        this.ports=this.listaproductos; //
+        console.log(this.ports)
+       
   
-            let respuesta:any; //Respuesta de la encriptacion
-            respuesta=result;
-            console.log(respuesta);
-            console.log(this.infoproducto)
-            this.mensaje="Producto creado exitosamente!"
-            this.showAlert();
-      
-             },(err)=>{
-               console.log(err);
-             }
-            
-             );
+        console.log(result);
+        },(err)=>{
+          console.log(err);
         }
+        );
+    }
+  
+    portChange(event: {
+      component: IonicSelectableComponent,
+      value: any 
+    }) {
+      console.log('port:', event.value);
+      console.log("cambio el valor")
+      console.log(this.port);
+      this.idProducto=this.port.label;
+      this.getinfoProducto();
+  
     }
 
+    getinfoProducto(){
+      this.catService.getInfoProducto(this.idProducto).then((result)=>{
+
+        this.infoProductoSeleccionado=result;
+        this.descripcion=this.infoProductoSeleccionado.descripcion;
+        this.precioCompra=this.infoProductoSeleccionado.precioCompra;
+        this.presentacion=this.infoProductoSeleccionado.presentacion;
+        },(err)=>{
+           console.log(err);
+         }
+         );
+    }
+
+    updProducto(){
+      this.catService.updProducto(this.infoProductoSeleccionado).then((result)=>{
+      console.log(result)
+      
+         },(err)=>{
+           console.log(err);
+         }
+         );
+    
+    }
+    
     showAlert() {
       const alert = this.alertCtrl.create({
         title: this.mensaje,

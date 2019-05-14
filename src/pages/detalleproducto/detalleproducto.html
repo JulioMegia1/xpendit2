@@ -1,6 +1,8 @@
-<navbar mytext="Productos"></navbar>
+<ion-header>
+  <navbar ></navbar>
+</ion-header>
 
-<ion-content style="margin-top:75px">
+<ion-content >
 
     <ion-header>
         <ion-toolbar>
@@ -27,21 +29,7 @@
           
             </ion-toolbar>
       </ion-header>
-                   <!--PARA CAMBIAR DE MAQUINA-->
-  <!-- <ion-item>
-    <ion-label>Máquina</ion-label>
-    <ionic-selectable
-      item-content 
-      [(ngModel)]="port2"
-      [items]="ports2"
-      itemValueField="id"
-      itemTextField="name"
-      [canSearch]="true"
-      (onChange)="portChange($event)">
-    </ionic-selectable>
-  </ion-item> -->
-  
-  <!-- INFO GRAL PRODUCTO -->
+      
 <ion-card style="margin-top:60px"> 
     <ion-grid>
         <ion-row>
@@ -108,7 +96,7 @@
     </ion-card-content>
 </ion-card> 
 
-<ion-card style="margin-bottom:70px">
+<ion-card >
     <ion-card-header >
       Historico de venta($) y unidades del producto  {{nombreproducto}} de la maquina {{nombremaquina}}
 </ion-card-header>

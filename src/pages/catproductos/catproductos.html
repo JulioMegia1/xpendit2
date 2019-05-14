@@ -1,7 +1,25 @@
-<navbar mytext="Catálogos Productos"></navbar>
+<ion-header>
+    <navbar ></navbar>
+
+    <ion-toolbar>  
+            <ion-item>                 
+              <ion-label>Productos</ion-label>
+        
+              <ionic-selectable 
+                item-content 
+                [(ngModel)]="port"
+                [items]="ports"
+                itemValueField="label"
+                itemTextField="value"
+                [canSearch]="true"
+                (onChange)="portChange($event)">
+              </ionic-selectable>         
+            </ion-item>               
+        </ion-toolbar>
+    </ion-header>
 
 
-<ion-content style="margin-top:75px">
+<ion-content>
 
         <cardexpandible title="ABC Productos">
             
@@ -12,13 +30,13 @@
                         <ion-label> Descripción*</ion-label>     
                     </ion-col>
                     <ion-col col-auto>
-                        <ion-input placeholder="Descripción" [disabled]=valor [(ngModel)]="infoproducto.descripcion"> </ion-input>
+                        <ion-input placeholder="Descripción"  [(ngModel)]="descripcion"> </ion-input>
                     </ion-col>
                     <ion-col col-auto>
                         <ion-label> Precio compra*</ion-label>
                     </ion-col>
                     <ion-col col-auto>
-                        <ion-input  placeholder="Precio compra*" [disabled]=valor  [(ngModel)]="infoproducto.precioCompra"></ion-input>
+                        <ion-input  placeholder="Precio compra*"  [(ngModel)]="precioCompra" type="number"></ion-input>
                     </ion-col>
                 </ion-row>
 
@@ -28,7 +46,7 @@
                     </ion-col>
 
                     <ion-col col-auto>
-                        <ion-input  placeholder="Presentación" [disabled]=valor  [(ngModel)]="infoproducto.presentacion"></ion-input>
+                        <ion-input  placeholder="Presentación"   [(ngModel)]="presentacion"></ion-input>
                     </ion-col>
                     <ion-col col-auto>
 <div style="justify-content:center;display:flex">
@@ -42,14 +60,30 @@
                 </ion-row>
             </ion-grid>
         
-            <div style="justify-content:center;display:flex">
+            <!-- <div style="justify-content:center;display:flex">
                 <button ion-button round> Modificar </button>
                 <button ion-button round (click)="guardarproducto()"> Guardar  </button>
                 <button ion-button round (click)="nuevoproducto()"> Nuevo </button>
 
                         
 
-        </div>
+        </div> -->
+
+
+        <div style="justify-content:center;display:flex">
+               
+
+                  <ion-fab middle center >
+                        <button ion-fab mini color="verde">  <i class="fas fa-chevron-left"></i></button>
+                        <ion-fab-list side="left">
+                                <button ion-fab color="danger" (click)="eliminarProducto()"><i class="fa fa-trash" aria-hidden="true"></i> </button>
+                                <button ion-fab color="azul" (click)="guardarProducto()"> <i class="fas fa-save    "></i>   </button>
+                                <button ion-fab color="azul" (click)="modificarProducto()" > <i class="fas fa-edit    "></i>  </button>
+                                <button ion-fab color="azul" (click)="nuevoProducto()"> <i class="fa fa-plus" aria-hidden="true"></i> </button>
+                            </ion-fab-list>
+                      </ion-fab>
+          </div>
+          
             
         </cardexpandible>
         

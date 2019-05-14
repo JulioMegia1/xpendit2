@@ -91,6 +91,22 @@ delMaquina(data){
 
 
   /*******catalogo productos */
+
+  getidProducto(){  //indfo del producto
+    return new Promise(resolve => {
+      let menu=this.url+'/sequence/producto/'
+      console.log(menu);
+      this.http.get(menu).subscribe(data => {
+        resolve(data);
+      }
+      ,err => {
+        console.log(err);
+      });
+    });
+  }
+
+
+
   newProducto (data){
     var options = {
        headers : { 'Content-Type': 'application/json' }
@@ -104,6 +120,52 @@ delMaquina(data){
       });
     });
  }
+
+ getInfoProducto(idProducto){  //indfo del producto
+  return new Promise(resolve => {
+    let menu=this.url+'/catalogos/productos/get/'+idProducto
+    console.log(menu);
+    this.http.get(menu).subscribe(data => {
+      resolve(data);
+    }
+    ,err => {
+      console.log(err);
+    });
+  });
+}
+
+updProducto (data){
+  var options = {
+     headers : { 'Content-Type': 'application/json' }
+  }
+  return new Promise ((resolve,reject)=>{
+    this.http.put(this.url+'/catalogos/productos/upd/', JSON.stringify(data),options)
+    .subscribe(res=>{
+      resolve(res);
+    },(err)=>{
+      reject(err);
+    });
+  });
+}
+
+
+delProducto(data){
+  //En angular 7, el delete no puede enviar body, solo (url,options)
+  // o url+/(idmaquina)
+  //o usar delete 
+ 
+ 
+  return new Promise ((resolve,reject)=>{
+   this.http.request('delete',this.url+'/catalogos/productos/del/',{body:{idProducto:data}})
+   .subscribe(res=>{
+     resolve(res);
+   },(err)=>{
+     reject(err);
+   });
+ });
+
+}
+
 
 
 
