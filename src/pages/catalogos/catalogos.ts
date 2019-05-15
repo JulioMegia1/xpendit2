@@ -1,5 +1,5 @@
-import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { Component, ViewChild } from '@angular/core';
+import { IonicPage, NavController, NavParams, Content } from 'ionic-angular';
 
 /************************Paginas*************************************/
 import { CatmaquinasPage } from "../../pages/catmaquinas/catmaquinas";
@@ -16,6 +16,8 @@ import { CatalarmasPage } from "../../pages/catalarmas/catalarmas";
   templateUrl: 'catalogos.html',
 })
 export class CatalogosPage {
+  @ViewChild(Content) content: Content;
+
 
   constructor(public navCtrl: NavController, public navParams: NavParams) {
   }

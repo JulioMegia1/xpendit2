@@ -1,5 +1,5 @@
 import { Component,ViewChild } from '@angular/core';
-import { IonicPage, NavController, NavParams,PopoverController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams,PopoverController, Content } from 'ionic-angular';
 import { ToastController } from 'ionic-angular';
 import { AlertController } from 'ionic-angular';
 
@@ -38,6 +38,9 @@ class Port {
   templateUrl: 'detallemv.html',
 })
 export class DetallemvPage {
+
+  @ViewChild(Content) content: Content;
+
   //escuchas hijos
   @ViewChild("prodInv") prodinv:GraficaproductosinventarioComponent
   @ViewChild("tacProd") tacprod:TacometroproductosComponent;

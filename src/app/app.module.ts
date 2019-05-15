@@ -73,6 +73,9 @@ import { Camera } from '@ionic-native/camera';
 import { FileTransfer } from '@ionic-native/file-transfer';
 import { File } from '@ionic-native/file';
 
+/*plugin hide header*/
+import {ScrollingHeaderModule} from 'ionic-scrolling-header';
+
 
 
 /***************fusioncharts********************* */
@@ -88,7 +91,6 @@ import * as Widgets from 'fusioncharts/fusioncharts.widgets';
 
 FusionChartsModule.fcRoot(FusionCharts, Charts, TimeSeries,Ocean,Gammel,Zune,Widgets);
 
-/******************************************** */
 
 @NgModule({
   declarations: [
@@ -139,6 +141,7 @@ FusionChartsModule.fcRoot(FusionCharts, Charts, TimeSeries,Ocean,Gammel,Zune,Wid
     HttpClientModule,
     FusionChartsModule,
     IonicSelectableModule,//selectable
+    ScrollingHeaderModule,
     IonicModule.forRoot(MyApp),
    ],
   bootstrap: [IonicApp],

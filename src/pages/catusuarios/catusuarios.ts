@@ -1,5 +1,5 @@
-import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { Component, ViewChild } from '@angular/core';
+import { IonicPage, NavController, NavParams, Content } from 'ionic-angular';
 import { AlertController } from 'ionic-angular';
 
 
@@ -18,6 +18,8 @@ import { CatalogserviceProvider } from "../../providers/catalogservice/catalogse
   templateUrl: 'catusuarios.html',
 })
 export class CatusuariosPage {
+  @ViewChild(Content) content: Content;
+
   valor="true" //habilita input
   password:any;//
   infousuario= {

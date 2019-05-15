@@ -1,5 +1,5 @@
-import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { Component, ViewChild } from '@angular/core';
+import { IonicPage, NavController, NavParams, Content } from 'ionic-angular';
 /*servicios*/
 // import { DataService Provider } from "../../providers/data-service/data-service";
 import { SelectserviceProvider } from "../../providers/selectservice/selectservice";
@@ -12,6 +12,8 @@ import { MvserviceProvider } from "../../providers/mvservice/mvservice";
   templateUrl: 'actualizamv.html',
 })
 export class ActualizamvPage {
+  @ViewChild(Content) content: Content;
+
 
   idmaquina:any;
   existencias:any;

@@ -1,5 +1,5 @@
-import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { Component, ViewChild } from '@angular/core';
+import { IonicPage, NavController, NavParams, Content } from 'ionic-angular';
 import { AlertController } from 'ionic-angular';
 
 /*mapa*/
@@ -29,6 +29,8 @@ class Port {
   templateUrl: 'catmaquinas.html',
 })
 export class CatmaquinasPage {
+  @ViewChild(Content) content: Content;
+
 
  /*********SELECT SEARCHEABLE***********/
  ports: Port[];  ///muestra las opciones del select

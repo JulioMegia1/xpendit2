@@ -1,5 +1,5 @@
-import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { Component, ViewChild } from '@angular/core';
+import { IonicPage, NavController, NavParams, Content } from 'ionic-angular';
 import { DetallemvPage } from "../detallemv/detallemv";
 
 /**MAPA leaflet
@@ -21,6 +21,8 @@ import { map } from 'rxjs/operator/map';
   templateUrl: 'pantallaprincipal.html',
 })
 export class PantallaprincipalPage {
+
+  @ViewChild(Content) content: Content;
 
   //Variables fijas
   usuario:any;//

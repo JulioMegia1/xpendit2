@@ -1,5 +1,5 @@
-import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { Component, ViewChild } from '@angular/core';
+import { IonicPage, NavController, NavParams, Content } from 'ionic-angular';
 
 /*componente*/
 import { IonicSelectableComponent } from 'ionic-selectable';
@@ -19,6 +19,8 @@ import { CIprovider } from "../../providers/data/data";
   templateUrl: 'catalarmas.html',
 })
 export class CatalarmasPage {
+  @ViewChild(Content) content: Content;
+
 
    /*********SELECT SEARCHEABLE***********/
  ports: Port[];  ///muestra las opciones del select

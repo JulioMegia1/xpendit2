@@ -1,5 +1,5 @@
 import { Component,ViewChild } from '@angular/core';
-import { IonicPage, NavController, NavParams,PopoverController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams,PopoverController, Content } from 'ionic-angular';
 import { AlertController } from 'ionic-angular';
 
 /***********popover**********/
@@ -36,6 +36,8 @@ class Port2 {//clase para select productos
   templateUrl: 'detalleproducto.html',
 })
 export class DetalleproductoPage {
+  @ViewChild(Content) content: Content;
+
 
   @ViewChild("ventaHora") ventahora:VentaxhoraproductomaquinaComponent 
   @ViewChild("ventaHoraAcum") ventahoraacum:VentaxdiaproductomaquinaComponent
