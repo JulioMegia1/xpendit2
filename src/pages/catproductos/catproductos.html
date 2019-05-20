@@ -50,8 +50,8 @@
                     </ion-col>
                     <ion-col col-auto>
 <div style="justify-content:center;display:flex">
-  <button ion-button round (click)="takePhoto()" round color="secondary"><ion-icon name="camera"></ion-icon> Tomar foto</button>
-  <button ion-button round (click)="getImage()" round color="secondary"><ion-icon name="image"></ion-icon> Elegir foto de la galería</button>
+  <button ion-button round (click)="takePhoto()" round color="secondary"><i class="fas fa-camera-retro"></i></button>
+  <button ion-button round (click)="getImage()" round color="secondary"><i class="far fa-images"></i></button>
 </div>
                     </ion-col>
                     <ion-col col-auto>
@@ -87,14 +87,12 @@
             
         </cardexpandible>
         
-            <ion-card>
-                <ion-card-header>
-                    Productos
-                </ion-card-header>
-                <ion-card-content>
-                        <ion-searchbar></ion-searchbar>
-                </ion-card-content>
-        
-            </ion-card>
+          
+
+            <ng2-smart-table [settings]="settings" [source]="data"  (custom)="cargarDatos($event)"
+            (createConfirm)="onCreateConfirm($event)" ></ng2-smart-table>
+
+            <button (click)="cambiapage()"></button>
+
 
 </ion-content>

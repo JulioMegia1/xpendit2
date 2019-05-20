@@ -9,7 +9,7 @@ import { SelectserviceProvider } from "../../providers/selectservice/selectservi
 import {  MvserviceProvider} from "../../providers/mvservice/mvservice";
 import { CatalogserviceProvider } from "../../providers/catalogservice/catalogservice";
 
-
+import { DataSource } from "../../../node_modules/ng2-smart-table/lib/data-source/data-source";
 
 
 @IonicPage()
@@ -18,6 +18,104 @@ import { CatalogserviceProvider } from "../../providers/catalogservice/catalogse
   templateUrl: 'catusuarios.html',
 })
 export class CatusuariosPage {
+  
+/*table*/
+settings = {
+  noDataMessage: "Sin datos",
+
+  actions:{
+    columnTitle:"Actions",
+    position:"right",
+  custom:[{
+    name: 'view',
+    title: 'Cargar Datos',
+  }]
+},
+  columns: {
+    usuario: {
+      title: 'usuario'
+    },
+    tipoUsuario: {
+      title: 'Tipo',
+      filter: {
+        type: 'list',
+        config: {
+          selectText: 'Select',
+          list: [
+            { value: 'Administrador', title: 'Administrador' },
+            { value: 'Operador', title: 'Operador' },
+            { value: 'Solo Lectura', title: 'Solo Lectura' },
+          ],
+
+        },
+      },
+      editor: {
+        type: 'list',
+        config: {
+          list: [
+            { value: 'Administrador', title: 'Administrador' },
+            { value: 'Operador', title: 'Operador' },
+            { value: 'Solo Lectura', title: 'Solo Lectura' },
+          ],
+
+        },
+      },
+      
+    },
+    estadoUsuario: {
+      title: 'Status',
+      filter: {
+        type: 'list',
+        config: {
+          selectText: 'Select',
+          list: [
+            { value: 'Activo', title: 'Activo' },
+            { value: 'Inactivo', title: 'Inactivo' },
+            { value: 'Vencido', title: 'Vencido' },
+          ],
+
+        },
+      },
+      editor: {
+        type: 'list',
+        config: {
+          list: [
+            { value: 'Activo', title: 'Activo' },
+            { value: 'Inactivo', title: 'Inactivo' },
+            { value: 'Vencido', title: 'Vencido' },
+          ],
+
+        },
+      },
+    },
+    persona: {
+      title: 'Nombre',
+      valuePrepareFunction:(persona)=>{
+        return persona.nombre;
+      }
+      //   var valueModelList = JSON.parse(row.persona);
+      //   var htmlEntity ="";
+      //   valueModelList.foreach(valueModel=>{
+      //     htmlEntity += valueModel.nombre+ " : " + valueModel.value + '<br>';
+      //   })     
+      // return htmlEntity;
+      // }
+    },
+    paterno: {
+      title: 'Paterno'
+    },
+    materno: {
+      title: 'Materno'
+    },
+    email:{
+      title:"Correo"
+    }
+  },
+ 
+};
+
+data:any;
+
   @ViewChild(Content) content: Content;
 
   valor="true" //habilita input
@@ -50,6 +148,7 @@ selectTipoUsuarios:any;
     public mvService:MvserviceProvider,
     public catService:CatalogserviceProvider,
     ) {
+      this.getinfogralMaquinas();
  
   }
 
@@ -58,6 +157,19 @@ selectTipoUsuarios:any;
     this.infoselectEstadousuario();
     this.infoselectTipousuario();
     
+  }
+
+  getinfogralMaquinas(){
+    this.catService.getUsuarios().then(result=>{
+      console.log(result)
+      this.data=result;
+      // this.source=new LocalDataSource(this.data);
+
+        },(err)=>{
+          console.log(err);
+        }
+        );
+
   }
 
   nuevousuario(){
@@ -161,6 +273,17 @@ selectTipoUsuarios:any;
     alert.present();
   }
 
+  eliminarUsuario(){
+
+  }
+
+  modificarUsuario(){
+
+  }
+cargarDatos(event) {
+  console.log(event);
+  
+}
 
 
 

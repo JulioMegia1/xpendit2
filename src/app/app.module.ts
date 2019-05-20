@@ -76,6 +76,13 @@ import { File } from '@ionic-native/file';
 /*plugin hide header*/
 import {ScrollingHeaderModule} from 'ionic-scrolling-header';
 
+/*ng2SmartTable*/
+import { Ng2CompleterModule } from "ng2-completer";
+
+import { Ng2SmartTableModule } from 'ng2-smart-table';
+
+
+
 
 
 /***************fusioncharts********************* */
@@ -143,6 +150,8 @@ FusionChartsModule.fcRoot(FusionCharts, Charts, TimeSeries,Ocean,Gammel,Zune,Wid
     IonicSelectableModule,//selectable
     ScrollingHeaderModule,
     IonicModule.forRoot(MyApp),
+    Ng2CompleterModule,
+    Ng2SmartTableModule
    ],
   bootstrap: [IonicApp],
   entryComponents: [

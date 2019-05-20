@@ -222,7 +222,13 @@
                       </div>
                      
                   </ion-card-content>
+                  
         </ion-card> 
+
+        <!-- <input #search class="search" type="text" placeholder="Buscar..." (keydown)="onSearch(search.value)"> -->
+
+        <ng2-smart-table [settings]="settings" [source]="data"  (custom)="cargarDatos($event)"></ng2-smart-table>
+
 
          
 

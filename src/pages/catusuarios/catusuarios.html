@@ -96,12 +96,33 @@
                 </ion-col>
             </ion-row>
         </ion-grid>
-        <div style="justify-content:center;display:flex">
+        <!-- <div style="justify-content:center;display:flex">
                 <button ion-button round [disabled]=valor> Modificar </button>
                 <button ion-button round (click)="encriptacontrasena()"> Guardar  </button>
                 <button ion-button round (click)="nuevousuario()"> Nuevo </button>
-        </div>
+        </div> -->
+        <div style="justify-content:center;display:flex">
+            <!-- <button ion-button round (click)="nuevamaquina()"> <i class="fa fa-plus" aria-hidden="true"></i>Nuevo </button>
+              <button ion-button round (click)="modificar()" > <i class="fas fa-edit    "></i> Modificar </button>
+              <button ion-button round  (click)="guardarmaquina()"> <i class="fas fa-save    "></i> Guardar  </button>
+              <button ion-button round (click)="nuevamaquina()"><i class="fa fa-trash" aria-hidden="true"></i>Eliminar </button>
+-->
+
+              <ion-fab middle center >
+                    <button ion-fab mini color="verde">  <i class="fas fa-chevron-left"></i></button>
+                    <ion-fab-list side="left">
+                            <button ion-fab color="danger" (click)="eliminarUsuario()"><i class="fa fa-trash" aria-hidden="true"></i> </button>
+                            <button ion-fab color="azul" (click)="encriptacontrasena()"> <i class="fas fa-save    "></i>   </button>
+                            <button ion-fab color="azul" (click)="modificarUsuario()" > <i class="fas fa-edit    "></i>  </button>
+                            <button ion-fab color="azul" (click)="nuevousuario()"> <i class="fa fa-plus" aria-hidden="true"></i> </button>
+                        </ion-fab-list>
+                  </ion-fab>
+      </div>
     </cardexpandible>
+
+    <ng2-smart-table [settings]="settings" [source]="data"  (custom)="cargarDatos($event)"></ng2-smart-table>
+
+    
         
           
 </ion-content>

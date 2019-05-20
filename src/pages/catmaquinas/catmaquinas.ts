@@ -23,12 +23,156 @@ class Port {
   public value: any;
 }
 
+/*ng2smartTable*/
+// import { LocalDataSource } from 'ng2-smart-table';
+
+
+
 @IonicPage()
 @Component({
   selector: 'page-catmaquinas',
   templateUrl: 'catmaquinas.html',
 })
 export class CatmaquinasPage {
+
+  /*SamrtTable*/
+  settings = {
+    hideSubHeader:false	,
+    noDataMessage:"sin datos",
+      add: {
+      confirmCreate: false,
+      addButtonContent: '<i class="fas fa-plus"></i>',
+      createButtonContent: '<i class="far fa-save"></i>',
+      cancelButtonContent: '<i class="fas fa-times"></i>'
+          },
+   
+    delete: {
+      confirmDelete: true,
+      deleteButtonContent: '<i class="fas fa-trash-alt"></i>',
+      saveButtonContent: '<i class="fas fa-check"></i>',
+      cancelButtonContent: '<i class="fas fa-times"></i>'
+    },
+  
+    edit: {
+      confirmSave: true,
+      editButtonContent: '<i class="fas fa-edit"></i>',
+      saveButtonContent: '<i class="far fa-save"></i>',
+      cancelButtonContent: '<i class="fas fa-times"></i>'
+          },
+    actions:{
+      columnTitle:"Actions",
+      position:"right",
+    custom:[{
+      name: 'view',
+      title: '<i class="fas fa-edit"></i>',
+    }]
+  },
+    columns: {
+      estado: {
+        title: 'Estado',
+        filter: {
+          type: 'list',
+          config: {
+            selectText: 'Todas',
+            list: [
+              { value: 'Alertada', title: 'Alertada' },
+              { value: 'OK', title: 'OK' },
+              { value: 'Borrada', title: 'Borrada' },
+            ],
+          },
+        },
+        editor: {
+          type: 'list',
+          config: {
+            list: [
+              { value: 'OK', title: 'OK' },
+              { value: 'Alertada', title: 'Alertada' },
+              { value: 'Borrada', title: 'Borrada' },
+            ],
+          },
+        },
+      },
+      tipo: {
+        title: 'Tipo',
+        filter: {
+          type: 'list',
+          config: {
+            selectText: 'Todas',
+            list: [
+              { value: 'BOTANA', title: 'BOTANA' },
+              { value: 'CAFE', title: 'CAFE' },
+              { value: 'COMBO', title: 'COMBO' },
+              { value: 'REFRESCO', title: 'REFRESCO' },
+            ],
+          },
+        },
+        editor: {
+          type: 'list',
+          config: {
+            list: [
+              { value: 'BOTANA', title: 'BOTANA' },
+              { value: 'CAFE', title: 'CAFE' },
+              { value: 'COMBO', title: 'COMBO' },
+              { value: 'REFRESCO', title: 'REFRESCO' },
+            ],
+          },
+        },
+      },
+      modelo: {
+        title: 'Modelo',
+     
+        filter: {
+          type: 'list',
+          config: {
+            selectText: 'Todas',
+            list: [
+              { value: 'AMS', title: 'AMS' },
+              { value: 'CRANE', title: 'CRANE' },
+              { value: 'CRANE DEX VIEJO', title: 'CRANE DEX VIEJO' },
+              { value: 'SIN ESPECIFICAR', title: 'SIN ESPECIFICAR' },
+
+            ],
+
+          },
+        },
+        editor: {
+          type: 'list',
+          config: {
+            list: [
+              { value: 'AMS', title: 'AMS' },
+              { value: 'CRANE', title: 'CRANE' },
+              { value: 'CRANE DEX VIEJO', title: 'CRANE DEX VIEJO' },
+              { value: 'SIN ESPECIFICAR', title: 'SIN ESPECIFICAR' },
+
+            ],
+
+          },
+        },
+      },
+      descripcion:{ 
+        title:"Descripción"
+      },
+      direccion: {
+        title: 'Dirección'
+      },
+      latitud: {
+        title: 'Latitud',
+        type:"number"
+      },
+      longitud: {
+        title: 'Longitud',
+        type:"number"
+
+      }
+    },
+   
+  };
+
+  data:any;
+  // source: LocalDataSource; // add a property to the component
+
+  /*ng2smartTable*/
+
   @ViewChild(Content) content: Content;
 
 
@@ -134,6 +278,7 @@ usuario:any;
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad CatmaquinasPage');
+    this.getinfogralMaquinas();
     this.getmaquinasid()
     this.getselecTipoMaquina();
     this.getselecModeloMaquina();
@@ -141,6 +286,19 @@ usuario:any;
     console.log(this.center)
     this.leafletMap();
    
+  }
+
+  getinfogralMaquinas(){
+    this.catService.getMaquinas().then(result=>{
+      console.log(result)
+      this.data=result;
+      // this.source=new LocalDataSource(this.data);
+
+        },(err)=>{
+          console.log(err);
+        }
+        );
+
   }
 
   nuevamaquina(){
@@ -410,6 +568,7 @@ getInfomaquina(){
   this.asignados=null;
   await this.getselectNoasignados()
   await this.getselectasignados();
+  await this.getinfogralMaquinas();
      },(err)=>{
        console.log(err);
      }
@@ -481,6 +640,7 @@ updUbicacion(){
 
   this.infomaquinaSeleccionada.latitud=this.Latitud;
   this.infomaquinaSeleccionada.longitud=this.Longitud;
+  this.actualizainfo();
   this.mapa();
   this.mensaje="Ubicación actualizada "
   this.showAlert();
@@ -567,6 +727,20 @@ ionViewWillLeave(){
 ionViewDidLeave(){
   console.log("estoy saliendo Did leave")
 }
+
+cargarDatos(event) {
+  console.log(event);
+  this.idMaquina=event.data.idMaquina;
+    
+    this.getInfomaquina();
+    this.getusuarios();
+
+
+    
+    this.getselectasignados();    
+    this.getselectNoasignados();
+}
+
 
   
 

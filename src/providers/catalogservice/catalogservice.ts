@@ -12,6 +12,20 @@ export class CatalogserviceProvider {
   }
 
  /*catalogo maquinas*/
+ getMaquinas(){  //indfo del producto
+  return new Promise(resolve => {
+    let menu=this.url+'/catalogos/mvs/getAll'
+    console.log(menu);
+    this.http.get(menu).subscribe(data => {
+      resolve(data);
+    }
+    ,err => {
+      console.log(err);
+    });
+  });
+}
+
+ 
  getidMaquina(){  //indfo del producto
   return new Promise(resolve => {
     let menu=this.url+'/sequence/maquina/'
@@ -92,6 +106,19 @@ delMaquina(data){
 
   /*******catalogo productos */
 
+  getProductos(){  //indfo del producto
+    return new Promise(resolve => {
+      let menu=this.url+'/catalogos/productos/getAll'
+      console.log(menu);
+      this.http.get(menu).subscribe(data => {
+        resolve(data);
+      }
+      ,err => {
+        console.log(err);
+      });
+    });
+  }
+
   getidProducto(){  //indfo del producto
     return new Promise(resolve => {
       let menu=this.url+'/sequence/producto/'
@@ -171,6 +198,23 @@ delProducto(data){
 
 
   /*catalogo usuarios*/
+
+  getUsuarios(){  //indfo del producto
+    return new Promise(resolve => {
+      let menu=this.url+'/catalogos/usuarios/getAll'
+      console.log(menu);
+      this.http.get(menu).subscribe(data => {
+        resolve(data);
+      }
+      ,err => {
+        console.log(err);
+      });
+    });
+  }
+
+
+
+
   newUsuario (data){
     var options = {
        headers : { 'Content-Type': 'application/json' }
@@ -196,6 +240,20 @@ delProducto(data){
     }
     ,err => {
       console.log(err);
+    });
+  });
+}
+
+updAlarma (data){
+  var options = {
+     headers : { 'Content-Type': 'application/json' }
+  }
+  return new Promise ((resolve,reject)=>{
+    this.http.put(this.url+'/catalogos/alarmas/upd/', JSON.stringify(data),options)
+    .subscribe(res=>{
+      resolve(res);
+    },(err)=>{
+      reject(err);
     });
   });
 }

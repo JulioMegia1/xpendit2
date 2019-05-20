@@ -1,6 +1,7 @@
-import { Component, ViewChild } from '@angular/core';
+import { Component, ViewChild, Input } from '@angular/core';
 import { IonicPage, NavController, NavParams, Content } from 'ionic-angular';
 import { AlertController } from 'ionic-angular';
+
 
 
 /*servicios*/
@@ -28,6 +29,72 @@ class Port {
   templateUrl: 'catproductos.html',
 })
 export class CatproductosPage {
+
+
+
+/*table*/
+settings = {
+  hideSubHeader:false	,
+  noDataMessage:"sin datos",
+    add: {
+    confirmCreate: true,
+    addButtonContent: '<i class="fas fa-plus"></i>',
+    createButtonContent: '<i class="far fa-save"></i>',
+    cancelButtonContent: '<i class="fas fa-times"></i>'
+        },
+ 
+  delete: {
+    confirmDelete: true,
+    deleteButtonContent: '<i class="fas fa-trash-alt"></i>',
+    saveButtonContent: '<i class="fas fa-check"></i>',
+    cancelButtonContent: '<i class="fas fa-times"></i>'
+  },
+
+  edit: {
+    confirmSave: true,
+    editButtonContent: '<i class="fas fa-edit"></i>',
+    saveButtonContent: '<i class="far fa-save"></i>',
+    cancelButtonContent: '<i class="fas fa-times"></i>'
+        },
+  actions:{
+    columnTitle:"Actions",
+    position:"right",
+  custom:[{
+    name: 'view',
+    title: '<i class="fas fa-edit"></i>',
+  }]
+},
+  columns: {
+    descripcion: {
+      title: 'Descripcion',
+      // width:"30%"
+    },
+    precioCompra: {
+      title: 'Precio Compra',
+      // width:"10%"
+    },
+    presentacion: {
+      title: 'Presentación',
+      // width:"10%"
+    },
+    imagen: {
+      title: 'Imagen',
+      editable:false,
+      // width:"20%"
+    }
+  },
+  pager: {
+    display: true,
+    perPage: 5
+  },
+  attr: {
+    class: 'table table-striped table-bordered table-hover'
+  },
+ 
+};
+
+data:any;
+
   @ViewChild(Content) content: Content;
 
 
@@ -64,6 +131,20 @@ presentacion:any;
     public catService:CatalogserviceProvider,
     public selectprovider:SelectserviceProvider
     ) {
+      this.getinfogralProductos()
+
+  }
+
+
+  getinfogralProductos(){
+    this.catService.getProductos().then(result=>{
+      console.log(result)
+      this.data=result;
+
+        },(err)=>{
+          console.log(err);
+        }
+        );
 
   }
 
@@ -76,7 +157,7 @@ presentacion:any;
   eliminarProducto(){
     this.catService.delProducto(this.idProducto).then((result)=>{
       console.log(result)
-      this.mensaje="Seguro que desea eliminar la maqunia?"
+      this.mensaje="Seguro que desea eliminar la maquina?"
       this.showAlert();
       this.getproductos();
       this.port=null;
@@ -152,13 +233,13 @@ presentacion:any;
   nuevoProducto(){
     this.catService.getidProducto().then(result=>{
       console.log(result)
-      this.infoproductonuevo.idProducto=result[0].value;
+      let numero=parseInt(result[0].value)
+      this.infoproductonuevo.idProducto=numero;
       console.log(this.infoproductonuevo);
         },(err)=>{
           console.log(err);
         }
         );
-
   }
 
 
@@ -240,8 +321,9 @@ presentacion:any;
     }
 
     updProducto(){
-      this.catService.updProducto(this.infoProductoSeleccionado).then((result)=>{
+      this.catService.updProducto(this.infoProductoSeleccionado).then(async (result)=>{
       console.log(result)
+      await this.getinfogralProductos();
       
          },(err)=>{
            console.log(err);
@@ -257,9 +339,86 @@ presentacion:any;
       });
       alert.present();
     }
+
+    cargarDatos(event) {
+      console.log(event);
+      this.idProducto=event.data.idProducto;
+      this.getinfoProducto();
+     
+    }
+
+    onDeleteConfirm(event) {
+      console.log("Delete Event In Console")
+      console.log(event);
+      if (window.confirm('Are you sure you want to delete?')) {
+        event.confirm.resolve();
+      } else {
+        event.confirm.reject();
+      }
+    }
+  
+      async onCreateConfirm(event) {
+
+      console.log("Create Event In Console")
+      console.log(event);
+      let a=parseFloat(event.newData.precioCompra)
+      console.log(a)
+      event.newData.precioCompra=a
+      console.log(event);
+      if(event.newData.descripcion==""
+        || event.newData.precioCompra=="" || isNaN(event.newData.precioCompra)==true  || event.newData.precioCompra<0
+        || event.newData.presentacion==""
+
+      ){
+        console.log("Datos invalidos")
+        this.mensaje="Producto no creado\n favor de ingresar todos los datos correctamente";
+        this.showAlert();
+      }
+      else{
+        console.log("Datos correctos")
+        this.nuevoProducto();
+        this.infoproductonuevo.descripcion=event.newData.descripcion;
+        this.infoproductonuevo.precioCompra=event.newData.precioCompra;
+        this.infoproductonuevo.presentacion=event.newData.presentacion;
+        console.log(this.infoproductonuevo);
+        await this.guardarProductosmartTable();
+
+      }
+
+    }
+
+
+     guardarProductosmartTable(){
+        console.log(this.infoproductonuevo);
+        this.catService.newProducto(this.infoproductonuevo).then(async (result)=>{
+  
+                  console.log(result);
+                  console.log(this.infoproductonuevo)
+                  await this.getinfogralProductos();
+                  this.mensaje="Producto creado exitosamente!"
+                  this.showAlert();
+            
+                   },(err)=>{
+                     console.log(err);
+                   }
+                  
+                   );
+    }
+  
+  
+    onSaveConfirm(event) {
+      console.log("Edit Event In Console")
+      console.log(event);
+    }
+    
   
   
 
+cambiapage(){
+  this.settings.pager.perPage=2
+
+
+}
 
 
 
