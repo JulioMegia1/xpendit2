@@ -4,106 +4,84 @@
 
 <ion-content >
 
-        
-
+<!-- card alarmas -->
         <ion-card style="border-radius: 10px;">
-                                <ion-card-header style="color:#ffffff;background-color: #242b5f;border-radius: 10px;">
-                                                <i class="fas fa-bell"></i> <b> Alarmas</b>
-                                  </ion-card-header>
-                                  <ion-card-content>
-        <ion-grid>
-                <ion-row>
-                    <ion-col col-2>
-                            <ion-label> Descripción*</ion-label>
-                    </ion-col>
-                    <ion-col col-4>
-                            <ion-input placeholder="Descripción" [(ngModel)]="descripcion"> </ion-input>
-                    </ion-col>
-
-
-                    <ion-col col-2>
-                                <ion-label>Prioridad*</ion-label>
-                        </ion-col>
-                        <ion-col col-4>
-                                <ion-item>
-                                 
-                                        <ion-select [(ngModel)]="prioridad" interface="popover" placeholder="selecciona"  >
-                                         <ion-option *ngFor="let prioridadn of prioridades" value="{{prioridadn.value}}">{{prioridadn.value}}</ion-option>  
-                                        </ion-select>
-                                   </ion-item>
-                        </ion-col>
-                </ion-row>
-
-
-            
-                    <ion-row>
-                            <ion-col>
-                                        <ion-label> Activa</ion-label>
-
-                            </ion-col>
-                    </ion-row>
-
-                    <ion-row>
-                                <ion-col col-2>
-                                                <ion-label> Subject</ion-label>
-                                                
+                <ion-card-header style="color:#ffffff;background-color: #242b5f;border-radius: 10px;">
+                        <i class="fas fa-bell"></i> <b> Alarmas</b>
+                </ion-card-header>
+                <ion-card-content>
+                        <ion-grid>
+                                <ion-row>
+                                        <ion-col col-2>
+                                                <ion-label> Descripción*</ion-label>
                                         </ion-col>
-                    
                                         <ion-col col-4>
-                                                <ion-input  placeholder="Subject" [(ngModel)]="Actsubject" ></ion-input>
-                                                
+                                                <ion-input placeholder="Descripción" [(ngModel)]="descripcion"> </ion-input>
+                                        </ion-col>
+
+                                        <ion-col col-2>
+                                                <ion-label>Prioridad*</ion-label>
+                                        </ion-col>
+                                        <ion-col col-4>
+                                                <ion-item>
+                                                        <ion-select [(ngModel)]="prioridad" interface="popover" placeholder="selecciona"  >
+                                                        <ion-option *ngFor="let prioridadn of prioridades" value="{{prioridadn.value}}">{{prioridadn.value}}</ion-option>  
+                                                        </ion-select>
+                                                </ion-item>
+                                        </ion-col>
+                                </ion-row>
+
+                                <ion-row>
+                                        <ion-col>
+                                                <ion-label> Activa</ion-label>
+                                        </ion-col>
+                                </ion-row>
+
+                                <ion-row>
+                                        <ion-col col-2>
+                                                <ion-label> Subject</ion-label>                                        
+                                        </ion-col>
+                                        <ion-col col-4>
+                                                <ion-input  placeholder="Subject" [(ngModel)]="Actsubject" ></ion-input>        
                                         </ion-col>
                                         <ion-col col-2>
-                                                        <ion-label> Cuerpo*</ion-label>
-                                                </ion-col>
-                                                <ion-col col-4>
-                                                        <ion-input  placeholder="Cuerpo*" [(ngModel)]="Actbody" ></ion-input>
-                                                </ion-col>
-                        
-                    </ion-row>
-                    <ion-row>
-                                <ion-col>
+                                                <ion-label> Cuerpo*</ion-label>
+                                        </ion-col>
+                                        <ion-col col-4>
+                                                <ion-input  placeholder="Cuerpo*" [(ngModel)]="Actbody" ></ion-input>
+                                        </ion-col>
+                                </ion-row>  
+                                
+                                <ion-row>
+                                        <ion-col>
                                             <ion-label> Inactiva</ion-label>
+                                        </ion-col>
+                                </ion-row>
     
-                                </ion-col>
-                        </ion-row>
-    
-                        <ion-row>
-                                    <ion-col col-2>
-                                                    <ion-label> Subject</ion-label>
-                                                    
-                                            </ion-col>
-                        
-                                            <ion-col col-4>
-                                                    <ion-input  placeholder="Subject" [(ngModel)]="Inactsubject"></ion-input>
-                                                    
-                                            </ion-col>
-                                            <ion-col col-2>
-                                                            <ion-label> Cuerpo*</ion-label>
-                                                    </ion-col>
-                                                    <ion-col col-4>
-                                                            <ion-input  placeholder="Cuerpo*" [(ngModel)]="Inactbody" ></ion-input>
-                                                    </ion-col>
-                            
-                        </ion-row>
-                   
-    </ion-grid>
-    <div style="justify-content:right;display:flex;align-content: right;">
-
-    <!-- <ion-fab middle center > -->
-                <!-- <button ion-fab mini color="verde">  <i class="fas fa-chevron-left"></i></button>
-                <ion-fab-list side="left"> -->
-                        <button ion-fab color="azul" 
-
-                        (click)="enviar()" > <i class="fas fa-edit    "></i>  </button>
-                    <!-- </ion-fab-list>
-              </ion-fab> -->
-              </div>
+                                <ion-row>      
+                                        <ion-col col-2>
+                                                <ion-label> Subject</ion-label>    
+                                        </ion-col>
+                                        <ion-col col-4>
+                                                <ion-input  placeholder="Subject" [(ngModel)]="Inactsubject"></ion-input>            
+                                        </ion-col>
+                                        <ion-col col-2>
+                                                <ion-label> Cuerpo*</ion-label>
+                                        </ion-col>
+                                        <ion-col col-4>
+                                                <ion-input  placeholder="Cuerpo*" [(ngModel)]="Inactbody" ></ion-input>
+                                        </ion-col>
+                                </ion-row>
+                        </ion-grid>
+                <!-- button -->
+                <div style="justify-content:right;display:flex;align-content: right;">
+                        <button ion-fab color="azul" (click)="enviar()" [hidden]="inputenabled" > <i class="fas fa-edit"></i>  </button>
+                </div>
     
                                   </ion-card-content>
-                                  </ion-card>
+        </ion-card>
 
-<ng2-smart-table [settings]="settings" [source]="data"  (custom)="cargarDatos($event)"></ng2-smart-table>
-
+<!-- tabla alarmas -->
+        <ng2-smart-table [settings]="settings" [source]="data"  (custom)="cargarDatos($event)"></ng2-smart-table>
 
 </ion-content>

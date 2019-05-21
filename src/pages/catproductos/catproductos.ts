@@ -102,7 +102,6 @@ presentacion:any;
 
 myphoto:any;
 
-
 inputsEnable=true;
 buttonhideUpdDel=true;
 buttonhideSave=true;

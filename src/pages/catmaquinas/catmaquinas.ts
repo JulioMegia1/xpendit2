@@ -6,27 +6,12 @@ import { AlertController } from 'ionic-angular';
 import 'rxjs/add/operator/map';
 import L from "leaflet";
 
-
 /*servicios*/
 import { SelectserviceProvider } from "../../providers/selectservice/selectservice";
 import { MvserviceProvider } from "../../providers/mvservice/mvservice";
 import { AuthserviceProvider } from "../../providers/authservice/authservice";
 import { CatalogserviceProvider } from "../../providers/catalogservice/catalogservice";
 import {CIprovider  } from "../../providers/data/data";
-
-
-// /*selectable*/
-// import { IonicSelectableComponent } from 'ionic-selectable';
-// import { map } from 'rxjs/operator/map';
-// class Port {
-//   public label: any;
-//   public value: any;
-// }
-
-/*ng2smartTable*/
-// import { LocalDataSource } from 'ng2-smart-table';
-
-
 
 @IonicPage()
 @Component({
@@ -35,8 +20,8 @@ import {CIprovider  } from "../../providers/data/data";
 })
 export class CatmaquinasPage {
 
-  /*SamrtTable*/
-  settings = {
+  /*SmartTable*/
+  settings = {  
     hideSubHeader:false	,
     noDataMessage:"sin datos",
       add: {
@@ -159,30 +144,20 @@ export class CatmaquinasPage {
    
   };
 
-  data:any;
-  // source: LocalDataSource; // add a property to the component
+  data:any;//datos de la tabla
 
-  /*ng2smartTable*/
-
-  @ViewChild(Content) content: Content;
-
-
- /*********SELECT SEARCHEABLE***********/
-//  ports: Port[];  ///muestra las opciones del select
-//  port: Port; //muestra la opcion elegida del select
-
-
+  @ViewChild(Content) content: Content;//minimizar header(menu)
 
 maquinas:any;//máquinas select
 idMaquina:any;
+
+// datos grales máquina
 descripcion:any;
 modelo:any;
 tipo:any;
 direccion:any;
 
-  valornuevo="true" //habilita input
   infomaquinanueva={
-
     "idMaquina": null,
     "descripcion": null,
     "tipo": null,
@@ -219,6 +194,7 @@ direccion:any;
         "expiracion": "12/12/2222"
     }
 }//plantilla para maquina nueva
+
 infomaquinaSeleccionada:any;//obtiene info máquina seleccionada
 
 mensaje:any;//mensaje de confirmacion o error
@@ -226,10 +202,11 @@ mensaje:any;//mensaje de confirmacion o error
 /*select*/
 selectTipoMaquina:any
 selectModeloMaquina:any;
+
 infoasignados:any
 infonoasignados:any;
 
-listausuarios:any;
+listausuarios:any;//lista usuarios para agregar a los asignados
 asignados:any;
 noasignados:any;
 
@@ -237,7 +214,9 @@ noasignados:any;
 center: L.PointTuple;
 map:L.map;
 marker:any;
-
+/*ubicacion*/
+Latitud:any;
+Longitud:any;
 
 /*infomodem*/
 idModem:any;
@@ -245,111 +224,73 @@ password:any;
 telefono:any;
 expiracion:any;
 
-/*ubicacion*/
-Latitud:any;
-Longitud:any;
-
-
 /*usuario*/
-usuario:any;
+//usuario:any;
+
+inputsdisabled=true; 
+cardshidden=true;
+buttonSavehidden=true;
+buttonUpdDelhidden=true;
 
 
   constructor(public navCtrl: NavController, public navParams: NavParams,public alertCtrl: AlertController,
-
     public selectprovider:SelectserviceProvider, 
     public mvService:MvserviceProvider,
     public authService:AuthserviceProvider,
     public catService:CatalogserviceProvider,
     public ciService:CIprovider
     ) {
-      this.usuario=this.ciService.getTipoUsuario();
-      console.log(this.usuario)
+      //this.usuario=this.ciService.getTipoUsuario();
+     // console.log(this.usuario)
 
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad CatmaquinasPage');
-    this.getinfogralMaquinas();
-    // this.getmaquinasid()
-    this.getselecTipoMaquina();
-    this.getselecModeloMaquina();
-    this.center = [20.634012, -100.334345];
+    this.getinfogralMaquinas();// obtiene la informacion de todas las máquinas para la tabla
+    this.getselecTipoMaquina();// obtiene la informacion del select tipo máquina
+    this.getselecModeloMaquina();// obtiene la informacion del select modelo maquina
+    this.center = [20.634012, -100.334345];// asigna el centro del mapa
     console.log(this.center)
     this.leafletMap();
-   
-  }
+}
 
-  getinfogralMaquinas(){
+  getinfogralMaquinas(){// obtiene la informacion de todas las maquinas para la tabla
     this.catService.getMaquinas().then(result=>{
-      console.log(result)
-      this.data=result;
-      // this.source=new LocalDataSource(this.data);
-
-        },(err)=>{
-          console.log(err);
-        }
-        );
-
-  }
+    console.log(result)
+    this.data=result;
+    },(err)=>{
+      console.log(err);
+    }
+  );
+}
 
   nuevamaquina(){
-    this.valornuevo="false"
     this.catService.getidMaquina().then(result=>{
+    this.descripcion=null;
+    this.tipo=null;
+    this.modelo=null;
+    this.direccion=null;
     console.log(result)
+    this.inputsdisabled=false;
+    this.buttonSavehidden=false;
+
     this.infomaquinanueva.idMaquina=result[0].value;
     this.infomaquinanueva.infoModem.idModem=result[0].value;
     this.Latitud=this.infomaquinanueva.latitud;
     this.Longitud=this.infomaquinanueva.longitud;
-      console.log(this.infomaquinanueva);
-      },(err)=>{
-        console.log(err);
-      }
-      );
+    console.log(this.infomaquinanueva);
+    },(err)=>{
+      console.log(err);
+    }
+  );
+}
 
-  }
-
-  // getmaquinasid(){
-  //   this.selectprovider.selectmaquinas(this.usuario).then(result=>{
-  //     this.maquinas=result; //obtiene las maquinas
-  //     console.log(this.maquinas);
-  //     this.ports=this.maquinas; //
-  //     console.log(this.ports)
-     
-
-  //     console.log(result);
-  //     },(err)=>{
-  //       console.log(err);
-  //     }
-  //     );
-  // }
-
-  // portChange(event: {
-  //   component: IonicSelectableComponent,
-  //   value: any 
-  // }) {
-  //   console.log('port:', event.value);
-  //   console.log("cambio el valor")
-  //   console.log(this.port);
-
-  //   this.idMaquina=this.port.label;
-    
-  //   this.getInfomaquina();
-  //   this.getusuarios();
-
-
-    
-  //   this.getselectasignados();    
-  //   this.getselectNoasignados();
-
-  
-  // }
-  /**********************************SELECTABLE**************************/
-
-
-  guardarmaquina(){
+ guardarmaquina(){
     if( this.descripcion==null || this.descripcion==""
     ||  this.tipo==null || this.tipo==""
     || this.modelo==null || this.modelo==""
+    || this.direccion=="" || this.direccion==null
   //   || this.Latitud==null || this.Latitud==""  || this.Latitud<-90 || this.Latitud>90 
   // || this.Longitud== null || this.Longitud=="" || this.Longitud>180 || this.Longitud<-180
     ){
@@ -358,67 +299,66 @@ usuario:any;
       console.log("no creado")
     }
     else{
+      // this.idMaquina=this.infomaquinanueva.idMaquina;
+      // this.getInfomaquina();
+      
+      this.buttonSavehidden=true;
+      this.inputsdisabled=true;
 
       this.infomaquinanueva.descripcion=this.descripcion
-        this.infomaquinanueva.modelo=this.modelo
-        this.infomaquinanueva.tipo=this.tipo
-        this.infomaquinanueva.direccion=this.direccion;
-        // this.infomaquinanueva.latitud=this.Latitud;
-        // this.infomaquinanueva.longitud=this.Longitud;
+      this.infomaquinanueva.modelo=this.modelo
+      this.infomaquinanueva.tipo=this.tipo
+      this.infomaquinanueva.direccion=this.direccion;
+      // this.infomaquinanueva.latitud=this.Latitud;
+      // this.infomaquinanueva.longitud=this.Longitud;
       this.catService.newMaquina(this.infomaquinanueva).then(async (result)=>{
-  
         console.log(result);
-        console.log(this.infomaquinanueva)
+        console.log(this.infomaquinanueva);
+
+      this.descripcion=null;
+      this.modelo=null;
+      this.tipo=null;
+      this.direccion=null;
+
+
         this.mensaje="Máquina creada exitosamente!";
         this.showAlert();
         await this.getinfogralMaquinas();
         // this.getmaquinasid();
-  
-         },(err)=>{
-           console.log(err);
-         }
-        
-         );
+      },(err)=>{
+        console.log(err);
+      }
+      );
+    }
   }
-  }
-
 
 getselecTipoMaquina(){
-    this.selectprovider.selectTipoMaquina().then((result)=>{
-      this.selectTipoMaquina=result;
-      console.log(this.selectTipoMaquina);
-       },(err)=>{
-         console.log(err);
-       }
-      
-       );
-
-
+  this.selectprovider.selectTipoMaquina().then((result)=>{
+  this.selectTipoMaquina=result;
+  console.log(this.selectTipoMaquina);
+  },(err)=>{
+    console.log(err);
   }
+  );
+}
 
-
-  getselecModeloMaquina(){
-    this.selectprovider.selectModeloMaquina().then((result)=>{
-      this.selectModeloMaquina=result;
-      console.log(this.selectModeloMaquina);
-       },(err)=>{
-         console.log(err);
-       }
-      
-       );
-
-
+getselecModeloMaquina(){
+  this.selectprovider.selectModeloMaquina().then((result)=>{
+    this.selectModeloMaquina=result;
+    console.log(this.selectModeloMaquina);
+  },(err)=>{
+    console.log(err);
   }
+  );
+}
 
   showAlert() {
     const alert = this.alertCtrl.create({
-
       title: this.mensaje,
       buttons: ['OK']
     });
     alert.present();
   }
-
 
 getselectasignados(){
     this.selectprovider.selectasignados(this.idMaquina).then((result)=>{
@@ -439,7 +379,6 @@ getselectasignados(){
        }
        );
   }
-
 
 async asigna(){
   if(this.noasignados==null){
@@ -521,7 +460,7 @@ getusuarios(){
 }
 
 getInfomaquina(){
-  this.catService.getInfoMaquina(this.idMaquina).then((result)=>{
+  this.catService.getInfoMaquina(this.idMaquina).then(async (result)=>{
     this.infomaquinaSeleccionada=result;
     console.log(this.infomaquinaSeleccionada);
     this.descripcion=this.infomaquinaSeleccionada.descripcion;
@@ -539,6 +478,9 @@ getInfomaquina(){
     this.expiracion=this.infomaquinaSeleccionada.infoModem.expiracion;
     // this.map.removeLayer()
     this.mapa();
+    await this.getusuarios();
+    await this.getselectasignados();    
+    await this.getselectNoasignados();
 
 
      },(err)=>{
@@ -559,10 +501,10 @@ getInfomaquina(){
   await this.getselectNoasignados()
   await this.getselectasignados();
   await this.getinfogralMaquinas();
-     },(err)=>{
-       console.log(err);
-     }
-     );
+  },(err)=>{
+    console.log(err);
+  }
+  );
 
 }
 
@@ -571,22 +513,21 @@ modificar(){
   console.log(this.infomaquinaSeleccionada);
   if(this.descripcion==null || this.descripcion==""
   || this.direccion==null || this.direccion==""){
-        console.log("No modifique");
-        this.mensaje="Máquina no modificada\n favor de ingresar todos los datos correctamente"
-        this.showAlert();
-        }
-
-  else{
-  this.infomaquinaSeleccionada.direccion=this.direccion;
-  this.infomaquinaSeleccionada.descripcion=this.descripcion;
-  this.infomaquinaSeleccionada.modelo=this.modelo;
-  this.infomaquinaSeleccionada.tipo=this.tipo;
-  console.log(this.infomaquinaSeleccionada);
-  this.actualizainfo();
-  this.mensaje="Máquina actualizada correctamente"
-  this.showAlert();
-
-}
+    console.log("No modifique");
+    this.mensaje="Máquina no modificada\n favor de ingresar todos los datos correctamente"
+    this.showAlert();
+  }
+  else
+  {
+    this.infomaquinaSeleccionada.direccion=this.direccion;
+    this.infomaquinaSeleccionada.descripcion=this.descripcion;
+    this.infomaquinaSeleccionada.modelo=this.modelo;
+    this.infomaquinaSeleccionada.tipo=this.tipo;
+    console.log(this.infomaquinaSeleccionada);
+    this.actualizainfo();
+    this.mensaje="Máquina actualizada correctamente"
+    this.showAlert();
+  }
 }
 
 modificainfomodem(){
@@ -600,21 +541,16 @@ modificainfomodem(){
   this.showAlert();
 
   }
-  else{
+  else
+  {
     this.infomaquinaSeleccionada.infoModem.telefono=this.telefono;
-  this.infomaquinaSeleccionada.infoModem.password=this.password;
-  this.infomaquinaSeleccionada.infoModem.expiracion=this.expiracion;
-  console.log(this.infomaquinaSeleccionada);
-  this.actualizainfo();
-  this.mensaje="Info Módem actualizada "
-  this.showAlert();
-
-
+    this.infomaquinaSeleccionada.infoModem.password=this.password;
+    this.infomaquinaSeleccionada.infoModem.expiracion=this.expiracion;
+    console.log(this.infomaquinaSeleccionada);
+    this.actualizainfo();
+    this.mensaje="Info Módem actualizada "
+    this.showAlert();
   }
-
-  
-
-
 }
 
 updUbicacion(){
@@ -625,20 +561,17 @@ updUbicacion(){
     this.mensaje="Coordenadas inválidas"
     this.showAlert();
   }
-  else{
-    
-
-  this.infomaquinaSeleccionada.latitud=this.Latitud;
-  this.infomaquinaSeleccionada.longitud=this.Longitud;
-  this.actualizainfo();
-  this.mapa();
-  this.mensaje="Ubicación actualizada "
-  this.showAlert();
-
+  else
+  {
+    this.infomaquinaSeleccionada.latitud=this.Latitud;
+    this.infomaquinaSeleccionada.longitud=this.Longitud;
+    this.actualizainfo();
+    this.mapa();
+    this.mensaje="Ubicación actualizada "
+    this.showAlert();
   }
-
-
 }
+
 /*mapa leaflet*/
 leafletMap(){
   this.map = L.map('mapId', {
@@ -653,34 +586,27 @@ leafletMap(){
 
 }
 
-
 mapa(){
   if(this.marker){
     this.map.removeLayer(this.marker)
   }
  this.marker = new L.Marker([this.infomaquinaSeleccionada.latitud,this.infomaquinaSeleccionada.longitud]).addTo(this.map)
   //this.map.addLayer(marker);
- .bindPopup(this.infomaquinaSeleccionada.descripcion);
- console.log(L.marker);
- console.log(this.map)
- console.log(L.map)
-
-
- this.marker.on('mouseover', function (e) {
-  this.openPopup();
-});
-this.marker.on('mouseout', function (e) {
-  this.closePopup();
-});
-
+   .bindPopup(this.infomaquinaSeleccionada.descripcion);
+   console.log(L.marker);
+   console.log(this.map)
+   console.log(L.map)
+   this.marker.on('mouseover', function (e) {
+    this.openPopup();
+  });
+  this.marker.on('mouseout', function (e) {
+    this.closePopup();
+  });
 }
 
 eliminarMaquina(){
-
   this.catService.delMaquina(this.idMaquina).then(async (result)=>{
     console.log(result)
-    // this.getmaquinasid();
-    // this.port=null;
     this.descripcion=null;
     this.tipo=null;
     this.modelo=null;
@@ -696,23 +622,16 @@ eliminarMaquina(){
     this.telefono=null;
     this.expiracion=null;
     await this.getinfogralMaquinas();
-
-
     this.mensaje="La máquina ha sido eliminada"
     this.showAlert();
-       },(err)=>{
-         console.log(err);
-       }
-       );
-
+    },(err)=>{
+      console.log(err);
+    }
+    );
 }
-
 
 ionViewWillLeave(){
   console.log("estoy saliendo will leave")
-  // this.map.off();
-  // document.getElementById("mapId").outerHTML=""
-  // this.map.remove();
 }
 
 ionViewDidLeave(){
@@ -725,17 +644,19 @@ cargarDatos(event) {
         this.mensaje="No puedes seleccionar una máquina borrada";
         this.showAlert();
     }
-    else{
-    this.idMaquina=event.data.idMaquina;
-    this.getInfomaquina();
-    this.getusuarios();
-    this.getselectasignados();    
-    this.getselectNoasignados();
+    else
+    {
+      this.cardshidden=false;
+      this.inputsdisabled=false;
+      this.buttonUpdDelhidden=false;
+      this.buttonSavehidden=true;
+
+      this.idMaquina=event.data.idMaquina;
+      this.getInfomaquina();
+      this.getusuarios();
+      this.getselectasignados();    
+      this.getselectNoasignados();
+
     }
-}
-
-
-  
-
-
+  }
 }
