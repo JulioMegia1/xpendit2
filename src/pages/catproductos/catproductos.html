@@ -1,28 +1,15 @@
 <ion-header  [scrollingHeader]='content'>
     <navbar ></navbar>
-
-    <ion-toolbar>  
-            <ion-item>                 
-              <ion-label>Productos</ion-label>
-        
-              <ionic-selectable 
-                item-content 
-                [(ngModel)]="port"
-                [items]="ports"
-                itemValueField="label"
-                itemTextField="value"
-                [canSearch]="true"
-                (onChange)="portChange($event)">
-              </ionic-selectable>         
-            </ion-item>               
-        </ion-toolbar>
-    </ion-header>
-
+</ion-header>
 
 <ion-content>
 
-        <cardexpandible title="ABC Productos">
-            
+    <!-- Card Productos -->
+    <ion-card style="border-radius: 10px;">
+        <ion-card-header style="color:#ffffff;background-color: #242b5f;border-radius: 10px;">
+                        <i class="fas fa-coffee"></i> <b> Productos</b>
+        </ion-card-header>
+          <ion-card-content>            
                 <p align="center"><img src="{{ myphoto }}"></p>
             <ion-grid>
                 <ion-row>
@@ -30,13 +17,13 @@
                         <ion-label> Descripción*</ion-label>     
                     </ion-col>
                     <ion-col col-auto>
-                        <ion-input placeholder="Descripción"  [(ngModel)]="descripcion"> </ion-input>
+                        <ion-input placeholder="Descripción"  [(ngModel)]="descripcion" [disabled]="inputsEnable"> </ion-input>
                     </ion-col>
                     <ion-col col-auto>
                         <ion-label> Precio compra*</ion-label>
                     </ion-col>
                     <ion-col col-auto>
-                        <ion-input  placeholder="Precio compra*"  [(ngModel)]="precioCompra" type="number"></ion-input>
+                        <ion-input  placeholder="Precio compra*"  [(ngModel)]="precioCompra" [disabled]="inputsEnable" type="number"></ion-input>
                     </ion-col>
                 </ion-row>
 
@@ -46,13 +33,13 @@
                     </ion-col>
 
                     <ion-col col-auto>
-                        <ion-input  placeholder="Presentación"   [(ngModel)]="presentacion"></ion-input>
+                        <ion-input  placeholder="Presentación"   [(ngModel)]="presentacion" [disabled]="inputsEnable"></ion-input>
                     </ion-col>
                     <ion-col col-auto>
-<div style="justify-content:center;display:flex">
-  <button ion-button round (click)="takePhoto()" round color="secondary"><i class="fas fa-camera-retro"></i></button>
-  <button ion-button round (click)="getImage()" round color="secondary"><i class="far fa-images"></i></button>
-</div>
+                        <div style="justify-content:center;display:flex">
+                        <button ion-button round (click)="takePhoto()" round color="secondary"><i class="fas fa-camera-retro"></i></button>
+                        <button ion-button round (click)="getImage()" round color="secondary"><i class="far fa-images"></i></button>
+                        </div>
                     </ion-col>
                     <ion-col col-auto>
 
@@ -60,39 +47,26 @@
                 </ion-row>
             </ion-grid>
         
-            <!-- <div style="justify-content:center;display:flex">
-                <button ion-button round> Modificar </button>
-                <button ion-button round (click)="guardarproducto()"> Guardar  </button>
-                <button ion-button round (click)="nuevoproducto()"> Nuevo </button>
-
-                        
-
-        </div> -->
-
-
-        <div style="justify-content:center;display:flex">
-               
-
-                  <ion-fab middle center >
-                        <button ion-fab mini color="verde">  <i class="fas fa-chevron-left"></i></button>
-                        <ion-fab-list side="left">
-                                <button ion-fab color="danger" (click)="eliminarProducto()"><i class="fa fa-trash" aria-hidden="true"></i> </button>
-                                <button ion-fab color="azul" (click)="guardarProducto()"> <i class="fas fa-save    "></i>   </button>
-                                <button ion-fab color="azul" (click)="modificarProducto()" > <i class="fas fa-edit    "></i>  </button>
-                                <button ion-fab color="azul" (click)="nuevoProducto()"> <i class="fa fa-plus" aria-hidden="true"></i> </button>
-                            </ion-fab-list>
-                      </ion-fab>
-          </div>
-          
-            
-        </cardexpandible>
+         <!--OPCIONES  -->
+            <div style="justify-content:center;display:flex">
+                        <ion-fab middle center >
+                            <button ion-fab mini color="verde">  <i class="fas fa-chevron-left"></i></button>
+                            <ion-fab-list side="left">
+                                    <button ion-fab color="danger" (click)="eliminarProducto()" [hidden]="buttonhideUpdDel"><i class="fa fa-trash" aria-hidden="true"></i> </button>
+                                    <button ion-fab color="azul" (click)="guardarProducto()" [hidden]="buttonhideSave"> <i class="fas fa-save    "></i>   </button>
+                                    <button ion-fab color="azul" (click)="modificarProducto()"  [hidden]="buttonhideUpdDel"> <i class="fas fa-edit    "></i>  </button>
+                                    <button ion-fab color="azul" (click)="nuevoProducto()"> <i class="fa fa-plus" aria-hidden="true"></i> </button>
+                                </ion-fab-list>
+                        </ion-fab>
+            </div>
+        </ion-card-content>     
+    </ion-card>       
         
-          
-
-            <ng2-smart-table [settings]="settings" [source]="data"  (custom)="cargarDatos($event)"
-            (createConfirm)="onCreateConfirm($event)" ></ng2-smart-table>
-
-            <button (click)="cambiapage()"></button>
-
+    <!-- Tabla productos -->
+    <ng2-smart-table [settings]="settings" [source]="data"  
+    (custom)="cargarDatos($event)" 
+    (deleteConfirm)="onDeleteConfirm($event)" 
+    (editConfirm)="onSaveConfirm($event)"
+    (createConfirm)="onCreateConfirm($event)" ></ng2-smart-table>
 
 </ion-content>

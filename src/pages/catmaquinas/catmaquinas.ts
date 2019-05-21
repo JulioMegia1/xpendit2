@@ -15,13 +15,13 @@ import { CatalogserviceProvider } from "../../providers/catalogservice/catalogse
 import {CIprovider  } from "../../providers/data/data";
 
 
-/*selectable*/
-import { IonicSelectableComponent } from 'ionic-selectable';
-import { map } from 'rxjs/operator/map';
-class Port {
-  public label: any;
-  public value: any;
-}
+// /*selectable*/
+// import { IonicSelectableComponent } from 'ionic-selectable';
+// import { map } from 'rxjs/operator/map';
+// class Port {
+//   public label: any;
+//   public value: any;
+// }
 
 /*ng2smartTable*/
 // import { LocalDataSource } from 'ng2-smart-table';
@@ -81,16 +81,7 @@ export class CatmaquinasPage {
             ],
           },
         },
-        editor: {
-          type: 'list',
-          config: {
-            list: [
-              { value: 'OK', title: 'OK' },
-              { value: 'Alertada', title: 'Alertada' },
-              { value: 'Borrada', title: 'Borrada' },
-            ],
-          },
-        },
+       editable:false
       },
       tipo: {
         title: 'Tipo',
@@ -177,8 +168,8 @@ export class CatmaquinasPage {
 
 
  /*********SELECT SEARCHEABLE***********/
- ports: Port[];  ///muestra las opciones del select
- port: Port; //muestra la opcion elegida del select
+//  ports: Port[];  ///muestra las opciones del select
+//  port: Port; //muestra la opcion elegida del select
 
 
 
@@ -279,7 +270,7 @@ usuario:any;
   ionViewDidLoad() {
     console.log('ionViewDidLoad CatmaquinasPage');
     this.getinfogralMaquinas();
-    this.getmaquinasid()
+    // this.getmaquinasid()
     this.getselecTipoMaquina();
     this.getselecModeloMaquina();
     this.center = [20.634012, -100.334345];
@@ -317,41 +308,41 @@ usuario:any;
 
   }
 
-  getmaquinasid(){
-    this.selectprovider.selectmaquinas(this.usuario).then(result=>{
-      this.maquinas=result; //obtiene las maquinas
-      console.log(this.maquinas);
-      this.ports=this.maquinas; //
-      console.log(this.ports)
+  // getmaquinasid(){
+  //   this.selectprovider.selectmaquinas(this.usuario).then(result=>{
+  //     this.maquinas=result; //obtiene las maquinas
+  //     console.log(this.maquinas);
+  //     this.ports=this.maquinas; //
+  //     console.log(this.ports)
      
 
-      console.log(result);
-      },(err)=>{
-        console.log(err);
-      }
-      );
-  }
+  //     console.log(result);
+  //     },(err)=>{
+  //       console.log(err);
+  //     }
+  //     );
+  // }
 
-  portChange(event: {
-    component: IonicSelectableComponent,
-    value: any 
-  }) {
-    console.log('port:', event.value);
-    console.log("cambio el valor")
-    console.log(this.port);
+  // portChange(event: {
+  //   component: IonicSelectableComponent,
+  //   value: any 
+  // }) {
+  //   console.log('port:', event.value);
+  //   console.log("cambio el valor")
+  //   console.log(this.port);
 
-    this.idMaquina=this.port.label;
+  //   this.idMaquina=this.port.label;
     
-    this.getInfomaquina();
-    this.getusuarios();
+  //   this.getInfomaquina();
+  //   this.getusuarios();
 
 
     
-    this.getselectasignados();    
-    this.getselectNoasignados();
+  //   this.getselectasignados();    
+  //   this.getselectNoasignados();
 
   
-  }
+  // }
   /**********************************SELECTABLE**************************/
 
 
@@ -359,8 +350,8 @@ usuario:any;
     if( this.descripcion==null || this.descripcion==""
     ||  this.tipo==null || this.tipo==""
     || this.modelo==null || this.modelo==""
-    || this.Latitud==null || this.Latitud==""  || this.Latitud<-90 || this.Latitud>90 
-  || this.Longitud== null || this.Longitud=="" || this.Longitud>180 || this.Longitud<-180
+  //   || this.Latitud==null || this.Latitud==""  || this.Latitud<-90 || this.Latitud>90 
+  // || this.Longitud== null || this.Longitud=="" || this.Longitud>180 || this.Longitud<-180
     ){
       this.mensaje="Máquina no creada\n favor de ingresar todos los datos correctamente"
       this.showAlert();
@@ -372,17 +363,16 @@ usuario:any;
         this.infomaquinanueva.modelo=this.modelo
         this.infomaquinanueva.tipo=this.tipo
         this.infomaquinanueva.direccion=this.direccion;
-        this.infomaquinanueva.latitud=this.Latitud;
-        this.infomaquinanueva.longitud=this.Longitud;
-      this.catService.newMaquina(this.infomaquinanueva).then((result)=>{
+        // this.infomaquinanueva.latitud=this.Latitud;
+        // this.infomaquinanueva.longitud=this.Longitud;
+      this.catService.newMaquina(this.infomaquinanueva).then(async (result)=>{
   
         console.log(result);
         console.log(this.infomaquinanueva)
         this.mensaje="Máquina creada exitosamente!";
-        
-
         this.showAlert();
-        this.getmaquinasid();
+        await this.getinfogralMaquinas();
+        // this.getmaquinasid();
   
          },(err)=>{
            console.log(err);
@@ -687,10 +677,10 @@ this.marker.on('mouseout', function (e) {
 
 eliminarMaquina(){
 
-  this.catService.delMaquina(this.idMaquina).then((result)=>{
+  this.catService.delMaquina(this.idMaquina).then(async (result)=>{
     console.log(result)
-    this.getmaquinasid();
-    this.port=null;
+    // this.getmaquinasid();
+    // this.port=null;
     this.descripcion=null;
     this.tipo=null;
     this.modelo=null;
@@ -705,6 +695,7 @@ eliminarMaquina(){
     this.password=null;
     this.telefono=null;
     this.expiracion=null;
+    await this.getinfogralMaquinas();
 
 
     this.mensaje="La máquina ha sido eliminada"
@@ -730,15 +721,17 @@ ionViewDidLeave(){
 
 cargarDatos(event) {
   console.log(event);
-  this.idMaquina=event.data.idMaquina;
-    
+    if(event.data.estado=="Borrada"){
+        this.mensaje="No puedes seleccionar una máquina borrada";
+        this.showAlert();
+    }
+    else{
+    this.idMaquina=event.data.idMaquina;
     this.getInfomaquina();
     this.getusuarios();
-
-
-    
     this.getselectasignados();    
     this.getselectNoasignados();
+    }
 }
 
 
