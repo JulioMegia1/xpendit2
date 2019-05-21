@@ -71,6 +71,11 @@ getschema2 () {    //obtiene el JSON de los usuarios
   this.selectprovider.selectmaquinas(this.tipousuario).then( data => {
      let maquinas=  data;
     console.log(maquinas); 
+    if(maquinas=="" || maquinas==null || maquinas==[])
+    {
+      console.log("NO tiene maquinas asignadas")
+    }
+    else{
     console.log('Hello DataProvider Provider');
     // this.tipousuario="default"
     this.idmaquina=maquinas[0].label;
@@ -79,6 +84,7 @@ getschema2 () {    //obtiene el JSON de los usuarios
     console.log(data);
     this.idproducto=productos[0].label;
     })
+  }
 })
 }
 

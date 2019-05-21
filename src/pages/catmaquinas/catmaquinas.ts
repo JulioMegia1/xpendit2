@@ -25,7 +25,7 @@ export class CatmaquinasPage {
     hideSubHeader:false	,
     noDataMessage:"sin datos",
       add: {
-      confirmCreate: false,
+      confirmCreate: true,
       addButtonContent: '<i class="fas fa-plus"></i>',
       createButtonContent: '<i class="far fa-save"></i>',
       cancelButtonContent: '<i class="fas fa-times"></i>'
@@ -63,6 +63,14 @@ export class CatmaquinasPage {
               { value: 'Alertada', title: 'Alertada' },
               { value: 'OK', title: 'OK' },
               { value: 'Borrada', title: 'Borrada' },
+            ],
+          },
+        },
+        editor: {
+          type: 'list',
+          config: {
+            list: [
+              { value: 'OK', title: 'OK' },
             ],
           },
         },
@@ -274,6 +282,8 @@ buttonUpdDelhidden=true;
     console.log(result)
     this.inputsdisabled=false;
     this.buttonSavehidden=false;
+    this.buttonUpdDelhidden=true;
+    this.cardshidden=true;
 
     this.infomaquinanueva.idMaquina=result[0].value;
     this.infomaquinanueva.infoModem.idModem=result[0].value;
@@ -443,10 +453,6 @@ this.asignados=null;
 await this.getselectasignados();
 await this.getselectNoasignados();
 }
-
- 
-
-
 }
 
 getusuarios(){
@@ -605,29 +611,49 @@ mapa(){
 }
 
 eliminarMaquina(){
-  this.catService.delMaquina(this.idMaquina).then(async (result)=>{
-    console.log(result)
-    this.descripcion=null;
-    this.tipo=null;
-    this.modelo=null;
-    this.direccion=null;
-    this.infonoasignados=null;
-    this.noasignados=null;
-    this.asignados=null;
-    this.infoasignados=null;
-    this.Latitud=null;
-    this.Longitud=null;
-    this.idModem=null;
-    this.password=null;
-    this.telefono=null;
-    this.expiracion=null;
-    await this.getinfogralMaquinas();
-    this.mensaje="La máquina ha sido eliminada"
-    this.showAlert();
-    },(err)=>{
-      console.log(err);
-    }
-    );
+
+
+  const confirm = this.alertCtrl.create({
+    title: 'Desea Eliminar la maquina'+this.infomaquinaSeleccionada.descripcion+'?',
+    buttons: [
+      {
+        text: 'Cancelar',
+        handler: () => {
+          console.log('Disagree clicked');
+        }
+      },
+      {
+        text: 'Aceptar',
+        handler: () => {
+          console.log('Agree clicked');
+          this.catService.delMaquina(this.idMaquina).then(async (result)=>{
+            console.log(result)
+            this.descripcion=null;
+            this.tipo=null;
+            this.modelo=null;
+            this.direccion=null;
+            this.infonoasignados=null;
+            this.noasignados=null;
+            this.asignados=null;
+            this.infoasignados=null;
+            this.Latitud=null;
+            this.Longitud=null;
+            this.idModem=null;
+            this.password=null;
+            this.telefono=null;
+            this.expiracion=null;
+            await this.getinfogralMaquinas();
+            this.mensaje="La máquina ha sido eliminada"
+            this.showAlert();
+            },(err)=>{
+              console.log(err);
+            }
+            );
+        }
+      }
+    ]
+  });
+  confirm.present();
 }
 
 ionViewWillLeave(){
@@ -658,5 +684,146 @@ cargarDatos(event) {
       this.getselectNoasignados();
 
     }
+  }
+
+
+
+  onDeleteConfirm(event) {
+    console.log("Delete Event In Console")
+    console.log(event);
+    if(event.data.estado=="Borrada"){
+      this.mensaje="No puedes borrar una máquina ya eliminada";
+      this.showAlert();
+
+    }
+    else{
+
+      const confirm = this.alertCtrl.create({
+        title: 'Seguro deseas eliminar la máquina'+ event.data.descripcion+'?',
+        buttons: [
+          {
+            text: 'Cancelar',
+            handler: () => {
+              console.log('Disagree clicked');
+            }
+          },
+          {
+            text: 'Aceptar',
+            handler: () => {
+              console.log('Agree clicked');
+              this.idMaquina=event.data.idMaquina;
+              this.catService.delMaquina(this.idMaquina).then(async (result)=>{
+                console.log(result)
+                await this.getinfogralMaquinas();
+                this.mensaje="La máquina ha sido eliminada"
+                this.showAlert();
+                },(err)=>{
+                  console.log(err);
+                }
+                );
+            }
+          }
+        ]
+      });
+      confirm.present();
+    }
+   
+  }
+
+    onCreateConfirm(event) {
+    console.log("Create Event In Console")
+    console.log(event);
+    let lati 
+    let long
+    lati= parseFloat(event.newData.latitud);
+    long= parseFloat(event.newData.longitud);
+    event.newData.latitud=lati;
+    event.newData.longitud=long;
+    console.log(event)
+
+    if(event.newData.estado==null || event.newData.estado==""
+    ||event.newData.tipo==null || event.newData.tipo==""
+    ||event.newData.modelo==null || event.newData.modelo==""
+    ||event.newData.descripcion==null || event.newData.descripcion==""
+    ||event.newData.latitud==null || event.newData.latitud=="" || event.newData.latitud<-90 || event.newData.latitud>90   || isNaN(event.newData.latitud)==true 
+    ||event.newData.longitud==null || event.newData.longitud==""  ||event.newData.longitud>180 ||event.newData.longitud<-180  || isNaN(event.newData.longitud)==true 
+    ||event.newData.direccion==null || event.newData.direccion==""
+    ){
+      console.log("Datos no validos")
+      console.log(event)
+    }
+    else
+    {
+      console.log("Datos validos")
+      console.log(event)
+
+
+      this.catService.getidMaquina().then(result=>{
+      console.log(result)
+
+      this.infomaquinanueva.idMaquina=result[0].value;
+      this.infomaquinanueva.infoModem.idModem=result[0].value;
+      this.infomaquinanueva.estado=event.newData.estado;
+      this.infomaquinanueva.tipo=event.newData.tipo
+      this.infomaquinanueva.modelo=event.newData.modelo
+      this.infomaquinanueva.descripcion=event.newData.descripcion
+      this.infomaquinanueva.latitud=event.newData.latitud
+      this.infomaquinanueva.longitud=event.newData.longitud
+      this.infomaquinanueva.direccion=event.newData.direccion
+      console.log(this.infomaquinanueva);
+      this.catService.newMaquina(this.infomaquinanueva).then(async (result)=>{
+        console.log(result);
+        console.log(this.infomaquinanueva);
+        this.mensaje="Máquina creada exitosamente!";
+        this.showAlert();
+        await this.getinfogralMaquinas();
+      },(err)=>{
+        console.log(err);
+      }
+      );
+
+      },(err)=>{
+        console.log(err);
+      }
+      );
+    }
+  }
+
+onSaveConfirm(event) { //Editar los productos
+  console.log("Edit Event In Console")
+  console.log(event);
+  if(event.data.estado=="Borrada"){
+    this.mensaje="No puedes editar una máquina borrada";
+    this.showAlert();
+  }
+  else{
+    if(event.newData.descripcion=="" || event.newData.descripcion==null
+    || event.newData.direccion=="" || event.newData.direccion==null 
+    || event.newData.latitud=="" || event.newData.latitud==null || event.newData.latitud<-90 || event.newData.latitud>90   || isNaN(event.newData.latitud)==true 
+    || event.newData.longitud=="" || event.newData.longitud==null ||event.newData.longitud>180 ||event.newData.longitud<-180  || isNaN(event.newData.longitud)==true 
+    ){
+      this.mensaje="Máquina no modificada\n favor de ingresar todos los datos correctamente"
+      this.showAlert();
+    }
+      else{
+      console.log(event.newData)
+      this.catService.updMaquina(event.newData).then(async (result)=>{
+      console.log(result)
+      this.mensaje="Máquina modificada correctamente"
+      this.showAlert();
+      await this.getinfogralMaquinas();
+        },(err)=>{
+          console.log(err);
+        }
+        );
+
+
+    }
+
+
+    
+  }
+   
+   
   }
 }

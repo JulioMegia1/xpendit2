@@ -95,6 +95,11 @@ export class DetalleproductoPage {
     this.selectprovider.selectmaquinas(this.usuario).then(result=>{
       this.maquinas=result; //obtiene las maquinas
       console.log(this.maquinas);
+      if(this.maquinas==null || this.maquinas=="" || this.maquinas==undefined || this.maquinas==[])
+      {
+        console.log("sin maquinas")
+      }
+      else{
       this.ports=this.maquinas; //asigno las maquinas al select searcheable
       console.log(this.ports)
       this.port=this.ports[0]; //eligo la primera maquina como la default
@@ -107,6 +112,7 @@ export class DetalleproductoPage {
       this.getinfoproducto(this.idmaquina,this.riel);
       this.getproductomaquina(this.idmaquina)
       console.log(result);
+    }
       },(err)=>{
         console.log(err);
       }

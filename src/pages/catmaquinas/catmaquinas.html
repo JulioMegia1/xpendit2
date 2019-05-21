@@ -187,5 +187,9 @@
     </ion-card> 
     
     <!-- Tabla -->
-    <ng2-smart-table [settings]="settings" [source]="data"  (custom)="cargarDatos($event)"></ng2-smart-table>
+    <ng2-smart-table [settings]="settings" [source]="data" 
+     (custom)="cargarDatos($event)"
+     (deleteConfirm)="onDeleteConfirm($event)" 
+     (editConfirm)="onSaveConfirm($event)"
+     (createConfirm)="onCreateConfirm($event)"></ng2-smart-table>
 </ion-content>

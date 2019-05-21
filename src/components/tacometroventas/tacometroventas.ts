@@ -47,7 +47,7 @@ export class TacometroventasComponent {
     dials: {
       dial: [
         {
-          value: "81"
+          value: "0"
         }
       ]
     }

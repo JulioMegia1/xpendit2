@@ -89,6 +89,10 @@ productomaquina:any;
     this.selectprovider.selectmaquinas(this.usuario).then(result=>{
       this.maquinas=result; //obtiene las maquinas
       console.log(this.maquinas);
+      if(this.maquinas=="" || this .maquinas==[] || this.maquinas==null || this.maquinas==undefined){
+          console.log("sin maquinas")
+      }
+      else{
       this.ports=this.maquinas; //
       console.log(this.ports)
       this.port=this.ports[0]; 
@@ -100,7 +104,8 @@ productomaquina:any;
       this.getalarmas(this.seleccion);
       this.getcontables(this.seleccion);
       this.getproductomaquina(this.seleccion)
-      console.log(result);
+      console.log(result)
+    }
       },(err)=>{
         console.log(err);
       }
