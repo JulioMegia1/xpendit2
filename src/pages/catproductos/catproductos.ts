@@ -22,32 +22,34 @@ export class CatproductosPage {
 settings = {
   hideSubHeader:false, 
   noDataMessage:"sin datos",
-    add: {
+  add: {
     confirmCreate: true,
-    addButtonContent: '<i class="fas fa-plus"></i>',
-    createButtonContent: '<i class="far fa-save"></i>',
-    cancelButtonContent: '<i class="fas fa-times"></i>'
+    addButtonContent: '<span class="fa-stack fa-2x"><i class="fas fa-square fa-stack-2x "></i><i class="fas fa-plus fa-stack-1x fa-inverse"></i></span>',
+    createButtonContent: '<span class="fa-stack fa-2x"><i class="fas fa-square fa-stack-2x "></i><i class="fas fa-save fa-stack-1x fa-inverse"></i></span>',
+    cancelButtonContent: '<span class="fa-stack fa-2x"><i class="fas fa-square fa-stack-2x "></i><i class="fas fa-times fa-stack-1x fa-inverse"></i></span>'
         },
- 
-  delete: {
+        edit: {
+    confirmSave: true,
+    editButtonContent: '<span class="fa-stack fa-2x"><i class="fas fa-square fa-stack-2x "></i><i class="fas fa-edit fa-stack-1x fa-inverse"></i></span>',
+        saveButtonContent: '<span class="fa-stack fa-2x"><i class="fas fa-square fa-stack-2x "></i><i class="fas fa-save fa-stack-1x fa-inverse"></i></span>',
+
+    cancelButtonContent: '<span class="fa-stack fa-2x"><i class="fas fa-square fa-stack-2x "></i><i class="fas fa-times fa-stack-1x fa-inverse"></i></span>'
+        },
+        delete: {
     confirmDelete: true,
-    deleteButtonContent: '<i class="fas fa-trash-alt"></i>',
-    saveButtonContent: '<i class="fas fa-check"></i>',
-    cancelButtonContent: '<i class="fas fa-times"></i>'
+    deleteButtonContent: '<span class="fa-stack fa-2x"><i class="fas fa-square fa-stack-2x "></i><i class="fas fa-trash-alt fa-stack-1x fa-inverse"></i></span>',
+    saveButtonContent: '<i class="fas fa-check fa-3x"></i>',
+    cancelButtonContent: '<i class="fas fa-times fa-3x"></i>'
   },
 
-  edit: {
-    confirmSave: true,
-    editButtonContent: '<i class="fas fa-edit"></i>',
-    saveButtonContent: '<i class="far fa-save"></i>',
-    cancelButtonContent: '<i class="fas fa-times"></i>'
-        },
+  
   actions:{
-    columnTitle:"Actions",
+    
+    columnTitle:"Acciones",
     position:"right",
   custom:[{
     name: 'view',
-    title: '<i class="fas fa-edit"></i>',
+    title: '<span class="fa-stack fa-2x"><i class="fas fa-square fa-stack-2x "></i><i class="fas fa-plus fa-stack-1x fa-inverse"></i></span>',
   }]
 },
   columns: {
@@ -286,6 +288,7 @@ buttonhideSave=true;
         this.precioCompra=null;
         this.presentacion=null;
         this.buttonhideUpdDel=true;
+        this.inputsEnable=true;
         await this.getinfogralProductos();//cuando termina de eliminar en la bd, actualiza la tabla
         
       },(err)=>{

@@ -39,6 +39,22 @@ export class AuthserviceProvider {
     });
  }
 
+ decripta (data)
+ {
+   var options = {
+      headers : { 'Content-Type': 'application/json' }
+   }
+   return new Promise ((resolve,reject)=>{
+     this.http.post(this.url+'/login/dec', JSON.stringify(data),options)
+     .subscribe(res=>{
+       resolve(res);
+     },(err)=>{
+       reject(err);
+     });
+   });
+}
+ 
+
  menu(tipoUsuariomenu) { //
   console.log("--------entre al servicio del menu-----------");
   return new Promise(resolve => {

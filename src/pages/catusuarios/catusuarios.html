@@ -4,125 +4,120 @@
 
 <ion-content >
 
-    <cardexpandible title="Administrador de usuarios">
-          <!-- <ion-scroll scrollY="true"  direction="y"> -->
-        <ion-grid>
-            <ion-row>
-                <ion-col col-auto col-sm-2>
-                    <ion-label> Tipo*</ion-label>
-                </ion-col>
-                <ion-col col-auto col-sm-4>
-                 <ion-list>
-                     <ion-item>    
-                         <ion-select [(ngModel)]="infousuario.tipoUsuario"  [disabled]=valor okText="Aceptar" cancelText="Cancelar" interface="popover" placeholder="Selecciona">
-                           <ion-option *ngFor="let tipo of selectTipoUsuarios" value="{{tipo.value}}"> {{tipo.label}}</ion-option>
-                         </ion-select>
-                     </ion-item>
-                     </ion-list>
-                </ion-col>
-                <ion-col col-auto col-sm-2>
-                        <ion-label> Status*</ion-label>
+    <ion-card style="border-radius: 10px;">
+        <ion-card-header style="color:#ffffff;background-color: #242b5f;border-radius: 10px;">
+            <i class="fas fa-users"></i> <b> Usuarios</b>
+        </ion-card-header>
+        <ion-card-content>
+            <ion-grid>
+                <ion-row>
+                    <ion-col col-auto col-sm-2>
+                        <ion-label> Tipo*</ion-label>
                     </ion-col>
-                
-                <ion-col col-auto col-sm-4>
-<ion-list>
-<ion-item>    
-    <ion-select [(ngModel)]="infousuario.estadoUsuario"  [disabled]=valor okText="Aceptar" cancelText="Cancelar" interface="popover" placeholder="Selecciona">
-      <ion-option *ngFor="let estado of selectEstadosUsuarios" value="{{estado.value}}"> {{estado.label}}</ion-option>
-   
-    </ion-select>
-</ion-item>
-</ion-list>
-                </ion-col>
-            </ion-row>
+                    <ion-col col-auto col-sm-4>
+                    <ion-list>
+                        <ion-item>    
+                            <ion-select [(ngModel)]="tipoUsuario"  okText="Aceptar" cancelText="Cancelar" interface="popover" placeholder="Selecciona" [disabled]="inputsdisabled">
+                            <ion-option *ngFor="let tipo of selectTipoUsuarios" value="{{tipo.value}}"> {{tipo.label}}</ion-option>
+                            </ion-select>
+                        </ion-item>
+                        </ion-list>
+                    </ion-col>
+                    <ion-col col-auto col-sm-2>
+                            <ion-label> Status*</ion-label>
+                        </ion-col>
+                    
+                    <ion-col col-auto col-sm-4>
+                        <ion-list>
+                        <ion-item>    
+                            <ion-select [(ngModel)]="estadoUsuario"   okText="Aceptar" cancelText="Cancelar" interface="popover" placeholder="Selecciona"  [disabled]="inputsdisabled">
+                            <ion-option *ngFor="let estado of selectEstadosUsuarios" value="{{estado.value}}"> {{estado.label}}</ion-option>
+                            </ion-select>
+                        </ion-item>
+                        </ion-list>
+                    </ion-col>
+                </ion-row>
 
-            <ion-row>
-                <ion-col col-auto col-sm-2>
-                    <ion-label> Nombre*</ion-label>
-                </ion-col>
-                <ion-col col-auto col-sm-4>
-                    <ion-input  placeholder="Nombre*" [disabled]=valor [(ngModel)]="infousuario.persona.nombre" ></ion-input>
-                </ion-col>
-                <ion-col col-auto col-sm-2>
-                    <ion-label> Paterno*</ion-label>
-                </ion-col>
-                <ion-col col-auto col-sm-4>
-                    <ion-input  placeholder="Paterno*" [disabled]=valor [(ngModel)]="infousuario.persona.paterno" ></ion-input>
-                </ion-col>
-            </ion-row>
+                <ion-row>
+                    <ion-col col-auto col-sm-2>
+                        <ion-label> Nombre*</ion-label>
+                    </ion-col>
+                    <ion-col col-auto col-sm-4>
+                        <ion-input  placeholder="Nombre*"  [(ngModel)]="nombre"  [disabled]="inputsdisabled"></ion-input>
+                    </ion-col>
+                    <ion-col col-auto col-sm-2>
+                        <ion-label> Paterno*</ion-label>
+                    </ion-col>
+                    <ion-col col-auto col-sm-4>
+                        <ion-input  placeholder="Paterno*" [(ngModel)]="paterno"  [disabled]="inputsdisabled"></ion-input>
+                    </ion-col>
+                </ion-row>
 
-            <ion-row>
-                <ion-col col-auto col-sm-2>
-                    <ion-label> Materno*</ion-label>
-                </ion-col>
-                <ion-col col-auto col-sm-4>
-                    <ion-input  placeholder="Materno*" [disabled]=valor [(ngModel)]="infousuario.persona.materno" ></ion-input>
-                </ion-col>
-                <ion-col col-auto col-sm-2>
-                    <ion-label> Correo*</ion-label>
-                </ion-col>
-                <ion-col col-auto col-sm-4>
-                    <ion-input  placeholder="Correo*" [disabled]=valor [(ngModel)]="infousuario.persona.email" type="email" ></ion-input>
-                </ion-col>
-            </ion-row>
+                <ion-row>
+                    <ion-col col-auto col-sm-2>
+                        <ion-label> Materno*</ion-label>
+                    </ion-col>
+                    <ion-col col-auto col-sm-4>
+                        <ion-input  placeholder="Materno*" [(ngModel)]="materno"  [disabled]="inputsdisabled" ></ion-input>
+                    </ion-col>
+                    <ion-col col-auto col-sm-2>
+                        <ion-label> Correo*</ion-label>
+                    </ion-col>
+                    <ion-col col-auto col-sm-4>
+                        <ion-input  placeholder="Correo*"  [(ngModel)]="email" type="email"  [disabled]="inputsdisabled"></ion-input>
+                    </ion-col>
+                </ion-row>
 
-            <ion-row>
-                <ion-col col-auto col-sm-2>
-                    <ion-label> Usuario*</ion-label>
-                </ion-col>
-                <ion-col col-auto col-sm-4>
-                    <ion-input  placeholder="Usuario*" [disabled]=valor [(ngModel)]="infousuario.usuario" ></ion-input>
-                </ion-col>
-                <ion-col col-auto col-sm-2>
-                    <ion-label> Password*</ion-label>
-                </ion-col>
-                <ion-col col-auto col-sm-4>
-                    <ion-input type="password" placeholder="Password" [disabled]=valor [(ngModel)]="password" ></ion-input>
-                </ion-col>
-            </ion-row>
+                <ion-row>
+                    <ion-col col-auto col-sm-2>
+                        <ion-label> Usuario*</ion-label>
+                    </ion-col>
+                    <ion-col col-auto col-sm-4>
+                        <ion-input  placeholder="Usuario*" [(ngModel)]="usuario"  [disabled]="inputsdisabled"></ion-input>
+                    </ion-col>
+                    <ion-col col-auto col-sm-2>
+                        <ion-label> Password*<i [class]=icon (click)="verpwd()"></i></ion-label>
+                    </ion-col>
+                    <ion-col col-auto col-sm-4>
+                        <ion-input [type]="type" placeholder="Password" [(ngModel)]="password"  [disabled]="inputsdisabled"></ion-input>
+                    </ion-col>
+                </ion-row>
 
-            <ion-row>
-                <ion-col col-2>
-                    <ion-label> Móvil</ion-label>
-                </ion-col>
-                <ion-col col-4>
-                    <ion-input  placeholder="Móvil" [disabled]=valor  type="number" maxlength="15"></ion-input>
-                </ion-col>
-                <ion-col col-2>
-            
-                </ion-col>
-                <ion-col col-4>
-                                    
-                </ion-col>
-            </ion-row>
-        </ion-grid>
-        <!-- <div style="justify-content:center;display:flex">
-                <button ion-button round [disabled]=valor> Modificar </button>
-                <button ion-button round (click)="encriptacontrasena()"> Guardar  </button>
-                <button ion-button round (click)="nuevousuario()"> Nuevo </button>
-        </div> -->
-        <div style="justify-content:center;display:flex">
-            <!-- <button ion-button round (click)="nuevamaquina()"> <i class="fa fa-plus" aria-hidden="true"></i>Nuevo </button>
-              <button ion-button round (click)="modificar()" > <i class="fas fa-edit    "></i> Modificar </button>
-              <button ion-button round  (click)="guardarmaquina()"> <i class="fas fa-save    "></i> Guardar  </button>
-              <button ion-button round (click)="nuevamaquina()"><i class="fa fa-trash" aria-hidden="true"></i>Eliminar </button>
--->
-
-              <ion-fab middle center >
+                <ion-row>
+                    <ion-col col-2>
+                        <ion-label> Móvil</ion-label>
+                    </ion-col>
+                    <ion-col col-4>
+                        <ion-input  placeholder="Móvil"   type="number" maxlength="15"></ion-input>
+                    </ion-col>
+                    <ion-col col-2>
+                    
+                    </ion-col>
+                    <ion-col col-4>
+                                            
+                    </ion-col>
+                </ion-row>
+            </ion-grid>
+      
+            <div style="justify-content:center;display:flex">
+    
+                <ion-fab middle center >
                     <button ion-fab mini color="verde">  <i class="fas fa-chevron-left"></i></button>
-                    <ion-fab-list side="left">
-                            <button ion-fab color="danger" (click)="eliminarUsuario()"><i class="fa fa-trash" aria-hidden="true"></i> </button>
-                            <button ion-fab color="azul" (click)="encriptacontrasena()"> <i class="fas fa-save    "></i>   </button>
-                            <button ion-fab color="azul" (click)="modificarUsuario()" > <i class="fas fa-edit    "></i>  </button>
+                        <ion-fab-list side="left">
+                            <button ion-fab color="danger" (click)="eliminarUsuario()" [hidden]="buttonUpdDelhidden"><i class="fa fa-trash" aria-hidden="true"></i> </button>
+                            <button ion-fab color="azul" (click)="guardarusuario()" [hidden]="buttonSavehidden"> <i class="fas fa-save    "></i>   </button>
+                            <button ion-fab color="azul" (click)="modificarUsuario()" [hidden]="buttonUpdDelhidden"> <i class="fas fa-edit    "></i>  </button>
                             <button ion-fab color="azul" (click)="nuevousuario()"> <i class="fa fa-plus" aria-hidden="true"></i> </button>
-                        </ion-fab-list>
-                  </ion-fab>
-      </div>
-    </cardexpandible>
-
-    <ng2-smart-table [settings]="settings" [source]="data"  (custom)="cargarDatos($event)"></ng2-smart-table>
+                        </ion-fab-list> 
+                </ion-fab> 
+            </div>
+        </ion-card-content>
+    </ion-card>
 
     
-        
-          
+    <ng2-smart-table [settings]="settings" [source]="data"  
+    (custom)="cargarDatos($event)" 
+    (deleteConfirm)="onDeleteConfirm($event)" 
+    (editConfirm)="onSaveConfirm($event)"
+    ></ng2-smart-table>
 </ion-content>

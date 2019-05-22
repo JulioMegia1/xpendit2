@@ -23,14 +23,15 @@ export class CatalarmasPage {
     hideSubHeader:false	,
     noDataMessage:"sin datos",
     actions:{
-      columnTitle:"Actions",
-      position:"right",
+    
       add:false,
-      delete:false,
       edit:false,
-      custom:[{
+      delete:false,
+      columnTitle:"Acciones",
+      position:"right",
+    custom:[{
       name: 'view',
-      title: '<i class="fas fa-edit"></i>',
+      title: '<span class="fa-stack fa-2x"><i class="fas fa-square fa-stack-2x" ></i><i class="fas fa-plus fa-stack-1x fa-inverse"></i></span>',
     }]
   },
     columns: {

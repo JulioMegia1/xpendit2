@@ -199,7 +199,7 @@ delProducto(data){
 
   /*catalogo usuarios*/
 
-  getUsuarios(){  //indfo del producto
+  getinfogralUsuarios(){  //indfo del producto
     return new Promise(resolve => {
       let menu=this.url+'/catalogos/usuarios/getAll'
       console.log(menu);
@@ -211,6 +211,20 @@ delProducto(data){
       });
     });
   }
+
+  getUsuario(data){  //indfo del producto
+    return new Promise(resolve => {
+      let menu=this.url+'/catalogos/usuarios/get/'+data
+      console.log(menu);
+      this.http.get(menu).subscribe(data => {
+        resolve(data);
+      }
+      ,err => {
+        console.log(err);
+      });
+    });
+  }
+
 
 
 
@@ -228,6 +242,36 @@ delProducto(data){
       });
     });
  }
+
+
+ updUsuario (data){
+  var options = {
+     headers : { 'Content-Type': 'application/json' }
+  }
+  return new Promise ((resolve,reject)=>{
+    this.http.put(this.url+'/catalogos/usuarios/upd/', JSON.stringify(data),options)
+    .subscribe(res=>{
+      resolve(res);
+    },(err)=>{
+      reject(err);
+    });
+  });
+}
+
+delUsuario(data){
+  //En angular 7, el delete no puede enviar body, solo (url,options)
+  // o url+/(idmaquina)
+  //o usar delete 
+  return new Promise ((resolve,reject)=>{
+   this.http.request('delete',this.url+'/catalogos/usuarios/del/',{body:{usuario:data}})
+   .subscribe(res=>{
+     resolve(res);
+   },(err)=>{
+     reject(err);
+   });
+ });
+
+}
 
 
  /*catalogos alarmas*/
