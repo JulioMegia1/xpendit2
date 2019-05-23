@@ -20,6 +20,13 @@ page-catproductos {
 
         }    
     }
+    ion-select{
+        margin-right: 10px;
+        right: auto;
+        position: relative;
+
+
+    }
 
     ion-label{
         background:#18703d;
@@ -33,6 +40,8 @@ page-catproductos {
     ion-input{
         border: 1px solid #ccc;
         border-radius: 4px;
+        font-size: 16px;
+        font-weight: bold;
     
       
     }

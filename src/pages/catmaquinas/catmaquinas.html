@@ -12,44 +12,41 @@
         <ion-card-content>
             <ion-grid>
                 <ion-row>
-                    <ion-col col-auto col-sm-2>
-                          <ion-label style="background: #18703d; color:#fff;padding:10px;border-radius: 10px;"> Descripcion*</ion-label>
+                    <ion-col col-auto col-sm-6>
+                        <ion-item>
+                            <!-- <ion-label fixed style="background: #18703d; color:#fff;padding:10px;border-radius: 10px;"> Descripcion*</ion-label> -->
+                            <ion-input  placeholder="Descripcion*"  [(ngModel)]="descripcion" [disabled]="inputsdisabled"></ion-input>
+                        </ion-item>
                     </ion-col>
-                    <ion-col col-auto col-sm-4>
-                        <ion-input  placeholder="Descripcion*"  [(ngModel)]="descripcion" [disabled]="inputsdisabled"></ion-input>
-                    </ion-col>
-                    <ion-col col-auto col-sm-2>
-                        <ion-label style="background: #18703d; color:#fff;padding:10px;border-radius: 10px;"> Tipo*</ion-label>
-                    </ion-col>
-                    <ion-col col-auto col-sm-4>
+                    <ion-col col-auto col-sm-6>
+                        <!-- <ion-label fixed style="background: #18703d; color:#fff;padding:10px;border-radius: 10px;"> Tipo*</ion-label> -->
                         <ion-list>
-                            <ion-item>    
-                                <ion-select [(ngModel)]="tipo" okText="Aceptar" cancelText="Cancelar" interface="popover" placeholder="Selecciona" [disabled]="inputsdisabled">
-                                    <ion-option *ngFor="let tipo of selectTipoMaquina" value="{{tipo.value}}"> {{tipo.label}}</ion-option>
-                                </ion-select>
+                            <ion-item>
+                                    <ion-select [(ngModel)]="tipo" okText="Aceptar" cancelText="Cancelar" interface="popover" placeholder="Tipo Máquina" [disabled]="inputsdisabled">
+                                        <ion-option *ngFor="let tipo of selectTipoMaquina" value="{{tipo.value}}"> {{tipo.label}}</ion-option>
+                                    </ion-select>
                             </ion-item>
-                        </ion-list>                      
+                        </ion-list>  
                     </ion-col>
                 </ion-row>
       
                 <ion-row>
                     <ion-col col-auto col-sm-2>
-                        <ion-label style="background: #18703d; color:#fff;padding:10px;border-radius: 10px;"> Modelo*</ion-label>
-                    </ion-col>
-                    <ion-col col-auto col-sm-4>
+                        <!-- <ion-label fixed style="background: #18703d; color:#fff;padding:10px;border-radius: 10px;"> Modelo*</ion-label> -->
+
                         <ion-list>
-                            <ion-item>    
-                                <ion-select [(ngModel)]="modelo"   okText="Aceptar" cancelText="Cancelar" interface="popover" placeholder="Selecciona" [disabled]="inputsdisabled">
-                                    <ion-option *ngFor="let modelo of selectModeloMaquina" value="{{modelo.value}}"> {{modelo.label}}</ion-option>
-                                </ion-select>
-                            </ion-item>
-                                </ion-list>                        
+                            <ion-item>
+                                    <ion-select [(ngModel)]="modelo"   okText="Aceptar" cancelText="Cancelar" interface="popover" placeholder="Modelo" [disabled]="inputsdisabled">
+                                        <ion-option *ngFor="let modelo of selectModeloMaquina" value="{{modelo.value}}"> {{modelo.label}}</ion-option>
+                                    </ion-select>
+                            </ion-item>         
+                        </ion-list>                       
                     </ion-col>
-                    <ion-col col-auto col-sm-2>
-                        <ion-label style="background: #18703d; color:#fff;padding:10px;border-radius: 10px;"> Direción*</ion-label>
-                    </ion-col>
-                    <ion-col col-auto col-sm-4>
-                        <ion-input  placeholder="Dirección*" [(ngModel)]="direccion" [disabled]="inputsdisabled"></ion-input>
+                    <ion-col col-auto col-sm-6>
+                        <ion-item>
+                            <!-- <ion-label fixed style="background: #18703d; color:#fff;padding:10px;border-radius: 10px;"> Direción*</ion-label> -->
+                            <ion-input  placeholder="Dirección*" [(ngModel)]="direccion" [disabled]="inputsdisabled"></ion-input>
+                        </ion-item>
                     </ion-col>
                 </ion-row>
             </ion-grid>
@@ -76,29 +73,25 @@
          <ion-card-content>
             <ion-grid>
                 <ion-row>
-                    <ion-col col-auto col-sm-2>
-                        <ion-label style="background: #18703d; color:#fff;padding:10px;border-radius: 10px;"> Asignados*</ion-label>
-                    </ion-col>
-                    <ion-col col-auto col-sm-4>
+                    <ion-col col-auto col-sm-6>
                         <ion-list>
-                            <ion-item>    
-                                <ion-select [(ngModel)]="asignados"   okText="Aceptar" cancelText="Cancelar"  placeholder="Selecciona" multiple="true">
-                                     <ion-option *ngFor="let usuario of infoasignados" value="{{usuario.value}}"> {{usuario.label}}</ion-option>
-                                </ion-select>
-                              </ion-item>
-                        </ion-list>                      
+                            <ion-item>
+                                <ion-label fixed style="background: #18703d; color:#fff;padding:10px;border-radius: 10px;"> Asignados*</ion-label>
+                                    <ion-select [(ngModel)]="asignados"   okText="Aceptar" cancelText="Cancelar"  placeholder="Selecciona" multiple="true">
+                                         <ion-option *ngFor="let usuario of infoasignados" value="{{usuario.value}}"> {{usuario.label}}</ion-option>
+                                    </ion-select>
+                            </ion-item>                    
+                        </ion-list>  
                     </ion-col>
-                    <ion-col col-auto col-sm-2>
-                        <ion-label style="background: #18703d; color:#fff;padding:10px;border-radius: 10px;"> No asignados*</ion-label>
-                    </ion-col>
-                    <ion-col col-auto col-sm-4>
+                    <ion-col col-auto col-sm-6>
                         <ion-list>
-                            <ion-item>    
-                                <ion-select [(ngModel)]="noasignados" okText="Aceptar" cancelText="Cancelar"  placeholder="Selecciona" multiple="true">
-                                    <ion-option *ngFor="let noasignado of infonoasignados" value="{{noasignado.value}}"> {{noasignado.label}}</ion-option>
-                                </ion-select>
-                            </ion-item>
-                        </ion-list>                      
+                            <ion-item>
+                                <ion-label fixed style="background: #18703d; color:#fff;padding:10px;border-radius: 10px;"> No asignados*</ion-label>
+                                    <ion-select [(ngModel)]="noasignados" okText="Aceptar" cancelText="Cancelar"  placeholder="Selecciona" multiple="true">
+                                        <ion-option *ngFor="let noasignado of infonoasignados" value="{{noasignado.value}}"> {{noasignado.label}}</ion-option>
+                                    </ion-select>
+                            </ion-item>                    
+                        </ion-list>  
                     </ion-col>
                 </ion-row>
 
@@ -118,17 +111,17 @@
         <ion-card-content>
             <ion-grid>
                 <ion-row>
-                    <ion-col col-auto col-sm-2>
-                        <ion-label style="background: #18703d; color:#fff;padding:10px;border-radius: 10px;"> Latitud*</ion-label>
+                    <ion-col col-auto col-sm-6>
+                        <ion-item>
+                            <ion-label fixed style="background: #18703d; color:#fff;padding:10px;border-radius: 10px;"> Latitud*</ion-label>
+                            <ion-input  placeholder="Latitud*" type="number" [(ngModel)]="Latitud"></ion-input>
+                        </ion-item>
                     </ion-col>
-                    <ion-col col-auto col-sm-4>
-                        <ion-input  placeholder="Latitud*" type="number" [(ngModel)]="Latitud"></ion-input>
-                    </ion-col>
-                    <ion-col col-auto col-sm-2>
-                        <ion-label style="background: #18703d; color:#fff;padding:10px;border-radius: 10px;"> Longitud*</ion-label>
-                    </ion-col>
-                    <ion-col col-auto col-sm-4>
-                        <ion-input  placeholder="Longitud*" type="number" [(ngModel)]="Longitud"></ion-input>
+                    <ion-col col-auto col-sm-6>
+                        <ion-item>
+                            <ion-label fixed style="background: #18703d; color:#fff;padding:10px;border-radius: 10px;"> Longitud*</ion-label>
+                            <ion-input  placeholder="Longitud*" type="number" [(ngModel)]="Longitud"></ion-input>
+                        </ion-item>
                     </ion-col>
                 </ion-row>
             </ion-grid>
@@ -150,33 +143,34 @@
         <ion-card-content>
             <ion-grid>
                 <ion-row>
-                    <ion-col col-auto col-sm-2>
-                        <ion-label style="background: #18703d; color:#fff;padding:10px;border-radius: 10px;"> ID Módem*</ion-label>
+                    <ion-col col-auto col-sm-6>
+                        <ion-item>
+                            <ion-label  fixed style="background: #18703d; color:#fff;padding:10px;border-radius: 10px;"> ID Módem*</ion-label>
+                            <ion-input  placeholder="ID Módem*"  [(ngModel)]="idMaquina" disabled></ion-input>
+                        </ion-item>
                     </ion-col>
-                    <ion-col col-auto col-sm-4>
-                        <ion-input  placeholder="ID Módem*"  [(ngModel)]="idMaquina" disabled></ion-input>
-                    </ion-col>
-                    <ion-col col-auto col-sm-2>
-                        <ion-label style="background: #18703d; color:#fff;padding:10px;border-radius: 10px;"> Password WEB*</ion-label>
-                    </ion-col>
-                    <ion-col col-auto col-sm-4>
-                        <ion-input  placeholder="Password WEB*"  [(ngModel)]="password"></ion-input>
+                    <ion-col col-auto col-sm-6>
+                        <ion-item>
+                            <ion-label fixed style="background: #18703d; color:#fff;padding:10px;border-radius: 10px;"> Password WEB*</ion-label>
+                            <ion-input  placeholder="Password WEB*"  [(ngModel)]="password"></ion-input>
+                        </ion-item>
                     </ion-col>
                 </ion-row>
             
                 <ion-row>
-                    <ion-col col-auto col-sm-2>
-                        <ion-label style="background: #18703d; color:#fff;padding:10px;border-radius: 10px;"> Télefono*</ion-label>
-                    </ion-col>
-                    <ion-col col-auto col-sm-4>
-                        <ion-input  placeholder="Télefono*"  type="number" [(ngModel)]="telefono"></ion-input>
-                     </ion-col>
-                    <ion-col col-auto col-sm-2>
-                        <ion-label style="background: #18703d; color:#fff;padding:10px;border-radius: 10px;"> Expiracion*</ion-label>
-                    </ion-col>
-                    <ion-col col-auto col-sm-4>
-                        <ion-input  placeholder="dd/mm/aaaa" [(ngModel)]="expiracion"></ion-input>
-                    </ion-col>
+                        <ion-col col-auto col-sm-6>
+                            <ion-item>
+                                <ion-label fixed style="background: #18703d; color:#fff;padding:10px;border-radius: 10px;"> Télefono*</ion-label>
+                                <ion-input  placeholder="Télefono*"  type="number" [(ngModel)]="telefono"></ion-input>
+                            </ion-item>
+                        </ion-col>
+                
+                        <ion-col col-auto col-sm-6>
+                            <ion-item>
+                                <ion-label fixed style="background: #18703d; color:#fff;padding:10px;border-radius: 10px;"> Expiracion*</ion-label>
+                                <ion-input  placeholder="dd/mm/aaaa" [(ngModel)]="expiracion"></ion-input>
+                            </ion-item>
+                        </ion-col>
                 </ion-row>
             </ion-grid>
             
@@ -185,11 +179,28 @@
             </div>
         </ion-card-content>
     </ion-card> 
+
+      <!-- paginacion -->
+      <ion-list >
+            <ion-item>
+            <ion-select [(ngModel)]="numpagina" (ionChange)="pagina(numpagina)"  okText="OK" cancelText="Cancelar" placeHolder="Paginación" interface="popover" placeholder="Paginación" >
+                <ion-option value=5>5</ion-option>
+                <ion-option value=10>10</ion-option>
+                <ion-option value=15>15</ion-option>
+                <ion-option value=20>20</ion-option>
+            </ion-select>
+            </ion-item>
+        </ion-list>
     
     <!-- Tabla -->
-    <ng2-smart-table [settings]="settings" [source]="data" 
+    <ion-scroll scrollX="true" style="height: 7000px;">
+
+   <ion-card style="overflow-x: auto;">
+    <ng2-smart-table [settings]="settings" [source]="source" 
      (custom)="cargarDatos($event)"
      (deleteConfirm)="onDeleteConfirm($event)" 
      (editConfirm)="onSaveConfirm($event)"
      (createConfirm)="onCreateConfirm($event)"></ng2-smart-table>
+    </ion-card>
+</ion-scroll>
 </ion-content>

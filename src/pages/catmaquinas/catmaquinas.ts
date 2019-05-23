@@ -2,6 +2,9 @@ import { Component, ViewChild } from '@angular/core';
 import { IonicPage, NavController, NavParams, Content } from 'ionic-angular';
 import { AlertController } from 'ionic-angular';
 
+/*ng2SmartTable*/
+import {LocalDataSource} from 'ng2-smart-table'
+
 /*mapa*/
 import 'rxjs/add/operator/map';
 import L from "leaflet";
@@ -23,6 +26,9 @@ import {CIprovider  } from "../../providers/data/data";
 export class CatmaquinasPage {
 
   /*SmartTable*/
+
+  source: LocalDataSource;
+
   settings = {  
     hideSubHeader:false	,
     noDataMessage:"sin datos",
@@ -152,7 +158,7 @@ export class CatmaquinasPage {
     },
    
   };
-
+  numpagina:any;
   data:any;//datos de la tabla
 
   @ViewChild(Content) content: Content;//minimizar header(menu)
@@ -268,6 +274,8 @@ buttonUpdDelhidden=true;
     this.catService.getMaquinas().then(result=>{
     console.log(result)
     this.data=result;
+    this.source= new LocalDataSource();
+    this.source.load(this.data)
     },(err)=>{
       console.log(err);
     }
@@ -326,11 +334,10 @@ buttonUpdDelhidden=true;
         console.log(result);
         console.log(this.infomaquinanueva);
 
-      this.descripcion=null;
-      this.modelo=null;
-      this.tipo=null;
-      this.direccion=null;
-
+        this.descripcion=null;
+        this.modelo=null;
+        this.tipo=null;
+        this.direccion=null;
 
         this.mensaje="Máquina creada exitosamente!";
         this.showAlert();
@@ -375,10 +382,10 @@ getselectasignados(){
     this.selectprovider.selectasignados(this.idMaquina).then((result)=>{
       this.infoasignados=result;
       console.log(this.infoasignados);
-       },(err)=>{
-         console.log(err);
-       }
-       );
+    },(err)=>{
+      console.log(err);
+    }
+    );
   }
 
   getselectNoasignados(){
@@ -427,33 +434,32 @@ async asigna(){
      console.log("no hago nada");
      this.mensaje="No hay usuarios selecionados"
      this.showAlert();
-     
    }
-   else{
-
-  
-
-  console.log(this.asignados)
-  for(let i=0;i<this.asignados.length;i=i+1) {
-    for(let j=0;j<this.infomaquinaSeleccionada.usuarios.length;j=j+1){
+   else
+   {
+      console.log(this.asignados)
+      for(let i=0;i<this.asignados.length;i=i+1) 
+      {
+        for(let j=0;j<this.infomaquinaSeleccionada.usuarios.length;j=j+1)
+          {
             if(this.asignados[i]==this.infomaquinaSeleccionada.usuarios[j].usuario)
-                    {
-                            console.log("lo encontre");
-                            this.infomaquinaSeleccionada.usuarios.splice(j,1)
-                    }
-    }
-}
-console.log(this.infomaquinaSeleccionada.usuarios);
-this.mensaje="Los Usuarios se han desasignado correctamente";
-this.showAlert();
-await this.actualizainfo();
-this.infoasignados=null;
-this.infonoasignados=null;
-this.noasignados=null;
-this.asignados=null;
-await this.getselectasignados();
-await this.getselectNoasignados();
-}
+              {
+                console.log("lo encontre");
+                this.infomaquinaSeleccionada.usuarios.splice(j,1)
+              }
+          }
+      }
+      console.log(this.infomaquinaSeleccionada.usuarios);
+      this.mensaje="Los Usuarios se han desasignado correctamente";
+      this.showAlert();
+      await this.actualizainfo();
+      this.infoasignados=null;
+      this.infonoasignados=null;
+      this.noasignados=null;
+      this.asignados=null;
+      await this.getselectasignados();
+      await this.getselectNoasignados();
+  }
 }
 
 getusuarios(){
@@ -488,15 +494,11 @@ getInfomaquina(){
     await this.getusuarios();
     await this.getselectasignados();    
     await this.getselectNoasignados();
-
-
-     },(err)=>{
-       console.log(err);
-     }
-     );
-
+    },(err)=>{
+      console.log(err);
+    }
+    );
 }
-
 
  actualizainfo(){
   this.catService.updMaquina(this.infomaquinaSeleccionada).then(async (result)=>{
@@ -512,9 +514,7 @@ getInfomaquina(){
     console.log(err);
   }
   );
-
 }
-
 
 modificar(){
   console.log(this.infomaquinaSeleccionada);
@@ -545,8 +545,7 @@ modificainfomodem(){
     console.log("no actualice")
     console.log(this.expiracion.length)
     this.mensaje="Info Módem no actualizada "
-  this.showAlert();
-
+    this.showAlert();
   }
   else
   {
@@ -612,7 +611,6 @@ mapa(){
 }
 
 eliminarMaquina(){
-
 
   const confirm = this.alertCtrl.create({
     title: 'Desea Eliminar la maquina'+this.infomaquinaSeleccionada.descripcion+'?',
@@ -683,11 +681,8 @@ cargarDatos(event) {
       this.getusuarios();
       this.getselectasignados();    
       this.getselectNoasignados();
-
     }
   }
-
-
 
   onDeleteConfirm(event) {
     console.log("Delete Event In Console")
@@ -817,14 +812,11 @@ onSaveConfirm(event) { //Editar los productos
           console.log(err);
         }
         );
-
-
+      }
     }
-
-
-    
   }
-   
-   
-  }
+
+pagina(data){
+  this.source.setPaging(1,data);
+}
 }

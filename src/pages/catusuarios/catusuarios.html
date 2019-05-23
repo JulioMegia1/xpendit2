@@ -11,26 +11,26 @@
         <ion-card-content>
             <ion-grid>
                 <ion-row>
-                    <ion-col col-auto col-sm-2>
+                    <!-- <ion-col col-auto col-sm-2>
                         <ion-label> Tipo*</ion-label>
-                    </ion-col>
-                    <ion-col col-auto col-sm-4>
+                    </ion-col> -->
+                    <ion-col col-auto col-sm-6>
                     <ion-list>
                         <ion-item>    
-                            <ion-select [(ngModel)]="tipoUsuario"  okText="Aceptar" cancelText="Cancelar" interface="popover" placeholder="Selecciona" [disabled]="inputsdisabled">
+                            <ion-select [(ngModel)]="tipoUsuario"  okText="Aceptar" cancelText="Cancelar" interface="popover" placeholder="Tipo Usuario" [disabled]="inputsdisabled">
                             <ion-option *ngFor="let tipo of selectTipoUsuarios" value="{{tipo.value}}"> {{tipo.label}}</ion-option>
                             </ion-select>
                         </ion-item>
                         </ion-list>
                     </ion-col>
-                    <ion-col col-auto col-sm-2>
+                    <!-- <ion-col col-auto col-sm-2>
                             <ion-label> Status*</ion-label>
-                        </ion-col>
+                    </ion-col> -->
                     
-                    <ion-col col-auto col-sm-4>
+                    <ion-col col-auto col-sm-6>
                         <ion-list>
                         <ion-item>    
-                            <ion-select [(ngModel)]="estadoUsuario"   okText="Aceptar" cancelText="Cancelar" interface="popover" placeholder="Selecciona"  [disabled]="inputsdisabled">
+                            <ion-select [(ngModel)]="estadoUsuario"   okText="Aceptar" cancelText="Cancelar" interface="popover" placeholder="Estado Usuario"  [disabled]="inputsdisabled">
                             <ion-option *ngFor="let estado of selectEstadosUsuarios" value="{{estado.value}}"> {{estado.label}}</ion-option>
                             </ion-select>
                         </ion-item>
@@ -39,62 +39,57 @@
                 </ion-row>
 
                 <ion-row>
-                    <ion-col col-auto col-sm-2>
+                    <!-- <ion-col col-auto col-sm-2>
                         <ion-label> Nombre*</ion-label>
-                    </ion-col>
-                    <ion-col col-auto col-sm-4>
+                    </ion-col> -->
+                    <ion-col col-auto col-sm-6>
                         <ion-input  placeholder="Nombre*"  [(ngModel)]="nombre"  [disabled]="inputsdisabled"></ion-input>
                     </ion-col>
-                    <ion-col col-auto col-sm-2>
+                    <!-- <ion-col col-auto col-sm-2>
                         <ion-label> Paterno*</ion-label>
-                    </ion-col>
-                    <ion-col col-auto col-sm-4>
+                    </ion-col> -->
+                    <ion-col col-auto col-sm-6>
                         <ion-input  placeholder="Paterno*" [(ngModel)]="paterno"  [disabled]="inputsdisabled"></ion-input>
                     </ion-col>
                 </ion-row>
 
                 <ion-row>
-                    <ion-col col-auto col-sm-2>
+                    <!-- <ion-col col-auto col-sm-2>
                         <ion-label> Materno*</ion-label>
-                    </ion-col>
-                    <ion-col col-auto col-sm-4>
+                    </ion-col> -->
+                    <ion-col col-auto col-sm-6>
                         <ion-input  placeholder="Materno*" [(ngModel)]="materno"  [disabled]="inputsdisabled" ></ion-input>
                     </ion-col>
-                    <ion-col col-auto col-sm-2>
+                    <!-- <ion-col col-auto col-sm-2>
                         <ion-label> Correo*</ion-label>
-                    </ion-col>
-                    <ion-col col-auto col-sm-4>
+                    </ion-col> -->
+                    <ion-col col-auto col-sm-6>
                         <ion-input  placeholder="Correo*"  [(ngModel)]="email" type="email"  [disabled]="inputsdisabled"></ion-input>
                     </ion-col>
                 </ion-row>
 
                 <ion-row>
-                    <ion-col col-auto col-sm-2>
+                    <!-- <ion-col col-auto col-sm-2>
                         <ion-label> Usuario*</ion-label>
-                    </ion-col>
-                    <ion-col col-auto col-sm-4>
+                    </ion-col> -->
+                    <ion-col col-auto col-sm-6>
                         <ion-input  placeholder="Usuario*" [(ngModel)]="usuario"  [disabled]="inputsdisabled"></ion-input>
                     </ion-col>
-                    <ion-col col-auto col-sm-2>
-                        <ion-label> Password*<i [class]=icon (click)="verpwd()"></i></ion-label>
+                    <!-- <ion-col col-2>
+                            <ion-label> Móvil</ion-label>
+                        </ion-col> -->
+                    <ion-col col-6>
+                        <ion-input  placeholder="Móvil"   type="number" maxlength="15"></ion-input>
                     </ion-col>
-                    <ion-col col-auto col-sm-4>
-                        <ion-input [type]="type" placeholder="Password" [(ngModel)]="password"  [disabled]="inputsdisabled"></ion-input>
-                    </ion-col>
+                   
                 </ion-row>
 
                 <ion-row>
-                    <ion-col col-2>
-                        <ion-label> Móvil</ion-label>
+                    <ion-col col-auto col-sm-6>
+                        <ion-label> Password*<i [class]=icon (click)="verpwd()"></i></ion-label>
                     </ion-col>
-                    <ion-col col-4>
-                        <ion-input  placeholder="Móvil"   type="number" maxlength="15"></ion-input>
-                    </ion-col>
-                    <ion-col col-2>
-                    
-                    </ion-col>
-                    <ion-col col-4>
-                                            
+                    <ion-col col-auto col-sm-6>
+                        <ion-input [type]="type" placeholder="Password" [(ngModel)]="password"  [disabled]="inputsdisabled"></ion-input>
                     </ion-col>
                 </ion-row>
             </ion-grid>

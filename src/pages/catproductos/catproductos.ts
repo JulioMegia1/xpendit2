@@ -2,6 +2,9 @@ import { Component, ViewChild } from '@angular/core';
 import { IonicPage, NavController, NavParams, Content } from 'ionic-angular';
 import { AlertController } from 'ionic-angular';
 
+/*ng2SmartTable*/
+import {LocalDataSource} from 'ng2-smart-table'
+
 /*servicios*/
 import { MvserviceProvider } from "../../providers/mvservice/mvservice";
 import { CatalogserviceProvider } from "../../providers/catalogservice/catalogservice";
@@ -21,6 +24,8 @@ import { File } from '@ionic-native/file';
 export class CatproductosPage {
 
 /*table*/
+source: LocalDataSource;
+
 settings = {
   hideSubHeader:false, 
   noDataMessage:"sin datos",
@@ -82,6 +87,7 @@ settings = {
   },
  
 };
+numpagina:any;
 data:any; //datos de la tabla
 
 @ViewChild(Content) content: Content; //minimizar header(menu)
@@ -119,8 +125,10 @@ buttonhideSave=true;
 
   getinfogralProductos(){//obtiene los datos de la tabla 
     this.catService.getProductos().then(result=>{
-      console.log(result)
+      console.log(result);
       this.data=result;//asignas los datos de los productos a la tabla
+      this.source= new LocalDataSource();
+      this.source.load(this.data)
     },(err)=>{
       console.log(err);
     }
@@ -445,4 +453,8 @@ buttonhideSave=true;
       this.showAlert();
     }
     }
+
+  pagina(data){
+    this.source.setPaging(1,data);
+  }
 }

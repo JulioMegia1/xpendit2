@@ -2,6 +2,9 @@ import { Component, ViewChild } from '@angular/core';
 import { IonicPage, NavController, NavParams, Content } from 'ionic-angular';
 import { AlertController } from 'ionic-angular';
 
+/*ng2SmartTable*/
+import {LocalDataSource} from 'ng2-smart-table'
+
 /*servicios*/
 import { SelectserviceProvider } from "../../providers/selectservice/selectservice";
 import { CatalogserviceProvider } from "../../providers/catalogservice/catalogservice";
@@ -19,8 +22,9 @@ export class CatalarmasPage {
 
   mensaje:any;//mensaje del alert
   
-  inputenabled=true;
-
+  /*ng2-smartTable*/
+  numpagina:any;
+  source: LocalDataSource;
   settings = {
     hideSubHeader:false	,
     noDataMessage:"sin datos",
@@ -75,6 +79,8 @@ export class CatalarmasPage {
   Inactbody:any;
   
   prioridades:any;//select
+  inputdisabled=true;
+  buttonhidden=true;
 
   constructor(public navCtrl: NavController, public navParams: NavParams,public alertCtrl: AlertController,
     public selectprovider: SelectserviceProvider,
@@ -109,6 +115,8 @@ export class CatalarmasPage {
         this.data[i].inactivaBody=this.data[i].inactiva.body;
       }
       console.log(this.data);
+      this.source= new LocalDataSource();
+      this.source.load(this.data)
     },(err)=>{
       console.log(err);
     }
@@ -117,7 +125,8 @@ export class CatalarmasPage {
 
 cargarDatos(event) {
   console.log(event);
-  this.inputenabled=false;
+  this.inputdisabled=false;
+  this.buttonhidden=false;
   this.alarmaseleccionada=event.data;
   this.descripcion=this.alarmaseleccionada.descripcion;
   this.prioridad=this.alarmaseleccionada.severidad;
@@ -195,4 +204,7 @@ showAlert() {
     });
     alert.present();
   }
+pagina(data){
+  this.source.setPaging(1,data);
+}
 }

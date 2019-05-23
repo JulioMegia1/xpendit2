@@ -12,39 +12,39 @@
           <ion-card-content>            
                 <p align="center"><img src="{{ myphoto }}"></p>
             <ion-grid>
-                <ion-row>
-                    <ion-col col-auto>
-                        <ion-label> Descripción*</ion-label>     
-                    </ion-col>
-                    <ion-col col-auto>
-                        <ion-input placeholder="Descripción"  [(ngModel)]="descripcion" [disabled]="inputsEnable"> </ion-input>
-                    </ion-col>
-                    <ion-col col-auto>
-                        <ion-label> Precio compra*</ion-label>
-                    </ion-col>
-                    <ion-col col-auto>
-                        <ion-input  placeholder="Precio compra*"  [(ngModel)]="precioCompra" [disabled]="inputsEnable" type="number"></ion-input>
-                    </ion-col>
-                </ion-row>
-
-                <ion-row>
-                    <ion-col col-auto>
-                        <ion-label> Presentación</ion-label>      
-                    </ion-col>
-
-                    <ion-col col-auto>
-                        <ion-input  placeholder="Presentación"   [(ngModel)]="presentacion" [disabled]="inputsEnable"></ion-input>
-                    </ion-col>
-                    <ion-col col-auto>
-                        <div style="justify-content:center;display:flex">
-                        <button ion-button round (click)="takePhoto()" round color="secondary"><i class="fas fa-camera-retro"></i></button>
-                        <button ion-button round (click)="getImage()" round color="secondary"><i class="far fa-images"></i></button>
-                        </div>
-                    </ion-col>
-                    <ion-col col-auto>
-
-                    </ion-col>
-                </ion-row>
+                        <ion-row>
+                                <ion-col col-auto>
+                                    <ion-label> Descripción*</ion-label>     
+                                </ion-col>
+                                <ion-col col-auto>
+                                    <ion-input placeholder="Descripción"  [(ngModel)]="descripcion" [disabled]="inputsEnable"> </ion-input>
+                                </ion-col>
+                                <ion-col col-auto>
+                                    <ion-label> Precio compra*</ion-label>
+                                </ion-col>
+                                <ion-col col-auto>
+                                    <ion-input  placeholder="Precio compra*"  [(ngModel)]="precioCompra" [disabled]="inputsEnable" type="number"></ion-input>
+                                </ion-col>
+                            </ion-row>
+            
+                            <ion-row>
+                                <ion-col col-auto>
+                                    <ion-label> Presentación</ion-label>      
+                                </ion-col>
+            
+                                <ion-col col-auto>
+                                    <ion-input  placeholder="Presentación"   [(ngModel)]="presentacion" [disabled]="inputsEnable"></ion-input>
+                                </ion-col>
+                                <ion-col col-auto>
+                                    <div style="justify-content:center;display:flex">
+                                    <button ion-button round (click)="takePhoto()" round color="secondary"><i class="fas fa-camera-retro"></i></button>
+                                    <button ion-button round (click)="getImage()" round color="secondary"><i class="far fa-images"></i></button>
+                                    </div>
+                                </ion-col>
+                                <ion-col col-auto>
+            
+                                </ion-col>
+                            </ion-row>
             </ion-grid>
         
          <!--OPCIONES  -->
@@ -62,8 +62,20 @@
         </ion-card-content>     
     </ion-card>       
         
+    <!-- paginacion -->
+        <ion-list >
+            <ion-item>
+            <ion-select [(ngModel)]="numpagina" (ionChange)="pagina(numpagina)"  okText="OK" cancelText="Cancelar" placeHolder="Paginación" interface="popover" placeholder="Paginación" >
+                <ion-option value=5>5</ion-option>
+                <ion-option value=10>10</ion-option>
+                <ion-option value=15>15</ion-option>
+                <ion-option value=20>20</ion-option>
+            </ion-select>
+            </ion-item>
+        </ion-list>
+
     <!-- Tabla productos -->
-    <ng2-smart-table [settings]="settings" [source]="data"  
+    <ng2-smart-table [settings]="settings" [source]="source"  
     (custom)="cargarDatos($event)" 
     (deleteConfirm)="onDeleteConfirm($event)" 
     (editConfirm)="onSaveConfirm($event)"
