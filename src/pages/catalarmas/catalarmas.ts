@@ -11,6 +11,8 @@ import { CIprovider } from "../../providers/data/data";
 @Component({
   selector: 'page-catalarmas',
   templateUrl: 'catalarmas.html',
+  styles:['/*tamaño fuente*/:host /deep/ ng2-smart-table { font-size: 16px; } /*encabezado*/ :host /deep/ ng2-smart-table thead > tr > th  { background-color:#e9e9e9;  border: .5pxpx solid grey;text-align:center;}/*colore de las acciones*/:host /deep/ ng2-smart-table thead > tr > th > div { color: #2c6ab9; }/* grid lines */:host /deep/ ng2-smart-table table > tbody > tr > td {border: .5pxpx solid grey;}/*formato completo*/:host /deep/ tr,th {background-color: #ffffff;font-style: bold;text-align:center;font-weight: bold;width: 100%;border: 2px solid #e9e9e9;}']
+
 })
 export class CatalarmasPage {
   @ViewChild(Content) content: Content;
@@ -41,19 +43,13 @@ export class CatalarmasPage {
       severidad: {
         title: 'severidad',
       },
-      activa: {
+      activaBody: {
         title: 'Body Activa',
-        sort: false,
-        valuePrepareFunction:(activa)=>{
-          return activa.body;
-        }
+        
       },
-      inactiva: {
+      inactivaBody: {
         title: 'Body Inactiva',
-        sort: false,
-        valuePrepareFunction:(inactiva)=>{
-          return inactiva.body;
-        }
+        
       }
       
     
@@ -106,7 +102,12 @@ export class CatalarmasPage {
 
   getalarmas(){
   this.catService.getAlarmas().then(result=>{
-      this.data=result; //obtiene las maquinas
+      this.data=result; //obtiene las alarmas
+      let i;
+      for(i=0;i<this.data.length;i=i+1){
+        this.data[i].activaBody=this.data[i].activa.body;
+        this.data[i].inactivaBody=this.data[i].inactiva.body;
+      }
       console.log(this.data);
     },(err)=>{
       console.log(err);

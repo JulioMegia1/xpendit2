@@ -23,6 +23,10 @@ page-catusuarios {
     ion-label{
         background:#18703d;
         color:#fff;
+        font-size: 16px;
+        font-weight: bold;
+        
+
         padding:10px;
         border-radius: 10px;
     }
@@ -36,23 +40,10 @@ page-catusuarios {
         position: relative;
       }
 
-      :host /deep/ ng2-st-tbody-edit-delete {display: flex !important;
-        height: 0 !important;
-      }
-      
-      :host /deep/ ng2-st-tbody-custom a.ng2-smart-action.ng2-smart-action-custom-custom {
-        display: inline-block;
-        width: 50px;
-        text-align: center;
-        font-size: 1.1em;
-      }
-      
-      :host /deep/ ng2-st-tbody-custom a.ng2-smart-action.ng2-smart-action-custom-custom:hover {
-        color: #5dcfe3;
-      }
-    
-      // ng2-smart-table {
-      //   font-size: 25px;
-      // }
+     
+
 
 }
+
+
+
