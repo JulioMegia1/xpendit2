@@ -36,24 +36,16 @@ export class VentaxhoramaquinaComponent implements OnInit{
   grafica:any;
   idmaquina:any;
 
-
-
   constructor(public ciService:CIprovider, public mvservice:MvserviceProvider) {
     console.log('Hello VentaxhoramaquinaComponent Component');
-    
   }
-  ngOnInit(){
 
+  ngOnInit(){
     this.idmaquina=this.ciService.getIdmaquina(); //obtener el tipo de usuario
     console.log("TENGO EL ID DE LA MAQUINA" + this.idmaquina)
     this.dataSource=this.data
     this.getgrafica(this.idmaquina)
-
-
   }
-
- 
-
 
 getgrafica(idmaquina){
   this.mvservice.ventahoramaquina(idmaquina).then(result=>{
@@ -64,28 +56,22 @@ getgrafica(idmaquina){
       this.data.data=null
 
     }
-    else{
-
-  this.data.data=this.grafica.puntos;
-  
-  this.data.chart.caption="Venta Global ";//this.data.chart.caption=this.grafica.titulo;corregir nombre SERVICIO
-  console.log(result);
-
+    else
+    {
+      this.data.data=this.grafica.puntos;  
+      // this.data.chart.caption="Venta Global ";//this.data.chart.caption=this.grafica.titulo;corregir nombre SERVICIO
+      console.log(result);
+    }
+  },(err)=>{
+    console.log(err);
   }
-},(err)=>{
-  console.log(err);
-}
-);
+  );
 }
 
 updatedata(){
   this.idmaquina=this.ciService.getIdmaquina(); //obtener el tipo de usuario
-  
   this.dataSource=this.data
   this.getgrafica(this.idmaquina)
-
 }
-
-
 
 }

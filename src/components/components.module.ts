@@ -13,8 +13,6 @@ import { GraficaproductosinventarioComponent } from './graficaproductosinventari
 import { TacometroproductosComponent } from './tacometroproductos/tacometroproductos';
 import { TacometroventasComponent } from './tacometroventas/tacometroventas';
 import { VentaglobalhistoricaComponent } from './ventaglobalhistorica/ventaglobalhistorica';
-// import { MapaComponent } from './mapa/mapa';
-// import { TableDemoComponent } from './table-demo/table-demo';
 import { VentaxhoraproductomaquinaComponent } from './ventaxhoraproductomaquina/ventaxhoraproductomaquina';
 import { VentaxdiaproductomaquinaComponent } from './ventaxdiaproductomaquina/ventaxdiaproductomaquina';
 import { HistoricoComponent } from './historico/historico';
@@ -35,8 +33,6 @@ import { HistoricodetalleproductoComponent } from './historicodetalleproducto/hi
     TacometroproductosComponent,
     TacometroventasComponent,
     VentaglobalhistoricaComponent,
-    // MapaComponent,
-    // TableDemoComponent,
     VentaxhoraproductomaquinaComponent,
     VentaxdiaproductomaquinaComponent,
     HistoricoComponent,
@@ -58,8 +54,6 @@ import { HistoricodetalleproductoComponent } from './historicodetalleproducto/hi
     TacometroproductosComponent,
     TacometroventasComponent,
     VentaglobalhistoricaComponent,
-    // MapaComponent,
-    // TableDemoComponent,
     VentaxhoraproductomaquinaComponent,
     VentaxdiaproductomaquinaComponent,
     HistoricoComponent,

@@ -31,7 +31,8 @@ export class PantallaprincipalPage {
      maquinas :any;
      center: L.PointTuple;
      map:L.map;
- /*mapa leaf let*/
+     height:any;
+      /*mapa leaf let*/
 
  hiddengraficas=false;
 
@@ -54,6 +55,11 @@ ionViewDidEnter(){
 ionViewCanEnter(){//si el tipo de  usuario es Operador oculta 
   if(this.tipoUsuario=="Operador"){
     this.hiddengraficas=true
+    this.height="100%";
+  }
+  else{
+    this.height="400px"
+
   }
 
 }

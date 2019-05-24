@@ -6,7 +6,6 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { MyApp } from './app.component';
 import { HttpClientModule } from '@angular/common/http';
 
-
 /**********Paginas******/
 import { LoginPage } from "../pages/login/login";
 import { MenuPage } from "../pages/menu/menu";
@@ -26,9 +25,7 @@ import { ActualizamvPage } from "../pages/actualizamv/actualizamv";
 /*********popover******/
 import { BuscamaquinaproductoPage } from "../pages/buscamaquinaproducto/buscamaquinaproducto";
 
-
 /**********servicios******/
-
 import { AuthserviceProvider } from "../providers/authservice/authservice";
 import { CatalogserviceProvider } from "../providers/catalogservice/catalogservice";
 import { ExtraserviceProvider } from "../providers/extraservice/extraservice";
@@ -54,7 +51,6 @@ import { GraficaproductosinventarioComponent } from "../components/graficaproduc
 import { TacometroproductosComponent } from "../components/tacometroproductos/tacometroproductos";
 import {  TacometroventasComponent} from "../components/tacometroventas/tacometroventas";
 import { VentaglobalhistoricaComponent } from "../components/ventaglobalhistorica/ventaglobalhistorica";
-
 import { VentaxdiaproductomaquinaComponent } from "../components/ventaxdiaproductomaquina/ventaxdiaproductomaquina";
 import { VentaxhoraproductomaquinaComponent } from "../components/ventaxhoraproductomaquina/ventaxhoraproductomaquina";
 import { HistoricoComponent } from "../components/historico/historico";
@@ -66,8 +62,6 @@ import { HistoricodetalleproductoComponent } from "../components/historicodetall
 // npm install ionic-selectable@3.4.0 --save
 import { IonicSelectableModule } from 'ionic-selectable';
 
-
-
 /*plugins*/
 import { Camera } from '@ionic-native/camera';
 import { FileTransfer } from '@ionic-native/file-transfer';
@@ -78,15 +72,9 @@ import {ScrollingHeaderModule} from 'ionic-scrolling-header';
 
 /*ng2SmartTable*/
 import { Ng2CompleterModule } from "ng2-completer";
-
 import { Ng2SmartTableModule } from 'ng2-smart-table';
 
-
-
-
-
 /***************fusioncharts********************* */
-
 import { FusionChartsModule } from 'angular-fusioncharts';
 import * as FusionCharts from 'fusioncharts';
 import * as Charts from 'fusioncharts/fusioncharts.charts';
@@ -95,9 +83,7 @@ import * as Ocean from 'fusioncharts/themes/fusioncharts.theme.ocean';
 import * as Zune from 'fusioncharts/themes/fusioncharts.theme.zune';
 import * as Gammel from 'fusioncharts/themes/fusioncharts.theme.gammel';
 import * as Widgets from 'fusioncharts/fusioncharts.widgets';
-
 FusionChartsModule.fcRoot(FusionCharts, Charts, TimeSeries,Ocean,Gammel,Zune,Widgets);
-
 
 @NgModule({
   declarations: [
@@ -116,9 +102,7 @@ FusionChartsModule.fcRoot(FusionCharts, Charts, TimeSeries,Ocean,Gammel,Zune,Wid
     DetallemvPage,
     DetalleproductoPage,
     ActualizamvPage,
-  
     /*paginas*/
-
 
     /****popover* */
     BuscamaquinaproductoPage,
@@ -146,12 +130,12 @@ FusionChartsModule.fcRoot(FusionCharts, Charts, TimeSeries,Ocean,Gammel,Zune,Wid
   imports: [
     BrowserModule,
     HttpClientModule,
-    FusionChartsModule,
-    IonicSelectableModule,//selectable
-    ScrollingHeaderModule,
+    FusionChartsModule,//fusion charts
+    IonicSelectableModule,//select searcheable
+    ScrollingHeaderModule, //oculat header
     IonicModule.forRoot(MyApp),
-    Ng2CompleterModule,
-    Ng2SmartTableModule
+    Ng2CompleterModule, //ng2smarttable
+    Ng2SmartTableModule //ng2smarttable
    ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -173,9 +157,7 @@ FusionChartsModule.fcRoot(FusionCharts, Charts, TimeSeries,Ocean,Gammel,Zune,Wid
     /*paginas*/
 
     /****popover */
-    BuscamaquinaproductoPage,
-
-    
+    BuscamaquinaproductoPage,    
   ],
   providers: [
     StatusBar,
@@ -188,8 +170,8 @@ FusionChartsModule.fcRoot(FusionCharts, Charts, TimeSeries,Ocean,Gammel,Zune,Wid
     MvserviceProvider,
     SelectserviceProvider,
     CIprovider,
-
     NightmodeProvider,//BORRAR----------------------------------------?????
+    
     /*plugins*/
     , FileTransfer, File,Camera,
     /*plugins*/
