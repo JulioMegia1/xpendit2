@@ -28,7 +28,9 @@ export class VentaxdiaproductomaquinaComponent implements OnInit{
       "rotatelabels": "1",
       "divlinedashed": "0",
       "setadaptiveymin": "1",
-      "theme": "ocean"
+      "theme": "ocean",
+      "rotateValues": "1"
+
     },
     "data": "null"
   }; 

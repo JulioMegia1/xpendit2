@@ -29,7 +29,8 @@ export class VentaxdiamaquinaComponent implements OnInit{
       "formatnumberscale": "0",
       "divlinedashed": "0",
       "setadaptiveymin": "1",
-      "theme": "ocean"
+      "theme": "ocean",
+      "rotateValues": "1" 
     },
     "data": "null"
   }; 

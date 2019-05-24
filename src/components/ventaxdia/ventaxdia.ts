@@ -22,6 +22,7 @@ export class VentaxdiaComponent {
       "numberprefix": " $",
       "formatnumberscale": "0",
       "rotatelabels": "1",
+      "rotateValues": "1",
       "setadaptiveymin": "1",
       "divlinedashed": "0",
       "theme": "ocean"

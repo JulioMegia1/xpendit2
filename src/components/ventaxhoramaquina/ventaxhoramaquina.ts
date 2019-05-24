@@ -27,6 +27,7 @@ export class VentaxhoramaquinaComponent implements OnInit{
       "formatnumberscale": "0",
       "rotatelabels": "1",
       "setadaptiveymin": "1",
+      "rotateValues": "1",
       "theme": "ocean"
     },
     "data": "null"
