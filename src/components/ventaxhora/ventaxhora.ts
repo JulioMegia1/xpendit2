@@ -42,7 +42,7 @@ export class VentaxhoraComponent implements OnInit{
  
   constructor(public ciService:CIprovider, public mvservice:MvserviceProvider) {
     console.log('Hello GraficafusionComponent Component');
-    this.usuario=this.ciService.getTipoUsuario(); //obtener el tipo de usuario
+    this.usuario=this.ciService.getUsuario(); //obtener el  usuario
     this.dataSource=this.data; //
     this.getgrafica(this.usuario); //obtener datos de la grafica
   }

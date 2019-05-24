@@ -6,7 +6,8 @@ import { MvserviceProvider } from "../mvservice/mvservice";
 @Injectable()
 export class CIprovider {
 
-  tipousuario:any;
+  usuario:any;
+  tipoUsuario:any;
   idmaquina:any;
   idproducto:any;
   
@@ -14,15 +15,25 @@ export class CIprovider {
      
   }
 
-    setTipoUsuario(datos) {
-    this.tipousuario = datos;  
-    console.log("SERVICIO TIPO USUARIO"+this.tipousuario) 
+    setUsuario(datos) {
+    this.usuario = datos;  
+    console.log("Servicio usuario"+this.usuario) 
     this.getdefault();
     
 }
 
-    getTipoUsuario() {
-    return this.tipousuario;
+    getUsuario() {
+    return this.usuario;
+}  
+
+setTipoUsuario(datos) {
+  this.tipoUsuario = datos;  
+  console.log("Servicio tipo Usuario"+this.tipoUsuario) 
+  
+}
+
+  getTipoUsuario() {
+  return this.tipoUsuario;
 }  
 
      setIdMaquina(datos) {
@@ -44,6 +55,8 @@ export class CIprovider {
  getIdProducto() {
 return this.idproducto; 
 }  
+
+
 
 getschema () {    //obtiene el JSON de los usuarios
   return new Promise(resolve => {
@@ -68,7 +81,7 @@ getschema2 () {    //obtiene el JSON de los usuarios
 
  getdefault(){
   if(this.idmaquina == undefined || this.idproducto==undefined){
-  this.selectprovider.selectmaquinas(this.tipousuario).then( data => {
+  this.selectprovider.selectmaquinas(this.usuario).then( data => {
      let maquinas=  data;
     console.log(maquinas); 
     if(maquinas=="" || maquinas==null || maquinas==[])
@@ -77,7 +90,7 @@ getschema2 () {    //obtiene el JSON de los usuarios
     }
     else{
     console.log('Hello DataProvider Provider');
-    // this.tipousuario="default"
+    // this.usuario="default"
     this.idmaquina=maquinas[0].label;
     this.mvService.buscaproductomaquina(this.idmaquina).then(data=>{
     let productos=data;

@@ -11,19 +11,19 @@
   </div>
 
   <!-- Venta x Hora -->
-  <ion-card [hidden]="oculta == false" >
+  <ion-card [hidden]="hiddengraficas" >
     <ventaxhora></ventaxhora>
   </ion-card>
 
   <!-- Venta x Dia -->
-  <ion-card  [hidden]="oculta == false">
+  <ion-card  [hidden]="hiddengraficas">
     <ventaxdia></ventaxdia>
   </ion-card>
 
-  <button ion-button (click)=ira() [hidden]="oculta == false"> </button>
+  <button ion-button (click)=ira() [hidden]="hiddengraficas"> </button>
 
   <!-- grafica pie -->
-  <ion-card style="text-align:center;display:inline-block" [hidden]="oculta == false" >
+  <ion-card style="text-align:center;display:inline-block" [hidden]="hiddengraficas" >
     <graficapie> </graficapie>
   </ion-card>
 
@@ -31,7 +31,7 @@
     <!-- <ventaglobalhistorica></ventaglobalhistorica> -->
   </ion-card>
 
-  <ion-card [hidden]="oculta == false">
+  <ion-card [hidden]="hiddengraficas">
     <historico ></historico>
   </ion-card>
 

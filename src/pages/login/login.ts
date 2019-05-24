@@ -1,10 +1,11 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController,AlertController } from 'ionic-angular';
+
 /*****************paginas**************/
 import { MenuPage } from "../menu/menu";
 /*****************paginas**************/
-/*servicios*/
 
+/*servicios*/
 import { AuthserviceProvider } from "../../providers/authservice/authservice";
 import { CIprovider } from "../../providers/data/data";
 /*servicios*/
@@ -66,58 +67,52 @@ export class LoginPage {
         entra= result;
         console.log(entra.msg,entra.status)
         if(this.password==null || this.usuario==null)
-             {
-              console.log("El usuario o password no pueden estar vacios");
-              let alert = this.alertController.create ({
-                title: 'El usuario o password no pueden estar vacios!',
-                buttons: ['OK']
-              });
-              alert.present();
-             }
-             else{
-        if(entra.msg=="" || entra.status!=1)
-        {
-           console.log("valido");
-         this.ciService.setTipoUsuario(entra.usuario.usuario); //obtener el tipo de usuario mediante el provider
-           this.navCtrl.push(MenuPage);
-        }
-        else{
-          if(entra.msg=="El usuario no se encuentra activo..."){
-            console.log("El usuario no se encuentra activo");
-            let alert = this.alertController.create ({
-              title: 'El usuario no se encuentra activo, contacte al administrador',
-              buttons: ['OK']
-            });
-            alert.present();
+          {
+           console.log("El usuario o password no pueden estar vacios");
+             let alert = this.alertController.create ({
+             title: 'El usuario o password no pueden estar vacios!',
+             buttons: ['OK']
+           });
+           alert.present();
           }
-          else{
-            if(entra.msg=="Usuario/Password incorrecto..."){
-              console.log("El usuario o password esta incorrecto");
-              let alert = this.alertController.create ({
-                title: 'El usuario o password esta incorrecto!',
-                buttons: ['OK']
-              });
-              alert.present();
-               
+          else
+          {
+            if(entra.msg=="" || entra.status!=1)
+            {
+               console.log("valido");
+             this.ciService.setUsuario(entra.usuario.usuario); //enviar el usuario mediante el provider
+             this.ciService.setTipoUsuario(entra.usuario.tipoUsuario);
+               this.navCtrl.push(MenuPage);
             }
-            
+            else{
+              if(entra.msg=="El usuario no se encuentra activo..."){
+                console.log("El usuario no se encuentra activo");
+                let alert = this.alertController.create ({
+                  title: 'El usuario no se encuentra activo, contacte al administrador',
+                  buttons: ['OK']
+                });
+                alert.present();
+              }
+              else
+              {
+                if(entra.msg=="Usuario/Password incorrecto..."){
+                  console.log("El usuario o password esta incorrecto");
+                  let alert = this.alertController.create ({
+                    title: 'El usuario o password esta incorrecto!',
+                    buttons: ['OK']
+                  });
+                  alert.present();
+                }
+              }
+            }
           }
+        },(err)=>{
+          console.log(err);
         }
-
-        }
- 
-         },(err)=>{
-           console.log(err);
-         }
-         
-         );
-      //*************************************** */
-
-       },(err)=>{
-         console.log(err);
-       }
-      
-       );
-  }
-
+        );
+      },(err)=>{
+        console.log(err);
+      }
+      );
+    }
 }

@@ -47,17 +47,17 @@
                             </ion-row>
             </ion-grid>
         
-         <!--OPCIONES  -->
+         <!--BOTONES  -->
             <div style="justify-content:center;display:flex">
-                        <ion-fab middle center >
-                            <button ion-fab mini color="verde">  <i class="fas fa-chevron-left"></i></button>
-                            <ion-fab-list side="left">
-                                    <button ion-fab color="danger" (click)="eliminarProducto()" [hidden]="buttonhideUpdDel"><i class="fa fa-trash" aria-hidden="true"></i> </button>
-                                    <button ion-fab color="azul" (click)="guardarProducto()" [hidden]="buttonhideSave"> <i class="fas fa-save    "></i>   </button>
-                                    <button ion-fab color="azul" (click)="modificarProducto()"  [hidden]="buttonhideUpdDel"> <i class="fas fa-edit    "></i>  </button>
-                                    <button ion-fab color="azul" (click)="nuevoProducto()"> <i class="fa fa-plus" aria-hidden="true"></i> </button>
-                                </ion-fab-list>
-                        </ion-fab>
+                <ion-fab middle center >
+                    <button ion-fab mini color="verde">  <i class="fas fa-chevron-left"></i></button>
+                        <ion-fab-list side="left">
+                            <button ion-fab color="danger" (click)="eliminarProducto()" [hidden]="buttonhideUpdDel"><i class="fa fa-trash" aria-hidden="true"></i> </button>
+                            <button ion-fab color="azul" (click)="guardarProducto()" [hidden]="buttonhideSave"> <i class="fas fa-save    "></i>   </button>
+                            <button ion-fab color="azul" (click)="modificarProducto()"  [hidden]="buttonhideUpdDel"> <i class="fas fa-edit    "></i>  </button>
+                            <button ion-fab color="azul" (click)="nuevoProducto()"> <i class="fa fa-plus" aria-hidden="true"></i> </button>
+                        </ion-fab-list>
+                </ion-fab>
             </div>
         </ion-card-content>     
     </ion-card>       

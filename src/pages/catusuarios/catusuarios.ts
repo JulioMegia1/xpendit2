@@ -7,6 +7,7 @@ import { AuthserviceProvider } from "../../providers/authservice/authservice";
 import { SelectserviceProvider } from "../../providers/selectservice/selectservice";
 import {  MvserviceProvider} from "../../providers/mvservice/mvservice";
 import { CatalogserviceProvider } from "../../providers/catalogservice/catalogservice";
+import { CIprovider } from "../../providers/data/data";
 
 @IonicPage()
 @Component({
@@ -45,7 +46,7 @@ settings = {
   },
   columns: {
     usuario: {
-      title: 'usuario'
+      title: 'Usuario'
     },
     tipoUsuario: {
       title: 'Tipo',
@@ -122,7 +123,7 @@ settings = {
  
 };
 
-icon="fas fa-eye fa-1x "
+icon="fas fa-eye fa-2x "
 type="password"
 
 data:any;
@@ -167,14 +168,18 @@ inputsdisabled=true;
 buttonSavehidden=true;
 buttonUpdDelhidden=true;
 
+tipoUsuariopermisos:any;
+
+
   constructor(public alertCtrl: AlertController,public navCtrl: NavController, public navParams: NavParams,
     //servicios CI
     public authservice:AuthserviceProvider,
     public selectService:SelectserviceProvider,
     public mvService:MvserviceProvider,
     public catService:CatalogserviceProvider,
+    public ciService:CIprovider
     ) {
- 
+      this.tipoUsuariopermisos=this.ciService.getTipoUsuario();
   }
 
   ionViewDidLoad() {
@@ -204,6 +209,14 @@ buttonUpdDelhidden=true;
   }
 
   nuevousuario(){
+    if(this.tipoUsuariopermisos=="Solo Lectura")
+              {
+                this.mensaje="El usuario solo Lectura no tiene los permisos correspondientes"
+                this.showAlert();
+
+              }else{
+    
+
     this.inputsdisabled=false;
     this.buttonSavehidden=false;
     this.buttonUpdDelhidden=true;
@@ -215,6 +228,7 @@ buttonUpdDelhidden=true;
     this.materno=null;
     this.email=null;
     this.password=null;
+  }
   }
 
   encriptacontrasena(data){
@@ -229,6 +243,12 @@ buttonUpdDelhidden=true;
   }
 
    async guardarusuario(){
+    if(this.tipoUsuariopermisos=="Solo Lectura")
+    {
+      this.mensaje="El usuario solo Lectura no tiene los permisos correspondientes"
+      this.showAlert();
+
+    }else{
     if(this.tipoUsuario==null || this.tipoUsuario==""
     || this.estadoUsuario==null || this.estadoUsuario==""
     || this.nombre==null || this.nombre==""
@@ -268,6 +288,7 @@ buttonUpdDelhidden=true;
         console.log(this.infousuarionuevo);
         await this.newUsuario(this.infousuarionuevo);
       }
+    }
   }
   
 
@@ -356,6 +377,12 @@ buttonUpdDelhidden=true;
   }
 
   eliminarUsuario(){
+    if(this.tipoUsuariopermisos=="Solo Lectura")
+              {
+                this.mensaje="El usuario solo Lectura no tiene los permisos correspondientes"
+                this.showAlert();
+
+              }else{
     const confirm = this.alertCtrl.create({
       title: 'Desea eliminar el usuario '+ this.Usuariokey+" ?",
       buttons: [
@@ -388,8 +415,15 @@ buttonUpdDelhidden=true;
     });
     confirm.present();
   }
+  }
 
    modificarUsuario(){//
+    if(this.tipoUsuariopermisos=="Solo Lectura")
+              {
+                this.mensaje="El usuario solo Lectura no tiene los permisos correspondientes"
+                this.showAlert();
+
+              }else{
     if(this.usuario==null || this.usuario==""
       || this.tipoUsuario==null  || this.tipoUsuario==""
       || this.estadoUsuario==null || this.estadoUsuario==""
@@ -428,6 +462,7 @@ buttonUpdDelhidden=true;
       // )
   };
 }
+}
 
   updUsuario(data){
     this.catService.updUsuario(data).then(async (result)=>{
@@ -449,23 +484,38 @@ cargarDatos(event) {
   this.buttonUpdDelhidden=false;
   this.inputsdisabled=false;
   this.type="password"
-  this.icon="fas fa-eye fa-1x ";
+  this.icon="fas fa-eye fa-2x ";
 }
 
 verpwd(){
-  if(this.icon=="fas fa-eye fa-1x "){
-    this.icon="fas fa-eye-slash fa-1x ";
-    this.type="text"
-  }
-  else{
-    this.icon="fas fa-eye fa-1x ";
-    this.type="password"
-  }
+  console.log("cambiar pwd")
+  if(this.tipoUsuariopermisos=="Solo Lectura")
+  {
+    this.mensaje="El usuario solo Lectura no tiene los permisos correspondientes"
+    this.showAlert();
+
+  }else
+  {
+    if(this.icon=="fas fa-eye fa-2x "){
+      this.icon="fas fa-eye-slash fa-2x ";
+      this.type="text"
+    }
+    else{
+      this.icon="fas fa-eye fa-2x ";
+      this.type="password"
+    }
+}
 }
 
 onDeleteConfirm(event) {
   console.log("Delete Event In Console")
   console.log(event);
+  if(this.tipoUsuariopermisos=="Solo Lectura")
+              {
+                this.mensaje="El usuario solo Lectura no tiene los permisos correspondientes"
+                this.showAlert();
+
+              }else{
   const confirm = this.alertCtrl.create({
     title: 'Seguro que desea eliminar el usuario '+event.data.usuario+" ?",
     buttons: [
@@ -487,10 +537,17 @@ onDeleteConfirm(event) {
   });
   confirm.present();
 }
+}
 
 onSaveConfirm(event) { //Editar los productos
   console.log("Edit Event In Console")
   console.log(event);
+  if(this.tipoUsuariopermisos=="Solo Lectura")
+              {
+                this.mensaje="El usuario solo Lectura no tiene los permisos correspondientes"
+                this.showAlert();
+
+              }else{
   if(event.newData.usuario==null || event.newData.usuario==""
   ||event.newData.estadoUsuario==null || event.newData.estadoUsuario==""
   ||event.newData.tipoUsuario==null || event.newData.tipoUsuario==""
@@ -512,5 +569,6 @@ onSaveConfirm(event) { //Editar los productos
     this.mensaje="Usuario "+event.data.usuario+" modificado correctamente"
     this.showAlert();
   }
+}
 }
 }

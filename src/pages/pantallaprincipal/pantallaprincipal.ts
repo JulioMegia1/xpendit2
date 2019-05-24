@@ -10,11 +10,11 @@ import L from "leaflet";
 /*Mapa*/
 
  /*servicios*/
-
  import { CIprovider } from '../../providers/data/data';
  import { MvserviceProvider } from "../../providers/mvservice/mvservice";
 import { map } from 'rxjs/operator/map';
  /*servicios*/
+
 @IonicPage()
 @Component({
   selector: 'page-pantallaprincipal',
@@ -24,42 +24,38 @@ export class PantallaprincipalPage {
 
   @ViewChild(Content) content: Content;
 
-  //Variables fijas
-  usuario:any;//
+  usuario:any;
+  tipoUsuario:any;
 
-   /*mapa leaf let*/
+/*mapa leaf let*/
      maquinas :any;
      center: L.PointTuple;
      map:L.map;
  /*mapa leaf let*/
 
-oculta:boolean;
+ hiddengraficas=false;
+
   
   constructor(public navCtrl: NavController, public navParams: NavParams, public mvservice: MvserviceProvider,public ciService:CIprovider) {
-    this.usuario=this.ciService.getTipoUsuario();
-  
+    this.usuario=this.ciService.getUsuario();
+    this.tipoUsuario=this.ciService.getTipoUsuario();
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad MapPage');
-
-
 }
 
-
 ionViewDidEnter(){
-
   this.center = [20.634012, -100.334345];
   console.log(this.center)
   this.leafletMap();
-
   this.mapa(this.usuario);
-
 }
-ionViewCanEnter(){
-  this.oculta=this.valida();
+ionViewCanEnter(){//si el tipo de  usuario es Operador oculta 
+  if(this.tipoUsuario=="Operador"){
+    this.hiddengraficas=true
+  }
 
-  
 }
 
 ngAfterViewInit()  {
@@ -125,47 +121,22 @@ mapa(usuario){
              //disable mouseout behavior here?
            });
           }
-              
-
-          
      },(err)=>{
        console.log(err);
      }
      );
     }
 
+  ionViewWillLeave(){
+    console.log("estoy saliendo will leave")
+  }
 
-    valida(){
-      if(this.usuario=="oper")
-      return false;
+  ionViewDidLeave(){
+    console.log("estoy saliendo Did leave")
+  }
 
-
-    }
-
-    ionViewWillLeave(){
-      console.log("estoy saliendo will leave")
-// if(this.map!=undefined || this.map!=null){
-
-//       this.map.off();
-      // document.getElementById("mapId").innerHTML='<div id="mapId" style="width: 100%; height: 400px;border-radius: 20px;" class="map-container">'
-//       this.map.remove();
-//     }
-    }
-    ionViewDidLeave(){
-      console.log("estoy saliendo Did leave")
-      // if(this.map!=undefined || this.map!=null){
-      //   this.map.remove()
-              // }
-    }
-
-    ionViewWillUnload(){
-      console.log("estoy saliendo will unload")
-      // if(this.map!=undefined || this.map!=null){
-      //   this.map.off();
-      // document.getElementById("mapId").innerHTML='<div id="mapId" style="width: 100%; height: 400px;border-radius: 20px;" class="map-container">'
-      // this.map.remove();
-              // }
-
-    }
+  ionViewWillUnload(){
+    console.log("estoy saliendo will unload")
+  }
 
 }

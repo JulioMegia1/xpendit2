@@ -47,7 +47,7 @@ export class MenuPage {
   @ViewChild(Nav) nav: Nav;
 
   constructor(public navCtrl: NavController, public navParams: NavParams,public ciService:CIprovider) {
-    this.usuario=this.ciService.getTipoUsuario();
+    this.usuario=this.ciService.getUsuario();
     console.log(this.usuario);
     if(this.usuario=="oper"){
       console.log("entraste como operador");

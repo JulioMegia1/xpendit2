@@ -23,7 +23,7 @@ export class HistoricodetalleproductoComponent {
       "showLegend": "0"
   },
     caption: {
-      text: 'Historico de Venta y producto'
+      text: 'Histórico de Venta y producto'
     },
     // subcaption: {
     //   text: 'Analysis of O₂ Concentration and Surface Temperature'

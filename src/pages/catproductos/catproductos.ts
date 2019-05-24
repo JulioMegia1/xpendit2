@@ -8,6 +8,7 @@ import {LocalDataSource} from 'ng2-smart-table'
 /*servicios*/
 import { MvserviceProvider } from "../../providers/mvservice/mvservice";
 import { CatalogserviceProvider } from "../../providers/catalogservice/catalogservice";
+import { CIprovider } from "../../providers/data/data";
 
 /**subir imagen */
 import { Camera, CameraOptions } from '@ionic-native/camera';
@@ -61,7 +62,7 @@ settings = {
 },
   columns: {
     descripcion: {
-      title: 'Descripcion',
+      title: 'Descripción',
       // width:"30%"
     },
     precioCompra: {
@@ -115,12 +116,16 @@ myphoto:any;
 inputsEnable=true;
 buttonhideUpdDel=true;
 buttonhideSave=true;
+tipoUsuario:any;
 
   constructor(public navCtrl: NavController, public navParams: NavParams,private camera: Camera, private transfer: FileTransfer, private file: File,public alertCtrl: AlertController,
     public mvService:MvserviceProvider,
     public catService:CatalogserviceProvider,
+    public ciService:CIprovider
     ) {
       this.getinfogralProductos();//obtiene los datos de la tabla 
+      this.tipoUsuario=this.ciService.getTipoUsuario();
+
   }
 
   getinfogralProductos(){//obtiene los datos de la tabla 
@@ -140,6 +145,13 @@ buttonhideSave=true;
   }
 
   nuevoProducto(){
+    if(this.tipoUsuario=="Solo Lectura")
+              {
+                this.mensaje="El usuario solo Lectura no tiene los permisos correspondientes"
+                this.showAlert();
+
+              }else{
+
     this.catService.getidProducto().then(result=>{
       console.log(result)
       let numero=parseInt(result[0].value)
@@ -158,6 +170,7 @@ buttonhideSave=true;
     }
     );
   }
+  }
 
   getinfoProducto(){
     this.catService.getInfoProducto(this.idProducto).then((result)=>{
@@ -173,6 +186,12 @@ buttonhideSave=true;
     }
 
   guardarProducto(){
+    if(this.tipoUsuario=="Solo Lectura")
+              {
+                this.mensaje="El usuario solo Lectura no tiene los permisos correspondientes"
+                this.showAlert();
+
+              }else{
     if(this.descripcion==null || this.descripcion==""
     || this.precioCompra<0 || this.precioCompra =="" || this.precioCompra==null
     || this.presentacion==null || this.presentacion==""
@@ -205,8 +224,17 @@ buttonhideSave=true;
       );
     }
   }
+  }
  
   modificarProducto(){
+    if(this.tipoUsuario=="Solo Lectura")
+              {
+                this.mensaje="El usuario solo Lectura no tiene los permisos correspondientes"
+                this.showAlert();
+
+              }else{
+
+
     if(this.descripcion==null || this.descripcion==""
     || this.precioCompra<0 || this.precioCompra =="" || this.precioCompra==null
     || this.presentacion==null || this.presentacion==""
@@ -224,8 +252,15 @@ buttonhideSave=true;
       this.showAlert();
     }
   }
+  }
 
   eliminarProducto(){
+    if(this.tipoUsuario=="Solo Lectura")
+              {
+                this.mensaje="El usuario solo Lectura no tiene los permisos correspondientes"
+                this.showAlert();
+
+              }else{
     if(this.idProducto==null){
       this.mensaje="No hay ninguna maquina Seleccionada"
       this.showAlert();
@@ -255,6 +290,7 @@ buttonhideSave=true;
       });
       confirm.present();
    }
+  }
   }
 
   /*************foto*/
@@ -344,6 +380,12 @@ buttonhideSave=true;
     onDeleteConfirm(event) {
       console.log("Delete Event In Console")
       console.log(event);
+      if(this.tipoUsuario=="Solo Lectura")
+      {
+        this.mensaje="El usuario solo Lectura no tiene los permisos correspondientes"
+        this.showAlert();
+
+      }else{
       const confirm = this.alertCtrl.create({
         title: 'Seguro quieres eliminar el producto\n'+event.data.descripcion+"?",
         // message: 'Do you agree to use this lightsaber to do good across the intergalactic galaxy?',
@@ -369,10 +411,17 @@ buttonhideSave=true;
       });
       confirm.present();
     }
+    }
   
       onCreateConfirm(event) {
       console.log("Create Event In Console")
       console.log(event);
+      if(this.tipoUsuario=="Solo Lectura")
+      {
+        this.mensaje="El usuario solo Lectura no tiene los permisos correspondientes"
+        this.showAlert();
+
+      }else{
       let a=parseFloat(event.newData.precioCompra)
       console.log(a)
       event.newData.precioCompra=a
@@ -394,6 +443,7 @@ buttonhideSave=true;
         console.log(this.infoproductonuevo);
         event.confirm.resolve();
       }
+    }
     }
 
     nuevoProductosmartTable(){
@@ -432,6 +482,13 @@ buttonhideSave=true;
     onSaveConfirm(event) { //Editar los productos
       console.log("Edit Event In Console")
       console.log(event);
+      if(this.tipoUsuario=="Solo Lectura")
+      {
+        this.mensaje="El usuario solo Lectura no tiene los permisos correspondientes"
+        this.showAlert();
+
+      }else{
+      
       let numero=parseFloat(event.newData.precioCompra)
       console.log(numero)
       event.newData.precioCompra=numero
@@ -452,6 +509,7 @@ buttonhideSave=true;
       this.mensaje="Producto modificado correctamente";
       this.showAlert();
     }
+  }
     }
 
   pagina(data){

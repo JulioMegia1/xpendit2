@@ -3,65 +3,70 @@
 </ion-header>
 
 <ion-content >
-        <!-- seleccion de la máquina -->
       
-<ion-header>
-  <ion-toolbar>
-        <ion-item>
-          <ion-label>Máquinas</ion-label>
-          <ionic-selectable 
-            item-content 
-            [(ngModel)]="port"
-            [items]="ports"
-            itemValueField="label"
-            itemTextField="value"
-            [canSearch]="true"
-            (onChange)="portChange($event)">
-          </ionic-selectable>
-        </ion-item>
+<!-- seleccion de la máquina -->
+  <ion-header>
+    <ion-toolbar>
+      <ion-item>
+        <ion-label>Máquinas</ion-label>
+        <ionic-selectable 
+          item-content 
+          [(ngModel)]="port"
+          [items]="ports"
+          itemValueField="label"
+          itemTextField="value"
+          [canSearch]="true"
+          (onChange)="portChange($event)">
+        </ionic-selectable>
+      </ion-item>
 
-        <ion-buttons end>
-            <button ion-button icon-only (click)="presentPopover($event)">
-              <ion-icon name="search"></ion-icon>
-            </button>
-          </ion-buttons>
-      </ion-toolbar>
-</ion-header>
+      
+      <ion-buttons end><!-- Busca productos -->
+        <button ion-button icon-only (click)="presentPopover($event)">
+          <ion-icon name="search"></ion-icon>
+        </button>
+      </ion-buttons>
+    </ion-toolbar>
+  </ion-header>
+
 <!-- grafica producto-inventario -->
-    <ion-card >
-      <ion-card-header>
-        Productos en inventario  {{nombremaquina}}: <!--{{port.value}}-->
-      </ion-card-header>
-      <ion-card-content>
-          <graficaproductosinventario #prodInv></graficaproductosinventario>
-      </ion-card-content>
-     </ion-card>
-     <!-- grafica producto-inventario -->
-    
-    <div style="justify-content:center;display:flex">
-        <button ion-button round (click)="confirmareinicioinventario()"> Reiniciar inventario</button>
-        <button ion-button  round (click)= "actualizarInfoRieles()"> Actualizar Info Rieles</button>
-    </div>
+  <ion-card >
+    <ion-card-header>
+      Productos en inventario  {{nombremaquina}}: <!--{{port.value}}-->
+    </ion-card-header>
+    <ion-card-content>
+      <graficaproductosinventario #prodInv></graficaproductosinventario>
+    </ion-card-content>
+  </ion-card>
 
-    <div style="justify-content:center;display:flex">
-        <tacometroproductos #tacProd></tacometroproductos> 
-        <tacometroventas #tacVent></tacometroventas>
-    </div>
+  <!-- REINICIA INVENTARIO -->
+  <div style="justify-content:center;display:flex">
+    <button ion-button round (click)="confirmareinicioinventario()"> Reiniciar inventario</button>
+    <button ion-button  round (click)= "actualizarInfoRieles()"> Actualizar Info Rieles</button>
+  </div>
+
+  <!-- TACOMETRO -->
+  <div style="justify-content:center;display:flex" [hidden]="hiddenGraficasTacometrosContables">
+    <tacometroproductos #tacProd></tacometroproductos> 
+    <tacometroventas #tacVent></tacometroventas>
+  </div>
   
-    <ion-card style="border-radius: 10px">
-      <ion-card-header style="color:#ffffff;background-color: #242b5f;border-radius: 10px;">
-         <b> Valor acumulado desde ultimo reinicio : {{nombremaquina}}</b>
-        </ion-card-header>
-        <ion-card-content>
-            <ion-grid>
-                <ion-row>
-                  <ion-col *ngFor="let contable of contables"><b>{{contable.label}}:</b> {{contable.value}} </ion-col>
-                </ion-row>
-              </ion-grid>
-        </ion-card-content>
-     </ion-card> 
+  <!-- CONTABLES -->
+  <ion-card style="border-radius: 10px" [hidden]="hiddenGraficasTacometrosContables">
+    <ion-card-header style="color:#ffffff;background-color: #242b5f;border-radius: 10px;">
+       <b> Valor acumulado desde último reinicio : {{nombremaquina}}</b>
+    </ion-card-header>
+    <ion-card-content>
+      <ion-grid>
+        <ion-row>
+          <ion-col *ngFor="let contable of contables"><b>{{contable.label}}:</b> {{contable.value}} </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-card-content>
+  </ion-card> 
 
-  <ion-card>
+  <!-- VENTA POR HORA -->
+  <ion-card [hidden]="hiddenGraficasTacometrosContables">
       <ion-card-header>
           Venta por Hora {{nombremaquina}}
      </ion-card-header>
@@ -70,20 +75,21 @@
     </ion-card-content>
   </ion-card>
 
-    <ion-card >
-        <ion-card-header >
-            Venta Global {{nombremaquina}} 
-        </ion-card-header>
-        <ion-card-content>
-            <ventaxdiamaquina #ventaXdia></ventaxdiamaquina>
-        </ion-card-content>
-    </ion-card> 
+  <!-- VENTA POR DIA  -->
+  <ion-card  [hidden]="hiddenGraficasTacometrosContables">
+    <ion-card-header >
+      Venta Global {{nombremaquina}} 
+    </ion-card-header>
+    <ion-card-content>
+      <ventaxdiamaquina #ventaXdia></ventaxdiamaquina>
+    </ion-card-content>
+  </ion-card> 
 
-    <ion-card >
-      <historicomaquinaproductoventa #histoVentaProd>
-
-      </historicomaquinaproductoventa>
-    </ion-card>
+  <!-- Venta histórica -->
+  <ion-card  [hidden]="hiddenGraficasTacometrosContables">
+    <historicomaquinaproductoventa #histoVentaProd>
+    </historicomaquinaproductoventa>
+  </ion-card>
 
   <!-- <ion-fab right top>
       <button ion-fab color="primary"><ion-icon name="calculator"></ion-icon></button>

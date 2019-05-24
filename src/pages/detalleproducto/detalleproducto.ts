@@ -44,6 +44,7 @@ export class DetalleproductoPage {
   @ViewChild("Historico") historico:HistoricodetalleproductoComponent
 
   usuario:any;
+  tipoUsuario:any;
                         
   /*variables*/
   maquinas:any; //obtiene la info de todas las maquinas
@@ -73,17 +74,34 @@ export class DetalleproductoPage {
  port2: Port2; //muestra la opcion elegida del select
 // // /**********SELECT SEARCHEABLE***********/
 
-  constructor(public navCtrl: NavController,public alertCtrl: AlertController, public navParams: NavParams,public mvservice:MvserviceProvider,public selectprovider:SelectserviceProvider,public popoverCtrl:PopoverController,public ciService:CIprovider) {
-    this.usuario=this.ciService.getTipoUsuario();
 
+disabledproducto=false;
+hiddengraficas=false;
+
+  constructor(public navCtrl: NavController,public alertCtrl: AlertController, public navParams: NavParams,public popoverCtrl:PopoverController,
+    public mvservice:MvserviceProvider,
+    public selectprovider:SelectserviceProvider,
+    public ciService:CIprovider) {
+    this.usuario=this.ciService.getUsuario();
+    this.tipoUsuario=this.ciService.getTipoUsuario();
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad DetalleproductoPage'); 
   }
+  
   ionViewCanEnter(){
     // this.idmaquina=this.ciService.getIdmaquina(); //obtienes el id de la maquina
-    this.getmaquinasid()
+    this.getmaquinasid();
+    if(this.tipoUsuario=="Solo Lectura")
+    {
+      this.disabledproducto=true;
+    }else{}
+    if(this.tipoUsuario=="Operador"){
+      this.hiddengraficas=true
+    }
+
+
     // console.log(this.idmaquina)
   //  this.getproductomaquina(this.idmaquina); //obtienes los productos de la maquina para el popover y sacar el primer producto
   //  console.log(this.idproducto)
@@ -140,18 +158,13 @@ export class DetalleproductoPage {
           this.nombreproducto=null
           this.faltante=null
           this.maximo=null
-  
-
-
         }
         else{
-
-        
         console.log(this.infoproducto);
       //   console.log(this.infoproducto.seleccion)
-       this.riel=this.infoproducto.seleccion;
-      this.ciService.setIdProducto(this.riel);
-    console.log(this.infoproducto.producto.precioCompra)
+        this.riel=this.infoproducto.seleccion;
+        this.ciService.setIdProducto(this.riel);
+        console.log(this.infoproducto.producto.precioCompra)
         this.precio=this.infoproducto.producto.precioCompra
         console.log(this.infoproducto.existencia)
         this.existencia=this.infoproducto.existencia;
@@ -161,7 +174,6 @@ export class DetalleproductoPage {
         this.faltante=this.infoproducto.faltante;
         console.log(this.infoproducto.maximo)
         this.maximo=this.infoproducto.maximo;
- 
         this.getselectproductos();
       //   this.getlistaproductos();
     }
@@ -277,34 +289,42 @@ portChange2(event: {
           {
             text: 'Actualizar',
             handler: data => {
-              if(isNaN(data.existencia)==true || //si no es un numero
-              data.existencia==null  //si es nulo
-              || data.existencia=="" //si esta vacio
-               || data.existencia>this.maximo //si es mayor que el máximo
-               || data.existencia<0
-               )
-              {
-                // prompt.setMessage("Favor de ingresar un número válido");
-                // prompt.present();
-                console.log("existencia no actualizada")
-                this.mensaje="Existencia no Actualizada"
-                this.showAlert();
-                console.log(this.existencia);
-                
-                
-              }
-              else{  
-                console.log("si es un numero valido");
-                console.log(data)
-                console.log(data.existencia);
-                this.existencia=data.existencia;
-                console.log(this.existencia);
-                this.mensaje="Existencia Actualizada correctamente"
-                this.showAlert();
-                this.putexistencia();
 
-               
-              }
+              if(this.tipoUsuario=="Solo Lectura")
+              {
+                this.mensaje="El usuario solo Lectura no tiene los permisos correspondientes"
+                this.showAlert();
+
+              }else{
+                      if(isNaN(data.existencia)==true || //si no es un numero
+                      data.existencia==null  //si es nulo
+                      || data.existencia=="" //si esta vacio
+                       || data.existencia>this.maximo //si es mayor que el máximo
+                       || data.existencia<0
+                       )
+                      {
+                        // prompt.setMessage("Favor de ingresar un número válido");
+                        // prompt.present();
+                        console.log("existencia no actualizada")
+                        this.mensaje="Existencia no Actualizada"
+                        this.showAlert();
+                        console.log(this.existencia);
+                        
+                        
+                      }
+                      else{  
+                        console.log("si es un numero valido");
+                        console.log(data)
+                        console.log(data.existencia);
+                        this.existencia=data.existencia;
+                        console.log(this.existencia);
+                        this.mensaje="Existencia Actualizada correctamente"
+                        this.showAlert();
+                        this.putexistencia();
+        
+                       
+                      }
+                    }
             }
           }
         ]

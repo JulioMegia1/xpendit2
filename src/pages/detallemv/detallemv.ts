@@ -28,10 +28,6 @@ class Port {
 }
 /**********************************SELECTABLE**************************/
 
-
-
-
-
 @IonicPage()
 @Component({
   selector: 'page-detallemv',
@@ -39,9 +35,9 @@ class Port {
 })
 export class DetallemvPage {
 
-  @ViewChild(Content) content: Content;
+  @ViewChild(Content) content: Content;//ocultar header
 
-  //escuchas hijos
+//llamar funciones graficas
   @ViewChild("prodInv") prodinv:GraficaproductosinventarioComponent
   @ViewChild("tacProd") tacprod:TacometroproductosComponent;
   @ViewChild("tacVent") tacvent:TacometroventasComponent;
@@ -49,11 +45,10 @@ export class DetallemvPage {
   @ViewChild("ventaXdia") ventaxdia:VentaxdiamaquinaComponent;
   @ViewChild("histoVentaProd") histoventaprod:HistoricomaquinaproductoventaComponent;
 
-  // @ViewChild("PantallaprincipalPage") principal:PantallaprincipalPage
   usuario:any
-
+  tipoUsuario:any;
+  hiddenGraficasTacometrosContables=false;
   
-
   maquinas :any;//obtiene todas las maquinas
   seleccion:any; //obtiene elid de la maquina seleccionada
   nombremaquina:any;
@@ -67,21 +62,21 @@ export class DetallemvPage {
   
 /**********SELECT SEARCHEABLE***********/
  
-
 /*********buscaproductomaquina********/
 productomaquina:any;
 
   constructor(public navCtrl: NavController, public navParams: NavParams,public alertCtrl: AlertController,private popoverCtrl: PopoverController,
     public toastCtrl: ToastController,public mvservice:MvserviceProvider,public selectprovider:SelectserviceProvider,public ciService:CIprovider
     ) {
-      this.usuario=this.ciService.getTipoUsuario();
-
+      this.usuario=this.ciService.getUsuario();
+      this.tipoUsuario=this.ciService.getTipoUsuario();
       this.getmaquinasid();
-     
   }
 
-  ionViewCanEnter() //cuando la paginas esta activa
-  {
+  ionViewCanEnter(){//si el tipo de usuario es Operador oculta 
+    if(this.tipoUsuario=="Operador"){
+      this.hiddenGraficasTacometrosContables=true
+    }
   
   }
 
@@ -209,18 +204,11 @@ portChange(event: {
       this.reinicia= result;
       this.getcontables(this.seleccion);
       this.prodinv.updatedata();
-
-      // let usuario:any=this.ciService.getTipoUsuario();
-
-      // this.principal.mapa(usuario);
-      // console.log("acttualice el mapa");
       console.log(result);
       },(err)=>{
         console.log(err);
       }
       );
-
-
   }
 
   ionViewDidLoad() {
@@ -228,7 +216,6 @@ portChange(event: {
   }
 
  alarma(){
-   
     let toast = this.toastCtrl.create({
       message:this.alarmas,
       showCloseButton: true,
@@ -239,27 +226,21 @@ portChange(event: {
     });
   
       toast.present();
-  
 }
 
 actualizarInfoRieles(){
   this.navCtrl.push(ActualizamvPage,{"seleccion":this.seleccion});
 }
 
-
 getproductomaquina(idmaquina){
   this.mvservice.buscaproductomaquina(idmaquina).then(result=>{
     this.productomaquina= result;
     console.log(this.productomaquina);
-   
-   
-    
     },(err)=>{
       console.log(err);
     }
     );
   }
-
 
   presentPopover(ev) {
 

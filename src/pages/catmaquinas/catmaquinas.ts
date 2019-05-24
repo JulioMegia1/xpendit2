@@ -246,7 +246,7 @@ inputsdisabled=true;
 cardshidden=true;
 buttonSavehidden=true;
 buttonUpdDelhidden=true;
-
+tipoUsuario:any;
 
   constructor(public navCtrl: NavController, public navParams: NavParams,public alertCtrl: AlertController,
     public selectprovider:SelectserviceProvider, 
@@ -255,9 +255,7 @@ buttonUpdDelhidden=true;
     public catService:CatalogserviceProvider,
     public ciService:CIprovider
     ) {
-      //this.usuario=this.ciService.getTipoUsuario();
-     // console.log(this.usuario)
-
+      this.tipoUsuario=this.ciService.getTipoUsuario();
   }
 
   ionViewDidLoad() {
@@ -283,6 +281,12 @@ buttonUpdDelhidden=true;
 }
 
   nuevamaquina(){
+    if(this.tipoUsuario=="Solo Lectura")
+    {
+      this.mensaje="El usuario solo Lectura no tiene los permisos correspondientes"
+      this.showAlert();
+
+    }else{
     this.catService.getidMaquina().then(result=>{
     this.descripcion=null;
     this.tipo=null;
@@ -303,9 +307,16 @@ buttonUpdDelhidden=true;
       console.log(err);
     }
   );
+    }
 }
 
  guardarmaquina(){
+  if(this.tipoUsuario=="Solo Lectura")
+  {
+    this.mensaje="El usuario solo Lectura no tiene los permisos correspondientes"
+    this.showAlert();
+
+  }else{
     if( this.descripcion==null || this.descripcion==""
     ||  this.tipo==null || this.tipo==""
     || this.modelo==null || this.modelo==""
@@ -348,6 +359,7 @@ buttonUpdDelhidden=true;
       }
       );
     }
+  }
   }
 
 getselecTipoMaquina(){
@@ -399,6 +411,12 @@ getselectasignados(){
   }
 
 async asigna(){
+  if(this.tipoUsuario=="Solo Lectura")
+  {
+    this.mensaje="El usuario solo Lectura no tiene los permisos correspondientes"
+    this.showAlert();
+
+  }else{
   if(this.noasignados==null){
     this.mensaje="No hay usuarios selecionados";
     this.showAlert();
@@ -427,9 +445,16 @@ async asigna(){
   await this.getselectasignados();
   await this.getselectNoasignados();
 }
+  }
 }
 
  async desasigna(){
+  if(this.tipoUsuario=="Solo Lectura")
+  {
+    this.mensaje="El usuario solo Lectura no tiene los permisos correspondientes"
+    this.showAlert();
+
+  }else{
    if(this.asignados==null){
      console.log("no hago nada");
      this.mensaje="No hay usuarios selecionados"
@@ -460,6 +485,7 @@ async asigna(){
       await this.getselectasignados();
       await this.getselectNoasignados();
   }
+}
 }
 
 getusuarios(){
@@ -517,7 +543,14 @@ getInfomaquina(){
 }
 
 modificar(){
+
   console.log(this.infomaquinaSeleccionada);
+  if(this.tipoUsuario=="Solo Lectura")
+  {
+    this.mensaje="El usuario solo Lectura no tiene los permisos correspondientes"
+    this.showAlert();
+
+  }else{
   if(this.descripcion==null || this.descripcion==""
   || this.direccion==null || this.direccion==""){
     console.log("No modifique");
@@ -536,8 +569,15 @@ modificar(){
     this.showAlert();
   }
 }
+}
 
 modificainfomodem(){
+  if(this.tipoUsuario=="Solo Lectura")
+  {
+                this.mensaje="El usuario solo Lectura no tiene los permisos correspondientes"
+    this.showAlert();
+
+  }else{
   if(this.telefono==null || this.telefono==""
   ||this.password==null || this.password==""
   || this.expiracion==null || this.expiracion=="" || this.expiracion.length!=10
@@ -558,8 +598,15 @@ modificainfomodem(){
     this.showAlert();
   }
 }
+}
 
 updUbicacion(){
+  if(this.tipoUsuario=="Solo Lectura")
+  {
+                this.mensaje="El usuario solo Lectura no tiene los permisos correspondientes"
+    this.showAlert();
+
+  }else{
   if(this.Latitud==null || this.Latitud==""  || this.Latitud<-90 || this.Latitud>90 
   || this.Longitud== null || this.Longitud=="" || this.Longitud>180 || this.Longitud<-180
   ){
@@ -576,6 +623,7 @@ updUbicacion(){
     this.mensaje="Ubicación actualizada "
     this.showAlert();
   }
+}
 }
 
 /*mapa leaflet*/
@@ -611,6 +659,12 @@ mapa(){
 }
 
 eliminarMaquina(){
+  if(this.tipoUsuario=="Solo Lectura")
+  {
+                this.mensaje="El usuario solo Lectura no tiene los permisos correspondientes"
+    this.showAlert();
+
+  }else{
 
   const confirm = this.alertCtrl.create({
     title: 'Desea Eliminar la maquina'+this.infomaquinaSeleccionada.descripcion+'?',
@@ -654,6 +708,7 @@ eliminarMaquina(){
   });
   confirm.present();
 }
+}
 
 ionViewWillLeave(){
   console.log("estoy saliendo will leave")
@@ -687,6 +742,12 @@ cargarDatos(event) {
   onDeleteConfirm(event) {
     console.log("Delete Event In Console")
     console.log(event);
+    if(this.tipoUsuario=="Solo Lectura")
+    {
+                  this.mensaje="El usuario solo Lectura no tiene los permisos correspondientes"
+      this.showAlert();
+
+    }else{
     if(event.data.estado=="Borrada"){
       this.mensaje="No puedes borrar una máquina ya eliminada";
       this.showAlert();
@@ -723,12 +784,18 @@ cargarDatos(event) {
       });
       confirm.present();
     }
-   
+  }
   }
 
     onCreateConfirm(event) {
     console.log("Create Event In Console")
     console.log(event);
+    if(this.tipoUsuario=="Solo Lectura")
+    {
+                  this.mensaje="El usuario solo Lectura no tiene los permisos correspondientes"
+      this.showAlert();
+
+    }else{
     let lati 
     let long
     lati= parseFloat(event.newData.latitud);
@@ -747,6 +814,8 @@ cargarDatos(event) {
     ){
       console.log("Datos no validos")
       console.log(event)
+      this.mensaje="Máquina no creada\n favor de ingresar todos los datos correctamente"
+      this.showAlert();
     }
     else
     {
@@ -784,10 +853,17 @@ cargarDatos(event) {
       );
     }
   }
+  }
 
 onSaveConfirm(event) { //Editar los productos
   console.log("Edit Event In Console")
   console.log(event);
+  if(this.tipoUsuario=="Solo Lectura")
+  {
+                this.mensaje="El usuario solo Lectura no tiene los permisos correspondientes"
+    this.showAlert();
+
+  }else{
   if(event.data.estado=="Borrada"){
     this.mensaje="No puedes editar una máquina borrada";
     this.showAlert();
@@ -814,6 +890,7 @@ onSaveConfirm(event) { //Editar los productos
         );
       }
     }
+  }
   }
 
 pagina(data){

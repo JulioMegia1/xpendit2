@@ -42,10 +42,10 @@ export class CatalarmasPage {
   },
     columns: {
       descripcion: {
-        title: 'Descripcion',
+        title: 'Descripción',
       },
       severidad: {
-        title: 'severidad',
+        title: 'Prioridad',
       },
       activaBody: {
         title: 'Body Activa',
@@ -81,12 +81,14 @@ export class CatalarmasPage {
   prioridades:any;//select
   inputdisabled=true;
   buttonhidden=true;
+  tipoUsuario;
 
   constructor(public navCtrl: NavController, public navParams: NavParams,public alertCtrl: AlertController,
     public selectprovider: SelectserviceProvider,
     public catService:CatalogserviceProvider,
     public ciService:CIprovider
     ) {
+      this.tipoUsuario=this.ciService.getTipoUsuario();
 
   }
 
@@ -137,52 +139,58 @@ cargarDatos(event) {
 }
 
  enviar(){
-    const confirm = this.alertCtrl.create({
-      title: 'Desean modificar la alarma?',
-      buttons: [
-        {
-          text: 'Cancelar',
-          handler: () => {
-            console.log('Disagree clicked');
-          }
-        },
-        {
-          text: 'Aceptar',
-          handler: () => {
-            console.log('Agree clicked');
-            if(this.alarmaseleccionada==undefined){
-              this.mensaje="No ha seleccionado ninguna alarma"
-              this.showAlert();
-            }
-            else{
-              if(  
-                this.descripcion==null || this.descripcion=="" ||
-                this.prioridad==null || this.prioridad=="" ||
-                this.Actsubject==null || this.Actsubject=="" ||
-                this.Actbody==null || this.Actbody=="" || 
-                this.Inactsubject==null || this.Inactsubject=="" ||
-                this.Inactbody==null || this.Inactbody=="" )
-                {
-                  this.mensaje="La alarma no ha sido actualizada\n favor de ingresar todos los datos correctamente"
+  if(this.tipoUsuario=="Solo Lectura"){
+    this.mensaje="El usuario solo Lectura no tiene los permisos correspondientes"
+    this.showAlert();
+    }
+    else{
+  const confirm = this.alertCtrl.create({
+          title: 'Desean modificar la alarma?',
+          buttons: [
+            {
+              text: 'Cancelar',
+              handler: () => {
+                console.log('Disagree clicked');
+              }
+            },
+            {
+              text: 'Aceptar',
+              handler: () => {
+                console.log('Agree clicked');
+                if(this.alarmaseleccionada==undefined){
+                  this.mensaje="No ha seleccionado ninguna alarma"
                   this.showAlert();
                 }
-                else
-                {
-                  this.alarmaseleccionada.descripcion=this.descripcion;
-                  this.alarmaseleccionada.severidad=this.prioridad;
-                  this.alarmaseleccionada.activa.subject=this.Actsubject;
-                  this.alarmaseleccionada.activa.body=this.Actbody;
-                  this.alarmaseleccionada.inactiva.subject=this.Inactsubject;
-                  this.alarmaseleccionada.inactiva.body=this.Inactbody;
-                  console.log(this.alarmaseleccionada);
-                  this.updAlarma()
+                else{
+                  if(  
+                    this.descripcion==null || this.descripcion=="" ||
+                    this.prioridad==null || this.prioridad=="" ||
+                    this.Actsubject==null || this.Actsubject=="" ||
+                    this.Actbody==null || this.Actbody=="" || 
+                    this.Inactsubject==null || this.Inactsubject=="" ||
+                    this.Inactbody==null || this.Inactbody=="" )
+                    {
+                      this.mensaje="La alarma no ha sido actualizada\n favor de ingresar todos los datos correctamente"
+                      this.showAlert();
+                    }
+                    else
+                    {
+                      this.alarmaseleccionada.descripcion=this.descripcion;
+                      this.alarmaseleccionada.severidad=this.prioridad;
+                      this.alarmaseleccionada.activa.subject=this.Actsubject;
+                      this.alarmaseleccionada.activa.body=this.Actbody;
+                      this.alarmaseleccionada.inactiva.subject=this.Inactsubject;
+                      this.alarmaseleccionada.inactiva.body=this.Inactbody;
+                      console.log(this.alarmaseleccionada);
+                      this.updAlarma()
+                  }
+                }
               }
             }
-          }
-        }
-      ]
-    });
-    confirm.present();
+          ]
+        });
+        confirm.present();
+      }
 }
 
 updAlarma(){
