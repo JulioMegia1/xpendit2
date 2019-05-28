@@ -4,7 +4,7 @@ import { IonicPage, NavController, NavParams, Content } from 'ionic-angular';
 // import { DataService Provider } from "../../providers/data-service/data-service";
 import { SelectserviceProvider } from "../../providers/selectservice/selectservice";
 import { MvserviceProvider } from "../../providers/mvservice/mvservice";
-
+import {CIprovider  } from "../../providers/data/data";
 
 @IonicPage()
 @Component({
@@ -13,7 +13,6 @@ import { MvserviceProvider } from "../../providers/mvservice/mvservice";
 })
 export class ActualizamvPage {
   @ViewChild(Content) content: Content;
-
 
   idmaquina:any;
   existencias:any;
@@ -24,7 +23,6 @@ export class ActualizamvPage {
 
   seleccion:any;
  
-
   maquinas:any;
 
   rielexistencias:any;
@@ -35,8 +33,6 @@ export class ActualizamvPage {
   fila5existencias:any;
   fila6existencias:any;
 
-  
-
   rielproductos:any;
   fila1productos:any;
   fila2productos:any;
@@ -45,7 +41,6 @@ export class ActualizamvPage {
   fila5productos:any;
   fila6productos:any;
   
-
   rielprecios:any;
   fila1precios:any;
   fila2precios:any;
@@ -56,18 +51,14 @@ export class ActualizamvPage {
 
   inputstatusexistencias:any="disabled";
 
-  constructor(public navCtrl: NavController, public navParams: NavParams,
+  constructor(public navCtrl: NavController, public navParams: NavParams,public ciService:CIprovider,
     // public da taService:DataServiceProvider,
     public selectService:SelectserviceProvider,public mvservice:MvserviceProvider) 
   {
-    this.idmaquina=navParams.get("seleccion");
-
-
-    // console.log(this.obtenido)
+this.idmaquina=this.ciService.getIdmaquinaActualiza();    // console.log(this.obtenido)
     // this.obtenermaquinas();
     this.Selectproductos();
   }
-
 
   ionViewCanEnter() //cuando la paginas esta activa
   {
@@ -79,8 +70,6 @@ export class ActualizamvPage {
   ionViewDidLoad() {
     console.log('ionViewDidLoad ActualizamvPage');
   }
-
-
 
 //   obtenermaquinas(){
 
@@ -132,9 +121,7 @@ export class ActualizamvPage {
 //     console.log(this.fila3precios);
 //     console.log(this.fila4precios);
 //     console.log(this.fila5precios);
-//     console.log(this.fila6precios);
-   
-    
+//     console.log(this.fila6precios);  
 // });
 // }
 
@@ -212,8 +199,16 @@ Selectproductos(){
         }
         console.log(b);
         console.log(this.existencias);
-        
+        let robj
         this.fila1existencias=this.existencias.filter(this.funcionfila1);
+        var nuevo=this.fila1existencias.map(function(obj){
+          robj={};
+          robj[obj.key]=obj.value
+          return robj
+
+        })
+        console.log(nuevo)
+
         this.fila2existencias=this.existencias.filter(this.funcionfila2);
         this.fila3existencias=this.existencias.filter(this.funcionfila3);
         this.fila4existencias=this.existencias.filter(this.funcionfila4);
@@ -225,30 +220,21 @@ Selectproductos(){
             console.log(this.fila4existencias);
             console.log(this.fila5existencias);
             console.log(this.fila6existencias);
-
-    
-
-
         },(err)=>{
           console.log(err);
         }
         );
       }
-
 
     getrielproducto(idmaquina){
       this.mvservice.rielproducto(idmaquina).then(result=>{
         this.productos= result;
         console.log(result);
-
-
-  
         },(err)=>{
           console.log(err);
         }
         );
       }
-
 
     getrielprecio(idmaquina){
       this.mvservice.rielprecio(idmaquina).then(result=>{
@@ -258,8 +244,6 @@ Selectproductos(){
           b.push({key,value})
           this.precios=[]
           this.precios=b;
-
-
         }
         console.log(b)
         console.log(this.precios)
@@ -275,17 +259,10 @@ Selectproductos(){
         console.log(this.fila4precios);
         console.log(this.fila5precios);
         console.log(this.fila6precios);
-      
-
-
         console.log(result);
         },(err)=>{
           console.log(err);
         }
         );
       }
-
-
-
-
 }

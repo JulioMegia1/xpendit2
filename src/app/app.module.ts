@@ -56,6 +56,7 @@ import { VentaxhoraproductomaquinaComponent } from "../components/ventaxhoraprod
 import { HistoricoComponent } from "../components/historico/historico";
 import { HistoricomaquinaproductoventaComponent } from "../components/historicomaquinaproductoventa/historicomaquinaproductoventa";
 import { HistoricodetalleproductoComponent } from "../components/historicodetalleproducto/historicodetalleproducto";
+import { ActualizaComponent } from "../components/actualiza/actualiza";
 /*componentes*/
 
 /**********************************selectable*************/
@@ -125,6 +126,7 @@ FusionChartsModule.fcRoot(FusionCharts, Charts, TimeSeries,Ocean,Gammel,Zune,Wid
     HistoricoComponent,
     HistoricomaquinaproductoventaComponent,
     HistoricodetalleproductoComponent,
+    ActualizaComponent
     /*componentes*/
   ],
   imports: [

@@ -267,15 +267,9 @@ tipoUsuariopermisos:any;
       {
 
         let pwdencriptada={ password:this.password}; //contraseña en formato requerido para que el JSON lo encripte
-        this.authservice.encripta(pwdencriptada).then((result)=>{
+        this.authservice.encripta(pwdencriptada).then(async (result)=>{
           console.log(result);
           this.pwdEncriptada=result
-          },(err)=>{
-            console.log(err);
-          }
-          );
-
-
 
         this.infousuarionuevo.password=this.pwdEncriptada.password;
         this.infousuarionuevo.tipoUsuario=this.tipoUsuario;
@@ -287,6 +281,13 @@ tipoUsuariopermisos:any;
         this.infousuarionuevo.usuario=this.usuario;
         console.log(this.infousuarionuevo);
         await this.newUsuario(this.infousuarionuevo);
+          },(err)=>{
+            console.log(err);
+          }
+          );
+
+
+
       }
     }
   }

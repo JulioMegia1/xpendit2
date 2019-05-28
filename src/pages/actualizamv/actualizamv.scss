@@ -1,45 +1,45 @@
 page-actualizamv {
-    @media (min-width: 1090px) {// Diseño parte WEB
-        ion-label{
-            font-weight: bold;
-            // border: 1px solid #ccc;
-            // border-radius: 4px;
-            width:155px;
-        }
-        ion-input{
-            border: 1px solid #ccc;
-            border-radius: 4px;
-            width:155px;
-        }
-        ion-select{
-            border: 1px solid #ccc;
-            border-radius: 4px;
-        }
-        // ion-col{
-        //     border: 1px solid #ccc;
-        //     border-radius: 4px;
-        //    }
-    }
+//     @media (min-width: 1090px) {// Diseño parte WEB
+//         ion-label{
+//             font-weight: bold;
+//             // border: 1px solid #ccc;
+//             // border-radius: 4px;
+//             width:155px;
+//         }
+//         ion-input{
+//             border: 1px solid #ccc;
+//             border-radius: 4px;
+//             width:155px;
+//         }
+//         ion-select{
+//             border: 1px solid #ccc;
+//             border-radius: 4px;
+//         }
+//         // ion-col{
+//         //     border: 1px solid #ccc;
+//         //     border-radius: 4px;
+//         //    }
+//     }
 
-    @media (max-width: 1090px) {// Diseño parte móvil
-        ion-label{
-            font-weight: bold;
-            // border: 1px solid #ccc;
-            // border-radius: 4px;
-            width:85px;
+//     @media (max-width: 1090px) {// Diseño parte móvil
+//         ion-label{
+//             font-weight: bold;
+//             // border: 1px solid #ccc;
+//             // border-radius: 4px;
+//             width:85px;
            
-        }
-        ion-input{
-            border: 1px solid #ccc;
-            border-radius: 4px;
-            width:85px;
+//         }
+//         ion-input{
+//             border: 1px solid #ccc;
+//             border-radius: 4px;
+//             width:85px;
           
-        }
-        // ion-col{
-        //     border: 1px solid #ccc;
+//         }
+//         // ion-col{
+//         //     border: 1px solid #ccc;
             
-        //    }
-  }
+//         //    }
+//   }
 
   
 
@@ -79,6 +79,16 @@ page-actualizamv {
        border: 1px solid #ccc;
        border-radius: 4px;
     }
+    ion-input{
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        width: 50px
+    }
+
+    ion-fab {
+        position: relative;
+      }
+
 
 
 

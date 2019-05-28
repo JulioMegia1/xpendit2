@@ -52,6 +52,7 @@ ionViewDidEnter(){
   this.leafletMap();
   this.mapa(this.usuario);
 }
+
 ionViewCanEnter(){//si el tipo de  usuario es Operador oculta 
   if(this.tipoUsuario=="Operador"){
     this.hiddengraficas=true
@@ -59,7 +60,6 @@ ionViewCanEnter(){//si el tipo de  usuario es Operador oculta
   }
   else{
     this.height="400px"
-
   }
 
 }

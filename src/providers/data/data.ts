@@ -9,6 +9,7 @@ export class CIprovider {
   usuario:any;
   tipoUsuario:any;
   idmaquina:any;
+  idmaquinaActualiza:any;
   idproducto:any;
   
     constructor(public http: HttpClient,public selectprovider:SelectserviceProvider,public mvService:MvserviceProvider) {
@@ -54,7 +55,19 @@ setTipoUsuario(datos) {
 
  getIdProducto() {
 return this.idproducto; 
+} 
+
+setIdMaquinaActualiza(datos) {
+  this.idmaquinaActualiza = datos;  
+   console.log("SERVICIO ID MAQUINA: "+this.idmaquinaActualiza) 
+ }
+
+ getIdmaquinaActualiza() {
+ console.log(this.idmaquinaActualiza)
+   
+ return this.idmaquinaActualiza;
 }  
+
 
 
 

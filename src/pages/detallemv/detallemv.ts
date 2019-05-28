@@ -6,6 +6,7 @@ import { AlertController } from 'ionic-angular';
 /*paginas*/
 import { ActualizamvPage } from "../actualizamv/actualizamv";
 // import { PantallaprincipalPage } from "../pantallaprincipal/pantallaprincipal";
+
 /******popover */
 import { BuscamaquinaproductoPage } from "../buscamaquinaproducto/buscamaquinaproducto";
 
@@ -77,7 +78,6 @@ productomaquina:any;
     if(this.tipoUsuario=="Operador"){
       this.hiddenGraficasTacometrosContables=true
     }
-  
   }
 
   getmaquinasid(){
@@ -229,7 +229,9 @@ portChange(event: {
 }
 
 actualizarInfoRieles(){
-  this.navCtrl.push(ActualizamvPage,{"seleccion":this.seleccion});
+  this.navCtrl.push(ActualizamvPage);
+  this.ciService.setIdMaquinaActualiza(this.seleccion)
+  // this.navCtrl.push(ActualizamvPage,{"seleccion":this.seleccion});
 }
 
 getproductomaquina(idmaquina){
