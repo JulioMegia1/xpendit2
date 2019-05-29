@@ -62,68 +62,14 @@ this.idmaquina=this.ciService.getIdmaquinaActualiza();    // console.log(this.ob
 
   ionViewCanEnter() //cuando la paginas esta activa
   {
-    this.getrielexistencia(this.idmaquina);
     this.getrielproducto(this.idmaquina);
-    this.getrielprecio(this.idmaquina);
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad ActualizamvPage');
   }
 
-//   obtenermaquinas(){
 
-//     this.dataService.getmaquinas().then(datos => {
-//     this.maquinas=datos;
-
-//     console.log(this.maquinas.maquinas[0].existencias);
-    
-//     this.rielexistencias=this.maquinas.maquinas[0].existencias;//el 0 es de la maqunina 0
-//     console.log(this.rielexistencias);
-
-//     this.fila1existencias=this.rielexistencias.filter(this.funcionfila1);
-//     this.fila2existencias=this.rielexistencias.filter(this.funcionfila2);
-//     this.fila3existencias=this.rielexistencias.filter(this.funcionfila3);
-//     this.fila4existencias=this.rielexistencias.filter(this.funcionfila4);
-//     this.fila5existencias=this.rielexistencias.filter(this.funcionfila5);
-//     this.fila6existencias=this.rielexistencias.filter(this.funcionfila6);
-//     console.log(this.fila1existencias);
-//     console.log(this.fila2existencias);
-//     console.log(this.fila3existencias);
-//     console.log(this.fila4existencias);
-//     console.log(this.fila5existencias);
-//     console.log(this.fila6existencias);
-
-//     this.rielproductos=this.maquinas.maquinas[0].productos;
-
-//     this.fila1productos=this.rielproductos.filter(this.funcionfila1);
-//     this.fila2productos=this.rielproductos.filter(this.funcionfila2);
-//     this.fila3productos=this.rielproductos.filter(this.funcionfila3);
-//     this.fila4productos=this.rielproductos.filter(this.funcionfila4);
-//     this.fila5productos=this.rielproductos.filter(this.funcionfila5);
-//     this.fila6productos=this.rielproductos.filter(this.funcionfila6);
-//     console.log(this.fila1productos);
-//     console.log(this.fila2productos);
-//     console.log(this.fila3productos);
-//     console.log(this.fila4productos);
-//     console.log(this.fila5productos);
-//     console.log(this.fila6productos);
-    
-//     this.rielprecios=this.maquinas.maquinas[0].precios;
-//     this.fila1precios=this.rielprecios.filter(this.funcionfila1);
-//     this.fila2precios=this.rielprecios.filter(this.funcionfila2);
-//     this.fila3precios=this.rielprecios.filter(this.funcionfila3);
-//     this.fila4precios=this.rielprecios.filter(this.funcionfila4);
-//     this.fila5precios=this.rielprecios.filter(this.funcionfila5);
-//     this.fila6precios=this.rielprecios.filter(this.funcionfila6);
-//     console.log(this.fila1precios);
-//     console.log(this.fila2precios);
-//     console.log(this.fila3precios);
-//     console.log(this.fila4precios);
-//     console.log(this.fila5precios);
-//     console.log(this.fila6precios);  
-// });
-// }
 
 funcionfila1(obj){
   if("key"in obj && obj.key>10 && obj.key<20 ){
@@ -186,45 +132,7 @@ Selectproductos(){
     }
 
 
-    getrielexistencia(idmaquina){
-      this.mvservice.rielexistencia(idmaquina).then(result=>{
-        this.existencias= result;
-        console.log(result);
-        let b=[];
-        for (let [key,value]of Object.entries(this.existencias))
-        {
-          b.push({key,value})
-          this.existencias=[];
-          this.existencias=b;
-        }
-        console.log(b);
-        console.log(this.existencias);
-        let robj
-        this.fila1existencias=this.existencias.filter(this.funcionfila1);
-        var nuevo=this.fila1existencias.map(function(obj){
-          robj={};
-          robj[obj.key]=obj.value
-          return robj
-
-        })
-        console.log(nuevo)
-
-        this.fila2existencias=this.existencias.filter(this.funcionfila2);
-        this.fila3existencias=this.existencias.filter(this.funcionfila3);
-        this.fila4existencias=this.existencias.filter(this.funcionfila4);
-        this.fila5existencias=this.existencias.filter(this.funcionfila5);
-        this.fila6existencias=this.existencias.filter(this.funcionfila6);
-        console.log(this.fila1existencias);
-            console.log(this.fila2existencias);
-            console.log(this.fila3existencias);
-            console.log(this.fila4existencias);
-            console.log(this.fila5existencias);
-            console.log(this.fila6existencias);
-        },(err)=>{
-          console.log(err);
-        }
-        );
-      }
+  
 
     getrielproducto(idmaquina){
       this.mvservice.rielproducto(idmaquina).then(result=>{
@@ -236,33 +144,5 @@ Selectproductos(){
         );
       }
 
-    getrielprecio(idmaquina){
-      this.mvservice.rielprecio(idmaquina).then(result=>{
-        this.precios= result;
-        let b=[];
-        for (let [key,value] of Object.entries(this.precios)){
-          b.push({key,value})
-          this.precios=[]
-          this.precios=b;
-        }
-        console.log(b)
-        console.log(this.precios)
-        this.fila1precios=this.precios.filter(this.funcionfila1);
-        this.fila2precios=this.precios.filter(this.funcionfila2);
-        this.fila3precios=this.precios.filter(this.funcionfila3);
-        this.fila4precios=this.precios.filter(this.funcionfila4);
-        this.fila5precios=this.precios.filter(this.funcionfila5);
-        this.fila6precios=this.precios.filter(this.funcionfila6);
-        console.log(this.fila1precios);
-        console.log(this.fila2precios);
-        console.log(this.fila3precios);
-        console.log(this.fila4precios);
-        console.log(this.fila5precios);
-        console.log(this.fila6precios);
-        console.log(result);
-        },(err)=>{
-          console.log(err);
-        }
-        );
-      }
+    
 }
