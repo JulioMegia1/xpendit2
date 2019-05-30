@@ -10,6 +10,7 @@ export class CIprovider {
   tipoUsuario:any;
   idmaquina:any;
   idmaquinaActualiza:any;
+  idmaquinaCatalogo:any;
   idproducto:any;
   
     constructor(public http: HttpClient,public selectprovider:SelectserviceProvider,public mvService:MvserviceProvider) {
@@ -69,6 +70,16 @@ setIdMaquinaActualiza(datos) {
 }  
 
 
+setIdMaquinaCatalogo(datos) {
+  this.idmaquinaCatalogo = datos;  
+   console.log("SERVICIO ID MAQUINA: "+this.idmaquinaCatalogo) 
+ }
+
+ getIdmaquinaCatalogo() {
+ console.log(this.idmaquinaCatalogo)
+   
+ return this.idmaquinaCatalogo;
+}  
 
 
 getschema () {    //obtiene el JSON de los usuarios

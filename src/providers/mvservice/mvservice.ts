@@ -310,6 +310,22 @@ export class MvserviceProvider {
     });
   }
 
+  updexistenciaAM (data,idmaquina)
+  {
+    var options = {
+       headers : { 'Content-Type': 'application/json' }
+    }
+    return new Promise ((resolve,reject)=>{
+      let menu=this.url+"/actualiza/upd/existencia/"+idmaquina;
+      this.http.put(menu, JSON.stringify(data),options)
+      .subscribe(res=>{
+        resolve(res);
+      },(err)=>{
+        reject(err);
+      });
+    });
+ }
+
   rielproducto(idmaquina){
     return new Promise(resolve => {
       let menu=this.url+'/actualiza/get/producto/'+idmaquina
@@ -335,7 +351,22 @@ export class MvserviceProvider {
       });
     });
   }
-
+  
+  updprecioAM (data,idmaquina)
+  {
+    var options = {
+       headers : { 'Content-Type': 'application/json' }
+    }
+    return new Promise ((resolve,reject)=>{
+      let menu=this.url+"/actualiza/upd/precio/"+idmaquina;
+      this.http.put(menu, JSON.stringify(data),options)
+      .subscribe(res=>{
+        resolve(res);
+      },(err)=>{
+        reject(err);
+      });
+    });
+ }
 
   /*detalle Producto*/
   infoproducto(idmaquina,idproducto){ ///???????????????duda no deberia ser llamado igual por seleccion???

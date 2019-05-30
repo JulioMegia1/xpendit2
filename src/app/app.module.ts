@@ -57,6 +57,7 @@ import { HistoricoComponent } from "../components/historico/historico";
 import { HistoricomaquinaproductoventaComponent } from "../components/historicomaquinaproductoventa/historicomaquinaproductoventa";
 import { HistoricodetalleproductoComponent } from "../components/historicodetalleproducto/historicodetalleproducto";
 import { ActualizaComponent } from "../components/actualiza/actualiza";
+import { ActualizacatMaquinaComponent } from "../components/actualizacat-maquina/actualizacat-maquina";
 /*componentes*/
 
 /**********************************selectable*************/
@@ -126,7 +127,8 @@ FusionChartsModule.fcRoot(FusionCharts, Charts, TimeSeries,Ocean,Gammel,Zune,Wid
     HistoricoComponent,
     HistoricomaquinaproductoventaComponent,
     HistoricodetalleproductoComponent,
-    ActualizaComponent
+    ActualizaComponent,
+    ActualizacatMaquinaComponent
     /*componentes*/
   ],
   imports: [

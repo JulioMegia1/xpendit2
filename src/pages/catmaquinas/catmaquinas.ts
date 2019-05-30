@@ -212,6 +212,26 @@ direccion:any;
 
 infomaquinaSeleccionada:any;//obtiene info máquina seleccionada
 
+/*maximos*/
+maximos:any;
+fila1maximos:any;
+fila2maximos:any;
+fila3maximos:any;
+fila4maximos:any;
+fila5maximos:any;
+fila6maximos:any;
+disabledinputsmaximos=true;
+
+/***rieles ignorados***/
+ignorados:any;
+fila1ignorados:any;
+fila2ignorados:any;
+fila3ignorados:any;
+fila4ignorados:any;
+fila5ignorados:any;
+fila6ignorados:any;
+disabledCheckboxignorados=true;
+
 mensaje:any;//mensaje de confirmacion o error
 
 /*select*/
@@ -512,6 +532,10 @@ getInfomaquina(){
     this.Latitud=this.infomaquinaSeleccionada.latitud;
     this.Longitud=this.infomaquinaSeleccionada.longitud;
     
+    /*maximos*/
+    this.getMaximos()
+    this.getRielesIgnorados();
+
     /*info modem*/
     this.telefono=this.infomaquinaSeleccionada.infoModem.telefono;
     this.expiracion=this.infomaquinaSeleccionada.infoModem.expiracion;
@@ -717,6 +741,254 @@ ionViewWillLeave(){
 ionViewDidLeave(){
   console.log("estoy saliendo Did leave")
 }
+
+getMaximos(){
+  this.maximos=this.infomaquinaSeleccionada.maximos;
+  console.log(this.maximos)
+  let b=[];
+      for (let [key,value]of Object.entries(this.maximos))
+      {
+        b.push({key,value})
+        this.maximos=[];
+        this.maximos=b;
+      }
+      console.log(b);
+      console.log(this.maximos);
+      this.fila1maximos=this.maximos.filter(this.funcionfila1);
+      console.log(this.fila1maximos);
+      this.fila2maximos=this.maximos.filter(this.funcionfila2);
+      console.log(this.fila2maximos);
+      this.fila3maximos=this.maximos.filter(this.funcionfila3);
+      console.log(this.fila3maximos);
+      this.fila4maximos=this.maximos.filter(this.funcionfila4);
+      console.log(this.fila4maximos);
+      this.fila5maximos=this.maximos.filter(this.funcionfila5);
+      console.log(this.fila5maximos);
+      this.fila6maximos=this.maximos.filter(this.funcionfila6);
+      console.log(this.fila6maximos);
+
+
+
+      
+
+}
+
+
+modificarMaximos(){
+  this.disabledinputsmaximos=false;
+
+
+}
+
+guardarMaximos(){
+  console.log(this.fila1maximos)
+  console.log(this.fila2maximos)
+  console.log(this.fila1maximos)
+  console.log(this.fila4maximos)
+  console.log(this.fila5maximos)
+  console.log(this.fila6maximos)
+
+  let maximosupd={}
+  let riel
+  let maximo
+
+  for(let i =0;i<this.fila1maximos.length;i=i+1)
+  {
+    riel=this.fila1maximos[i].key;
+    maximo=this.fila1maximos[i].value;
+    maximosupd[riel]=maximo
+  }
+  for(let i =0;i<this.fila2maximos.length;i=i+1)
+  {
+    riel=this.fila2maximos[i].key;
+    maximo=this.fila2maximos[i].value;
+    maximosupd[riel]=maximo
+  }
+  for(let i =0;i<this.fila3maximos.length;i=i+1)
+  {
+    riel=this.fila3maximos[i].key;
+    maximo=this.fila3maximos[i].value;
+    maximosupd[riel]=maximo
+  }
+  for(let i =0;i<this.fila4maximos.length;i=i+1)
+  {
+    riel=this.fila4maximos[i].key;
+    maximo=this.fila4maximos[i].value;
+    maximosupd[riel]=maximo
+  }
+  for(let i =0;i<this.fila5maximos.length;i=i+1)
+  {
+    riel=this.fila5maximos[i].key;
+    maximo=this.fila5maximos[i].value;
+    maximosupd[riel]=maximo
+  }
+  for(let i =0;i<this.fila6maximos.length;i=i+1)
+  {
+    riel=this.fila6maximos[i].key;
+    maximo=this.fila6maximos[i].value;
+    maximosupd[riel]=maximo
+  }
+
+  console.log(maximosupd)
+  console.log(this.infomaquinaSeleccionada.maximos)
+  this.infomaquinaSeleccionada.maximos=maximosupd
+  console.log(this.infomaquinaSeleccionada)
+  this.actualizainfo();
+  this.mensaje="Máximos de la máquina \n" +this.infomaquinaSeleccionada.descripcion+" modificados exitosamente";
+  this.showAlert();
+  this.disabledinputsmaximos=true;
+
+}
+
+
+/*rieles ignorados*/
+getRielesIgnorados(){
+  this.ignorados=this.infomaquinaSeleccionada.ignorados
+  console.log(this.ignorados)
+  let b=[];
+      for (let [key,value]of Object.entries(this.ignorados))
+      {
+        b.push({key,value})
+        this.ignorados=[];
+        this.ignorados=b;
+      }
+      console.log(b)
+      console.log(this.ignorados);
+      this.fila1ignorados=this.ignorados.filter(this.funcionfila1);
+      console.log(this.fila1ignorados);
+      this.fila2ignorados=this.ignorados.filter(this.funcionfila2);
+      console.log(this.fila2ignorados);
+      this.fila3ignorados=this.ignorados.filter(this.funcionfila3);
+      console.log(this.fila3ignorados);
+      this.fila4ignorados=this.ignorados.filter(this.funcionfila4);
+      console.log(this.fila4ignorados);
+      this.fila5ignorados=this.ignorados.filter(this.funcionfila5);
+      console.log(this.fila5ignorados);
+      this.fila6ignorados=this.ignorados.filter(this.funcionfila6);
+      console.log(this.fila6ignorados);
+}
+
+
+modificarIgnorados(){
+  this.disabledCheckboxignorados=false;
+
+
+}
+guardarIgnorados(){
+  console.log(this.fila1ignorados)
+  console.log(this.fila2ignorados)
+  console.log(this.fila1ignorados)
+  console.log(this.fila4ignorados)
+  console.log(this.fila5ignorados)
+  console.log(this.fila6ignorados)
+
+  let ignoradosupd={}
+  let riel
+  let ignorado
+
+  for(let i =0;i<this.fila1ignorados.length;i=i+1)
+  {
+    riel=this.fila1ignorados[i].key;
+    ignorado=this.fila1ignorados[i].value;
+    ignoradosupd[riel]=ignorado
+  }
+  for(let i =0;i<this.fila2ignorados.length;i=i+1)
+  {
+    riel=this.fila2ignorados[i].key;
+    ignorado=this.fila2ignorados[i].value;
+    ignoradosupd[riel]=ignorado
+  }
+  for(let i =0;i<this.fila3ignorados.length;i=i+1)
+  {
+    riel=this.fila3ignorados[i].key;
+    ignorado=this.fila3ignorados[i].value;
+    ignoradosupd[riel]=ignorado
+  }
+  for(let i =0;i<this.fila4ignorados.length;i=i+1)
+  {
+    riel=this.fila4ignorados[i].key;
+    ignorado=this.fila4ignorados[i].value;
+    ignoradosupd[riel]=ignorado
+  }
+  for(let i =0;i<this.fila5ignorados.length;i=i+1)
+  {
+    riel=this.fila5ignorados[i].key;
+    ignorado=this.fila5ignorados[i].value;
+    ignoradosupd[riel]=ignorado
+  }
+  for(let i =0;i<this.fila6ignorados.length;i=i+1)
+  {
+    riel=this.fila6ignorados[i].key;
+    ignorado=this.fila6ignorados[i].value;
+    ignoradosupd[riel]=ignorado
+  }
+
+  console.log(ignoradosupd)
+
+  console.log(this.infomaquinaSeleccionada.ignorados)
+  this.infomaquinaSeleccionada.ignorados=ignoradosupd
+  console.log(this.infomaquinaSeleccionada)
+  this.actualizainfo();
+  this.mensaje="Rieles ignorados de la máquina \n" +this.infomaquinaSeleccionada.descripcion+" modificados exitosamente";
+  this.showAlert();
+  this.disabledCheckboxignorados=true;
+
+
+}
+
+
+
+
+    // Rieles Validacion(separacion)
+    funcionfila1(obj){
+      if("key"in obj && obj.key>=10 && obj.key<20 ){
+          return true;
+      }
+      else{
+        return false;
+      }
+    }
+    funcionfila2(obj){
+      if("key"in obj && obj.key>=20 && obj.key<30 ){
+          return true;
+      }
+      else{
+        return false;
+      }
+    }
+    funcionfila3(obj){
+      if("key"in obj && obj.key>=30 && obj.key<40 ){
+          return true;
+      }
+      else{
+        return false;
+      }
+    }
+    funcionfila4(obj){
+      if("key"in obj && obj.key>=40 && obj.key<50 ){
+          return true;
+      }
+      else{
+        return false;
+      }
+    }
+    funcionfila5(obj){
+      if("key"in obj && obj.key>=50 && obj.key<60 ){
+          return true;
+      }
+      else{
+        return false;
+      }
+    }
+    funcionfila6(obj){
+      if("key"in obj && obj.key>=60 && obj.key<70 ){
+          return true;
+      }
+      else{
+        return false;
+      }
+    }
+
 
 cargarDatos(event) {
   console.log(event);

@@ -23,7 +23,7 @@
                                     <ion-label> Precio compra*</ion-label>
                                 </ion-col>
                                 <ion-col col-auto>
-                                    <ion-input  placeholder="Precio compra*"  [(ngModel)]="precioCompra" [disabled]="inputsEnable" type="number"></ion-input>
+                                    <ion-input  placeholder="Precio compra*"  [(ngModel)]="precioCompra" min="0" [disabled]="inputsEnable" type="number"></ion-input>
                                 </ion-col>
                             </ion-row>
             

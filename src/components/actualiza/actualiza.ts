@@ -1,8 +1,12 @@
+
 import { Component } from '@angular/core';
+import { AlertController } from 'ionic-angular';
 
 /**Servicios */
 import { CIprovider } from '../../providers/data/data';
 import { MvserviceProvider } from "../../providers/mvservice/mvservice";
+
+
 @Component({
   selector: 'actualiza',
   templateUrl: 'actualiza.html'
@@ -15,7 +19,6 @@ export class ActualizaComponent {
   existencias:any;
   productos:any;
   precios:any;
-  
 
   rielexistencias:any;
   fila1existencias:any;
@@ -24,7 +27,7 @@ export class ActualizaComponent {
   fila4existencias:any;
   fila5existencias:any;
   fila6existencias:any;
-  disabledinputsExistencias=true
+  disabledinputsExistencias=true;
 
   rielproductos:any;
   fila1productos:any;
@@ -33,7 +36,6 @@ export class ActualizaComponent {
   fila4productos:any;
   fila5productos:any;
   fila6productos:any;
-  
   
   rielprecios:any;
   fila1precios:any;
@@ -44,81 +46,36 @@ export class ActualizaComponent {
   fila6precios:any;
   disabledinputsPrecios=true;
 
-  settingsfila10 = {
-    //selectMode: 'multi', // just add this
-    hideSubHeader:true,
-    columns: {
-      // r10: {
-      //   title: 'riel 10',
-      //   sort:false
-      // },
-      // r11: {
-      //   title: 'riel 11',
-      //   sort:false
 
-      // },
-      // r12: {
-      //   title: 'riel 12',
-      //   sort:false
-      // },
-      // r13: {
-      //   title: 'riel 13',
-      //   sort:false
-      // },
-      // r14: {
-      //   title: 'riel 14',
-      //   sort:false
+  mensaje:any;
 
-      // },
-      // r15: {
-      //   title: 'riel 15',
-      //   sort:false
-      // },
-      // r16: {
-      //   title: 'riel 16',
-      //   sort:false
-      // },
-      // r17: {
-      //   title: 'riel 17',
-      //   sort:false
-      // },
-      // r18: {
-      //   title: 'riel 18',
-      //   sort:false
-      // },
-      // r19: {
-      //   title: 'riel 19',
-      //   sort:false
-
-      // },
-    },
-      actions:{
-        columnTitle: '',
-        add: false,
-        edit: true,
-        delete: false
-      }
-  };
-  datafila10:any
+  // settings10 = {
+  //   //selectMode: 'multi', // just add this
+  //   hideSubHeader:true,
+  //   columns: null,
+  //     actions:{
+  //       columnTitle: 'Actualizar',
+  //       add: false,
+  //       edit: true,
+  //       delete: false
+  //     }
+  // };
+  // datafila10=[]
   
-
-
-
-  constructor(public ciService:CIprovider,public mvservice:MvserviceProvider) {
+  constructor(public ciService:CIprovider,public mvservice:MvserviceProvider,public alertCtrl: AlertController) {
     console.log('Hello ActualizaComponent Component');
+
     this.idmaquina=this.ciService.getIdmaquinaActualiza();
     console.log(this.idmaquina);
+
     this.getrielexistencia(this.idmaquina)
-    this.getrielprecio(this.idmaquina);
-
-
+    this.getrielprecio(this.idmaquina)
   }
 
-  ionViewCanEnter() //cuando la paginas esta activa
-  {
-    this.getrielproducto(this.idmaquina);
-  }
 
+  ionViewDidEnter() {
+    console.log("didload")
+  }
 
   //*existencias*/
   getrielexistencia(idmaquina){
@@ -134,21 +91,39 @@ export class ActualizaComponent {
       }
       console.log(b);
       console.log(this.existencias);
-      let robj
+      // let robj
       this.fila1existencias=this.existencias.filter(this.funcionfila1);
-      let c={}
-      let C={}
+      console.log(this.fila1existencias);
 
+  //     var reformattedArray = this.fila1existencias.map(function(obj){ 
+  //       var rObj = {};
+  //       rObj[obj.key] = obj.value;
+  //       return rObj;
+  //    });
+     
+  //    console.log(reformattedArray) 
 
-  //     for(let i=0;i<a.length;i=i+1)
+  //     let c={}
+  //     let C={}
+      
+  // for(let i=0;i<reformattedArray.length;i=i+1)
 	// {
-	// 	let key=Object.keys(a[i])[0]
-	// 	let value=a[i][key]
+	// 	let key=Object.keys(reformattedArray[i])[0]
+	// 	let value=reformattedArray[i][key]
 	// 	Object.defineProperty(c,key,{value:value})
-	// 	Object.defineProperty(C,[key],{writable:true})
+	// 	Object.defineProperty(C,key,{writable:true})
 	// 	C[key]={title:"riel "+key,sort:false }
-	// }
-    
+  // }
+  
+
+  // console.log(c)//datos
+  // console.log(C)//configuracion columnas
+  // this.settings10.columns=C
+  // console.log(this.settings10)
+  // this.datafila10.push(c)
+  // console.log(c)
+  // console.log(this.datafila10)
+   
       this.fila2existencias=this.existencias.filter(this.funcionfila2);
       this.fila3existencias=this.existencias.filter(this.funcionfila3);
       this.fila4existencias=this.existencias.filter(this.funcionfila4);
@@ -166,6 +141,89 @@ export class ActualizaComponent {
       );
     }
 
+    modificarExistencia(){
+      this.disabledinputsExistencias=false;
+
+    }
+
+    guardarExistencia(){
+
+    
+      console.log(this.fila1existencias)
+      console.log(this.fila2existencias)
+      console.log(this.fila3existencias)
+      console.log(this.fila4existencias)
+      console.log(this.fila5existencias)
+      console.log(this.fila6existencias)
+      let maximosupd={}
+      let riel
+      let existencia
+
+      for(let i =0;i<this.fila1existencias.length;i=i+1)
+      {
+        riel=this.fila1existencias[i].key;
+        existencia=this.fila1existencias[i].value;
+        maximosupd[riel]=existencia
+      }
+      for(let i =0;i<this.fila2existencias.length;i=i+1)
+      {
+        riel=this.fila2existencias[i].key;
+        existencia=this.fila2existencias[i].value;
+        maximosupd[riel]=existencia
+      }
+      for(let i =0;i<this.fila3existencias.length;i=i+1)
+      {
+        riel=this.fila3existencias[i].key;
+        existencia=this.fila3existencias[i].value;
+        maximosupd[riel]=existencia
+      }
+      for(let i =0;i<this.fila4existencias.length;i=i+1)
+      {
+        riel=this.fila4existencias[i].key;
+        existencia=this.fila4existencias[i].value;
+        maximosupd[riel]=existencia
+      }
+      for(let i =0;i<this.fila5existencias.length;i=i+1)
+      {
+        riel=this.fila5existencias[i].key;
+        existencia=this.fila5existencias[i].value;
+        maximosupd[riel]=existencia
+      }
+      for(let i =0;i<this.fila6existencias.length;i=i+1)
+      {
+        riel=this.fila6existencias[i].key;
+        existencia=this.fila6existencias[i].value;
+        maximosupd[riel]=existencia
+      }
+
+      console.log(maximosupd)
+      this.updExistencia(maximosupd,this.idmaquina)
+      this.mensaje="Existencia Actualizada"
+      this.showAlert();
+      this.disabledinputsExistencias=true;
+
+    }
+
+    // onSaveConfirm(event){
+    //   console.log(event)
+    // }
+
+    updExistencia(data,idmaquina){
+        this.mvservice.updexistenciaAM(data,idmaquina).then(result=>{
+          console.log(result);
+          
+          },(err)=>{
+            console.log(err);
+          }
+          );
+        }
+
+
+       
+    
+
+   
+
   getrielproducto(idmaquina){
     this.mvservice.rielproducto(idmaquina).then(result=>{
       this.productos= result;
@@ -175,8 +233,6 @@ export class ActualizaComponent {
       }
       );
     }
-
-
 
     // Rieles Validacion(separacion)
     funcionfila1(obj){
@@ -228,20 +284,9 @@ export class ActualizaComponent {
       }
     }
 
-    modificarExistencia(){
-      this.disabledinputsExistencias=false;
+    /*************/
 
-    }
-
-    guardarExistencia(){
-      console.log(this.fila1existencias)
-      console.log(this.fila2existencias)
-      console.log(this.fila3existencias)
-      console.log(this.fila4existencias)
-      console.log(this.fila5existencias)
-      console.log(this.fila6existencias)
-
-    }
+    
 
 
     /*PRECIOS*/
@@ -287,8 +332,76 @@ export class ActualizaComponent {
         console.log(this.fila4precios)
         console.log(this.fila5precios)
         console.log(this.fila6precios)
+      
+      let preciosupd={}
+      let riel
+      let precio
+
+      for(let i =0;i<this.fila1precios.length;i=i+1)
+      {
+        riel=this.fila1precios[i].key;
+        precio=this.fila1precios[i].value;
+        preciosupd[riel]=precio
+      }
+      for(let i =0;i<this.fila2precios.length;i=i+1)
+      {
+        riel=this.fila2precios[i].key;
+        precio=this.fila2precios[i].value;
+        preciosupd[riel]=precio
+      }
+      for(let i =0;i<this.fila3precios.length;i=i+1)
+      {
+        riel=this.fila3precios[i].key;
+        precio=this.fila3precios[i].value;
+        preciosupd[riel]=precio
+      }
+      for(let i =0;i<this.fila4precios.length;i=i+1)
+      {
+        riel=this.fila4precios[i].key;
+        precio=this.fila4precios[i].value;
+        preciosupd[riel]=precio
+      }
+      for(let i =0;i<this.fila5precios.length;i=i+1)
+      {
+        riel=this.fila5precios[i].key;
+        precio=this.fila5precios[i].value;
+        preciosupd[riel]=precio
+      }
+      for(let i =0;i<this.fila6precios.length;i=i+1)
+      {
+        riel=this.fila6precios[i].key;
+        precio=this.fila6precios[i].value;
+        preciosupd[riel]=precio
+      }
+
+      console.log(preciosupd)
+      this.updPrecios(preciosupd,this.idmaquina)
+      this.mensaje="Existencia Actualizada"
+      this.showAlert();
+      this.disabledinputsPrecios=true
   
       }
 
+      updPrecios(data,idmaquina){
+        this.mvservice.updprecioAM(data,idmaquina).then(result=>{
+          console.log(result);
+          
+          },(err)=>{
+            console.log(err);
+          }
+          );
+        }
+
+
+
+      showAlert() {
+        const alert = this.alertCtrl.create({
+          title: this.mensaje,
+          
+          buttons: ['OK']
+        });
+        alert.present();
+      }
+      
 
 }

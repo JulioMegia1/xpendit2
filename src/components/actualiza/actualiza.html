@@ -1,7 +1,7 @@
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous"> 
  
-<cardexpandible title="Existencias">
-    <ion-scroll scrollX="true" scrollY="true" direction="x" direction="y">
+<cardexpandible title="Existencias" >
+    <ion-scroll scrollX="true" scrollY="true" direction="x" direction="y" style="height:800px;">
         <!-- <ion-card *ngFor="let rielexistencia of rielexistencias" >
             <ion-label> {{rielexistencia.riel}}</ion-label>
             <ion-input placeholder={{rielexistencia.existencias}}> </ion-input>
@@ -10,47 +10,47 @@
             <ion-row >
                     <ion-col *ngFor="let prod of fila1existencias" col-auto >
                             <ion-item>
-                                    <ion-label floating>Riel {{prod.key}}: </ion-label>
-                                    <ion-input  type="number" value={{prod.value}}  [disabled]=disabledinputsExistencias ></ion-input>
+                                    <ion-label style="background: #18703d; color:#fff;padding:10px;border-radius: 10px;font-size: 16px;font-weight: bold;        "floating>Riel {{prod.key}}: </ion-label>
+                                    <ion-input  type="number" [(ngModel)]="prod.value" min="0" onkeypress="return event.charCode >= 48  && event.charCode <= 57"  [disabled]=disabledinputsExistencias ></ion-input>
                             </ion-item>
                     </ion-col>
             </ion-row>
             <ion-row >
                     <ion-col *ngFor="let prod of fila2existencias"  col-auto>
                             <ion-item>
-                                    <ion-label floating>Riel {{prod.key}}: </ion-label>
-                                    <ion-input type="number" [(ngModel)]=prod.value  [disabled]=disabledinputsExistencias></ion-input>
+                                    <ion-label style="background: #18703d; color:#fff;padding:10px;border-radius: 10px;font-size: 16px;font-weight: bold;        "floating>Riel {{prod.key}}: </ion-label>
+                                    <ion-input type="number" [(ngModel)]=prod.value min="0" onkeypress="return event.charCode >= 48  && event.charCode <= 57"  [disabled]=disabledinputsExistencias></ion-input>
                             </ion-item>
                     </ion-col>
             </ion-row>
             <ion-row >
                     <ion-col *ngFor="let prod of fila3existencias" col-auto >
                             <ion-item>
-                                    <ion-label floating>Riel {{prod.key}}: </ion-label>
-                                    <ion-input type="number" [(ngModel)]=prod.value [disabled]=disabledinputsExistencias ></ion-input>
+                                    <ion-label style="background: #18703d; color:#fff;padding:10px;border-radius: 10px;font-size: 16px;font-weight: bold;        "floating>Riel {{prod.key}}: </ion-label>
+                                    <ion-input type="number" [(ngModel)]=prod.value min="0" onkeypress="return event.charCode >= 48  && event.charCode <= 57" [disabled]=disabledinputsExistencias ></ion-input>
                             </ion-item>
                     </ion-col>
             </ion-row>
             <ion-row >
                     <ion-col *ngFor="let prod of fila4existencias" col-auto >
                             <ion-item>
-                                    <ion-label floating>Riel {{prod.key}}: </ion-label>
-                                    <ion-input  type="number"[(ngModel)]=prod.value  [disabled]=disabledinputsExistencias></ion-input>       
+                                    <ion-label style="background: #18703d; color:#fff;padding:10px;border-radius: 10px;font-size: 16px;font-weight: bold;        "floating>Riel {{prod.key}}: </ion-label>
+                                    <ion-input  type="number"[(ngModel)]=prod.value min="0" onkeypress="return event.charCode >= 48  && event.charCode <= 57"  [disabled]=disabledinputsExistencias></ion-input>       
                             </ion-item>                
                     </ion-col>
             </ion-row>    
             <ion-row >
                     <ion-col *ngFor="let prod of fila5existencias"  col-auto>
                             <ion-item>
-                                    <ion-label floating>Riel {{prod.key}}: </ion-label>
-                                    <ion-input type="number" [(ngModel)]=prod.value [disabled]=disabledinputsExistencias ></ion-input>
+                                    <ion-label style="background: #18703d; color:#fff;padding:10px;border-radius: 10px;font-size: 16px;font-weight: bold;        "floating>Riel {{prod.key}}: </ion-label>
+                                    <ion-input type="number" [(ngModel)]=prod.value min="0" onkeypress="return event.charCode >= 48  && event.charCode <= 57" [disabled]=disabledinputsExistencias ></ion-input>
                             </ion-item>
                     </ion-col>
             </ion-row>
             <ion-row >
                     <ion-col *ngFor="let prod of fila6existencias" col-auto >
-                            <ion-item><ion-label floating>Riel {{prod.key}}: </ion-label>
-                            <ion-input type="number" [(ngModel)]=prod.value  [disabled]=disabledinputsExistencias></ion-input>
+                            <ion-item><ion-label style="background: #18703d; color:#fff;padding:10px;border-radius: 10px;font-size: 16px;font-weight: bold;        "floating>Riel {{prod.key}}: </ion-label>
+                            <ion-input type="number" [(ngModel)]=prod.value  min="0" onkeypress="return event.charCode >= 48  && event.charCode <= 57" [disabled]=disabledinputsExistencias></ion-input>
                             </ion-item>
                     </ion-col>
             </ion-row>
@@ -62,8 +62,9 @@
                 <button ion-fab mini color="verde">  <i class="fas fa-chevron-right"></i></button>
                     <ion-fab-list side="right">
                         <button ion-fab color="azul" (click)="modificarExistencia()" ><i class="fas fa-edit"></i>  </button>
-                        <button ion-fab color="azul" (click)="guardarExistencia()"><i class="fas fa-save"></i>   </button>
-                    </ion-fab-list>
+                        <button ion-fab color="azul" (click)="guardarExistencia()"><i class="fas fa-save"></i>   </button>    
+                </ion-fab-list>
+
             </ion-fab>
         </div> 
 
@@ -74,74 +75,89 @@
 
 
 
-<cardexpandible title="PRECIOS">
-    <ion-scroll scrollX="true" scrollY="true" direction="x" direction="y">
-        <!-- <ion-card *ngFor="let rielexistencia of rielexistencias" >
-            <ion-label> {{rielexistencia.riel}}</ion-label>
-            <ion-input placeholder={{rielexistencia.existencias}}> </ion-input>
-        </ion-card>   -->
-        <ion-grid>
-            <ion-row >
-                    <ion-col *ngFor="let prod of fila1precios" col-auto >
-                            <ion-item>
-                                    <ion-label floating>Riel {{prod.key}}: </ion-label>
-                                    <ion-input  type="number" [ngModel]=prod.value  [disabled]=disabledinputsPrecios ></ion-input>
-                            </ion-item>
-                    </ion-col>
-            </ion-row>
-            <ion-row >
-                    <ion-col *ngFor="let prod of fila2precios"  col-auto>
-                            <ion-item>
-                                    <ion-label floating>Riel {{prod.key}}: </ion-label>
-                                    <ion-input type="number" [(ngModel)]=prod.value  [disabled]=disabledinputsPrecios></ion-input>
-                            </ion-item>
-                    </ion-col>
-            </ion-row>
-            <ion-row >
-                    <ion-col *ngFor="let prod of fila3precios" col-auto >
-                            <ion-item>
-                                    <ion-label floating>Riel {{prod.key}}: </ion-label>
-                                    <ion-input type="number" [(ngModel)]=prod.value [disabled]=disabledinputsPrecios ></ion-input>
-                            </ion-item>
-                    </ion-col>
-            </ion-row>
-            <ion-row >
-                    <ion-col *ngFor="let prod of fila4precios" col-auto >
-                            <ion-item>
-                                    <ion-label floating>Riel {{prod.key}}: </ion-label>
-                                    <ion-input  type="number"[(ngModel)]=prod.value  [disabled]=disabledinputsPrecios></ion-input>       
-                            </ion-item>                
-                    </ion-col>
-            </ion-row>    
-            <ion-row >
-                    <ion-col *ngFor="let prod of fila5precios"  col-auto>
-                            <ion-item>
-                                    <ion-label floating>Riel {{prod.key}}: </ion-label>
-                                    <ion-input type="number" [(ngModel)]=prod.value [disabled]=disabledinputsPrecios ></ion-input>
-                            </ion-item>
-                    </ion-col>
-            </ion-row>
-            <ion-row >
-                    <ion-col *ngFor="let prod of fila6precios" col-auto >
-                            <ion-item><ion-label floating>Riel {{prod.key}}: </ion-label>
-                            <ion-input type="number" [(ngModel)]=prod.value  [disabled]=disabledinputsPrecios></ion-input>
-                            </ion-item>
-                    </ion-col>
-            </ion-row>
-           
-        </ion-grid>
 
-        <div style="justify-content:left;display:flex">
-            <ion-fab bottom left >
-                <button ion-fab mini color="verde">  <i class="fas fa-chevron-right"></i></button>
-                    <ion-fab-list side="right">
-                        <button ion-fab color="azul" (click)="modificarPrecios()" ><i class="fas fa-edit"></i>  </button>
-                        <button ion-fab color="azul" (click)="guardarPrecios()"><i class="fas fa-save"></i>   </button>
-                    </ion-fab-list>
-            </ion-fab>
-        </div> 
 
-      
-      </ion-scroll>
+<cardexpandible title="Precios" >
+                <ion-scroll scrollX="true" scrollY="true" direction="x" direction="y" style="height:800px;">
+                    <!-- <ion-card *ngFor="let rielexistencia of rielexistencias" >
+                        <ion-label> {{rielexistencia.riel}}</ion-label>
+                        <ion-input placeholder={{rielexistencia.existencias}}> </ion-input>
+                    </ion-card>   -->
+                    <ion-grid>
+                        <ion-row >
+                                <ion-col *ngFor="let prod of fila1precios" col-auto >
+                                        <ion-item>
+                                                <ion-label style="background: #18703d; color:#fff;padding:10px;border-radius: 10px;font-size: 16px;font-weight: bold;        "floating>Riel {{prod.key}}: </ion-label>
+                                                <ion-input  type="number" [(ngModel)]="prod.value"  min="0" onkeypress="return event.charCode >= 48  && event.charCode <= 57" [disabled]=disabledinputsPrecios ></ion-input>
+                                        </ion-item>
+                                </ion-col>
+                        </ion-row>
+                        <ion-row >
+                                <ion-col *ngFor="let prod of fila2precios"  col-auto>
+                                        <ion-item>
+                                                <ion-label style="background: #18703d; color:#fff;padding:10px;border-radius: 10px;font-size: 16px;font-weight: bold;        "floating>Riel {{prod.key}}: </ion-label>
+                                                <ion-input type="number" [(ngModel)]=prod.value min="0" onkeypress="return event.charCode >= 48  && event.charCode <= 57" [disabled]=disabledinputsPrecios></ion-input>
+                                        </ion-item>
+                                </ion-col>
+                        </ion-row>
+                        <ion-row >
+                                <ion-col *ngFor="let prod of fila3precios" col-auto >
+                                        <ion-item>
+                                                <ion-label style="background: #18703d; color:#fff;padding:10px;border-radius: 10px;font-size: 16px;font-weight: bold;        "floating>Riel {{prod.key}}: </ion-label>
+                                                <ion-input type="number" [(ngModel)]=prod.value min="0" onkeypress="return event.charCode >= 48  && event.charCode <= 57" [disabled]=disabledinputsPrecios ></ion-input>
+                                        </ion-item>
+                                </ion-col>
+                        </ion-row>
+                        <ion-row >
+                                <ion-col *ngFor="let prod of fila4precios" col-auto >
+                                        <ion-item>
+                                                <ion-label style="background: #18703d; color:#fff;padding:10px;border-radius: 10px;font-size: 16px;font-weight: bold;        "floating>Riel {{prod.key}}: </ion-label>
+                                                <ion-input  type="number"[(ngModel)]=prod.value  min="0" onkeypress="return event.charCode >= 48  && event.charCode <= 57" [disabled]=disabledinputsPrecios></ion-input>       
+                                        </ion-item>                
+                                </ion-col>
+                        </ion-row>    
+                        <ion-row >
+                                <ion-col *ngFor="let prod of fila5precios"  col-auto>
+                                        <ion-item>
+                                                <ion-label style="background: #18703d; color:#fff;padding:10px;border-radius: 10px;font-size: 16px;font-weight: bold;        "floating>Riel {{prod.key}}: </ion-label>
+                                                <ion-input type="number" [(ngModel)]=prod.value min="0" onkeypress="return event.charCode >= 48  && event.charCode <= 57" [disabled]=disabledinputsPrecios ></ion-input>
+                                        </ion-item>
+                                </ion-col>
+                        </ion-row>
+                        <ion-row >
+                                <ion-col *ngFor="let prod of fila6precios" col-auto >
+                                        <ion-item><ion-label style="background: #18703d; color:#fff;padding:10px;border-radius: 10px;font-size: 16px;font-weight: bold;        "floating>Riel {{prod.key}}: </ion-label>
+                                        <ion-input type="number" [(ngModel)]=prod.value  min="0" onkeypress="return event.charCode >= 48  && event.charCode <= 57" [disabled]=disabledinputsPrecios></ion-input>
+                                        </ion-item>
+                                </ion-col>
+                        </ion-row>
+                       
+                    </ion-grid>
+            
+                    <div style="justify-content:left;display:flex">
+                        <ion-fab bottom left >
+                            <button ion-fab mini color="verde">  <i class="fas fa-chevron-right"></i></button>
+                                <ion-fab-list side="right">
+                                    <button ion-fab color="azul" (click)="modificarPrecios()" ><i class="fas fa-edit"></i>  </button>
+                                    <button ion-fab color="azul" (click)="guardarPrecios()"><i class="fas fa-save"></i>   </button>
+                                </ion-fab-list>
+                        </ion-fab>
+                    </div> 
+            
+                  
+                  </ion-scroll>
+            
+            </cardexpandible>
 
-</cardexpandible>
+
+
+
+<!-- 
+<cardexpandible>
+        <ng2-smart-table [settings]="settings10" [source]="datafila10" 
+    
+  
+     (editConfirm)="onSaveConfirm($event)"
+    ></ng2-smart-table>
+
+</cardexpandible>  -->

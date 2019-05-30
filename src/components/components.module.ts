@@ -19,6 +19,7 @@ import { HistoricoComponent } from './historico/historico';
 import { HistoricomaquinaproductoventaComponent } from './historicomaquinaproductoventa/historicomaquinaproductoventa';
 import { HistoricodetalleproductoComponent } from './historicodetalleproducto/historicodetalleproducto';
 import { ActualizaComponent } from './actualiza/actualiza';
+import { ActualizacatMaquinaComponent } from './actualizacat-maquina/actualizacat-maquina';
 @NgModule({
 	declarations: [LuzComponent,
     NavbarComponent,
@@ -41,7 +42,8 @@ import { ActualizaComponent } from './actualiza/actualiza';
     HistoricomaquinaproductoventaComponent,
     HistoricodetalleproductoComponent,
     ActualizaComponent,
-    ActualizaComponent],
+    ActualizaComponent,
+    ActualizacatMaquinaComponent],
 	imports: [IonicModule],
 	exports: [LuzComponent,
     NavbarComponent,
@@ -64,7 +66,8 @@ import { ActualizaComponent } from './actualiza/actualiza';
     HistoricomaquinaproductoventaComponent,
     HistoricodetalleproductoComponent,
     ActualizaComponent,
-    ActualizaComponent],
+    ActualizaComponent,
+    ActualizacatMaquinaComponent],
 	schemas:[CUSTOM_ELEMENTS_SCHEMA,NO_ERRORS_SCHEMA]
 })
 export class ComponentsModule {}
