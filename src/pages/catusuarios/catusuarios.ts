@@ -159,6 +159,8 @@ materno:any;
 email:any;
 usuario:any;
 password:any;
+notificarBoolean:any=false;
+notificarNumber=0;
 
 Usuariokey:any;//valor para vuscar info
 
@@ -228,6 +230,8 @@ tipoUsuariopermisos:any;
     this.materno=null;
     this.email=null;
     this.password=null;
+    this.notificarBoolean=false
+    this.notificarNumber=0
   }
   }
 
@@ -279,19 +283,16 @@ tipoUsuariopermisos:any;
         this.infousuarionuevo.persona.materno=this.materno;
         this.infousuarionuevo.persona.email=this.email;
         this.infousuarionuevo.usuario=this.usuario;
+        this.infousuarionuevo.notificar=this.notificarNumber;
         console.log(this.infousuarionuevo);
         await this.newUsuario(this.infousuarionuevo);
           },(err)=>{
             console.log(err);
           }
           );
-
-
-
       }
     }
   }
-  
 
   newUsuario(datos){
     this.catService.newUsuario(datos).then(async (result)=>{
@@ -300,10 +301,25 @@ tipoUsuariopermisos:any;
       await this.getinfogralUsuarios();
       this.mensaje="Usuario creado exitosamente!"
       this.showAlert();
+      this.limpiar();
     },(err)=>{
       console.log(err);
     }  
     );
+  }
+
+  limpiar(){
+    this.usuario=null;
+    this.tipoUsuario=null;
+    this.estadoUsuario=null;
+    this.nombre=null;
+    this.paterno=null;
+    this.materno=null;
+    this.email=null;
+    this.password=null;
+    this.notificarBoolean=false
+    this.notificarNumber=0
+
   }
 
   delUsuario(data){
@@ -311,6 +327,7 @@ tipoUsuariopermisos:any;
       console.log(result)
       this.mensaje="Usuario "+data+" eliminado";
       this.showAlert();
+      this.limpiar();
       await this.getinfogralUsuarios();//cuando termina de eliminar en la bd, actualiza la tabla
     },(err)=>{
       console.log(err);
@@ -349,7 +366,14 @@ tipoUsuariopermisos:any;
       this.paterno=this.usuarioSeleccionado.persona.paterno;
       this.materno=this.usuarioSeleccionado.persona.materno;
       this.email=this.usuarioSeleccionado.persona.email;
+      if(this.usuarioSeleccionado.notificar==0){
+        this.notificarBoolean=false
+      }
+      else{
+        this.notificarBoolean=true
+      }
       this.decContrasena(this.usuarioSeleccionado.password)
+      console.log(this.usuarioSeleccionado)
     },(err)=>{
       console.log(err);
     }
@@ -375,6 +399,18 @@ tipoUsuariopermisos:any;
       buttons: ['OK']
     });
     alert.present();
+  }
+  
+  updNotificar(){
+    if(this.notificarBoolean==true)
+    {
+      this.notificarNumber=1
+    }
+    else{
+      this.notificarNumber=0
+
+    }
+    
   }
 
   eliminarUsuario(){
@@ -408,6 +444,8 @@ tipoUsuariopermisos:any;
             this.materno=null;
             this.email=null;
             this.password=null;
+            this.notificarBoolean=false
+            this.notificarNumber=0
             this.buttonUpdDelhidden=true;
             this.inputsdisabled=true;
           }
@@ -418,7 +456,7 @@ tipoUsuariopermisos:any;
   }
   }
 
-   modificarUsuario(){//
+   async modificarUsuario(){//
     if(this.tipoUsuariopermisos=="Solo Lectura")
               {
                 this.mensaje="El usuario solo Lectura no tiene los permisos correspondientes"
@@ -439,8 +477,8 @@ tipoUsuariopermisos:any;
     }
     else
     {
-      this.encriptacontrasena(this.password)
-      this.usuarioSeleccionado.password=this.pwdEncriptada.password;
+      await this.encriptacontrasena(this.password)
+      ///this.usuarioSeleccionado.password=this.pwdEncriptada.password;
       this.usuarioSeleccionado.usuario=this.usuario
       this.usuarioSeleccionado.tipoUsuario= this.tipoUsuario
       this.usuarioSeleccionado.estadoUsuario=this.estadoUsuario
@@ -449,6 +487,8 @@ tipoUsuariopermisos:any;
       this.usuarioSeleccionado.materno=this.materno
       this.usuarioSeleccionado.email=this.email
       this.usuarioSeleccionado.password=this.password
+      this.usuarioSeleccionado.notificar=this.notificarNumber
+      
   
         console.log(this.usuarioSeleccionado);
       // this.catService.updUsuario(this.usuarioSeleccionado).then(async (result)=>{

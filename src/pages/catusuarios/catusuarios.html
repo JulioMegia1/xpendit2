@@ -87,9 +87,16 @@
                 <ion-row>
                     <ion-col col-auto col-sm-6>     
                             <div style="justify-content:left;display:flex">
-                                <button ion-button round (click)="verpwd()"><i [class]=icon ></i></button>
+                                <button ion-button round (click)="verpwd()" [disabled]="inputsdisabled"><i [class]=icon ></i></button>
                                 <ion-input [type]="type" placeholder="Password" [(ngModel)]="password"  [disabled]="inputsdisabled"></ion-input>
                             </div>
+                    </ion-col>
+
+                    <ion-col col-auto col-sm-6>    
+                        <ion-item>
+                            <ion-label>Recibir Notificaciones</ion-label>
+                            <ion-checkbox [(ngModel)]="notificarBoolean"(ionChange)="updNotificar()"  [disabled]="inputsdisabled" ></ion-checkbox>
+                        </ion-item> 
                     </ion-col>
                 </ion-row>
             </ion-grid>

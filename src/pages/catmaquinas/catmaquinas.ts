@@ -9,6 +9,14 @@ import {LocalDataSource} from 'ng2-smart-table'
 import 'rxjs/add/operator/map';
 import L from "leaflet";
 
+/**********************************SELECTABLE**************************/
+import { IonicSelectableComponent } from 'ionic-selectable';
+
+class Port { //clase para select maquinas
+  public label: any;
+  public value: any;
+}
+
 /*servicios*/
 import { SelectserviceProvider } from "../../providers/selectservice/selectservice";
 import { MvserviceProvider } from "../../providers/mvservice/mvservice";
@@ -233,6 +241,22 @@ fila6ignorados:any;
 disabledCheckboxignorados=true;
 
 mensaje:any;//mensaje de confirmacion o error
+
+
+ /*********SELECT SEARCHEABLE para cambiar de maquinas ***********/
+ listaproductos:any; //lista para select productos
+
+productos:any;
+fila1productos:any;
+fila2productos:any;
+fila3productos:any;
+fila4productos:any;
+fila5productos:any;
+fila6productos:any;
+disabledselectProductos=true;
+ ports: Port[];  ///muestra las opciones del select
+ port: Port; //muestra la opcion elegida del select
+// /**********SELECT SEARCHEABLE***********/
 
 /*select*/
 selectTipoMaquina:any
@@ -535,6 +559,9 @@ getInfomaquina(){
     /*maximos*/
     this.getMaximos()
     this.getRielesIgnorados();
+
+    /*productos**/
+    this.getselectproductos();
 
     /*info modem*/
     this.telefono=this.infomaquinaSeleccionada.infoModem.telefono;
@@ -1168,4 +1195,157 @@ onSaveConfirm(event) { //Editar los productos
 pagina(data){
   this.source.setPaging(1,data);
 }
+
+
+getselectproductos(){ //info de productos
+  this.selectprovider.selectproductos().then(result=>{
+    this.listaproductos=result; //obtiene los productos
+    console.log(this.listaproductos);//lista de TODOS LOS PRODUCTOS
+    this.ports=this.listaproductos; 
+
+    let productos=this.infomaquinaSeleccionada.productos;
+    console.log(productos)
+
+  let Rieles=Object.keys(productos)
+  
+  console.log(Rieles)
+  let riel
+  let ArrayProductos=[]
+for(let i=0;i<Rieles.length;i=i+1)
+{
+  riel=Rieles[i]
+  productos[riel].key=riel//agregaremos al producto el riel al que pertenece
+  ArrayProductos.push(productos[riel])
+}
+console.log(productos);
+console.log(ArrayProductos)
+this.fila1productos=ArrayProductos.filter(this.funcionfila1);
+console.log(this.fila1productos);
+this.fila2productos=ArrayProductos.filter(this.funcionfila2);
+console.log(this.fila2productos);
+this.fila3productos=ArrayProductos.filter(this.funcionfila3);
+console.log(this.fila3productos);
+this.fila4productos=ArrayProductos.filter(this.funcionfila4);
+console.log(this.fila4productos);
+this.fila5productos=ArrayProductos.filter(this.funcionfila5);
+console.log(this.fila5productos);
+this.fila6productos=ArrayProductos.filter(this.funcionfila6);
+console.log(this.fila6productos);
+
+
+
+
+
+//this.fila1productos[0].indice=
+for(let i=0;i<this.listaproductos.length;i=i+1)
+{
+  for(let j=0;j<this.fila1productos.length;j=j+1)
+  {
+    if(this.listaproductos[i].label==this.fila1productos[j].idProducto)
+        {
+          this.fila1productos[j].indice=this.ports[i]
+        }
+  }
+}
+
+for(let i=0;i<this.listaproductos.length;i=i+1)
+{
+  for(let j=0;j<this.fila2productos.length;j=j+1)
+  {
+    if(this.listaproductos[i].label==this.fila2productos[j].idProducto)
+        {
+          this.fila2productos[j].indice=this.ports[i]
+        }
+  }
+}
+
+
+for(let i=0;i<this.listaproductos.length;i=i+1)
+{
+  for(let j=0;j<this.fila3productos.length;j=j+1)
+  {
+    if(this.listaproductos[i].label==this.fila3productos[j].idProducto)
+        {
+          this.fila3productos[j].indice=this.ports[i]
+        }
+  }
+}
+
+for(let i=0;i<this.listaproductos.length;i=i+1)
+{
+  for(let j=0;j<this.fila4productos.length;j=j+1)
+  {
+    if(this.listaproductos[i].label==this.fila4productos[j].idProducto)
+        {
+          this.fila4productos[j].indice=this.ports[i]
+        }
+  }
+}
+
+for(let i=0;i<this.listaproductos.length;i=i+1)
+{
+  for(let j=0;j<this.fila5productos.length;j=j+1)
+  {
+    if(this.listaproductos[i].label==this.fila5productos[j].idProducto)
+        {
+          this.fila5productos[j].indice=this.ports[i]
+        }
+  }
+}
+
+for(let i=0;i<this.listaproductos.length;i=i+1)
+{
+  for(let j=0;j<this.fila6productos.length;j=j+1)
+  {
+    if(this.listaproductos[i].label==this.fila6productos[j].idProducto)
+        {
+          this.fila6productos[j].indice=this.ports[i]
+        }
+  }
+}
+
+
+
+
+
+console.log(this.fila1productos);
+
+
+
+
+// this.fila7productos=ArrayProductos.filter(this.funcionfila7);
+// console.log(this.fila7productos);
+
+
+//     console.log(this.infoproducto.producto.idProducto)
+//     console.log(this.listaproductos[0].label)
+//     let punto 
+//     for(let i =0; i < this.listaproductos.length;i=i+1){
+//       if(this.infoproducto.producto.idProducto==this.listaproductos[i].label){
+//         punto=i
+//       }
+//     }
+//     console.log(punto)
+//  this.port=this.ports[punto]; 
+//     console.log(result);
+    },(err)=>{
+      console.log(err);
+    }
+    );
+}
+
+
+portChange(event: {
+  component: IonicSelectableComponent,
+  value: any 
+}) {
+  console.log('port:', event.value);
+  console.log("cambio el valor")
+  console.log(this.port);
+  
+  
+}
+
+
+
 }

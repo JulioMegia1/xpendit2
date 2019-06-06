@@ -344,4 +344,92 @@
      (createConfirm)="onCreateConfirm($event)"></ng2-smart-table>
     </ion-card>
 </ion-scroll>
+
+
+
+<ion-item *ngFor="let prod of fila1productos">
+    <ion-label>{{prod.key}}</ion-label>
+    <ionic-selectable 
+      item-content 
+      [(ngModel)]=prod.indice
+      [items]="ports"
+      itemValueField="label"
+      itemTextField="value"
+      [canSearch]="true"
+      (onChange)="portChange($event)">
+    </ionic-selectable>
+</ion-item>
+
+
+
+<ion-item *ngFor="let prod of fila2productos">
+    <ion-label>{{prod.key}}</ion-label>
+    <ionic-selectable 
+      item-content 
+      [(ngModel)]=prod.indice
+      [items]="ports"
+      itemValueField="label"
+      itemTextField="value"
+      [canSearch]="true"
+      (onChange)="portChange($event)">
+    </ionic-selectable>
+</ion-item>
+
+<ion-item *ngFor="let prod of fila3productos">
+    <ion-label>{{prod.key}}</ion-label>
+    <ionic-selectable 
+      item-content 
+      [(ngModel)]=prod.indice
+      [items]="ports"
+      itemValueField="label"
+      itemTextField="value"
+      [canSearch]="true"
+      (onChange)="portChange($event)">
+    </ionic-selectable>
+</ion-item>
+
+
+<ion-item *ngFor="let prod of fila4productos">
+    <ion-label>{{prod.key}}</ion-label>
+    <ionic-selectable 
+      item-content 
+      [(ngModel)]=prod.indice
+      [items]="ports"
+      itemValueField="label"
+      itemTextField="value"
+      [canSearch]="true"
+      (onChange)="portChange($event)">
+    </ionic-selectable>
+</ion-item>
+
+
+<ion-item *ngFor="let prod of fila5productos">
+    <ion-label>{{prod.key}}</ion-label>
+    <ionic-selectable 
+      item-content 
+      [(ngModel)]=prod.indice
+      [items]="ports"
+      itemValueField="label"
+      itemTextField="value"
+      [canSearch]="true"
+      (onChange)="portChange($event)">
+    </ionic-selectable>
+</ion-item>
+
+
+<ion-item *ngFor="let prod of fila6productos">
+    <ion-label>{{prod.key}}</ion-label>
+    <ionic-selectable 
+      item-content 
+      [(ngModel)]=prod.indice
+      [items]="ports"
+      itemValueField="label"
+      itemTextField="value"
+      [canSearch]="true"
+      (onChange)="portChange($event)">
+    </ionic-selectable>
+</ion-item>
+
+
+
 </ion-content>
