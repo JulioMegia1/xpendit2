@@ -240,6 +240,14 @@ tipoUsuariopermisos:any;
     this.authservice.encripta(pwdencriptada).then((result)=>{
       console.log(result);
       this.pwdEncriptada=result
+      this.usuarioSeleccionado.password=this.pwdEncriptada.password
+      console.log(this.usuarioSeleccionado)
+      this.updUsuario(this.usuarioSeleccionado);
+      this.limpiar();
+      this.mensaje="Uuario Modificado"
+      this.showAlert();
+
+
       },(err)=>{
         console.log(err);
       }
@@ -319,6 +327,7 @@ tipoUsuariopermisos:any;
     this.password=null;
     this.notificarBoolean=false
     this.notificarNumber=0
+    this.inputsdisabled=true;
 
   }
 
@@ -478,15 +487,15 @@ tipoUsuariopermisos:any;
     else
     {
       await this.encriptacontrasena(this.password)
-      ///this.usuarioSeleccionado.password=this.pwdEncriptada.password;
+      // this.usuarioSeleccionado.password=this.pwdEncriptada.password;
+      
       this.usuarioSeleccionado.usuario=this.usuario
       this.usuarioSeleccionado.tipoUsuario= this.tipoUsuario
       this.usuarioSeleccionado.estadoUsuario=this.estadoUsuario
-      this.usuarioSeleccionado.nombre=this.nombre
-      this.usuarioSeleccionado.paterno=this.paterno
-      this.usuarioSeleccionado.materno=this.materno
-      this.usuarioSeleccionado.email=this.email
-      this.usuarioSeleccionado.password=this.password
+      this.usuarioSeleccionado.persona.nombre=this.nombre
+      this.usuarioSeleccionado.persona.paterno=this.paterno
+      this.usuarioSeleccionado.persona.materno=this.materno
+      this.usuarioSeleccionado.persona.email=this.email
       this.usuarioSeleccionado.notificar=this.notificarNumber
       
   

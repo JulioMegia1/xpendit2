@@ -28,7 +28,7 @@ import { BuscamaquinaproductoPage } from "../pages/buscamaquinaproducto/buscamaq
 /**********servicios******/
 import { AuthserviceProvider } from "../providers/authservice/authservice";
 import { CatalogserviceProvider } from "../providers/catalogservice/catalogservice";
-import { ExtraserviceProvider } from "../providers/extraservice/extraservice";
+//import { ExtraserviceProvider } from "../providers/extraservice/extraservice";
 import { MvserviceProvider  } from "../providers/mvservice/mvservice";
 import { SelectserviceProvider } from "../providers/selectservice/selectservice";
 import { CIprovider } from "../providers/data/data"
@@ -170,7 +170,7 @@ FusionChartsModule.fcRoot(FusionCharts, Charts, TimeSeries,Ocean,Gammel,Zune,Wid
     /*Servicios**/
     AuthserviceProvider,
     CatalogserviceProvider,
-    ExtraserviceProvider,
+    //ExtraserviceProvider,
     MvserviceProvider,
     SelectserviceProvider,
     CIprovider,

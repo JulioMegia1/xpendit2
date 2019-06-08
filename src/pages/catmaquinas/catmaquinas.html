@@ -334,19 +334,22 @@
     </ion-list>
     
     <!-- Tabla -->
-    <ion-scroll scrollX="true" style="height: 2800px;">
+    <!-- <ion-scroll scrollX="true" style="height: 2800px;"> -->
 
     <ion-card style="overflow-x: auto;">
     <ng2-smart-table [settings]="settings" [source]="source" 
      (custom)="cargarDatos($event)"
      (deleteConfirm)="onDeleteConfirm($event)" 
      (editConfirm)="onSaveConfirm($event)"
-     (createConfirm)="onCreateConfirm($event)"></ng2-smart-table>
+     (createConfirm)="onCreateConfirm($event)"> <ion-scroll scrollX="true" style="height: 2800px;"></ion-scroll></ng2-smart-table>
     </ion-card>
-</ion-scroll>
+<!-- </ion-scroll> -->
 
 
 
+<ion-grid>
+<ion-row>
+<ion-col>
 <ion-item *ngFor="let prod of fila1productos">
     <ion-label>{{prod.key}}</ion-label>
     <ionic-selectable 
@@ -359,9 +362,12 @@
       (onChange)="portChange($event)">
     </ionic-selectable>
 </ion-item>
+</ion-col>
+</ion-row>
 
 
-
+<ion-row>
+<ion-col>
 <ion-item *ngFor="let prod of fila2productos">
     <ion-label>{{prod.key}}</ion-label>
     <ionic-selectable 
@@ -374,6 +380,12 @@
       (onChange)="portChange($event)">
     </ionic-selectable>
 </ion-item>
+</ion-col>
+</ion-row>
+
+
+<ion-row>
+<ion-col>
 
 <ion-item *ngFor="let prod of fila3productos">
     <ion-label>{{prod.key}}</ion-label>
@@ -387,6 +399,12 @@
       (onChange)="portChange($event)">
     </ionic-selectable>
 </ion-item>
+</ion-col>
+</ion-row>
+
+
+<ion-row>
+<ion-col>
 
 
 <ion-item *ngFor="let prod of fila4productos">
@@ -401,7 +419,12 @@
       (onChange)="portChange($event)">
     </ionic-selectable>
 </ion-item>
+</ion-col>
+</ion-row>
 
+
+<ion-row>
+<ion-col>
 
 <ion-item *ngFor="let prod of fila5productos">
     <ion-label>{{prod.key}}</ion-label>
@@ -415,10 +438,16 @@
       (onChange)="portChange($event)">
     </ionic-selectable>
 </ion-item>
+</ion-col>
+</ion-row>
 
 
-<ion-item *ngFor="let prod of fila6productos">
-    <ion-label>{{prod.key}}</ion-label>
+<ion-row>
+<ion-col>
+
+
+<ion-item *ngFor="let prod of fila6productos" stye="width:20px">
+    <ion-label >{{prod.key}}</ion-label>
     <ionic-selectable 
       item-content 
       [(ngModel)]=prod.indice
@@ -429,6 +458,16 @@
       (onChange)="portChange($event)">
     </ionic-selectable>
 </ion-item>
+</ion-col>
+</ion-row>
+
+
+</ion-grid>
+
+
+<button ion-button (click)="verlistas()">VER PRODUCTOS
+
+</button>
 
 
 

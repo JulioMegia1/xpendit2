@@ -1304,14 +1304,7 @@ for(let i=0;i<this.listaproductos.length;i=i+1)
   }
 }
 
-
-
-
-
 console.log(this.fila1productos);
-
-
-
 
 // this.fila7productos=ArrayProductos.filter(this.funcionfila7);
 // console.log(this.fila7productos);
@@ -1332,6 +1325,10 @@ console.log(this.fila1productos);
       console.log(err);
     }
     );
+}
+
+verlistas(){
+  console.log(this.fila1productos)
 }
 
 
