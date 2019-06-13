@@ -67,7 +67,7 @@ import { IonicSelectableModule } from 'ionic-selectable';
 /*plugins*/
 import { Camera } from '@ionic-native/camera';
 import { FileTransfer } from '@ionic-native/file-transfer';
-import { File } from '@ionic-native/file';
+import { File } from "@ionic-native/file";
 
 /*plugin hide header*/
 import {ScrollingHeaderModule} from 'ionic-scrolling-header';
@@ -86,6 +86,11 @@ import * as Zune from 'fusioncharts/themes/fusioncharts.theme.zune';
 import * as Gammel from 'fusioncharts/themes/fusioncharts.theme.gammel';
 import * as Widgets from 'fusioncharts/fusioncharts.widgets';
 FusionChartsModule.fcRoot(FusionCharts, Charts, TimeSeries,Ocean,Gammel,Zune,Widgets);
+
+
+/*filetransfer*/
+
+
 
 @NgModule({
   declarations: [

@@ -278,6 +278,27 @@ tipoUsuariopermisos:any;
       else
       {
 
+        let caracteresNovalidos:number=0;
+        for(let i =0; i<this.usuario.length;i=i+1){
+          console.log(this.usuario[i])
+          if(this.usuario[i]==" " || this.usuario[i]=="*" || this.usuario[i]=="&" || this.usuario[i]=="%" ||this.usuario[i]=="'" || this.usuario[i]=="." || this.usuario[i]=='"' 
+          ){
+            console.log("Caracteres no validos")
+            caracteresNovalidos=1
+          }
+          else{
+            console.log("continua")
+          }
+        }
+        console.log(caracteresNovalidos)
+        if(caracteresNovalidos==1){
+          console.log("Usuario con caracteres Ingresados no permitidos");
+         this.mensaje="Usuario con caracteres Ingresados no permitidos"
+         this.showAlert();
+        }
+
+        else{
+
         let pwdencriptada={ password:this.password}; //contraseña en formato requerido para que el JSON lo encripte
         this.authservice.encripta(pwdencriptada).then(async (result)=>{
           console.log(result);
@@ -299,7 +320,7 @@ tipoUsuariopermisos:any;
           }
           );
       }
-    }
+    }}
   }
 
   newUsuario(datos){
@@ -485,7 +506,26 @@ tipoUsuariopermisos:any;
         this.showAlert();
     }
     else
-    {
+    { let caracteresNovalidos:number=0;
+      for(let i =0; i<this.usuario.length;i=i+1){
+        console.log(this.usuario[i])
+        if(this.usuario[i]==" " || this.usuario[i]=="*" || this.usuario[i]=="&" || this.usuario[i]=="%" ||this.usuario[i]=="'" || this.usuario[i]=="." || this.usuario[i]=='"' 
+        ){
+          console.log("Caracteres no validos")
+          caracteresNovalidos=1
+        }
+        else{
+          console.log("continua")
+        }
+      }
+      console.log(caracteresNovalidos)
+      if(caracteresNovalidos==1){
+        console.log("Usuario con caracteres Ingresados no permitidos");
+       this.mensaje="Usuario con caracteres Ingresados no permitidos"
+       this.showAlert();
+      }else{
+
+
       await this.encriptacontrasena(this.password)
       // this.usuarioSeleccionado.password=this.pwdEncriptada.password;
       
@@ -511,7 +551,7 @@ tipoUsuariopermisos:any;
       // }
       // )
   };
-}
+}}
 }
 
   updUsuario(data){
@@ -610,6 +650,32 @@ onSaveConfirm(event) { //Editar los productos
     this.showAlert();
   }
   else{
+
+
+    let caracteresNovalidos:number=0;
+    for(let i =0; i<event.newData.usuario.length;i=i+1){
+      console.log(event.newData.usuario[i])
+      if(event.newData.usuario[i]==" " || event.newData.usuario[i]=="*" || event.newData.usuario[i]=="&" || event.newData.usuario[i]=="%" ||event.newData.usuario[i]=="'" || event.newData.usuario[i]=="." || event.newData.usuario[i]=='"' 
+      ){
+        console.log("Caracteres no validos")
+        caracteresNovalidos=1
+      }
+      else{
+        console.log("continua")
+      }
+    }
+    console.log(caracteresNovalidos)
+    if(caracteresNovalidos==1){
+      console.log("Usuario con caracteres Ingresados no permitidos");
+     this.mensaje="Usuario con caracteres Ingresados no permitidos"
+     this.showAlert();
+    }
+    else{
+
+    
+
+    
+
     event.newData.persona.nombre=event.newData.nombre
     event.newData.persona.paterno=event.newData.paterno
     event.newData.persona.materno=event.newData.materno
@@ -620,5 +686,5 @@ onSaveConfirm(event) { //Editar los productos
     this.showAlert();
   }
 }
-}
+}}
 }

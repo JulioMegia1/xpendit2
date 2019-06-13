@@ -75,10 +75,14 @@
         </ion-list>
 
     <!-- Tabla productos -->
+
+    <ion-card style="overflow-x: auto;">
+
     <ng2-smart-table [settings]="settings" [source]="source"  
     (custom)="cargarDatos($event)" 
     (deleteConfirm)="onDeleteConfirm($event)" 
     (editConfirm)="onSaveConfirm($event)"
     (createConfirm)="onCreateConfirm($event)" ></ng2-smart-table>
+</ion-card>
 
 </ion-content>

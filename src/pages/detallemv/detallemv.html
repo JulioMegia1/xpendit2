@@ -47,23 +47,73 @@
 
   <!-- TACOMETRO -->
   <div style="justify-content:center;display:flex" [hidden]="hiddenGraficasTacometrosContables">
-    <tacometroproductos #tacProd></tacometroproductos> 
-    <tacometroventas #tacVent></tacometroventas>
+    
+    <ion-grid>
+      <ion-row>
+        <ion-col></ion-col>
+        <ion-col>
+          <tacometroproductos #tacProd></tacometroproductos> 
+      </ion-col>
+      <ion-col></ion-col>
+      </ion-row>
+  
+      <ion-row>
+          <ion-col></ion-col>
+          <ion-col>
+            <tacometroventas #tacVent></tacometroventas>
+          </ion-col>
+          <ion-col></ion-col>
+        </ion-row>
+      </ion-grid>
+
+
+
+
+
   </div>
   
   <!-- CONTABLES -->
-  <ion-card style="border-radius: 10px" [hidden]="hiddenGraficasTacometrosContables">
+<cardexpandible title="Contables {{nombremaquina}}">
+    <ion-grid>
+        <ion-row  *ngFor="let contable of contables">
+          <ion-col>
+         
+            <b>{{contable.label}}:</b> 
+          
+          
+          </ion-col>
+          <ion-col>
+              {{contable.value}} 
+
+
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+
+</cardexpandible>
+
+  <!-- <ion-card style="border-radius: 10px" [hidden]="hiddenGraficasTacometrosContables">
     <ion-card-header style="color:#ffffff;background-color: #242b5f;border-radius: 10px;">
        <b> Valor acumulado desde último reinicio : {{nombremaquina}}</b>
     </ion-card-header>
     <ion-card-content>
       <ion-grid>
-        <ion-row>
-          <ion-col *ngFor="let contable of contables"><b>{{contable.label}}:</b> {{contable.value}} </ion-col>
+        <ion-row  *ngFor="let contable of contables">
+          <ion-col>
+         
+            <b>{{contable.label}}:</b> 
+          
+          
+          </ion-col>
+          <ion-col>
+              {{contable.value}} 
+
+
+          </ion-col>
         </ion-row>
       </ion-grid>
     </ion-card-content>
-  </ion-card> 
+  </ion-card>  -->
 
   <!-- VENTA POR HORA -->
   <ion-card [hidden]="hiddenGraficasTacometrosContables">

@@ -802,8 +802,12 @@ getMaximos(){
 
 
 modificarMaximos(){
-  this.disabledinputsmaximos=false;
-
+  if(this.disabledinputsmaximos==false){
+    this.disabledinputsmaximos=true  
+  }
+  else{
+  this.disabledinputsmaximos=false
+  }
 
 }
 
@@ -897,11 +901,24 @@ getRielesIgnorados(){
 
 
 modificarIgnorados(){
-  this.disabledCheckboxignorados=false;
+  if(this.disabledCheckboxignorados==false){
+    this.disabledCheckboxignorados=true;
+  }
+  else{
+    this.disabledCheckboxignorados=false;
+  }
+  
 
 
 }
 guardarIgnorados(){
+
+  if(this.disabledCheckboxignorados==true){
+
+  }
+  else{
+
+  
   console.log(this.fila1ignorados)
   console.log(this.fila2ignorados)
   console.log(this.fila1ignorados)
@@ -959,7 +976,7 @@ guardarIgnorados(){
   this.mensaje="Rieles ignorados de la máquina \n" +this.infomaquinaSeleccionada.descripcion+" modificados exitosamente";
   this.showAlert();
   this.disabledCheckboxignorados=true;
-
+}
 
 }
 
@@ -1338,10 +1355,34 @@ portChange(event: {
 }) {
   console.log('port:', event.value);
   console.log("cambio el valor")
-  console.log(this.port);
+  console.log(event);
+
+
+  console.log(this.idMaquina)
+  console.log(event.component._label)
+  console.log(event.value.label)
+
+
+  let datos={label:event.component._label,value:event.value.label} //
+  console.log(datos)
+  this.mvService.updproducto(datos,this.idMaquina).then((result)=>{
+    console.log(datos)
+    console.log(result);
+    this.mensaje="El producto ha sido actualizado"
+    this.showAlert();
+
+     },(err)=>{
+       console.log(err);
+     }
+     );
   
   
 }
+
+updProducto(){
+  
+  }
+
 
 
 

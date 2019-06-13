@@ -224,6 +224,8 @@ hiddengraficas=false;
     
   }
 /**********************************SELECTABLE de productos**************************/
+seguro(){console.log("seguro")}
+
 
 portChange2(event: {
   component: IonicSelectableComponent,
@@ -233,6 +235,10 @@ portChange2(event: {
   console.log("cambio el valor")
   console.log(this.port2);
   this.nombreproducto=this.port2.value;
+
+
+
+
   this.putnuevoproducto();
     
 }

@@ -8,13 +8,18 @@
             <ion-item>
                 <ion-label>Máquinas</ion-label>
                 <ionic-selectable 
+                (click)="seguro()"
                   item-content 
                   [(ngModel)]="port"
                   [items]="ports"
                   itemValueField="label"
                   itemTextField="value"
                   [canSearch]="true"
-                  (onChange)="portChange($event)">
+                  (onChange)="portChange($event)"
+                  closeButtonText="Cancelar"
+
+                  closeButtonSlot="end"
+                  >
                 </ionic-selectable>
             </ion-item>
         
@@ -27,14 +32,11 @@
     </ion-header>
       
     <!-- INF PRODUCTO -->
-    <ion-card style="margin-top:60px"> 
+    <ion-card style="margin-top:80px"> 
         <ion-grid>
+            
             <ion-row>
-                <ion-col col-6>
-                    <ion-label style="background: #18703d; color:#fff;padding:10px;border-radius: 10px;"> Selección:{{riel}}</ion-label>     
-                </ion-col>
-
-                <ion-col col-6>
+                <ion-col>
                     <ion-item>
                         <ion-label>Producto: </ion-label>
                         <ionic-selectable 
@@ -48,6 +50,12 @@
                         (onChange)="portChange2($event)">
                         </ionic-selectable>
                     </ion-item>
+                </ion-col>
+            </ion-row>
+
+            <ion-row>
+                <ion-col col-6>
+                    <ion-label style="background: #18703d; color:#fff;padding:10px;border-radius: 10px;"> Selección:{{riel}}</ion-label>     
                 </ion-col>
             </ion-row>
 

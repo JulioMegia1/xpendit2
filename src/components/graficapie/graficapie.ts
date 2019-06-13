@@ -26,16 +26,16 @@ export class GraficapieComponent {
       "showToolTip": "0",
       "numberprefix": "$",
       "enablemultislicing": "0",
-      "legendposition": "right",
+      "legendposition": "bottom",
       "showlegend": "1",
       "formatnumberscale": "0",
       "showpercentvalues": "0",
-      "legendIconScale": "2",
+      "legendIconScale": "1",
 
 
-      "legendItemFontSize": "14",
+      "legendItemFontSize": "10",
       "legendItemFontBold": "0",
-      "valueFontSize": "14",
+      "valueFontSize": "10",
 
 
 

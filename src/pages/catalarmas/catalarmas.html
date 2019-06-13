@@ -92,6 +92,9 @@
                     </ion-list>
 
 <!-- tabla alarmas -->
-        <ng2-smart-table [settings]="settings" [source]="source"  (custom)="cargarDatos($event)"></ng2-smart-table>
+<ion-card style="overflow-x: auto;">
+        
+<ng2-smart-table [settings]="settings" [source]="source"  (custom)="cargarDatos($event)"></ng2-smart-table>
+</ion-card>
 
 </ion-content>

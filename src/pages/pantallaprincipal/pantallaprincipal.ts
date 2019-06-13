@@ -94,9 +94,9 @@ leafletMap(){
 }
 /*mapa leaflet*/
 
-  ira(){
-    this.navCtrl.push(DetallemvPage)
-  }
+  // ira(){
+  //   this.navCtrl.push(DetallemvPage)
+  // }
 
 mapa(usuario){
   this.mvservice.mapa(usuario).then(result=>{
