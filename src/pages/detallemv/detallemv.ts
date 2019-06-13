@@ -231,6 +231,7 @@ portChange(event: {
 actualizarInfoRieles(){
   this.navCtrl.push(ActualizamvPage);
   this.ciService.setIdMaquinaActualiza(this.seleccion)
+  this.ciService.setNombreMaquina(this.nombremaquina)
   // this.navCtrl.push(ActualizamvPage,{"seleccion":this.seleccion});
 }
 

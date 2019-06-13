@@ -15,6 +15,7 @@ export class ActualizamvPage {
   @ViewChild(Content) content: Content;
 
   idmaquina:any;
+  nombreMaquina:any;
   existencias:any;
   productos:any;
   precios:any;
@@ -56,6 +57,8 @@ export class ActualizamvPage {
     public selectService:SelectserviceProvider,public mvservice:MvserviceProvider) 
   {
 this.idmaquina=this.ciService.getIdmaquinaActualiza();    // console.log(this.obtenido)
+this.nombreMaquina=this.ciService.getNombreMaquina();
+console.log(this.nombreMaquina);
     // this.obtenermaquinas();
     this.Selectproductos();
   }

@@ -1,6 +1,6 @@
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous"> 
  
-<cardexpandible title="Existencias" >
+<cardexpandible title="Existencias {{nombreMaquina}}" >
     <ion-scroll scrollX="true" scrollY="true" direction="x" direction="y" style="height:800px;">
         <!-- <ion-card *ngFor="let rielexistencia of rielexistencias" >
             <ion-label> {{rielexistencia.riel}}</ion-label>
@@ -73,11 +73,7 @@
 
 </cardexpandible>
 
-
-
-
-
-<cardexpandible title="Precios" >
+<cardexpandible title="Precios {{nombreMaquina}}" >
                 <ion-scroll scrollX="true" scrollY="true" direction="x" direction="y" style="height:750px;">
                     <!-- <ion-card *ngFor="let rielexistencia of rielexistencias" >
                         <ion-label> {{rielexistencia.riel}}</ion-label>
@@ -147,17 +143,4 @@
                   
                   </ion-scroll>
             
-            </cardexpandible>
-
-
-
-
-<!-- 
-<cardexpandible>
-        <ng2-smart-table [settings]="settings10" [source]="datafila10" 
-    
-  
-     (editConfirm)="onSaveConfirm($event)"
-    ></ng2-smart-table>
-
-</cardexpandible>  -->
+</cardexpandible>

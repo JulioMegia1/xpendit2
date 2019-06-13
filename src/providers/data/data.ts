@@ -12,6 +12,9 @@ export class CIprovider {
   idmaquinaActualiza:any;
   idmaquinaCatalogo:any;
   idproducto:any;
+
+
+  nombreMaquina:any;
   
     constructor(public http: HttpClient,public selectprovider:SelectserviceProvider,public mvService:MvserviceProvider) {
      
@@ -79,6 +82,20 @@ setIdMaquinaCatalogo(datos) {
  console.log(this.idmaquinaCatalogo)
    
  return this.idmaquinaCatalogo;
+}  
+
+
+
+
+setNombreMaquina(datos) {
+  this.nombreMaquina = datos;  
+  console.log("Servicio usuario"+this.nombreMaquina) 
+  // this.getdefault();
+  
+}
+
+  getNombreMaquina() {
+  return this.nombreMaquina;
 }  
 
 

@@ -14,6 +14,7 @@ import { MvserviceProvider } from "../../providers/mvservice/mvservice";
 export class ActualizaComponent {
   
   idmaquina:any;
+  nombreMaquina:any;
   infoExistencia:any;
 
   existencias:any;
@@ -67,6 +68,9 @@ export class ActualizaComponent {
 
     this.idmaquina=this.ciService.getIdmaquinaActualiza();
     console.log(this.idmaquina);
+
+    this.nombreMaquina=this.ciService.getNombreMaquina();
+    console.log(this.nombreMaquina)
 
     this.getrielexistencia(this.idmaquina)
     this.getrielprecio(this.idmaquina)
