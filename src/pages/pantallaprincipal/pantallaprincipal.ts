@@ -15,6 +15,15 @@ import L from "leaflet";
 import { map } from 'rxjs/operator/map';
  /*servicios*/
 
+
+/*componentes*/
+import { VentaxhoraComponent } from "../../components/ventaxhora/ventaxhora";
+import { VentaxdiaComponent } from "../../components/ventaxdia/ventaxdia";
+import { GraficapieComponent } from "../../components/graficapie/graficapie";
+import { HistoricoComponent } from "../../components/historico/historico";
+
+
+
 @IonicPage()
 @Component({
   selector: 'page-pantallaprincipal',
@@ -23,6 +32,13 @@ import { map } from 'rxjs/operator/map';
 export class PantallaprincipalPage {
 
   @ViewChild(Content) content: Content;
+
+  @ViewChild("ventaXhora") ventaxhora:VentaxhoraComponent;
+  @ViewChild("ventaXdia") ventaxdia:VentaxdiaComponent;
+  @ViewChild("graficaPie") graficapie:GraficapieComponent;
+  @ViewChild("historicoGral") historicogral:HistoricoComponent
+
+
 
   usuario:any;
   tipoUsuario:any;
@@ -42,16 +58,24 @@ export class PantallaprincipalPage {
     this.tipoUsuario=this.ciService.getTipoUsuario();
   }
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad MapPage');
-}
+//   ionViewDidLoad() {
+//     console.log('ionViewDidLoad MapPage');
+// }
 
-ionViewDidEnter(){
+ionViewDidLoad(){
   this.center = [20.634012, -100.334345];
-  console.log(this.center)
+  // console.log(this.center)
   this.leafletMap();
   this.mapa(this.usuario);
 }
+
+// ngAfterContentInit() {
+  
+//   this.actualizarServicios();
+// }
+
+
+
 
 ionViewCanEnter(){//si el tipo de  usuario es Operador oculta 
   if(this.tipoUsuario=="Operador"){
@@ -64,13 +88,25 @@ ionViewCanEnter(){//si el tipo de  usuario es Operador oculta
 
 }
 
-ngAfterViewInit()  {
+actualizarServicios()  {
 let interval = setInterval(()=> {
   console.log("hello");
-  // this.mapa(this.usuario);
-  //this.getmaquinas();
+  this.center = [20.634012, -100.334345];
+  console.log(this.center)
+  // this.leafletMap();
+  this.mapa(this.usuario);
+  this.ventaxhora.updateData();
+  this.ventaxdia.updateData();
+  this.graficapie.updateData();
+  
 },35000);
 }
+
+// ionViewDidEnter(){
+//   console.log("AQUI PON ESE CODIGO JJULIOOOOOOOOOOOOOOOOOOOOO")
+//   this.actualizarServicios();
+// }
+
 
 /*mapa leaflet*/
 leafletMap(){
@@ -94,9 +130,6 @@ leafletMap(){
 }
 /*mapa leaflet*/
 
-  // ira(){
-  //   this.navCtrl.push(DetallemvPage)
-  // }
 
 mapa(usuario){
   this.mvservice.mapa(usuario).then(result=>{

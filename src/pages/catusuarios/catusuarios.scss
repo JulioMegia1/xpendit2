@@ -21,15 +21,25 @@ page-catusuarios {
     }
 
     ion-label{
-        background:#18703d;
-        color:#fff;
-        font-size: 16px;
+        // background:#18703d;
+        color:#18703d;
+        font-size: 20px;
         font-weight: bold;
         
 
-        padding:10px;
+        // padding:10px;
         border-radius: 10px;
+    
     }
+
+    .item-input .label-md{
+        color: #18703d;
+        font-weight: bold;
+        font-size: 20px;
+}
+
+
+
     ion-input{
         border: 1px solid #ccc;
         border-radius: 4px;

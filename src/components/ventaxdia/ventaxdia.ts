@@ -63,4 +63,11 @@ export class VentaxdiaComponent {
 
 
 
+updateData(){
+    this.getgrafica(this.usuario); //obtener datos de la grafica
+  }
+  
+
+
+
 }

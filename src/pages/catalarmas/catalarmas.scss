@@ -19,12 +19,12 @@ page-catalarmas {
     }
 
     ion-label{
-        background:#18703d;
-        color:#fff;
-        padding:10px;
-        border-radius: 10px;
-        font-size: 16px;
-        font-weight: bold;
+        // background:#18703d;
+        // color:#fff;
+        // padding:10px;
+        // border-radius: 10px;
+        // font-size: 16px;
+        // font-weight: bold;
         
     }
 
@@ -48,6 +48,13 @@ page-catalarmas {
         border: 1px solid #ccc;
         border-radius: 4px;
     }
+
+
+    .item-input .label-md{
+        color: #18703d;
+        font-weight: bold;
+        font-size: 20px;
+}
 
 
 

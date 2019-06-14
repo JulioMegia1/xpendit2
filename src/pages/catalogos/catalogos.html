@@ -8,36 +8,35 @@
     <ion-grid>
         <ion-row>
           <ion-col >
-            <ion-card text-center>
+            <ion-card text-center  (click)="irmaquinas()" >
                 <h2 style="color: white;font-weight: bold;font-size: 24px" style="color: white;font-weight: bold;font-size: 24px">Máquinas</h2>
-                <ul><li><a (click)="irmaquinas()"><i  class="fa fa-calculator" aria-hidden="true"></i></a></li></ul>
+                <i  class="fa fa-calculator" aria-hidden="true"></i>
             </ion-card>
           </ion-col>
 
           <ion-col >
-            <ion-card text-center>
-                <h2 style="color: white;font-weight: bold;font-size: 24px">Productos</h2>  
-                <ul><li>  <a (click)="irproductos()"><i  class="fas fa-coffee" aria-hidden="true"></i></a></li></ul> 
-            </ion-card>
-          </ion-col>
-        </ion-row>
-
-        <ion-row>
-          <ion-col >
-            <ion-card text-center>
-               <h2 style="color: white;font-weight: bold;font-size: 24px">Usuarios</h2>
-               <ul><li><a (click)="irusuarios()"><i  class="fa fa-user" aria-hidden="true"></i></a></li></ul>
-           </ion-card>
-          </ion-col>
-
-          <ion-col>
-              <ion-card text-center>
-                  <h2 style="color: white;font-weight: bold;font-size: 24px">Alarmas</h2>  
-                  <ul><li>  <a (click)="iralarmas()"><i  class="fa fa-bell" aria-hidden="true"></i></a></li></ul>
+              <ion-card text-center (click)="irproductos()" >
+                  <h2 style="color: white;font-weight: bold;font-size: 24px">Productos</h2>  
+                 <i  class="fas fa-coffee" aria-hidden="true"></i>
               </ion-card>
-          </ion-col>
-        </ion-row>
-      </ion-grid>
+            </ion-col>
+          </ion-row>
+
+          <ion-row>
+              <ion-col >
+                <ion-card text-center (click)="irusuarios()">
+                   <h2 style="color: white;font-weight: bold;font-size: 24px">Usuarios</h2>
+                   <i  class="fa fa-user" aria-hidden="true"></i>
+               </ion-card> 
+              </ion-col>
+              <ion-col>
+                  <ion-card text-center (click)="iralarmas()">
+                      <h2 style="color: white;font-weight: bold;font-size: 24px">Alarmas</h2>  
+                      <i  class="fa fa-bell" aria-hidden="true"></i>
+                  </ion-card>
+              </ion-col>
+            </ion-row>
+          </ion-grid>
 
 
 

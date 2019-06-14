@@ -261,4 +261,29 @@ getproductomaquina(idmaquina){
 
   }
 
+
+  actualizarServicios()  {
+    let interval = setInterval(()=> {
+      console.log("hello");
+      this.prodinv.updatedata();
+      this.tacprod.updatedata();
+      this.tacvent.updatedata();
+      this.ventaxhora.updatedata();
+      this.ventaxdia.updatdata();
+      this.histoventaprod.updatedata();
+    
+      
+    },35000);
+    }
+
+
+    // ionViewDidEnter(){
+    //   console.log("AQUI PON ESE CODIGO JJULIOOOOOOOOOOOOOOOOOOOOO")
+    //   this.actualizarServicios();
+    // }
+
+
+
+    
+
 }

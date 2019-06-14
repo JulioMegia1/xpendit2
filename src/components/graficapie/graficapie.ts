@@ -97,7 +97,7 @@ export class GraficapieComponent {
 }
 
 events = {
-    dataPlotRollOver: this.getPercentValue()
+    dataPlotClick: this.getPercentValue()
 }
 
 getPercentValue() {
@@ -112,5 +112,15 @@ getPercentValue() {
     })
   }
 }
+
+
+
+
+updateData(){
+  this.getgrafica(this.usuario); //obtener datos de la grafica
+}
+
+
+
 
 }

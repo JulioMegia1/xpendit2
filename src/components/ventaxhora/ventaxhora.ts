@@ -69,4 +69,22 @@ ngOnInit(){
   );
 }
 
+
+ngAfterViewInit()  {
+  let interval = setInterval(()=> {
+    console.log("hello");
+    // this.leafletMap();
+    this.getgrafica(this.usuario); //obtener datos de la grafica
+  },35000);
+  }
+
+
+
+  updateData(){
+    this.getgrafica(this.usuario); //obtener datos de la grafica
+  }
+  
+
+
+
 }

@@ -378,4 +378,27 @@ portChange2(event: {
       });
       alert.present();
     }
+
+
+    actualizarServicios()  {
+      let interval = setInterval(()=> {
+        console.log("hello");
+        this.getinfoproducto(this.idmaquina,this.riel);
+        this.getproductomaquina(this.idmaquina);
+         this.ventahora.updatedata();
+         this.ventahoraacum.updatedata();   
+         this.historico.updatedata();
+      
+      
+        
+      },35000);
+      }
+
+      // ionViewDidEnter(){
+      //   console.log("AQUI PON ESE CODIGO JJULIOOOOOOOOOOOOOOOOOOOOO")
+      //   this.actualizarServicios();
+      // }
+
+
+
 }

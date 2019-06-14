@@ -12,39 +12,53 @@
         <ion-card-content>
             <ion-grid>
                 <ion-row>
-                    <ion-col col-auto col-sm-6>
+                        <!-- <ion-col col-auto col-sm-6>
+                                <ion-item>
+                                    <ion-label fixed style="background: #18703d; color:#fff;padding:10px;border-radius: 10px;"> Latitud*</ion-label>
+                                    <ion-input  placeholder="Latitud*" type="number" [(ngModel)]="Latitud"></ion-input>
+                                </ion-item> -->
+                            <!-- </ion-col> -->
+                    <ion-col col-auto>
                         <ion-item>
-                            <!-- <ion-label fixed style="background: #18703d; color:#fff;padding:10px;border-radius: 10px;"> Descripcion*</ion-label> -->
+                            <ion-label  style="background: #18703d; color:#fff;padding:10px;border-radius: 10px;"> Descripcion*</ion-label>
                             <ion-input  placeholder="Descripcion*"  [(ngModel)]="descripcion" [disabled]="inputsdisabled"></ion-input>
                         </ion-item>
                     </ion-col>
-                    <ion-col col-auto col-sm-6>
-                        <!-- <ion-label fixed style="background: #18703d; color:#fff;padding:10px;border-radius: 10px;"> Tipo*</ion-label> -->
+                    </ion-row><ion-row>
+                    <ion-col col-auto>
+                            <!-- <ion-label>Tipo</ion-label> -->
+
                         <ion-list>
-                            <ion-item>
-                                    <ion-select [(ngModel)]="tipo" okText="Aceptar" cancelText="Cancelar" interface="popover" placeholder="Tipo Máquina" [disabled]="inputsdisabled">
+                            <!-- <ion-item> -->
+                                    <!-- <ion-label  style="background: #18703d; color:#fff;padding:10px;border-radius: 10px;"> Tipo*</ion-label> -->
+                                    <!-- <ion-label>Tipo</ion-label> -->
+
+                                    <ion-select [(ngModel)]="tipo" okText="Aceptar" cancelText="Cancelar" interface="popover" placeholder="Tipo Máquina" [disabled]="inputsdisabled" style="width: 100%;max-width: 100% !important;font-size: 16px;font-weight: bold;border: 1px solid #ccc;border-radius: 4px;">
                                         <ion-option *ngFor="let tipo of selectTipoMaquina" value="{{tipo.value}}"> {{tipo.label}}</ion-option>
                                     </ion-select>
-                            </ion-item>
+                            <!-- </ion-item> -->
                         </ion-list>  
                     </ion-col>
-                </ion-row>
+                </ion-row>           
       
                 <ion-row>
-                    <ion-col col-auto col-sm-2>
-                        <!-- <ion-label fixed style="background: #18703d; color:#fff;padding:10px;border-radius: 10px;"> Modelo*</ion-label> -->
+                    <ion-col col-auto>
 
                         <ion-list>
                             <ion-item>
-                                    <ion-select [(ngModel)]="modelo"   okText="Aceptar" cancelText="Cancelar" interface="popover" placeholder="Modelo" [disabled]="inputsdisabled">
+                                    <!-- <ion-label  style="background: #18703d; color:#fff;padding:10px;border-radius: 10px;"> Modelo*</ion-label> -->
+
+                                    <ion-select [(ngModel)]="modelo"   okText="Aceptar" cancelText="Cancelar" interface="popover" placeholder="Modelo" [disabled]="inputsdisabled" style="width: 100%;max-width: 100% !important;font-size: 16px;font-weight: bold;border: 1px solid #ccc;border-radius: 4px;">
                                         <ion-option *ngFor="let modelo of selectModeloMaquina" value="{{modelo.value}}"> {{modelo.label}}</ion-option>
                                     </ion-select>
                             </ion-item>         
                         </ion-list>                       
                     </ion-col>
-                    <ion-col col-auto col-sm-6>
+                </ion-row><ion-row>
+
+                    <ion-col col-auto>
                         <ion-item>
-                            <!-- <ion-label fixed style="background: #18703d; color:#fff;padding:10px;border-radius: 10px;"> Direción*</ion-label> -->
+                            <ion-label fixed style="background: #18703d; color:#fff;padding:10px;border-radius: 10px;"> Direción*</ion-label>
                             <ion-input  placeholder="Dirección*" [(ngModel)]="direccion" [disabled]="inputsdisabled"></ion-input>
                         </ion-item>
                     </ion-col>
