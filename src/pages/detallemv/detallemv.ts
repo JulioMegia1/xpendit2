@@ -261,7 +261,6 @@ getproductomaquina(idmaquina){
 
   }
 
-
   actualizarServicios()  {
     let interval = setInterval(()=> {
       console.log("hello");
@@ -271,19 +270,12 @@ getproductomaquina(idmaquina){
       this.ventaxhora.updatedata();
       this.ventaxdia.updatdata();
       this.histoventaprod.updatedata();
-    
-      
     },35000);
     }
-
 
     ionViewDidEnter(){
       console.log("AQUI PON ESE CODIGO JJULIOOOOOOOOOOOOOOOOOOOOO")
       this.actualizarServicios();
     }
-
-
-
     
-
 }

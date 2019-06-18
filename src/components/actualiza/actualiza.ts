@@ -221,9 +221,7 @@ export class ActualizaComponent {
 
     }
 
-    // onSaveConfirm(event){
-    //   console.log(event)
-    // }
+    
 
     updExistencia(data,idmaquina){
         this.mvservice.updexistenciaAM(data,idmaquina).then(result=>{
@@ -236,10 +234,6 @@ export class ActualizaComponent {
         }
 
 
-       
-    
-
-   
 
   getrielproducto(idmaquina){
     this.mvservice.rielproducto(idmaquina).then(result=>{
@@ -337,80 +331,7 @@ export class ActualizaComponent {
         );
       }
 
-      // modificarPrecios(){
-      //   this.disabledinputsPrecios=false;
-  
-      // }
-  
-      // guardarPrecios(){
-      //   console.log(this.fila1precios)
-      //   console.log(this.fila2precios)
-      //   console.log(this.fila3precios)
-      //   console.log(this.fila4precios)
-      //   console.log(this.fila5precios)
-      //   console.log(this.fila6precios)
-      
-      // let preciosupd={}
-      // let riel
-      // let precio
-
-      // for(let i =0;i<this.fila1precios.length;i=i+1)
-      // {
-      //   riel=this.fila1precios[i].key;
-      //   precio=this.fila1precios[i].value;
-      //   preciosupd[riel]=precio
-      // }
-      // for(let i =0;i<this.fila2precios.length;i=i+1)
-      // {
-      //   riel=this.fila2precios[i].key;
-      //   precio=this.fila2precios[i].value;
-      //   preciosupd[riel]=precio
-      // }
-      // for(let i =0;i<this.fila3precios.length;i=i+1)
-      // {
-      //   riel=this.fila3precios[i].key;
-      //   precio=this.fila3precios[i].value;
-      //   preciosupd[riel]=precio
-      // }
-      // for(let i =0;i<this.fila4precios.length;i=i+1)
-      // {
-      //   riel=this.fila4precios[i].key;
-      //   precio=this.fila4precios[i].value;
-      //   preciosupd[riel]=precio
-      // }
-      // for(let i =0;i<this.fila5precios.length;i=i+1)
-      // {
-      //   riel=this.fila5precios[i].key;
-      //   precio=this.fila5precios[i].value;
-      //   preciosupd[riel]=precio
-      // }
-      // for(let i =0;i<this.fila6precios.length;i=i+1)
-      // {
-      //   riel=this.fila6precios[i].key;
-      //   precio=this.fila6precios[i].value;
-      //   preciosupd[riel]=precio
-      // }
-
-      // console.log(preciosupd)
-      // this.updPrecios(preciosupd,this.idmaquina)
-      // this.mensaje="Existencia Actualizada"
-      // this.showAlert();
-      // this.disabledinputsPrecios=true
-  
-      // }
-
-      // updPrecios(data,idmaquina){
-      //   this.mvservice.updprecioAM(data,idmaquina).then(result=>{
-      //     console.log(result);
-          
-      //     },(err)=>{
-      //       console.log(err);
-      //     }
-      //     );
-      //   }
-
-
-
+     
       showAlert() {
         const alert = this.alertCtrl.create({
           title: this.mensaje,

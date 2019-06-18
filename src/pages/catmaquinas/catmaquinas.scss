@@ -6,26 +6,22 @@ page-catmaquinas {
         border-radius: 10px;
         font-size: 16px;
         font-weight: bold;
-        
     }
 
     ion-textarea{
         border: 1px solid #ccc;
         border-radius: 4px;
         font-size: 16px;
-        font-weight: bold;
-        
+        font-weight: bold; 
     }
-
 
     ion-input{
         border: 1px solid #ccc;
         border-radius: 4px;
         font-size: 16px;
-        font-weight: bold;
-  
-      
+        font-weight: bold;    
     }
+    
     .map-container2 {
         // position: absolute;
         // top: 10px;
@@ -38,7 +34,6 @@ page-catmaquinas {
         position: relative;
       }
 
-      
       ion-select{
         // width: 100%;
         // max-width: 100% !important;
@@ -48,18 +43,14 @@ page-catmaquinas {
         border-radius: 4px;
     }
  
-
     ion-checkbox{
         border: 1px solid #ccc;
         border-radius: 4px;
-
     }
 
     ion-item.item-checkbox {
         padding-left: 0;
     }
-
-
 
     ion-scroll {
         min-height: 160px; 
@@ -67,16 +58,10 @@ page-catmaquinas {
         white-space: nowrap;
         //height: auto;
         //overflow: scroll;
-
-
             .scroll-content {
             padding: 0px !important;
             display: inline-block;
 
         }    
-    }
-
-   
-  
-      
+    }   
 }

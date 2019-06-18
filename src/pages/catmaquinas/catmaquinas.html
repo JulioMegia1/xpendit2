@@ -95,7 +95,7 @@
                     <ion-col col-auto col-sm-6>
                         <ion-list>
                             <ion-item>
-                                <ion-label fixed style="background: #18703d; color:#fff;padding:10px;border-radius: 10px;"> Asignados*</ion-label>
+                                <ion-label fixed style="background: #18703d; color:#fff;padding:10px;border-radius: 10px;" > Asignados*</ion-label>
                                     <ion-select [(ngModel)]="asignados"   okText="Aceptar" cancelText="Cancelar"  placeholder="Selecciona" multiple="true">
                                          <ion-option *ngFor="let usuario of infoasignados" value="{{usuario.value}}"> {{usuario.label}}</ion-option>
                                     </ion-select>
@@ -228,13 +228,13 @@
 
     <!--PRODUCTOS-->
     <cardexpandible title="Productos" style="overflow-x: auto;" [hidden]="cardshidden">
-        <ion-scroll scrollX="true" style="height:500px;">
+        <ion-scroll scrollX="true" style="height:775px;">
     <table>
     <tr>
     <th *ngFor="let prod of fila1productos">
-    <!-- <ion-item > -->
-        <ion-label>{{prod.key}}</ion-label>
-        <ionic-selectable 
+    <ion-label>{{prod.key}}</ion-label>
+    <ion-item >
+        <ionic-selectable  style=" width: 100%;max-width: 100% !important;"
           item-content 
           [(ngModel)]=prod.indice
           [items]="ports"
@@ -243,16 +243,15 @@
           [canSearch]="true"
           (onChange)="portChange($event)">
         </ionic-selectable>
-    <!-- </ion-item> -->
+    </ion-item>
     </th>
     </tr>
-    
     
     <tr>
     <th *ngFor="let prod of fila2productos">
-    <!-- <ion-item > -->
-        <ion-label>{{prod.key}}</ion-label>
-        <ionic-selectable 
+    <ion-label>{{prod.key}}</ion-label>
+    <ion-item >
+        <ionic-selectable  style=" width: 100%;max-width: 100% !important;"
           item-content 
           [(ngModel)]=prod.indice
           [items]="ports"
@@ -261,17 +260,15 @@
           [canSearch]="true"
           (onChange)="portChange($event)">
         </ionic-selectable>
-    <!-- </ion-item> -->
+    </ion-item>
     </th>
     </tr>
-    
     
     <tr>
     <th *ngFor="let prod of fila3productos">
-    
-    <!-- <ion-item > -->
-        <ion-label>{{prod.key}}</ion-label>
-        <ionic-selectable 
+    <ion-label>{{prod.key}}</ion-label>
+    <ion-item >
+        <ionic-selectable  style=" width: 100%;max-width: 100% !important;"
           item-content 
           [(ngModel)]=prod.indice
           [items]="ports"
@@ -280,18 +277,15 @@
           [canSearch]="true"
           (onChange)="portChange($event)">
         </ionic-selectable>
-    <!-- </ion-item> -->
+    </ion-item>
     </th>
     </tr>
-    
     
     <tr>
     <th *ngFor="let prod of fila4productos"> 
-    
-    
-    <!-- <ion-item > -->
-        <ion-label>{{prod.key}}</ion-label>
-        <ionic-selectable 
+    <ion-label>{{prod.key}}</ion-label>
+    <ion-item >
+        <ionic-selectable  style=" width: 100%;max-width: 100% !important;"
           item-content 
           [(ngModel)]=prod.indice
           [items]="ports"
@@ -300,17 +294,15 @@
           [canSearch]="true"
           (onChange)="portChange($event)">
         </ionic-selectable>
-    <!-- </ion-item> -->
+    </ion-item>
     </th>
     </tr>
-    
     
     <tr>
     <th *ngFor="let prod of fila5productos">
-    
-    <!-- <ion-item > -->
-        <ion-label>{{prod.key}}</ion-label>
-        <ionic-selectable 
+    <ion-label>{{prod.key}}</ion-label>
+    <ion-item >
+        <ionic-selectable  style=" width: 100%;max-width: 100% !important;"
           item-content 
           [(ngModel)]=prod.indice
           [items]="ports"
@@ -319,18 +311,15 @@
           [canSearch]="true"
           (onChange)="portChange($event)">
         </ionic-selectable>
-    <!-- </ion-item> -->
+    </ion-item>
     </th>
     </tr>
-    
     
     <tr>
     <th *ngFor="let prod of fila6productos">
-    
-    
-    <!-- <ion-item  > -->
-        <ion-label >{{prod.key}}</ion-label>
-        <ionic-selectable 
+    <ion-label >{{prod.key}}</ion-label>
+    <ion-item  >
+        <ionic-selectable  style=" width: 100%;max-width: 100% !important;"
           item-content 
           [(ngModel)]=prod.indice
           [items]="ports"
@@ -339,14 +328,11 @@
           [canSearch]="true"
           (onChange)="portChange($event)">
         </ionic-selectable>
-    <!-- </ion-item> -->
+    </ion-item>
     </th>
     </tr>
     </table>
-    
-    <button ion-button (click)="verlistas()">VER PRODUCTOS
-    
-    </button>
+        
     </ion-scroll>
     </cardexpandible>
 

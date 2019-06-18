@@ -2,15 +2,18 @@ import { NgModule,CUSTOM_ELEMENTS_SCHEMA,NO_ERRORS_SCHEMA } from '@angular/core'
 import { IonicPageModule } from 'ionic-angular';
 import { ComponentsModule } from "../../components/components.module";
 import { ActualizamvPage } from './actualizamv';
+import { IonicSelectableModule } from 'ionic-selectable';
+
 
 @NgModule({
   declarations: [
     ActualizamvPage,
-    ComponentsModule
+    ComponentsModule,
   ],
   imports: [
     IonicPageModule.forChild(ActualizamvPage),
-    ComponentsModule
+    ComponentsModule,
+    IonicSelectableModule
   ],
   schemas:[CUSTOM_ELEMENTS_SCHEMA,NO_ERRORS_SCHEMA]
 })

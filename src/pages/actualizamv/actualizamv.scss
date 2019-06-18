@@ -68,11 +68,15 @@ page-actualizamv {
         width:250px;
     }
 
-    ion-label
-    {
-        border: 1px solid #ccc;
-        border-radius: 4px;
+    ion-label{
+        background:#18703d;
+        color:#fff;
+        padding:10px;
+        border-radius: 10px;
+        font-size: 16px;
+        font-weight: bold;
     }
+
     
     // ion-col
     // {

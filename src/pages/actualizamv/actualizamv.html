@@ -4,230 +4,118 @@
 
 <ion-content >
 
-        <actualiza>
-                
-        </actualiza>
-
-    <!-- <cardexpandible title="Existencias">
-        <ion-scroll scrollX="true" scrollY="true" direction="x" direction="y"> -->
-            <!-- NO AGREGAR <ion-card *ngFor="let rielexistencia of rielexistencias" >
-                <ion-label> {{rielexistencia.riel}}</ion-label>
-                <ion-input placeholder={{rielexistencia.existencias}}> </ion-input>
-            </ion-card>   -->
-            <!-- <ion-grid>
-                <ion-row >
-                        <ion-col *ngFor="let prod of fila1existencias" col-auto >
-                                <ion-item>
-                                        <ion-label floating>Riel {{prod.key}}: </ion-label>
-                                        <ion-input value={{prod.value}} ></ion-input>
-                                </ion-item>
-                        </ion-col>
-                </ion-row>
-                <ion-row >
-                        <ion-col *ngFor="let prod of fila2existencias"  col-auto>
-                                <ion-item>
-                                        <ion-label floating>Riel {{prod.key}}: </ion-label>
-                                        <ion-input value={{prod.value}} ></ion-input>
-                                </ion-item>
-                        </ion-col>
-                </ion-row>
-                <ion-row >
-                        <ion-col *ngFor="let prod of fila3existencias" col-auto >
-                                <ion-item>
-                                        <ion-label floating>Riel {{prod.key}}: </ion-label>
-                                        <ion-input value={{prod.value}} ></ion-input>
-                                </ion-item>
-                        </ion-col>
-                </ion-row>
-                <ion-row >
-                        <ion-col *ngFor="let prod of fila4existencias" col-auto >
-                                <ion-item>
-                                        <ion-label floating>Riel {{prod.key}}: </ion-label>
-                                        <ion-input value={{prod.value}} ></ion-input>       
-                                </ion-item>                
-                        </ion-col>
-                </ion-row>    
-                <ion-row >
-                        <ion-col *ngFor="let prod of fila5existencias"  col-auto>
-                                <ion-item>
-                                        <ion-label floating>Riel {{prod.key}}: </ion-label>
-                                        <ion-input value={{prod.value}} ></ion-input>
-                                </ion-item>
-                        </ion-col>
-                </ion-row>
-                <ion-row >
-                        <ion-col *ngFor="let prod of fila6existencias" col-auto >
-                                <ion-item><ion-label floating>Riel {{prod.key}}: </ion-label>
-                                <ion-input value={{prod.value}} ></ion-input>
-                                </ion-item>
-                        </ion-col>
-                </ion-row>
-            </ion-grid>
-
-            <button ion-button round>Guardar</button>
-         </ion-scroll>
-    </cardexpandible> -->
-
-    <cardexpandible title="Productos {{nombreMaquina}}" >
-        <!-- <ion-scroll scrollX="true" direction="x" direction="y">
-             <ion-card *ngFor="let rielproducto of rielproductos">
-                <ion-label> {{rielproducto.riel}}</ion-label>
-                <ion-input placeholder={{rielproducto.producto}}> </ion-input>
-              </ion-card> 
-              <button ion-button round>Guardar</button>
-        </ion-scroll> -->
-        <ion-scroll scrollX="true" style="height:800px;">
-                <!-- <ion-card *ngFor="let rielexistencia of rielexistencias" >
-                    <ion-label> {{rielexistencia.riel}}</ion-label>
-                    <ion-input placeholder={{rielexistencia.existencias}}> </ion-input>
-                </ion-card>   -->
-                <ion-grid style="display: inline-block">
-                    <ion-row >
-                        <ion-col *ngFor="let prod of fila1productos" col-auto >
-                
-                                    <ion-label>Riel {{prod.riel}}: </ion-label>
-                                    <ion-item>
-                                   
-                                        <ion-select [(ngModel)]="prod.producto" interface="popover"  >
-                                         <ion-option *ngFor="let prod of productos" value="{{prod.value}}">{{prod.value}}</ion-option>  
-                                        </ion-select>
-                                   </ion-item>
-                                                 </ion-col>
-                    </ion-row>
-                    <ion-row >
-                            <ion-col *ngFor="let prod of fila2productos"  col-auto>
-                      
-                                    <ion-label>Riel {{prod.riel}}: </ion-label>
-                                    <ion-item>
-                                   
-                                        <ion-select [(ngModel)]="prod.producto" interface="popover"  >
-                                         <ion-option *ngFor="let prod of productos" value="{{prod.value}}">{{prod.value}}</ion-option>  
-                                        </ion-select>
-                                   </ion-item>
-                        
-                         </ion-col>
-                    </ion-row>
-                    <ion-row >
-                            <ion-col *ngFor="let prod of fila3productos" col-auto >
-                  
-                                    <ion-label>Riel {{prod.riel}}: </ion-label>
-                                    <ion-input value={{prod.producto}} ></ion-input>
-                                                 </ion-col>
-                    </ion-row>
-                    <ion-row >
-                                <ion-col *ngFor="let prod of fila4productos" col-auto >
-                
-                                        <ion-label>Riel {{prod.riel}}: </ion-label>
-                                        <ion-item>
-                                             
-                                                <ion-select [(ngModel)]="prod.producto" interface="popover"  >
-                                                 <ion-option *ngFor="let prod of productos" value="{{prod.value}}">{{prod.value}}</ion-option>  
-                                                </ion-select>
-                                           </ion-item>
-                           
-                                </ion-col>
-                    </ion-row>    
-                    <ion-row >
-                            <ion-col *ngFor="let prod of fila5productos"  col-auto>
-               
-                                    <ion-label>Riel {{prod.riel}}: </ion-label>
-                                    <ion-item>
-                                     
-                                        <ion-select [(ngModel)]="prod.producto" interface="popover"  >
-                                         <ion-option *ngFor="let prod of productos" value="{{prod.value}}">{{prod.value}}</ion-option>  
-                                        </ion-select>
-                                   </ion-item>
-                           
-                            </ion-col>
-                    </ion-row>
-                    <ion-row >
-                            <ion-col *ngFor="let prod of fila6productos" col-auto >
+  <!--PRODUCTOS-->
+<cardexpandible title="Productos" style="overflow-x: auto;" >
+                <ion-scroll scrollX="true" style="height:775px;">
+            <table>
+            <tr>
+            <th *ngFor="let prod of fila1productos">
+            <ion-label>{{prod.key}}</ion-label>
+            <ion-item >
+                <ionic-selectable  style=" width: 100%;max-width: 100% !important;"
+                  item-content 
+                  [(ngModel)]=prod.indice
+                  [items]="ports"
+                  itemValueField="label"
+                  itemTextField="value"
+                  [canSearch]="true"
+                  (onChange)="portChange($event)">
+                </ionic-selectable>
+            </ion-item>
+            </th>
+            </tr>
             
-                                    <ion-label>Riel {{prod.riel}}: </ion-label>
-                                    <ion-item>
-                                    
-                                        <ion-select [(ngModel)]="prod.producto" interface="popover"  >
-                                         <ion-option *ngFor="let prod of productos" value="{{prod.value}}">{{prod.value}}</ion-option>  
-                                        </ion-select>
-                                   </ion-item>
-                      
-                            </ion-col>
-                    </ion-row>
-                </ion-grid>
-    
-                <button ion-button round>Guardar</button>
-             </ion-scroll>
-    </cardexpandible>
+            <tr>
+            <th *ngFor="let prod of fila2productos">
+            <ion-label>{{prod.key}}</ion-label>
+            <ion-item >
+                <ionic-selectable  style=" width: 100%;max-width: 100% !important;"
+                  item-content 
+                  [(ngModel)]=prod.indice
+                  [items]="ports"
+                  itemValueField="label"
+                  itemTextField="value"
+                  [canSearch]="true"
+                  (onChange)="portChange($event)">
+                </ionic-selectable>
+            </ion-item>
+            </th>
+            </tr>
+            
+            <tr>
+            <th *ngFor="let prod of fila3productos">
+            <ion-label>{{prod.key}}</ion-label>
+            <ion-item >
+                <ionic-selectable  style=" width: 100%;max-width: 100% !important;"
+                  item-content 
+                  [(ngModel)]=prod.indice
+                  [items]="ports"
+                  itemValueField="label"
+                  itemTextField="value"
+                  [canSearch]="true"
+                  (onChange)="portChange($event)">
+                </ionic-selectable>
+            </ion-item>
+            </th>
+            </tr>
+            
+            <tr>
+            <th *ngFor="let prod of fila4productos"> 
+            <ion-label>{{prod.key}}</ion-label>
+            <ion-item >
+                <ionic-selectable  style=" width: 100%;max-width: 100% !important;"
+                  item-content 
+                  [(ngModel)]=prod.indice
+                  [items]="ports"
+                  itemValueField="label"
+                  itemTextField="value"
+                  [canSearch]="true"
+                  (onChange)="portChange($event)">
+                </ionic-selectable>
+            </ion-item>
+            </th>
+            </tr>
+            
+            <tr>
+            <th *ngFor="let prod of fila5productos">
+            <ion-label>{{prod.key}}</ion-label>
+            <ion-item >
+                <ionic-selectable  style=" width: 100%;max-width: 100% !important;"
+                  item-content 
+                  [(ngModel)]=prod.indice
+                  [items]="ports"
+                  itemValueField="label"
+                  itemTextField="value"
+                  [canSearch]="true"
+                  (onChange)="portChange($event)">
+                </ionic-selectable>
+            </ion-item>
+            </th>
+            </tr>
+            
+            <tr>
+            <th *ngFor="let prod of fila6productos">
+            <ion-label >{{prod.key}}</ion-label>
+            <ion-item  >
+                <ionic-selectable  style=" width: 100%;max-width: 100% !important;"
+                  item-content 
+                  [(ngModel)]=prod.indice
+                  [items]="ports"
+                  itemValueField="label"
+                  itemTextField="value"
+                  [canSearch]="true"
+                  (onChange)="portChange($event)">
+                </ionic-selectable>
+            </ion-item>
+            </th>
+            </tr>
+            </table>
+                
+            </ion-scroll>
+</cardexpandible>
 
+<!-- Existencias Precios -->
+<actualiza>
+</actualiza>
 
-
-
-    <!-- <cardexpandible title="Precios" style="margin-bottom:70px"> -->
-        <!-- <ion-scroll scrollX="true" scrollY="true">
-            <ion-card *ngFor="let rielprecio of rielprecios">
-                <ion-label> {{rielprecio.riel}}</ion-label>
-                <ion-input placeholder={{rielprecio.precio}}> </ion-input>
-            </ion-card> 
-            <button ion-button round>Guardar</button>
-        </ion-scroll>     -->
-          <!-- <ion-card *ngFor="let rielexistencia of rielexistencias" >
-                    <ion-label> {{rielexistencia.riel}}</ion-label>
-                    <ion-input placeholder={{rielexistencia.existencias}}> </ion-input>
-                </ion-card>   -->
-                <!-- <ion-scroll scrollX="true" scrollY="true" direction="x" direction="y" style="height: 500px">
-                <ion-grid>
-                        <ion-row >
-                            <ion-col *ngFor="let prod of fila1precios" col-auto >                    
-                                        <ion-item>
-                                                <ion-label floating >Riel {{prod.key}}: </ion-label>
-                                                <ion-input value={{prod.value}} ></ion-input>
-                                        </ion-item>
-                                </ion-col>
-                        </ion-row>
-                        <ion-row >
-                                <ion-col *ngFor="let prod of fila2precios"  col-auto>
-                                        <ion-item>
-                                                <ion-label floating >Riel {{prod.key}}: </ion-label>
-                                                <ion-input value={{prod.value}} ></ion-input>
-                                        </ion-item>
-                                </ion-col>
-                        </ion-row>
-                        <ion-row >
-                                <ion-col *ngFor="let prod of fila3precios" col-auto >
-                                        <ion-item>
-                                                <ion-label floating >Riel {{prod.key}}: </ion-label>
-                                                <ion-input value={{prod.value}} ></ion-input>
-                                        </ion-item>
-                                </ion-col>
-                        </ion-row>
-                        <ion-row >
-                                <ion-col *ngFor="let prod of fila4precios" col-auto >
-                                        <ion-item>
-                                                <ion-label floating >Riel {{prod.key}}: </ion-label>
-                                                <ion-input value={{prod.value}} ></ion-input>
-                                        </ion-item>
-                                    </ion-col>
-                        </ion-row>    
-                        <ion-row >
-                                <ion-col *ngFor="let prod of fila5precios"  col-auto>
-                                        <ion-item>
-                                                <ion-label floating >Riel {{prod.key}}: </ion-label>
-                                                <ion-input value={{prod.value}} ></ion-input>
-                                        </ion-item>
-                                </ion-col>
-                        </ion-row>
-                        <ion-row >
-                                <ion-col *ngFor="let prod of fila6precios" col-auto >
-                                        <ion-item>
-                                                <ion-label floating >Riel {{prod.key}}: </ion-label>
-                                                <ion-input value={{prod.value}} ></ion-input>
-                                        </ion-item>
-                                </ion-col>
-                        </ion-row>
-                    </ion-grid>
-        
-                    <button ion-button round>Guardar</button>
-                 </ion-scroll>
-    </cardexpandible>
-    -->
 </ion-content>

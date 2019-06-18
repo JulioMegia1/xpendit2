@@ -1,10 +1,19 @@
 import { Component, ViewChild } from '@angular/core';
-import { IonicPage, NavController, NavParams, Content } from 'ionic-angular';
-/*servicios*/
-// import { DataService Provider } from "../../providers/data-service/data-service";
+import { IonicPage, NavController, NavParams, Content, AlertController } from 'ionic-angular';
+
+/**Servicios */
 import { SelectserviceProvider } from "../../providers/selectservice/selectservice";
 import { MvserviceProvider } from "../../providers/mvservice/mvservice";
 import {CIprovider  } from "../../providers/data/data";
+import { CatalogserviceProvider } from "../../providers/catalogservice/catalogservice";
+
+/**********************************SELECTABLE**************************/
+import { IonicSelectableComponent } from 'ionic-selectable';
+
+class Port { //clase para select maquinas
+  public label: any;
+  public value: any;
+}
 
 @IonicPage()
 @Component({
@@ -16,60 +25,198 @@ export class ActualizamvPage {
 
   idmaquina:any;
   nombreMaquina:any;
-  existencias:any;
   productos:any;
-  precios:any;
-  
-  // obtenido:any;
+
+  listaproductos
+ 
 
   seleccion:any;
  
   maquinas:any;
+  mensaje:any;
 
-  rielexistencias:any;
-  fila1existencias:any;
-  fila2existencias:any;
-  fila3existencias:any;
-  fila4existencias:any;
-  fila5existencias:any;
-  fila6existencias:any;
-
-  rielproductos:any;
+ 
   fila1productos:any;
-  fila2productos:any;
-  fila3productos:any;
-  fila4productos:any;
-  fila5productos:any;
-  fila6productos:any;
+fila2productos:any;
+fila3productos:any;
+fila4productos:any;
+fila5productos:any;
+fila6productos:any;
+disabledselectProductos=true;
+ ports: Port[];  ///muestra las opciones del select
+ port: Port; //muestra la opcion elegida del select
   
-  rielprecios:any;
-  fila1precios:any;
-  fila2precios:any;
-  fila3precios:any;
-  fila4precios:any;
-  fila5precios:any;
-  fila6precios:any;
+  
 
-  inputstatusexistencias:any="disabled";
 
   constructor(public navCtrl: NavController, public navParams: NavParams,public ciService:CIprovider,
     // public da taService:DataServiceProvider,
-    public selectService:SelectserviceProvider,public mvservice:MvserviceProvider) 
+    public selectService:SelectserviceProvider,public mvservice:MvserviceProvider,public alertCtrl: AlertController,public catService:CatalogserviceProvider,public selectprovider:SelectserviceProvider) 
   {
-this.idmaquina=this.ciService.getIdmaquinaActualiza();    // console.log(this.obtenido)
-this.nombreMaquina=this.ciService.getNombreMaquina();
-console.log(this.nombreMaquina);
+    this.idmaquina=this.ciService.getIdmaquinaActualiza();    // console.log(this.obtenido)
+    this.nombreMaquina=this.ciService.getNombreMaquina();
+    console.log(this.nombreMaquina);
     // this.obtenermaquinas();
-    this.Selectproductos();
+    // this.Selectproductos();
+    this.getInfomaquina(this.idmaquina)
+
   }
 
   ionViewCanEnter() //cuando la paginas esta activa
   {
-    this.getrielproducto(this.idmaquina);
+    // this.getrielproducto(this.idmaquina);
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad ActualizamvPage');
+  }
+
+  getInfomaquina(idmaquina){
+    this.catService.getInfoMaquina(idmaquina).then( (result)=>{
+      let infomaquina
+      infomaquina=result;
+      console.log(infomaquina);
+      this.productos=infomaquina.productos
+      console.log(this.productos)
+
+  
+      // /*productos**/
+      this.getselectproductos();
+
+      },(err)=>{
+        console.log(err);
+      }
+      );
+  }
+
+  getselectproductos(){ //info de productos
+    this.selectprovider.selectproductos().then(result=>{
+      this.listaproductos=result; //obtiene los productos
+      console.log(this.listaproductos);//lista de TODOS LOS PRODUCTOS
+      this.ports=this.listaproductos; 
+  
+      let productos=this.productos;
+      console.log(productos)
+  
+    let Rieles=Object.keys(productos)
+    
+    console.log(Rieles)
+    let riel
+    let ArrayProductos=[]
+  for(let i=0;i<Rieles.length;i=i+1)
+  {
+    riel=Rieles[i]
+    productos[riel].key=riel//agregaremos al producto el riel al que pertenece
+    ArrayProductos.push(productos[riel])
+  }
+  console.log(productos);
+  console.log(ArrayProductos)
+  this.fila1productos=ArrayProductos.filter(this.funcionfila1);
+  console.log(this.fila1productos);
+  this.fila2productos=ArrayProductos.filter(this.funcionfila2);
+  console.log(this.fila2productos);
+  this.fila3productos=ArrayProductos.filter(this.funcionfila3);
+  console.log(this.fila3productos);
+  this.fila4productos=ArrayProductos.filter(this.funcionfila4);
+  console.log(this.fila4productos);
+  this.fila5productos=ArrayProductos.filter(this.funcionfila5);
+  console.log(this.fila5productos);
+  this.fila6productos=ArrayProductos.filter(this.funcionfila6);
+  console.log(this.fila6productos);
+  
+  
+  
+  
+  
+  //this.fila1productos[0].indice=
+  for(let i=0;i<this.listaproductos.length;i=i+1)
+  {
+    for(let j=0;j<this.fila1productos.length;j=j+1)
+    {
+      if(this.listaproductos[i].label==this.fila1productos[j].idProducto)
+          {
+            this.fila1productos[j].indice=this.ports[i]
+          }
+    }
+  }
+  
+  for(let i=0;i<this.listaproductos.length;i=i+1)
+  {
+    for(let j=0;j<this.fila2productos.length;j=j+1)
+    {
+      if(this.listaproductos[i].label==this.fila2productos[j].idProducto)
+          {
+            this.fila2productos[j].indice=this.ports[i]
+          }
+    }
+  }
+  
+  
+  for(let i=0;i<this.listaproductos.length;i=i+1)
+  {
+    for(let j=0;j<this.fila3productos.length;j=j+1)
+    {
+      if(this.listaproductos[i].label==this.fila3productos[j].idProducto)
+          {
+            this.fila3productos[j].indice=this.ports[i]
+          }
+    }
+  }
+  
+  for(let i=0;i<this.listaproductos.length;i=i+1)
+  {
+    for(let j=0;j<this.fila4productos.length;j=j+1)
+    {
+      if(this.listaproductos[i].label==this.fila4productos[j].idProducto)
+          {
+            this.fila4productos[j].indice=this.ports[i]
+          }
+    }
+  }
+  
+  for(let i=0;i<this.listaproductos.length;i=i+1)
+  {
+    for(let j=0;j<this.fila5productos.length;j=j+1)
+    {
+      if(this.listaproductos[i].label==this.fila5productos[j].idProducto)
+          {
+            this.fila5productos[j].indice=this.ports[i]
+          }
+    }
+  }
+  
+  for(let i=0;i<this.listaproductos.length;i=i+1)
+  {
+    for(let j=0;j<this.fila6productos.length;j=j+1)
+    {
+      if(this.listaproductos[i].label==this.fila6productos[j].idProducto)
+          {
+            this.fila6productos[j].indice=this.ports[i]
+          }
+    }
+  }
+  
+  console.log(this.fila1productos);
+  
+  // this.fila7productos=ArrayProductos.filter(this.funcionfila7);
+  // console.log(this.fila7productos);
+  
+  
+  //     console.log(this.infoproducto.producto.idProducto)
+  //     console.log(this.listaproductos[0].label)
+  //     let punto 
+  //     for(let i =0; i < this.listaproductos.length;i=i+1){
+  //       if(this.infoproducto.producto.idProducto==this.listaproductos[i].label){
+  //         punto=i
+  //       }
+  //     }
+  //     console.log(punto)
+  //  this.port=this.ports[punto]; 
+  //     console.log(result);
+      },(err)=>{
+        console.log(err);
+      }
+      );
   }
 
 
@@ -124,28 +271,42 @@ funcionfila6(obj){
   }
 }
 
-Selectproductos(){
-  this.selectService.selectproductos().then(result=>{
-     this.productos= result;
-     console.log(result);
+portChange(event: {
+  component: IonicSelectableComponent,
+  value: any 
+}) {
+  console.log('port:', event.value);
+  console.log("cambio el valor")
+  console.log(event);
+
+
+  console.log(this.idmaquina)
+  console.log(event.component._label)
+  console.log(event.value.label)
+
+
+  let datos={label:event.component._label,value:event.value.label} //
+  console.log(datos)
+  this.mvservice.updproducto(datos,this.idmaquina).then((result)=>{
+    console.log(datos)
+    console.log(result);
+    this.mensaje="El producto ha sido actualizado"
+    this.showAlert();
+
      },(err)=>{
        console.log(err);
      }
      );
-    }
-
-
   
+  
+}
 
-    getrielproducto(idmaquina){
-      this.mvservice.rielproducto(idmaquina).then(result=>{
-        this.productos= result;
-        console.log(result);
-        },(err)=>{
-          console.log(err);
-        }
-        );
-      }
-
+showAlert() {
+  const alert = this.alertCtrl.create({
+    title: this.mensaje,
+    buttons: ['OK']
+  });
+  alert.present();
+}
     
 }
