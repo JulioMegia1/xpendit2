@@ -20,7 +20,10 @@ page-catalarmas {
 
     ion-label{
         // background:#18703d;
-        // color:#fff;
+      color:#18703d;
+      color: #18703d;
+      font-weight: bold;
+      font-size: 20px;
         // padding:10px;
         // border-radius: 10px;
         // font-size: 16px;
@@ -33,9 +36,21 @@ page-catalarmas {
         border-radius: 4px;
         font-size: 16px;
         font-weight: bold;
+        max-width: 100% !important;
  
       
     }
+
+    ion-textarea{
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        font-size: 16px;
+        font-weight: bold;
+        max-width: 100% !important;
+ 
+      
+    }
+
     ion-fab {
         position: relative;
       }

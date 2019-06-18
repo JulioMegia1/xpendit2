@@ -102,10 +102,10 @@ let interval = setInterval(()=> {
 },35000);
 }
 
-// ionViewDidEnter(){
-//   console.log("AQUI PON ESE CODIGO JJULIOOOOOOOOOOOOOOOOOOOOO")
-//   this.actualizarServicios();
-// }
+ionViewDidEnter(){
+  console.log("AQUI PON ESE CODIGO JJULIOOOOOOOOOOOOOOOOOOOOO")
+  this.actualizarServicios();
+}
 
 
 /*mapa leaflet*/

@@ -72,6 +72,9 @@ import { File } from "@ionic-native/file";
 /*plugin hide header*/
 import {ScrollingHeaderModule} from 'ionic-scrolling-header';
 
+/*Conexion a internet*/
+import { Network } from  '@ionic-native/network';
+
 /*ng2SmartTable*/
 import { Ng2CompleterModule } from "ng2-completer";
 import { Ng2SmartTableModule } from 'ng2-smart-table';
@@ -87,8 +90,10 @@ import * as Gammel from 'fusioncharts/themes/fusioncharts.theme.gammel';
 import * as Widgets from 'fusioncharts/fusioncharts.widgets';
 FusionChartsModule.fcRoot(FusionCharts, Charts, TimeSeries,Ocean,Gammel,Zune,Widgets);
 
-
 /*filetransfer*/
+
+
+
 
 
 
@@ -182,7 +187,7 @@ FusionChartsModule.fcRoot(FusionCharts, Charts, TimeSeries,Ocean,Gammel,Zune,Wid
     NightmodeProvider,//BORRAR----------------------------------------?????
     
     /*plugins*/
-    , FileTransfer, File,Camera,
+    , FileTransfer, File,Camera,Network,
     /*plugins*/
     
     DataServiceProvider,//prueba datos locales //BORRAR----------------------------------------?????

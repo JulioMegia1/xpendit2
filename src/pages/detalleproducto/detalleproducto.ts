@@ -72,6 +72,7 @@ export class DetalleproductoPage {
 //  /*********SELECT SEARCHEABLE para cambiar l prducto del riel ***********/
  ports2: Port2[];  ///muestra las opciones del select
  port2: Port2; //muestra la opcion elegida del select
+ portrespaldo
 // // /**********SELECT SEARCHEABLE***********/
 
 
@@ -89,7 +90,7 @@ hiddengraficas=false;
   ionViewDidLoad() {
     console.log('ionViewDidLoad DetalleproductoPage'); 
   }
-  
+
   ionViewCanEnter(){
     // this.idmaquina=this.ciService.getIdmaquina(); //obtienes el id de la maquina
     this.getmaquinasid();
@@ -127,8 +128,9 @@ hiddengraficas=false;
       this.ciService.setIdMaquina(this.idmaquina); //asigno el id de la maquina al servicio para ser usado en las graficas
       console.log(this.idmaquina)
       this.riel=this.ciService.getIdProducto(); //
-      this.getinfoproducto(this.idmaquina,this.riel);
       this.getproductomaquina(this.idmaquina)
+
+      this.getinfoproducto(this.idmaquina,this.riel);
       console.log(result);
     }
       },(err)=>{
@@ -198,7 +200,9 @@ hiddengraficas=false;
         }
         console.log(punto)
      this.port2=this.ports2[punto]; 
+     this.portrespaldo=this.port2
         console.log(result);
+
         },(err)=>{
           console.log(err);
         }
@@ -234,12 +238,40 @@ portChange2(event: {
   console.log('port:', event.value);
   console.log("cambio el valor")
   console.log(this.port2);
-  this.nombreproducto=this.port2.value;
+  const confirm = this.alertCtrl.create({
+    title: 'Desea actualizar el producto?',
+    // message: 'Do you agree to use this lightsaber to do good across the intergalactic galaxy?',
+    buttons: [
+      {
+        text: 'Cancelar',
+        handler: () => {
+          console.log('Disagree clicked');
+          this.port2=this.portrespaldo
+
+        }
+      },
+      {
+        text: 'OK',
+        handler: async () => {
+          console.log('Agree clicked');
+          this.putnuevoproducto();
+
+          this.nombreproducto=this.port2.value;
+          //this.getproductomaquina(this.idmaquina);
+          await this.getinfoproducto(this.idmaquina,this.riel);
 
 
 
 
-  this.putnuevoproducto();
+        }
+      }
+    ]
+  });
+  confirm.present();
+
+
+
+
     
 }
 
@@ -358,12 +390,12 @@ portChange2(event: {
     putnuevoproducto(){
       let datos={label:this.riel,value:this.port2.label} //
       console.log(datos)
-      this.mvservice.updproducto(datos,this.idmaquina).then((result)=>{
+      this.mvservice.updproducto(datos,this.idmaquina).then(async (result)=>{
         console.log(datos)
         console.log(result);
         this.mensaje="El producto ha sido actualizado"
         this.showAlert();
-        this.getproductomaquina(this.idmaquina)
+        await this.getproductomaquina(this.idmaquina)
 
          },(err)=>{
            console.log(err);
@@ -394,10 +426,10 @@ portChange2(event: {
       },35000);
       }
 
-      // ionViewDidEnter(){
-      //   console.log("AQUI PON ESE CODIGO JJULIOOOOOOOOOOOOOOOOOOOOO")
-      //   this.actualizarServicios();
-      // }
+      ionViewDidEnter(){
+        console.log("AQUI PON ESE CODIGO JJULIOOOOOOOOOOOOOOOOOOOOO")
+        this.actualizarServicios();
+      }
 
 
 

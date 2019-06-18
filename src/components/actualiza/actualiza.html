@@ -1,61 +1,85 @@
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous"> 
  
-<cardexpandible title="Existencias {{nombreMaquina}}" >
-    <ion-scroll scrollX="true" style="height:800px;">
-        <!-- <ion-card *ngFor="let rielexistencia of rielexistencias" >
+<cardexpandible title="Existencias {{nombreMaquina}}" style="overflow-x: auto;">
+                <!-- <ion-scroll scrollX="true" style="height:800px;"> -->
+                                <!-- <ion-card *ngFor="let rielexistencia of rielexistencias" >
             <ion-label> {{rielexistencia.riel}}</ion-label>
             <ion-input placeholder={{rielexistencia.existencias}}> </ion-input>
         </ion-card>   -->
-        <ion-grid>
+        <div>
+                        <table class="w3-table">
+                                        <tr>
+                                          <th *ngFor="let prod of fila1existencias">  <ion-label style="background: #18703d; color:#fff;padding:10px;border-radius: 10px;font-size: 16px;font-weight: bold;        "floating>Riel {{prod.key}}: </ion-label></th>
+                                          
+                                        </tr>
+                                        <tr>
+                                          <td *ngFor="let prod of fila1existencias"><ion-input  type="number" [(ngModel)]="prod.value" min="0" onkeypress="return event.charCode >= 48  && event.charCode <= 57"  [disabled]=disabledinputsExistencias ></ion-input></td>
+                                        </tr>
+
+
+                                        <tr>
+                                          <td>Eve</td>
+                                          <td>Jackson</td>
+                                          <td>94</td>
+                                        </tr>
+                                        <tr>
+                                          <td>Adam</td>
+                                          <td>Johnson</td>
+                                          <td>67</td>
+                                        </tr>
+                                      </table>
+        </div>
+        <ion-grid style="display: inline-block">
             <ion-row >
-                    <ion-col *ngFor="let prod of fila1existencias" col-auto >
+                    <ion-card *ngFor="let prod of fila1existencias" col-auto >
                             <ion-item>
-                                    <ion-label style="background: #18703d; color:#fff;padding:10px;border-radius: 10px;font-size: 16px;font-weight: bold;        "floating>Riel {{prod.key}}: </ion-label>
-                                    <ion-input  type="number" [(ngModel)]="prod.value" min="0" onkeypress="return event.charCode >= 48  && event.charCode <= 57"  [disabled]=disabledinputsExistencias ></ion-input>
+                                   
                             </ion-item>
-                    </ion-col>
+                    </ion-card>
             </ion-row>
             <ion-row >
-                    <ion-col *ngFor="let prod of fila2existencias"  col-auto>
+                    <ion-card *ngFor="let prod of fila2existencias"  col-auto>
                             <ion-item>
                                     <ion-label style="background: #18703d; color:#fff;padding:10px;border-radius: 10px;font-size: 16px;font-weight: bold;        "floating>Riel {{prod.key}}: </ion-label>
                                     <ion-input type="number" [(ngModel)]=prod.value min="0" onkeypress="return event.charCode >= 48  && event.charCode <= 57"  [disabled]=disabledinputsExistencias></ion-input>
                             </ion-item>
-                    </ion-col>
+                    </ion-card>
             </ion-row>
             <ion-row >
-                    <ion-col *ngFor="let prod of fila3existencias" col-auto >
+                    <ion-card *ngFor="let prod of fila3existencias" col-auto >
                             <ion-item>
                                     <ion-label style="background: #18703d; color:#fff;padding:10px;border-radius: 10px;font-size: 16px;font-weight: bold;        "floating>Riel {{prod.key}}: </ion-label>
                                     <ion-input type="number" [(ngModel)]=prod.value min="0" onkeypress="return event.charCode >= 48  && event.charCode <= 57" [disabled]=disabledinputsExistencias ></ion-input>
                             </ion-item>
-                    </ion-col>
+                    </ion-card>
             </ion-row>
             <ion-row >
-                    <ion-col *ngFor="let prod of fila4existencias" col-auto >
+                    <ion-card *ngFor="let prod of fila4existencias" col-auto >
                             <ion-item>
                                     <ion-label style="background: #18703d; color:#fff;padding:10px;border-radius: 10px;font-size: 16px;font-weight: bold;        "floating>Riel {{prod.key}}: </ion-label>
                                     <ion-input  type="number"[(ngModel)]=prod.value min="0" onkeypress="return event.charCode >= 48  && event.charCode <= 57"  [disabled]=disabledinputsExistencias></ion-input>       
                             </ion-item>                
-                    </ion-col>
+                    </ion-card>
             </ion-row>    
             <ion-row >
-                    <ion-col *ngFor="let prod of fila5existencias"  col-auto>
+                    <ion-card *ngFor="let prod of fila5existencias"  col-auto>
                             <ion-item>
                                     <ion-label style="background: #18703d; color:#fff;padding:10px;border-radius: 10px;font-size: 16px;font-weight: bold;        "floating>Riel {{prod.key}}: </ion-label>
                                     <ion-input type="number" [(ngModel)]=prod.value min="0" onkeypress="return event.charCode >= 48  && event.charCode <= 57" [disabled]=disabledinputsExistencias ></ion-input>
                             </ion-item>
-                    </ion-col>
+                    </ion-card>
             </ion-row>
             <ion-row >
-                    <ion-col *ngFor="let prod of fila6existencias" col-auto >
+                    <ion-card *ngFor="let prod of fila6existencias" col-auto >
                             <ion-item><ion-label style="background: #18703d; color:#fff;padding:10px;border-radius: 10px;font-size: 16px;font-weight: bold;        "floating>Riel {{prod.key}}: </ion-label>
                             <ion-input type="number" [(ngModel)]=prod.value  min="0" onkeypress="return event.charCode >= 48  && event.charCode <= 57" [disabled]=disabledinputsExistencias></ion-input>
                             </ion-item>
-                    </ion-col>
+                    </ion-card>
             </ion-row>
            
         </ion-grid>
+        <button ion-button round>Guardar</button>
+
 
         <div style="justify-content:left;display:flex">
             <ion-fab bottom left >
@@ -67,9 +91,8 @@
 
             </ion-fab>
         </div> 
-
       
-      </ion-scroll>
+      <!-- </ion-scroll> -->
 
 </cardexpandible>
 
@@ -78,7 +101,7 @@
                     <!-- <ion-card *ngFor="let rielexistencia of rielexistencias" >
                         <ion-label> {{rielexistencia.riel}}</ion-label>
                         <ion-input placeholder={{rielexistencia.existencias}}> </ion-input>
-                    </ion-card>   -->
+                    </ion->   -->
                     <ion-grid>
                         <ion-row >
                                 <ion-col *ngFor="let prod of fila1precios" col-auto >

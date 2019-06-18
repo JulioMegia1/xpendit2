@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController,AlertController } from 'ionic-angular';
+import { IonicPage, NavController,AlertController, ToastController } from 'ionic-angular';
 
 /*****************paginas**************/
 import { MenuPage } from "../menu/menu";
@@ -9,6 +9,11 @@ import { MenuPage } from "../menu/menu";
 import { AuthserviceProvider } from "../../providers/authservice/authservice";
 import { CIprovider } from "../../providers/data/data";
 /*servicios*/
+
+
+/*plugin red*/
+import { Network } from  '@ionic-native/network';
+
 
 @IonicPage()
 @Component({
@@ -24,8 +29,48 @@ export class LoginPage {
   mensaje:any;
     // passwordshow : boolean=false; //cambiar el tipo de campo del pasword
 
-  constructor(public navCtrl: NavController, public alertController:AlertController,public authservice: AuthserviceProvider,public ciService:CIprovider) {
+  constructor(public navCtrl: NavController, public alertController:AlertController,public authservice: AuthserviceProvider,public ciService:CIprovider,public  network:  Network,public toast: ToastController) {
     this.getUsers();
+
+    this.network.onConnect().subscribe(()=>{
+      // console.log("CON INTERNET!!!!!!!!!")
+
+      this.toast.create({
+        message:"CON CONEXIÓN A INTERNET",
+        showCloseButton: true,
+        closeButtonText: 'Ok',
+        duration: 3000,
+        position: 'top',
+        cssClass:'toastCustom'
+      }).present();
+      console.log("CON INTERNET!!!!!!!!!")
+
+
+      // this.mensaje="CONEXIÓN A INTERNET RESTABLECIDA";
+      // this.showAlert();
+    })
+
+    this.network.onDisconnect().subscribe(()=>{
+      // console.log("SIN INTERNET!!!!!!!!!")
+
+      this.toast.create({
+        message:"SIN CONEXIÓN A INTERNET",
+        showCloseButton: true,
+        closeButtonText: 'Ok',
+        duration: 3000,
+        position: 'top',
+        cssClass:'toastCustom'
+
+      }).present();
+      console.log("SIN INTERNET!!!!!!!!!")
+
+      // this.mensaje="SIN CONEXIÓN A INTERNET";
+      // this.showAlert();
+
+
+
+    })
+
   }
 
   // public verpassword(){

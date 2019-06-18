@@ -79,25 +79,32 @@
                     </ion-item>
                         <!-- onkeypress="return (event.charCode >= 48  && event.charCode <= 57) || (event.charCode >= 65  && event.charCode <= 90) || (event.charCode >= 97  && event.charCode <= 122)" -->
                     </ion-col>
-                    <ion-col col-auto style="text-align:center">
+                    <!-- <ion-col col-auto style="text-align:center"> -->
                         
-                        
+                        </ion-row>
+                    </ion-grid>
+<ion-list>
                             <div style="justify-content:left;display:flex">
                                 <ion-item>
-                                <ion-label floating> Password</ion-label>
-                                <ion-input [type]="type"   [(ngModel)]="password"  [disabled]="inputsdisabled"></ion-input>
+
+                                    <ion-label > Password</ion-label>
+                                <ion-input [type]="type" [(ngModel)]="password" [disabled]="inputsdisabled"></ion-input>
 
                             </ion-item>
                             <button ion-button round (click)="verpwd()" [disabled]="inputsdisabled"><i [class]=icon ></i></button>
 
 
 
+
+
+
                                 <!-- onkeypress="return (event.charCode >= 48  && event.charCode <= 57) || (event.charCode >= 65  && event.charCode <= 90) || (event.charCode >= 97  && event.charCode <= 122)"  -->
                             </div>
-                    </ion-col>
+                    <!-- </ion-col> -->
+                </ion-list>
                    
-                </ion-row>
-
+               
+<ion-grid>
                 <ion-row>
                     <!-- <ion-col col-auto col-sm-6>     
                             <div style="justify-content:left;display:flex">
@@ -108,9 +115,9 @@
                     </ion-col> -->
 
                     <ion-col col-6>    
-                        <ion-item>
-                            <ion-label>Recibir Notificaciones</ion-label>
-                            <ion-checkbox [(ngModel)]="notificarBoolean"(ionChange)="updNotificar()"  [disabled]="inputsdisabled" ></ion-checkbox>
+                        <ion-item style="padding:0px !important;">
+                            <ion-label>Notificar</ion-label>
+                            <ion-checkbox item-right [(ngModel)]="notificarBoolean"(ionChange)="updNotificar()"  [disabled]="inputsdisabled" ></ion-checkbox>
                         </ion-item> 
                     </ion-col>
                     <ion-col col-6></ion-col>

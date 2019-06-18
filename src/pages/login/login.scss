@@ -139,6 +139,29 @@ page-login  {
       width:100%;
       transition:800ms ease all;
     }
+
+    .toastCustom2{
+      .toast-wrapper{
+  
+  
+     float:right;
+      background-color:#18703d;
+      opacity: 0.8;
+      text-align:right;
+      margin-right: 10px;
+      width:250px;
+      height: auto;
+      border-radius: 20px !important;
+  }
+  
+  .toast-message { 
+      white-space: pre; 
+  } 
+
+}
+
+
+
   }
 
   
