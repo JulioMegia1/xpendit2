@@ -1,44 +1,48 @@
 actualiza {
 
-    // ion-label{
-    //     background:#18703d;
-    //    // color:#fff;
-    //     padding:10px;
-    //     border-radius: 10px;
-    //     font-size: 16px;
-    //     font-weight: bold;        
-    // }
+    ion-label{
+        background:#18703d;
+        color:#fff;
+        padding:10px;
+        border-radius: 10px;
+        font-size: 16px;
+        font-weight: bold;
+        
+    }
+
+   
+
 
     ion-input{
         border: 1px solid #ccc;
         border-radius: 4px;
-        width: 60px
+        font-size: 16px;
+        font-weight: bold;
     }
+  
+      
 
     ion-fab {
         position: relative;
       }
+      
+      .scroll-zoom-wrapper {
+        white-space: nowrap;
+    }
 
 
-    //   ion-scroll {
-    //     min-height: 160px; 
-    //     //height: auto;
-    //     white-space: nowrap;
-    //     //height: auto;
-    //     //overflow: scroll;
+    ion-scroll {
+        min-height: 160px; 
+        //height: auto;
+        white-space: nowrap;
+        //height: auto;
+        //overflow: scroll;
 
 
-    //         .scroll-content {
-    //         padding: 0px !important;
-    //         display: inline-block;
+            .scroll-content {
+            padding: 0px !important;
+            display: inline-block;
 
-    //     }    
-    // }
-ion-scroll{
-  overflow: scroll; 
-  white-space: nowrap;
-}
-
-
-
+        }    
+    }
 }

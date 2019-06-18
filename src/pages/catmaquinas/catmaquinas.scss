@@ -59,6 +59,23 @@ page-catmaquinas {
         padding-left: 0;
     }
 
+
+
+    ion-scroll {
+        min-height: 160px; 
+        //height: auto;
+        white-space: nowrap;
+        //height: auto;
+        //overflow: scroll;
+
+
+            .scroll-content {
+            padding: 0px !important;
+            display: inline-block;
+
+        }    
+    }
+
    
   
       

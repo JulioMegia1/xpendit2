@@ -156,132 +156,253 @@
     </ion-card>
 
     <!-- MÁXIMOS -->
-    <ion-card style="border-radius: 10px;" [hidden]="cardshidden">
-            <ion-card-header style="color:#ffffff;background-color: #242b5f;border-radius: 10px;">
-               <b>Máximos</b>
-            </ion-card-header>        <!-- <ion-scroll scrollX="true" scrollY="true" direction="x" direction="y"> -->
-                
-              <ion-grid>
-                    <ion-row >
-                            <ion-col *ngFor="let prod of fila1maximos" col-auto>
-                                    <ion-item>
-                                            <ion-label  style="background: #18703d; color:#fff;padding:10px;border-radius: 10px;font-size: 16px;font-weight: bold;        " floating>Riel {{prod.key}}: </ion-label>
-                                            <ion-input style="border:1px solid #ccc;border-radius: 4px;width: 60px"   type="number" [(ngModel)]="prod.value" min="0" onkeypress="return event.charCode >= 48  && event.charCode <= 57" [disabled]=disabledinputsmaximos> </ion-input>
-                                    </ion-item>
-                            </ion-col>
-                    </ion-row>
-                    <ion-row >
-                            <ion-col *ngFor="let prod of fila2maximos"  col-auto>
-                                    <ion-item>
-                                            <ion-label  style="background: #18703d; color:#fff;padding:10px;border-radius: 10px;font-size: 16px;font-weight: bold;        " floating>Riel {{prod.key}}: </ion-label>
-                                            <ion-input style="border:1px solid #ccc;border-radius: 4px;width: 60px" type="number" min="0" [(ngModel)]=prod.value min="0" onkeypress="return event.charCode >= 48  && event.charCode <= 57"   [disabled]=disabledinputsmaximos></ion-input>
-                                    </ion-item>
-                            </ion-col>
-                    </ion-row>
-                    <ion-row >
-                            <ion-col *ngFor="let prod of fila3maximos" col-auto >
-                                    <ion-item>
-                                            <ion-label  style="background: #18703d; color:#fff;padding:10px;border-radius: 10px;font-size: 16px;font-weight: bold;        " floating>Riel {{prod.key}}: </ion-label>
-                                            <ion-input style="border:1px solid #ccc;border-radius: 4px;width: 60px" type="number" [(ngModel)]=prod.value min="0" onkeypress="return event.charCode >= 48  && event.charCode <= 57" [disabled]=disabledinputsmaximos ></ion-input>
-                                    </ion-item>
-                            </ion-col>
-                    </ion-row>
-                    <ion-row >
-                            <ion-col *ngFor="let prod of fila4maximos" col-auto >
-                                    <ion-item>
-                                            <ion-label  style="background: #18703d; color:#fff;padding:10px;border-radius: 10px;font-size: 16px;font-weight: bold;        " floating>Riel {{prod.key}}: </ion-label>
-                                            <ion-input style="border:1px solid #ccc;border-radius: 4px;width: 60px"  type="number"[(ngModel)]=prod.value  min="0" onkeypress="return event.charCode >= 48  && event.charCode <= 57" [disabled]=disabledinputsmaximos></ion-input>       
-                                    </ion-item>                
-                            </ion-col>
-                    </ion-row>    
-                    <ion-row >
-                            <ion-col *ngFor="let prod of fila5maximos"  col-auto>
-                                    <ion-item>
-                                            <ion-label  style="background: #18703d; color:#fff;padding:10px;border-radius: 10px;font-size: 16px;font-weight: bold;        " floating>Riel {{prod.key}}: </ion-label>
-                                            <ion-input style="border:1px solid #ccc;border-radius: 4px;width: 60px" type="number" [(ngModel)]=prod.value min="0" onkeypress="return event.charCode >= 48  && event.charCode <= 57" [disabled]=disabledinputsmaximos ></ion-input>
-                                    </ion-item>
-                            </ion-col>
-                    </ion-row>
-                    <ion-row >
-                            <ion-col *ngFor="let prod of fila6maximos" col-auto >
-                                    <ion-item> <ion-label  style="background: #18703d; color:#fff;padding:10px;border-radius: 10px;font-size: 16px;font-weight: bold;        " floating>Riel {{prod.key}}: </ion-label>
-                                    <ion-input style="border:1px solid #ccc;border-radius: 4px;width: 60px" type="number" [(ngModel)]=prod.value  min="0" onkeypress="return event.charCode >= 48  && event.charCode <= 57" [disabled]=disabledinputsmaximos></ion-input>
-                                    </ion-item>
-                            </ion-col>
-                    </ion-row>
-                   
-                </ion-grid>
-        
-                <div style="justify-content:left;display:flex">
-                    <ion-fab bottom left >
-                        <button ion-fab mini color="verde">  <i class="fas fa-chevron-right"></i></button>
-                            <ion-fab-list side="right">
-                                <button ion-fab color="azul" (click)="modificarMaximos()" ><i class="fas fa-edit"></i>  </button>
-                                <button ion-fab color="azul" (click)="guardarMaximos()"><i class="fas fa-save"></i>   </button>
-                            </ion-fab-list>
-                    </ion-fab>
-                </div> 
-            <!-- </ion-scroll>         -->
-    </ion-card>
+    <cardexpandible title="Máximos" style="overflow-x: auto;" [hidden]="cardshidden"><!--TABLA PRECIOS-->
+        <ion-scroll scrollX="true" style="height:600px;">
+            <table>
+                <tr ><!--FILA 1-->
+                <th *ngFor="let prod of fila1maximos">
+                    <ion-item>
+                            <ion-label  style="background: #18703d; color:#fff;padding:10px;border-radius: 10px;font-size: 16px;font-weight: bold;        " floating>Riel {{prod.key}}: </ion-label>
+                            <ion-input style="border:1px solid #ccc;border-radius: 4px;width: 60px"   type="number" [(ngModel)]="prod.value" min="0" onkeypress="return event.charCode >= 48  && event.charCode <= 57" [disabled]=disabledinputsmaximos> </ion-input>
+                    </ion-item>
+                </th>
+                </tr>
 
+                <tr ><!--FILA 2-->
+                    <th *ngFor="let prod of fila2maximos">
+                        <ion-item>
+                                <ion-label  style="background: #18703d; color:#fff;padding:10px;border-radius: 10px;font-size: 16px;font-weight: bold;        " floating>Riel {{prod.key}}: </ion-label>
+                                <ion-input style="border:1px solid #ccc;border-radius: 4px;width: 60px"   type="number" [(ngModel)]="prod.value" min="0" onkeypress="return event.charCode >= 48  && event.charCode <= 57" [disabled]=disabledinputsmaximos> </ion-input>
+                        </ion-item>
+                    </th>
+                </tr>
+
+                <tr ><!--FILA 3-->
+                    <th *ngFor="let prod of fila3maximos">
+                        <ion-item>
+                                <ion-label  style="background: #18703d; color:#fff;padding:10px;border-radius: 10px;font-size: 16px;font-weight: bold;        " floating>Riel {{prod.key}}: </ion-label>
+                                <ion-input style="border:1px solid #ccc;border-radius: 4px;width: 60px"   type="number" [(ngModel)]="prod.value" min="0" onkeypress="return event.charCode >= 48  && event.charCode <= 57" [disabled]=disabledinputsmaximos> </ion-input>
+                        </ion-item>
+                    </th>
+                </tr>
+
+                <tr ><!--FILA 4-->
+                    <th *ngFor="let prod of fila4maximos">
+                        <ion-item>
+                                <ion-label  style="background: #18703d; color:#fff;padding:10px;border-radius: 10px;font-size: 16px;font-weight: bold;        " floating>Riel {{prod.key}}: </ion-label>
+                                <ion-input style="border:1px solid #ccc;border-radius: 4px;width: 60px"   type="number" [(ngModel)]="prod.value" min="0" onkeypress="return event.charCode >= 48  && event.charCode <= 57" [disabled]=disabledinputsmaximos> </ion-input>
+                        </ion-item>
+                    </th>
+                </tr>
+
+                <tr ><!--FILA 5-->
+                    <th *ngFor="let prod of fila5maximos">
+                        <ion-item>
+                                <ion-label  style="background: #18703d; color:#fff;padding:10px;border-radius: 10px;font-size: 16px;font-weight: bold;        " floating>Riel {{prod.key}}: </ion-label>
+                                <ion-input style="border:1px solid #ccc;border-radius: 4px;width: 60px"   type="number" [(ngModel)]="prod.value" min="0" onkeypress="return event.charCode >= 48  && event.charCode <= 57" [disabled]=disabledinputsmaximos> </ion-input>
+                        </ion-item>
+                    </th>
+                </tr>
+
+                <tr ><!--FILA 6-->
+                    <th *ngFor="let prod of fila6maximos">
+                        <ion-item>
+                                <ion-label  style="background: #18703d; color:#fff;padding:10px;border-radius: 10px;font-size: 16px;font-weight: bold;        " floating>Riel {{prod.key}}: </ion-label>
+                                <ion-input style="border:1px solid #ccc;border-radius: 4px;width: 60px"   type="number" [(ngModel)]="prod.value" min="0" onkeypress="return event.charCode >= 48  && event.charCode <= 57" [disabled]=disabledinputsmaximos> </ion-input>
+                        </ion-item>
+                    </th>
+                </tr>
+            </table>
+        
+            <div style="justify-content:left;display:flex">
+                <ion-fab bottom left >
+                    <button ion-fab mini color="verde">  <i class="fas fa-chevron-right"></i></button>
+                        <ion-fab-list side="right">
+                            <button ion-fab color="azul" (click)="modificarMaximos()" ><i class="fas fa-edit"></i>  </button>
+                            <button ion-fab color="azul" (click)="guardarMaximos()"><i class="fas fa-save"></i>   </button>
+                        </ion-fab-list>
+                </ion-fab>
+            </div> 
+        </ion-scroll>        
+    </cardexpandible>
+
+    <!--PRODUCTOS-->
+    <cardexpandible title="Productos" style="overflow-x: auto;" [hidden]="cardshidden">
+        <ion-scroll scrollX="true" style="height:500px;">
+    <table>
+    <tr>
+    <th *ngFor="let prod of fila1productos">
+    <!-- <ion-item > -->
+        <ion-label>{{prod.key}}</ion-label>
+        <ionic-selectable 
+          item-content 
+          [(ngModel)]=prod.indice
+          [items]="ports"
+          itemValueField="label"
+          itemTextField="value"
+          [canSearch]="true"
+          (onChange)="portChange($event)">
+        </ionic-selectable>
+    <!-- </ion-item> -->
+    </th>
+    </tr>
+    
+    
+    <tr>
+    <th *ngFor="let prod of fila2productos">
+    <!-- <ion-item > -->
+        <ion-label>{{prod.key}}</ion-label>
+        <ionic-selectable 
+          item-content 
+          [(ngModel)]=prod.indice
+          [items]="ports"
+          itemValueField="label"
+          itemTextField="value"
+          [canSearch]="true"
+          (onChange)="portChange($event)">
+        </ionic-selectable>
+    <!-- </ion-item> -->
+    </th>
+    </tr>
+    
+    
+    <tr>
+    <th *ngFor="let prod of fila3productos">
+    
+    <!-- <ion-item > -->
+        <ion-label>{{prod.key}}</ion-label>
+        <ionic-selectable 
+          item-content 
+          [(ngModel)]=prod.indice
+          [items]="ports"
+          itemValueField="label"
+          itemTextField="value"
+          [canSearch]="true"
+          (onChange)="portChange($event)">
+        </ionic-selectable>
+    <!-- </ion-item> -->
+    </th>
+    </tr>
+    
+    
+    <tr>
+    <th *ngFor="let prod of fila4productos"> 
+    
+    
+    <!-- <ion-item > -->
+        <ion-label>{{prod.key}}</ion-label>
+        <ionic-selectable 
+          item-content 
+          [(ngModel)]=prod.indice
+          [items]="ports"
+          itemValueField="label"
+          itemTextField="value"
+          [canSearch]="true"
+          (onChange)="portChange($event)">
+        </ionic-selectable>
+    <!-- </ion-item> -->
+    </th>
+    </tr>
+    
+    
+    <tr>
+    <th *ngFor="let prod of fila5productos">
+    
+    <!-- <ion-item > -->
+        <ion-label>{{prod.key}}</ion-label>
+        <ionic-selectable 
+          item-content 
+          [(ngModel)]=prod.indice
+          [items]="ports"
+          itemValueField="label"
+          itemTextField="value"
+          [canSearch]="true"
+          (onChange)="portChange($event)">
+        </ionic-selectable>
+    <!-- </ion-item> -->
+    </th>
+    </tr>
+    
+    
+    <tr>
+    <th *ngFor="let prod of fila6productos">
+    
+    
+    <!-- <ion-item  > -->
+        <ion-label >{{prod.key}}</ion-label>
+        <ionic-selectable 
+          item-content 
+          [(ngModel)]=prod.indice
+          [items]="ports"
+          itemValueField="label"
+          itemTextField="value"
+          [canSearch]="true"
+          (onChange)="portChange($event)">
+        </ionic-selectable>
+    <!-- </ion-item> -->
+    </th>
+    </tr>
+    </table>
+    
+    <button ion-button (click)="verlistas()">VER PRODUCTOS
+    
+    </button>
+    </ion-scroll>
+    </cardexpandible>
 
     <!-- IGNORADOS -->
-    <ion-card style="border-radius: 10px;" [hidden]="cardshidden">
-            <ion-card-header style="color:#ffffff;background-color: #242b5f;border-radius: 10px;">
-               <b>Ignorados</b>
-            </ion-card-header>        
-            <!-- <ion-scroll scrollX="true" scrollY="true" direction="x" direction="y"> -->
-                
-              <ion-grid>
-                    <ion-row >
-                            <ion-col *ngFor="let prod of fila1ignorados" col-auto>
+    <cardexpandible title="Ignorados" style="overflow-x: auto;" [hidden]="cardshidden">
+        <ion-scroll scrollX="true" style="height:475px;">
+              <table>
+                    <tr >
+                            <th *ngFor="let prod of fila1ignorados" >
                                     <ion-item style="padding:0px !important;">
                                             <ion-label>Riel {{prod.key}}: </ion-label>
                                             <ion-checkbox item-right [disabled]=disabledCheckboxignorados  [(ngModel)]="prod.value" checked="prod.value" > </ion-checkbox>
                                     </ion-item>
-                            </ion-col>
-                    </ion-row>
-                    <ion-row >
-                            <ion-col *ngFor="let prod of fila2ignorados"  col-auto>
+                            </th>
+                    </tr>
+                    <tr >
+                            <th *ngFor="let prod of fila2ignorados"  >
                                     <ion-item style="padding:0px !important;">
                                             <ion-label>Riel {{prod.key}}: </ion-label>
                                             <ion-checkbox item-right [disabled]=disabledCheckboxignorados  [(ngModel)]=prod.value  ></ion-checkbox>
                                     </ion-item>
-                            </ion-col>
-                    </ion-row>
-                    <ion-row >
-                            <ion-col *ngFor="let prod of fila3ignorados" col-auto >
+                            </th>
+                    </tr>
+                    <tr >
+                            <th *ngFor="let prod of fila3ignorados"  >
                                     <ion-item style="padding:0px !important;">
                                             <ion-label>Riel {{prod.key}}: </ion-label>
                                             <ion-checkbox item-right [disabled]=disabledCheckboxignorados  [(ngModel)]=prod.value ></ion-checkbox>
                                     </ion-item>
-                            </ion-col>
-                    </ion-row>
-                    <ion-row >
-                            <ion-col *ngFor="let prod of fila4ignorados" col-auto >
+                            </th>
+                    </tr>
+                    <tr >
+                            <th *ngFor="let prod of fila4ignorados"  >
                                     <ion-item style="padding:0px !important;">
                                             <ion-label>Riel {{prod.key}}: </ion-label>
                                             <ion-checkbox item-right [disabled]=disabledCheckboxignorados [(ngModel)]=prod.value ></ion-checkbox>       
                                     </ion-item>                
-                            </ion-col>
-                    </ion-row>    
-                    <ion-row >
-                            <ion-col *ngFor="let prod of fila5ignorados"  col-auto>
+                            </th>
+                    </tr>    
+                    <tr >
+                            <th *ngFor="let prod of fila5ignorados" >
                                     <ion-item style="padding:0px !important;">
                                             <ion-label>Riel {{prod.key}}: </ion-label>
                                             <ion-checkbox item-right [disabled]=disabledCheckboxignorados  [(ngModel)]=prod.value ></ion-checkbox>
                                     </ion-item>
-                            </ion-col>
-                    </ion-row>
-                    <ion-row >
-                            <ion-col *ngFor="let prod of fila6ignorados" col-auto >
+                            </th>
+                    </tr>
+                    <tr >
+                            <th *ngFor="let prod of fila6ignorados"  >
                                     <ion-item style="padding:0px !important;">
                                         <ion-label>Riel {{prod.key}}: </ion-label>
                                         <ion-checkbox item-right [disabled]=disabledCheckboxignorados  [(ngModel)]=prod.value ></ion-checkbox>
                                     </ion-item>
-                            </ion-col>
-                    </ion-row>
-                </ion-grid>
+                            </th>
+                        </tr>
+                </table>
         
                 <div style="justify-content:left;display:flex">
                     <ion-fab bottom left >
@@ -292,9 +413,9 @@
                             </ion-fab-list>
                     </ion-fab>
                 </div> 
-            <!-- </ion-scroll>         -->
-    </ion-card>
-          
+            </ion-scroll>        
+    </cardexpandible>     
+
     <!-- Info Módem -->
     <ion-card style="border-radius: 10px" [hidden]="cardshidden">
         <ion-card-header style="color:#ffffff;background-color: #242b5f;border-radius: 10px;">
@@ -353,8 +474,6 @@
     </ion-list>
     
     <!-- Tabla -->
-    <!-- <ion-scroll scrollX="true" style="height: 2800px;"> -->
-
     <ion-card style="overflow-x: auto;">
     <ng2-smart-table [settings]="settings" [source]="source" 
      (custom)="cargarDatos($event)"
@@ -362,132 +481,5 @@
      (editConfirm)="onSaveConfirm($event)"
      (createConfirm)="onCreateConfirm($event)"> <ion-scroll scrollX="true" style="height: 2800px;"></ion-scroll></ng2-smart-table>
     </ion-card>
-<!-- </ion-scroll> -->
-
-
-
-<ion-grid>
-<ion-row>
-<ion-col>
-<ion-item *ngFor="let prod of fila1productos">
-    <ion-label>{{prod.key}}</ion-label>
-    <ionic-selectable 
-      item-content 
-      [(ngModel)]=prod.indice
-      [items]="ports"
-      itemValueField="label"
-      itemTextField="value"
-      [canSearch]="true"
-      (onChange)="portChange($event)">
-    </ionic-selectable>
-</ion-item>
-</ion-col>
-</ion-row>
-
-
-<ion-row>
-<ion-col>
-<ion-item *ngFor="let prod of fila2productos">
-    <ion-label>{{prod.key}}</ion-label>
-    <ionic-selectable 
-      item-content 
-      [(ngModel)]=prod.indice
-      [items]="ports"
-      itemValueField="label"
-      itemTextField="value"
-      [canSearch]="true"
-      (onChange)="portChange($event)">
-    </ionic-selectable>
-</ion-item>
-</ion-col>
-</ion-row>
-
-
-<ion-row>
-<ion-col>
-
-<ion-item *ngFor="let prod of fila3productos">
-    <ion-label>{{prod.key}}</ion-label>
-    <ionic-selectable 
-      item-content 
-      [(ngModel)]=prod.indice
-      [items]="ports"
-      itemValueField="label"
-      itemTextField="value"
-      [canSearch]="true"
-      (onChange)="portChange($event)">
-    </ionic-selectable>
-</ion-item>
-</ion-col>
-</ion-row>
-
-
-<ion-row>
-<ion-col>
-
-
-<ion-item *ngFor="let prod of fila4productos">
-    <ion-label>{{prod.key}}</ion-label>
-    <ionic-selectable 
-      item-content 
-      [(ngModel)]=prod.indice
-      [items]="ports"
-      itemValueField="label"
-      itemTextField="value"
-      [canSearch]="true"
-      (onChange)="portChange($event)">
-    </ionic-selectable>
-</ion-item>
-</ion-col>
-</ion-row>
-
-
-<ion-row>
-<ion-col>
-
-<ion-item *ngFor="let prod of fila5productos">
-    <ion-label>{{prod.key}}</ion-label>
-    <ionic-selectable 
-      item-content 
-      [(ngModel)]=prod.indice
-      [items]="ports"
-      itemValueField="label"
-      itemTextField="value"
-      [canSearch]="true"
-      (onChange)="portChange($event)">
-    </ionic-selectable>
-</ion-item>
-</ion-col>
-</ion-row>
-
-
-<ion-row>
-<ion-col>
-
-
-<ion-item *ngFor="let prod of fila6productos" stye="width:20px">
-    <ion-label >{{prod.key}}</ion-label>
-    <ionic-selectable 
-      item-content 
-      [(ngModel)]=prod.indice
-      [items]="ports"
-      itemValueField="label"
-      itemTextField="value"
-      [canSearch]="true"
-      (onChange)="portChange($event)">
-    </ionic-selectable>
-</ion-item>
-</ion-col>
-</ion-row>
-
-
-</ion-grid>
-
-
-<button ion-button (click)="verlistas()">VER PRODUCTOS
-
-</button>
-
-
 
 </ion-content>
