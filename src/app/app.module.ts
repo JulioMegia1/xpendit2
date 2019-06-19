@@ -34,6 +34,7 @@ import { SelectserviceProvider } from "../providers/selectservice/selectservice"
 import { CIprovider } from "../providers/data/data"
 
 import { NightmodeProvider } from '../providers/nightmode/nightmode';
+import { DownloadProvider } from "../providers/download/download";
 import { DataServiceProvider } from '../providers/data-service/data-service'; //datos de prueba locales
 
 /**********servicios******/
@@ -66,8 +67,9 @@ import { IonicSelectableModule } from 'ionic-selectable';
 
 /*plugins*/
 import { Camera } from '@ionic-native/camera';
-import { FileTransfer } from '@ionic-native/file-transfer';
+import { FileTransfer,FileTransferObject } from '@ionic-native/file-transfer';
 import { File } from "@ionic-native/file";
+import { DocumentViewer } from "@ionic-native/document-viewer/ngx";
 
 /*plugin hide header*/
 import {ScrollingHeaderModule} from 'ionic-scrolling-header';
@@ -187,10 +189,11 @@ FusionChartsModule.fcRoot(FusionCharts, Charts, TimeSeries,Ocean,Gammel,Zune,Wid
     NightmodeProvider,//BORRAR----------------------------------------?????
     
     /*plugins*/
-    , FileTransfer, File,Camera,Network,
+    , FileTransfer, File,Camera,Network,FileTransfer,DocumentViewer,
     /*plugins*/
     
-    DataServiceProvider,//prueba datos locales //BORRAR----------------------------------------?????
+    DataServiceProvider,
+    DownloadProvider,//prueba datos locales //BORRAR----------------------------------------?????
     /*Servicios**/
   ]
 })

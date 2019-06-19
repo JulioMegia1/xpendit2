@@ -326,7 +326,8 @@
           itemValueField="label"
           itemTextField="value"
           [canSearch]="true"
-          (onChange)="portChange($event)">
+          (onChange)="portChange('$event,prod');recibo(prod)"
+          >
         </ionic-selectable>
     </ion-item>
     </th>

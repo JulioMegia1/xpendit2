@@ -1348,14 +1348,16 @@ verlistas(){
   console.log(this.fila1productos)
 }
 
+recibo(valor){
+console.log("tengo el riel"+valor)
+}
 
-portChange(event: {
-  component: IonicSelectableComponent,
-  value: any 
-}) {
+
+portChange(event: {component: IonicSelectableComponent,value: any},riel) {
   console.log('port:', event.value);
   console.log("cambio el valor")
   console.log(event);
+  console.log("ERES CHINGON Y EL RIEL ES "+ riel)
 
 
   console.log(this.idMaquina)
@@ -1363,7 +1365,7 @@ portChange(event: {
   console.log(event.value.label)
 
 
-  let datos={label:event.component._label,value:event.value.label} //
+  let datos={label:event.component._label,value:event.value.label} //llabel = riel, value idnuevo producto
   console.log(datos)
   this.mvService.updproducto(datos,this.idMaquina).then((result)=>{
     console.log(datos)
@@ -1382,7 +1384,7 @@ portChange(event: {
 updProducto(){
   
   }
-
+ 
 
 
 

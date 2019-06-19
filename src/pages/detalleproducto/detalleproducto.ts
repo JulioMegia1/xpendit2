@@ -72,7 +72,6 @@ export class DetalleproductoPage {
 //  /*********SELECT SEARCHEABLE para cambiar l prducto del riel ***********/
  ports2: Port2[];  ///muestra las opciones del select
  port2: Port2; //muestra la opcion elegida del select
- portrespaldo
 // // /**********SELECT SEARCHEABLE***********/
 
 
@@ -129,7 +128,6 @@ hiddengraficas=false;
       console.log(this.idmaquina)
       this.riel=this.ciService.getIdProducto(); //
       this.getproductomaquina(this.idmaquina)
-
       this.getinfoproducto(this.idmaquina,this.riel);
       console.log(result);
     }
@@ -200,9 +198,7 @@ hiddengraficas=false;
         }
         console.log(punto)
      this.port2=this.ports2[punto]; 
-     this.portrespaldo=this.port2
         console.log(result);
-
         },(err)=>{
           console.log(err);
         }
@@ -238,40 +234,12 @@ portChange2(event: {
   console.log('port:', event.value);
   console.log("cambio el valor")
   console.log(this.port2);
-  const confirm = this.alertCtrl.create({
-    title: 'Desea actualizar el producto?',
-    // message: 'Do you agree to use this lightsaber to do good across the intergalactic galaxy?',
-    buttons: [
-      {
-        text: 'Cancelar',
-        handler: () => {
-          console.log('Disagree clicked');
-          this.port2=this.portrespaldo
-
-        }
-      },
-      {
-        text: 'OK',
-        handler: async () => {
-          console.log('Agree clicked');
-          this.putnuevoproducto();
-
-          this.nombreproducto=this.port2.value;
-          //this.getproductomaquina(this.idmaquina);
-          await this.getinfoproducto(this.idmaquina,this.riel);
-
-
-
-
-        }
-      }
-    ]
-  });
-  confirm.present();
-
-
-
-
+  this.nombreproducto=this.port2.value;
+  
+  
+  
+  
+  this.putnuevoproducto();
     
 }
 
